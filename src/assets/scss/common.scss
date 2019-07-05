@@ -1,0 +1,52 @@
+/* font-family CSS Style */
+@font-face {
+    font-family: 'Noto Sans CJK KR Bold';
+    src: url('~@/assets/font/NotoSansKR-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK KR Light';
+    src: url('~@/assets/font/NotoSansKR-Light.otf');
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK KR Medium';
+    src: url('~@/assets/font/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+    font-family: 'Noto Sans CJK KR Regular';
+    src: url('~@/assets/font/NotoSansKR-Regular.otf');
+    font-style: normal;
+    font-weight: normal;
+    unicode-range: U+0-10FFFF;
+}
+
+/* Common CSS Style. */
+// html,
+// body {
+//     margin: 0;
+//     padding: 0;
+//     font-family: 'NotoSansKR-Regular';
+// }
+// ol,
+// ul {
+//     list-style: none;
+//     padding: 0;
+// }
+
+// a,
+// a:hover {
+//     text-decoration: none;
+// }
+
+// a,
+// div,
+// li,
+// p,
+// h1,
+// h2,
+// h3,
+// span {
+//     font-family: 'NotoSansKR-Regular';
+// }
