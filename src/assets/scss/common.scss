@@ -1,52 +1,232 @@
-/* font-family CSS Style */
-@font-face {
-    font-family: 'Noto Sans CJK KR Bold';
-    src: url('~@/assets/font/NotoSansKR-Bold.otf');
+@charset "utf-8";
+/*
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);*/
+
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+ol,
+ul,
+li {
+    margin: 0; /*padding:0; top:0;*/
+    list-style: none;
+}
+a {
+    outline: 0;
+    text-decoration: none;
+    color: #555;
+}
+img {
+    border: 0;
+}
+body {
+    margin: 0;
+    font: 12px/1.6 'SpoqaHanSans', 'dotum', 'arial', sans-serif;
+    color: #777;
+}
+a {
+    outline: 1px;
+    text-decoration: none;
+    color: #666;
+}
+.h {
+    position: absolute;
+    left: -999999999px;
 }
 
-@font-face {
-    font-family: 'Noto Sans CJK KR Light';
-    src: url('~@/assets/font/NotoSansKR-Light.otf');
+h1,
+h2,
+h3,
+h4,
+div {
+    font-weight: 400;
 }
-
-@font-face {
-    font-family: 'Noto Sans CJK KR Medium';
-    src: url('~@/assets/font/NotoSansKR-Medium.otf');
-}
-
-@font-face {
-    font-family: 'Noto Sans CJK KR Regular';
-    src: url('~@/assets/font/NotoSansKR-Regular.otf');
+em {
     font-style: normal;
-    font-weight: normal;
-    unicode-range: U+0-10FFFF;
 }
 
-/* Common CSS Style. */
-// html,
-// body {
-//     margin: 0;
-//     padding: 0;
-//     font-family: 'NotoSansKR-Regular';
-// }
-// ol,
-// ul {
-//     list-style: none;
-//     padding: 0;
-// }
+textarea,
+input {
+    font-family: 'SpoqaHanSans', 'dotum', sans-serif;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
 
-// a,
-// a:hover {
-//     text-decoration: none;
-// }
+/*클릭시 파란 테두리 안보이기*/
+textarea:focus,
+input:focus {
+    outline: none;
+}
 
-// a,
-// div,
-// li,
-// p,
-// h1,
-// h2,
-// h3,
-// span {
-//     font-family: 'NotoSansKR-Regular';
-// }
+/*z-index*/
+/*
+.loginBg {z-index: -990; }
+@media screen and (max-width:766px) {
+.wrap2 {z-index:-999; }
+.moLi {z-index:1; }
+.gnbBar {z-index:2; }
+.gnbBar span { z-index:6;}
+}
+
+*/
+
+/*font*/
+/*
+@font-face {
+  font-family: 'SpoqaHanSans';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../font/SpoqaHanSans/SpoqaHanSans-Thin.eot') format('embedded-opentype');
+  src: url('../font/SpoqaHanSans/SpoqaHanSans-Thin.woff') format('woff'),
+       url('../font/SpoqaHanSans/SpoqaHanSans-Thin.ttf')  format('truetype'),
+       url('../font/SpoqaHanSans/SpoqaHanSans-Thin.svg#SpoqaHanSans-Thin') format('svg');
+}*/
+
+@font-face {
+    font-family: 'SpoqaHanSans-Light';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../font/SpoqaHanSans/SpoqaHanSans-Light.eot');
+    src: url('../font/SpoqaHanSans/SpoqaHanSans-Light.eot?#iefix') format('eot'),
+        url('../font/SpoqaHanSans/SpoqaHanSans-Light.woff') format('woff'),
+        url('../font/SpoqaHanSans/SpoqaHanSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SpoqaHanSans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../font/SpoqaHanSans/SpoqaHanSans-Regular.eot');
+    src: url('../font/SpoqaHanSans/SpoqaHanSans-Regular.eot?#iefix')
+            format('eot'),
+        url('../font/SpoqaHanSans/SpoqaHanSans-Regular.woff') format('woff'),
+        url('../font/SpoqaHanSans/SpoqaHanSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SpoqaHanSans-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../font/SpoqaHanSans/SpoqaHanSans-Bold.eot'); /*format('embedded-opentype');*/
+    src: url('../font/SpoqaHanSans/SpoqaHanSans-Bold.eot?#iefix') format('eot'),
+        url('../font/SpoqaHanSans/SpoqaHanSans-Bold.woff') format('woff'),
+        url('../font/SpoqaHanSans/SpoqaHanSans-Bold.ttf') format('truetype');
+}
+
+/*added by ypHong : noto-sans font (2019.04.26 10:12:25)*/
+
+@font-face {
+    font-family: 'NotoSansKR-Regular';
+    src: url('../font/NotoSansKR-WEB/NotoSansKR-Regular.otf');
+}
+
+@font-face {
+    font-family: 'NotoSansKR-Medium';
+    src: url('../font/NotoSansKR-WEB/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+    font-family: 'NotoSansKR-Light';
+    src: url('../font/NotoSansKR-WEB/NotoSansKR-Light.otf');
+}
+
+@font-face {
+    font-family: 'NotoSansKR-Bold';
+    src: url('../font/NotoSansKR-WEB/NotoSansKR-Bold.otf');
+}
+
+/* 나눔 폰트*/
+
+/*
+ * Nanum Barun Gothic (Korean) http://hangeul.naver.com
+ */
+@font-face {
+    font-family: 'Nanum-Barun-Gothic-UltraLight';
+    font-style: normal;
+    font-weight: 200;
+    src: url(../font/nanum/NanumBarunGothicUltraLight.eot);
+    src: local('Nanum Barun Gothic UltraLight'),
+        local('NanumBarunGothicUltraLight'),
+        url(../font/nanum/NanumBarunGothicUltraLight.eot?#iefix)
+            format('embedded-opentype'),
+        url(../font/nanum/NanumBarunGothicUltraLight.woff2) format('woff2'),
+        url(../font/nanum/NanumBarunGothicUltraLight.woff) format('woff'),
+        url(../font/nanum/NanumBarunGothicUltraLight.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum-Barun-Gothic-Light';
+    font-style: normal;
+    font-weight: 300;
+    src: url(../font/nanum/NanumBarunGothicLight.eot);
+    src: local('Nanum Barun Gothic Light'), local('NanumBarunGothicLight'),
+        url(../font/nanum/NanumBarunGothicLight.eot?#iefix)
+            format('embedded-opentype'),
+        url(../font/nanum/NanumBarunGothicLight.woff2) format('woff2'),
+        url(../font/nanum/NanumBarunGothicLight.woff) format('woff'),
+        url(../font/nanum/NanumBarunGothicLight.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum-Barun-Gothic-normal';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../font/nanum/NanumBarunGothic.eot);
+    src: local('Nanum Barun Gothic'), local('NanumBarunGothic'),
+        url(../font/nanum/NanumBarunGothic.eot?#iefix)
+            format('embedded-opentype'),
+        url(../font/nanum/NanumBarunGothic.woff2) format('woff2'),
+        url(../font/nanum/NanumBarunGothic.woff) format('woff'),
+        url(../font/nanum/NanumBarunGothic.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Nanum-Barun-Gothic-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url(../font/nanum/NanumBarunGothicBold.eot);
+    src: local('Nanum Barun Gothic Bold'), local('NanumBarunGothicBold'),
+        url(../font/nanum/NanumBarunGothicBold.eot?#iefix)
+            format('embedded-opentype'),
+        url(../font/nanum/NanumBarunGothicBold.woff2) format('woff2'),
+        url(../font/nanum/NanumBarunGothicBold.woff) format('woff'),
+        url(../font/nanum/NanumBarunGothicBold.ttf) format('truetype');
+}
+
+/* added by ypHong :  공통 사용 CSS 추가. (2019.02.14 16:05:44)
+==========================================================================*/
+.block {
+    display: block !important;
+}
+
+.inlineBlock {
+    display: inline-block !important;
+}
+
+.none {
+    display: none !important;
+}
+
+/*layout agreement
+==========================================================================*/
+html,
+body {
+    background-color: #eee;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background: #eee;
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 5px;
+      }
+    </style>
+  </defs>
+  <g id="그룹_731" data-name="그룹 731" transform="translate(17117 -6363) rotate(180)">
+    <circle id="타원_425" data-name="타원 425" class="cls-1" cx="30" cy="30" r="30" transform="translate(17057 -6423)"/>
+    <path id="패스_806" data-name="패스 806" class="cls-2" d="M9.425,19.113,0,9.687l.086-.262L9.511,0" transform="translate(17091.807 -6383.444) rotate(180)"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg id="그룹_718" data-name="그룹 718" xmlns="http://www.w3.org/2000/svg" viewBox="-4393 -6508 40 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4bd897;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 7px;
+      }
+    </style>
+  </defs>
+  <rect id="사각형_2512" data-name="사각형 2512" class="cls-1" width="40" height="40" transform="translate(-4393 -6508)"/>
+  <g id="check" transform="translate(-4387.534 -6495.979)">
+    <g id="Layer_2" data-name="Layer 2">
+      <path id="패스_761" data-name="패스 761" class="cls-2" d="M32.069,3l-17.8,17.8-.363.363L3,10.267" transform="translate(-3 -3)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,386 @@
+// color ---------------------------
+$mainColor: #4bd897;
+$defaultColor: #707070;
+$colorAAA: #aaa;
+// color ---------------------------
+
+//font-family
+
+@mixin font-family($font) {
+    font-family: $font, 'dotum', sans-serif;
+}
+
+div,
+a,
+p,
+textarea,
+input,
+li,
+button {
+    color: $defaultColor;
+    @include font-family('NotoSansKR-Regular');
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+}
+
+input::placeholder {
+    color: $colorAAA;
+}
+
+input[type='checkbox'] {
+    display: none !important;
+}
+
+@mixin input($width, $height, $border, $border-color, $padding1, $padding2) {
+    width: $width - ($padding2 * 2) - ($border * 2);
+    height: $height - ($padding1 * 2) - ($border * 2);
+    @include border-radius(5px);
+    border: $border solid $border-color;
+    padding: $padding1 $padding2;
+}
+
+@mixin input-button($width, $height, $background-color) {
+    border: unset;
+    width: $width;
+    height: $height;
+    line-height: $height;
+    @include border-radius(5px);
+    background-color: $background-color;
+    text-align: center;
+}
+
+// background mixin
+@mixin background($url) {
+    background: url($url) no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+// border-radius mixin.
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@function division_mid($target) {
+    @return ($target / 2px) * -1px;
+}
+
+@mixin icon-question() {
+    @include icon-default();
+    right: 23px;
+    top: 26px;
+    @include background('~@/assets/img/login_ask_butt.png');
+}
+
+@mixin card_position($width, $height, $bottomSize) {
+    @include border-radius(60px);
+    width: $width;
+    height: $height;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: division_mid($width);
+    margin-top: division_mid($height);
+    overflow: hidden;
+
+    .contents {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        float: left;
+
+        .icon-questions {
+            @include icon-question;
+        }
+
+        .icon-back-btn {
+            @include icon-default();
+            top: 26px;
+            left: 30px;
+            @include background('~@/assets/img/login_back_butt.png');
+        }
+    }
+
+    .contents.type1 {
+        .top {
+            width: 100%;
+            height: $height - $bottomSize;
+            float: left;
+        }
+
+        .bottom {
+            $borderTop: 4px;
+            width: 100%;
+            height: $bottomSize - $borderTop;
+            overflow: hidden;
+            border-top: $borderTop solid $mainColor;
+            float: left;
+            text-align: center;
+            line-height: $bottomSize;
+        }
+    }
+
+    .contents.type2 {
+        .box {
+            $width: 335px;
+            width: $width;
+            height: 100%;
+            margin: 0 auto;
+            text-align: center;
+
+            .title {
+                font-size: 27px;
+                margin-top: 121px;
+                color: $mainColor;
+            }
+
+            img,
+            input,
+            a {
+                display: block;
+                margin: 0 auto;
+            }
+
+            .top {
+                height: 374px;
+                overflow: hidden;
+                border-bottom: 1px solid #c6c6c6;
+            }
+
+            .middle {
+                overflow: hidden;
+                height: 212px;
+                border-bottom: 1px solid #c6c6c6;
+            }
+        }
+
+        .input-button {
+            $width: 149px;
+            @include input-button($width, 35px, $mainColor);
+            color: #fff;
+        }
+    }
+}
+
+@mixin icon-default() {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 1;
+}
+
+@mixin float-left() {
+    float: left;
+}
+
+@mixin icon-platform($url, $size) {
+    display: inline-block;
+    width: $size;
+    height: $size;
+    @include background($url);
+}
+
+.loginBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background: #000;
+    z-index: 0;
+
+    background: linear-gradient(235deg, $mainColor, #2699fb, $mainColor);
+    background-size: 600% 600%;
+
+    -webkit-animation: bgMotion 30s ease infinite;
+    -moz-animation: bgMotion 30s ease infinite;
+    animation: bgMotion 30s ease infinite;
+}
+
+.card_wrap {
+    $bottomSize: 83px;
+
+    @include card_position(406px, 764px, $bottomSize);
+}
+
+.contents.type2 {
+    #questionTab.box {
+        .top {
+            img {
+                margin-top: 59px;
+                margin-bottom: 12px;
+            }
+
+            input {
+                font-size: 14px;
+            }
+        }
+
+        .middle {
+            .tel {
+                color: $mainColor;
+                font-size: 20px;
+                margin-top: 52px;
+                margin-bottom: 13px;
+            }
+
+            .text {
+                font-size: 13px;
+                line-height: 23px;
+            }
+        }
+
+        .bottom {
+            .email {
+                margin-top: 52px;
+                font-size: 16px;
+                color: $mainColor;
+            }
+        }
+    }
+
+    #naverTab.box {
+        .top {
+            .title {
+                line-height: 38px;
+            }
+
+            img {
+                margin-top: 38px;
+                margin-bottom: 12px;
+            }
+        }
+
+        .middle {
+            .text {
+                margin-top: 82px;
+                line-height: 25px;
+                font-size: 16px;
+                @include font-family('NotoSansKR-Light');
+            }
+        }
+
+        .bottom {
+            input {
+                margin-top: 41px;
+                @include font-family('NotoSansKR-Medium');
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .card_wrap {
+        $width: 315px;
+        $height: 593px;
+        width: $width;
+        height: $height;
+        margin-left: division_mid($width);
+        margin-top: division_mid($height);
+
+        .contents.type1 {
+            height: $height;
+            .top {
+                height: 518px !important;
+            }
+
+            .bottom {
+                height: 72px !important;
+                img {
+                    width: 160px !important;
+                }
+            }
+        }
+
+        .contents.type2 {
+            .box {
+                width: 280px;
+
+                .top {
+                    height: 304px;
+                    .title {
+                        margin-top: 93px;
+                        font-size: 20px !important;
+                        line-height: 27px !important;
+                    }
+                }
+                .middle {
+                    height: 182px;
+                }
+            }
+            #questionTab.box {
+                .top {
+                    img {
+                        margin-top: 55px;
+                        margin-bottom: 11px;
+                        width: 54px;
+                    }
+                }
+
+                .middle {
+                    .tel {
+                        margin-top: 44px;
+                        font-size: 17px;
+                        height: 22px;
+                        line-height: 22px;
+                    }
+
+                    .text {
+                        font-size: 12px;
+                        line-height: 20px;
+                    }
+                }
+
+                .bottom {
+                    .email {
+                        margin-top: 22px;
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            #naverTab.box {
+                .top {
+                    img {
+                        margin-top: 47px;
+                        margin-bottom: 11px;
+                        width: 54px;
+                    }
+                }
+
+                .middle {
+                    .text {
+                        margin-top: 71px;
+                        font-size: 12px;
+                        line-height: 20px;
+                    }
+                }
+
+                .bottom {
+                    .input-button {
+                        margin-top: 22px;
+                    }
+                }
+            }
+        }
+    }
+
+    .card_wrap .contents .icon-questions {
+        width: 20px;
+        height: 20px;
+        top: 30px;
+        right: 20px;
+    }
+}

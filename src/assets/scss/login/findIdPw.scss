@@ -1,0 +1,543 @@
+@import '../config';
+$border-color: #b3b3b3;
+$partition-border: #E9E9E9;
+$defaultColor: #AAAAAA;
+$mainColor : #4BD897;
+$errColor: #FF7364;
+
+#findWrap .contents.type1 {
+  $width: 232px;
+  .input-text {
+    @include input($width, 34px, 1px, $border-color, 12px, 19px);
+    display: block;
+    margin: 0 auto;
+    height: 30px!important;
+    padding: 0 19px!important;
+  }
+
+  .input-button {
+    @include input-button($width, 34px, $defaultColor);
+    color: #fff;
+    display: block;
+    margin: 0 auto 11px;
+    border:none;
+  }
+
+  .input-button:hover {
+    background-color: $mainColor;
+  }
+
+  div {
+    text-align: center;
+  }
+
+  .top {
+    width: 100%;
+    position: relative;
+    .container {
+      width: 346px;
+      margin:0 auto;
+      overflow: hidden;
+      .title {
+        width: 100%;
+        margin-top: 26px;
+        font-size: 20px;
+      }
+      .tabBtnWrap {
+        width: 100%;
+        margin-top: 54px;
+        a {
+          display: block;
+          text-align: center;
+          width: 50%;
+          height: 21px;
+          color: $defaultColor;
+          border-bottom:5px solid $defaultColor;
+          float: left;
+        }
+
+        a.on {
+          color: $mainColor;
+          border-bottom:5px solid $mainColor;
+        }
+      }
+
+      .tab {
+        width: 100%;
+        overflow: hidden;
+        .inputArea {
+          overflow: hidden;
+
+          #findID {
+            $height: 104px;
+            height: $height;
+            input {
+              margin-top: ($height/2) + division_mid(34px);
+            }
+          }
+
+          #findPW {
+            height: 149px;
+
+            input:first-child {
+              margin-top: 35px;
+              margin-bottom: 11px;
+            }
+          }
+
+          #findPW, #findID, #changePw {
+            overflow: hidden;
+            border-bottom: 1px solid $partition-border;
+          }
+
+          #changePw {
+            height: 149px;
+
+            .inputWrapper {
+              position: relative;
+              width: 232px;
+              height: 34px;
+              margin: 0 auto;
+              display: block;
+              .icon-eye {
+                $height: 12px;
+                @include icon-default();
+                width: 19px;
+                height: $height;
+                @include background("../../img/eye_gray.png");
+                position: absolute;
+                right: 7px;
+                top: 50%;
+                margin-top: division_mid($height);
+              }
+
+              .icon-eye.on {
+                @include background("../../img/eye_color.png");
+              }
+            }
+
+            .inputWrapper:first-child {
+              margin-top: 35px !important;
+              margin-bottom: 11px !important;
+            }
+
+          }
+        }
+
+        .text {
+          color:#000;
+          font-size: 13px;
+          margin-top: 36px;
+          margin-bottom: 21px;
+        }
+
+        .certificationTabs {
+          width: 100%;
+          overflow: hidden;
+
+          .certification {
+            .input-text {
+              margin-bottom: 13px;
+            }
+
+            #certNumberWrap {
+              width: 230px;
+              height:32px;
+              border: 1px solid $defaultColor;
+              display: block;
+              margin:31px auto 7px;
+              border-radius: 5px;
+              overflow: hidden;
+
+              input#certNumberInput {
+                float: left;
+                width: 104px;
+                height: 20px;
+                border: none;
+                margin-top: 6px;
+                margin-left: 10px;
+                padding-right: 10px;
+                border-right:1px solid $defaultColor;
+              }
+
+              #countDown {
+                float: left;
+                color: $defaultColor;
+                height: 32px;
+                line-height: 32px;
+                font-size: 13px;
+                text-align: center;
+                width: 34px;
+                margin-left: 10.5px;
+                margin-right: 7.5px;
+              }
+
+              #certNumberBtn {
+                float: left;
+                width: 53px;
+                height: 32px;
+                background-color: $defaultColor;
+                color: #fff;
+                line-height: 32px;
+                text-align: center;
+                border:none;
+              }
+
+              #certNumberBtn:hover {
+                background-color: $mainColor;
+              }
+
+              .reSendCertNum {
+                display: block;
+                font-size: 13px;
+                height: 19px;
+                width: 124px;
+                color:$defaultColor;
+              }
+
+            }
+            .resMessage {
+              display: block;
+              font-size: 14px;
+              margin-top: 50px;
+              color:$errColor;
+            }
+
+            .successMessage {
+              display: block;
+              font-size: 14px;
+              margin-top: 50px;
+              color:#707070;
+              i {
+                font-style: normal;
+                color:#000;
+              }
+            }
+
+            #certBtnWrap {
+              width: 254px;
+              position: absolute;
+              bottom: 33px;
+              margin-top: 33px;
+              left: 50%;
+              -webkit-transform: translateX(-50%);
+              -moz-transform: translateX(-50%);
+              -ms-transform: translateX(-50%);
+              -o-transform: translateX(-50%);
+              transform: translateX(-50%);
+              overflow: hidden;
+
+              #goLogin , #goPassword {
+                $width: 112px;
+                $height: 35px;
+                color: $mainColor;
+                font-size: 16px;
+                display: inline-block;
+                @include input($width, $height, 1px, $mainColor,0, 0);
+                line-height: $height;
+                float: left;
+              }
+
+              #goLogin {
+                background-color: $mainColor;
+                color: #fff;
+                margin-right: 30px;
+              }
+            }
+
+          }
+
+          #goBack {
+            $width: 112px;
+            $height: 35px;
+            color: $mainColor;
+            font-size: 16px;
+            display: inline-block;
+            @include input($width, $height, 1px, $mainColor,0, 0);
+            line-height: $height;
+            position: absolute;
+            bottom:24px;
+            left: 50%;
+            margin-left: division_mid($width);
+            background: #fff;
+          }
+
+          #cert_email {
+            .input-button {
+              margin-bottom: 0;
+            }
+
+            .wrongMsg {
+              display: block;
+              font-size:14px;
+              height: 22px;
+              color: $errColor;
+              margin-bottom: 11px;
+              letter-spacing: -9999;
+              i {
+                font-style: normal !important;
+              }
+            }
+          }
+
+          #cert_phone {
+            .phoneNumberWrap {
+              width: 232px;
+              overflow: hidden;
+              margin: 0 auto 13px;
+              .input-phone {
+                float: left;
+                margin-left: 5.5px;
+                @include input(82px, 34px, 1px, $border-color, 0px, 10px);
+                height: 32px;
+                width: 58px;
+              }
+
+              .input-phone:first-child {
+                margin-left: 0;
+                @include input(57px, 34px, 1px, $border-color, 0px, 10px);
+                height: 32px;
+                width: 39px;
+              }
+            }
+
+            .input-button {
+              margin-bottom: 0;
+            }
+
+            .successMail {
+              margin-top: 115px;
+
+              .result {
+                font-size: 14px;
+              }
+            }
+
+          }
+        }
+
+        #changePassword {
+          display: inline-block;
+          margin-top: 337px;
+          font-size: 16px;
+          @include input-button(112px, 34px, $mainColor);
+          color: #fff;
+        }
+      }
+
+
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #findWrap .contents.type1 {
+    .top {
+      height: 100% !important;
+      .container {
+        $width : 280px;
+        width: $width;
+
+        .tabBtnWrap {
+          margin-top: 35px;
+        }
+
+        .input-text {
+          padding: 9px ;
+          width: 200px - 20px ;
+          height: 34px - 20px ;
+        }
+
+        .input-button {
+          width: 200px !important;
+        }
+
+        .tab {
+          .text {
+            margin-top: 20px;
+            margin-bottom: 16px;
+          }
+
+          .inputArea {
+            #findID {
+              height: 84px;
+              input {
+                margin-top: 25px !important;
+              }
+            }
+
+            #findPW {
+              height: 125px;
+              input:first-child {
+                margin-top: 25px !important;
+              }
+            }
+          }
+        }
+
+        #goBack {
+          bottom: 30px !important;
+        }
+
+        #cert_phone {
+          .phoneNumberWrap {
+            width: 200px !important;
+            .input-phone {
+              width: 58px !important;
+              margin-left: 5px !important;
+              font-size: 12px !important;
+              padding:0px 5px !important;
+              height: 30px!important;
+            }
+
+            .input-phone:first-child {
+              width: 38px !important;
+              margin-left: 0 !important;
+              height: 29px!important;
+            }
+          }
+
+
+          .successMessage {
+            margin-top: 30px ;
+            font-size: 12px ;
+          }
+          .resMessage {
+            margin-top: 20px;
+          }
+
+          #certNumberWrap {
+            width: 198px;
+            #certNumberInput {
+              width: 87px !important;
+              font-size: 12px !important;
+              margin: 5px 0 0;
+              padding-left: 8px;
+            }
+
+            #countDown {
+              font-size: 12px !important;
+              width: 39px !important;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #findWrap.card_wrap {
+    height: 540px !important;
+    margin-left: -1px * (315px/2px);
+    margin-top: -1px * (540px/2px);
+    .contents.type1 {
+      .top {
+        height: 540px !important;
+        .container {
+          .title {
+            font-size: 16px !important;
+            line-height: 29px !important;
+            height: 25px !important;
+            display: block !important;
+          }
+          .tabBtnWrap {
+            a {
+              font-size: 14px !important;
+              font-family: NotoSansKR-Regular !important;
+              padding-bottom: 2px !important;
+              border-bottom: 3px solid $colorAAA !important;
+            }
+            a.on {
+              border-bottom: 3px solid #4bd897 !important;
+            }
+          }
+          .tab {
+            .text {
+              margin-top: 16px !important;
+            }
+            .inputArea {
+              #findID {
+                height: 79px !important;
+                input {
+                  font-size: 12px !important;
+                  font-family: Nanum-Barun-Gothic-normal !important;
+                }
+              }
+              #findPW {
+                height: 100px !important;
+                padding-bottom: 20px !important;
+                input {
+                  font-size: 12px !important;
+                  font-family: Nanum-Barun-Gothic-normal !important;
+                  margin-bottom: 7px !important;
+
+                }
+              }
+            }
+            .certificationTabs {
+              .certification {
+                .input-text {
+                  margin-bottom: 11px !important;
+                  font-size: 12px !important;
+                  font-family: Nanum-Barun-Gothic-normal !important;
+                }
+                .input-button {
+                  margin-bottom: 0;
+                }
+                #certNumberWrap {
+                  margin: 16px auto 7px;
+                  #certNumberBtn {
+                    font-size: 13px !important;
+                  }
+                }
+                .wrongMsg {
+                  i {
+                    font-size: 12px !important;
+                    font-style: normal !important;
+                    font-family: NotoSansKR-Light;
+                  }
+                }
+              }
+              #goBack {
+                border: 2px solid #4bd897 !important;
+                border-radius: 10px !important;
+                height: 31px !important;
+                line-height: 31px !important;
+                margin-left: 0;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+              }
+              #cert_phone {
+                .phoneNumberWrap {
+                  margin: 0 auto 11px !important;
+                }
+                span.resMessage {
+                  margin-top: 5px;
+                  font-size: 12px;
+                  font-family: NotoSansKR-Light;
+                }
+                span.successMessage {
+                  margin-top: 30px;
+
+                }
+                #certBtnWrap {
+
+                }
+              }
+            }
+          }
+        }
+      }
+      .input-button {
+        margin: 0 auto 7px !important;
+        font-size: 13px !important;
+      }
+    }
+  }
+}

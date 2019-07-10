@@ -1,0 +1,1241 @@
+/*z-index
+==========================================================================*/
+/*
+.loginBg {z-index: -990; }
+@media screen and (max-width:766px) {
+.wrap2 {z-index:-999; }
+.moLi {z-index:1; }
+.gnbBar {z-index:2; }
+.gnbBar span { z-index:6;}
+}
+*/
+
+
+/*layout login
+==========================================================================*/
+html, body{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#login .loginBg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    background: #000; /*#eee;*/
+    /*background: -webkit-linear-gradient(-111deg, rgb(75,216,151) 0%,rgb(38,153,251) 100%);*/
+    /* Chrome10-25,Safari5.1-6 */
+
+    /*background: linear-gradient(111deg, rgb(75,216,151) 0%,rgb(38,153,251) 100%);*/
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    z-index: -990;
+
+    /*gradient motion test*/
+      background: linear-gradient(235deg, #4bd897, #2699fb, #4bd897);
+      background-size: 600% 600%;
+
+      -webkit-animation: bgMotion 30s ease infinite;
+      -moz-animation: bgMotion 30s ease infinite;
+      animation: bgMotion 30s ease infinite;
+    /*gradient motion test2*/
+
+   /* background: linear-gradient(132deg, #4bd897, #c8c8c8, #2699fb);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 16s ease infinite;
+    -moz-animation: AnimationName 16s ease infinite;
+    animation: AnimationName 16s ease infinite;*/
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:15% 0%}
+    50%{background-position:86% 100%}
+    100%{background-position:15% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:15% 0%}
+    50%{background-position:86% 100%}
+    100%{background-position:15% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:15% 0%}
+    50%{background-position:86% 100%}
+    100%{background-position:15% 0%}
+}
+
+
+
+/*gradient motion test*/
+@-webkit-keyframes bgMotion {
+    0%{background-position:0% 84%}
+    50%{background-position:100% 17%}
+    100%{background-position:0% 84%}
+}
+@-moz-keyframes bgMotion {
+    0%{background-position:0% 84%}
+    50%{background-position:100% 17%}
+    100%{background-position:0% 84%}
+}
+@keyframes bgMotion {
+    0%{background-position:0% 84%}
+    50%{background-position:100% 17%}
+    100%{background-position:0% 84%}
+}
+
+
+#login .loginBox {
+    position:relative;  /*absolute;*/
+    width:406px;
+    height:716px;
+    background: #fff;
+    left:50%; top:50%;
+    margin-left:-203px;
+    margin-top:-358px;
+    text-align: center;
+    border-radius:60px; /*box-shadow: 10px 20px 20px rgba(0,0,0,0.16);*/
+    border: 0.1px solid #fff;
+    box-sizing: border-box;
+}
+
+
+
+
+/*help 버튼
+==========================================================================*/
+#login .help {
+    width: 30px;
+    height: 30px;
+    margin-top: 27px;
+    margin-left: 86%;
+    /*overflow: hidden;*/
+}
+
+#login .help>img.btnHelp{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+#login .help>img:nth-child(2){
+    display:none;
+}
+
+#login .help:hover>img:nth-child(1) {display:none;}
+
+#login .help:hover>img:nth-child(2) {display:block;}
+
+
+
+
+/*login detail
+==========================================================================*/
+#login .logo {
+    width:29px;
+    height:45.5px;
+    margin-top:37px; /*76px;*/ /*116px;*/
+    margin-bottom:49px; /*65px;*/
+}
+
+#login h1 {
+    font: 27px/1 "SpoqaHanSans", "dotum", sans-serif;
+    color:#4BD897;
+    margin-bottom:204px; /*197px;*/ /*219px;*/
+    font-weight:400;
+}
+
+
+
+/*sns
+==========================================================================*/
+#login .sns {
+    position:relative;
+    width:436px; height:27px;
+    overflow:hidden;
+}
+
+#login .sns li {
+    float:left;
+    margin-bottom:37.5px;/*48px;*/
+    overflow: hidden;
+    cursor:pointer;
+}
+
+#login .naver {
+    width:27px;
+    height:27px;
+    margin-right:23px;
+    margin-left:82px;
+}
+
+#login .naver img {
+    width:27px;
+    height:27px;
+    opacity:0.4;
+}
+
+#login .insta img {
+    width:27px;
+    height:27px;
+    margin-right:23px;
+    opacity:0.4;
+}
+
+#login .utube img {
+    width:38.38px;
+    height: 27px;
+    margin-right:23px;
+    opacity:0.4;
+}
+
+#login .twitter img {
+    width:30.84px;
+    height:25px;
+    margin-right:23px;
+    opacity:0.4;
+}
+
+#login .face img {
+    width:27px;
+    height:27px;
+    opacity:0.4;
+}
+
+
+/*컬러 수정*/
+#login .naver img:hover {opacity:1;}
+#login .insta img:hover {opacity:1;}
+#login .utube img:hover {opacity:1;}
+#login .twitter img:hover {opacity:1;}
+#login .face img:hover {opacity:1;}
+
+
+#login h3 {
+    margin-top:19.5px; /*37px;*/
+    font: 16px/2 "SpoqaHanSans", "dotum", sans-serif;
+    color:#8D8D8D; /*#4BD897;*/
+    font-weight:400;
+}
+
+
+
+/*bigbird-i 링크
+==========================================================================*/
+#login .line{
+    width:406px;
+    height:3px;
+    background: #4BD897;
+    margin-top:117px; /*108px;*/
+}
+
+#login .introduce {
+    display:block;
+    width:199px;/*164px;*/
+    height:24px;
+    margin-top:28px;
+    margin-left:auto;
+    margin-right:auto;
+    font:16px "SpoqaHanSans", "dotum", sans-serif;
+    color:#4BD897;
+}
+
+#login .introduce img {
+    width:120px;
+    margin-right:14px;
+    vertical-align: text-bottom;
+}
+
+#login .introduce img:nth-child(2){display:none;}
+
+#login .introduce:hover { color:#777;}
+#login .introduce:hover img:nth-child(1) {display:none;}
+
+#login .introduce:hover img:nth-child(2) {
+    display:inline;
+    width:120px;
+}
+
+
+/*투명도 애니메이션
+==========================================================================*/
+@keyframes opacity {
+    0% {  opacity:0;}
+    100% {  opacity:1;}
+}
+
+
+
+/*naver 메일 팝업
+==========================================================================*/
+#login .popupN01 {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:406px;
+    height:716px;
+    background: #fff;  /*text-align: center;*/
+    border-radius:60px;
+    font:16px/1.8 "SpoqaHanSans", "dotum", sans-serif;
+    animation: opacity 1s 1;
+}
+
+#login .popupN01>a {
+    display:block;
+    margin-top:26px;
+    margin-left:26px;
+    width:30px;
+    height:30px; /*height:30px;*/
+}
+
+#login .popupN01>a>img {
+    width:30px;
+    height:30px;
+}
+
+#login .popupN01>a>img:nth-child(2) {display:none;}
+#login .popupN01>a:hover img:nth-child(1) {display: none;}
+#login .popupN01>a:hover img:nth-child(2) {display: block;}
+
+#login .popupN01>h1 {
+    margin-top:71px;
+    margin-left:56px;
+    width:189px;
+    text-align:left;
+    line-height:1.66;
+}
+
+#login .popupN01>p {
+    margin-top:190px;
+    margin-left:56px;
+    width:289px;
+    text-align:left;
+    color:#4BD897;
+    line-height:1.66;
+}
+
+#login .popupN01>div>.btnNaver {
+    display:block;
+    margin-top:86px;
+    margin-left:auto;
+    margin-right:auto;
+    width:160px;
+    height:45px;
+    background: #4BD897;
+    border-radius:12px;
+    border:1px solid #4BD897;
+    box-sizing: border-box;
+    font-size:20px;
+    color:#fff;
+    text-align: center;
+    line-height:2.05;
+    cursor:pointer;
+}
+
+#login .popupN01>div>.btnNaver:hover {
+    background: #fff;
+    color:#4BD897;
+}
+
+
+
+
+
+/*naver 메일 팝업2 - 외부사이트 연결
+==========================================================================*/
+#login .popupN02 {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:406px;
+    height:716px;
+    background: #fff;
+    text-align: center;
+    border-radius:60px;
+    font:16px/1.8 "SpoqaHanSans", "dotum", sans-serif;
+    animation: opacity 1s 1;
+}
+
+#login .popupN02>h1 {
+    margin: 91px auto 0 auto;
+    width:328px;
+    text-align:center;
+    line-height:1.7;
+    font-size:23px;
+}
+
+#login .popupN02>img {
+    width:308px;
+    height:auto;
+    margin-top:85px;
+}
+
+#login .popupN02>p {
+    margin-top:26px;
+    margin-left:auto;
+    margin-right:auto;
+    width:242px; /*text-align:left;*/
+    color:#4BD897;
+}
+
+#login .popupN02>div>.btnNaver02 {
+    display:block;
+    margin-top:50px;
+    margin-left:auto;
+    margin-right:auto;
+    width:202px;
+    height:45px;
+    background: #4BD897;
+    border-radius:12px;
+    border:1px solid #4BD897;
+    box-sizing: border-box;
+    font-size:16px;
+    color:#fff;
+    text-align: center;
+    line-height:2.6;
+}
+
+#login .popupN02>div>.btnNaver02:hover {
+    background: #fff;
+    color:#4BD897;
+}
+
+#login .popupN02>p>em {color:#FF7364;}
+
+
+
+/* added by JY. 로그인 차단 모드 팝업 (2018.03.20 14:58:14)
+==========================================================================*/
+#login .popupLoginBlock {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:406px;
+    height:716px;
+    background: #fff;
+    border-radius:60px;
+    font:16px/1.8 "SpoqaHanSans", "dotum", sans-serif;
+    animation: opacity 1s 1;
+    z-index: 10;
+}
+
+#login .popupLoginBlock>a {
+    display:block;
+    margin-top:26px;
+    margin-left:26px;
+    width:30px;
+    height:30px;
+}
+
+#login .popupLoginBlock>a>img {
+    width:30px;
+    height:30px;
+}
+
+#login .popupLoginBlock>a>img:nth-child(2) {display:none;}
+
+#login .popupLoginBlock>a:hover img:nth-child(1) {display: none;}
+#login .popupLoginBlock>a:hover img:nth-child(2) {display: block;}
+
+#login .popupLoginBlock>h1 {
+    margin-top:71px;
+    margin-left:56px;
+    text-align:left;
+    line-height:1.66;
+}
+
+#login .popupLoginBlock>p {
+    margin-top:-150px; /*280px;*/ /*190px;*/
+    margin-left:56px;
+    width:289px;
+    text-align:left;
+    color:#aaa; /*#4BD897;*/
+    line-height:1.66;
+
+}
+/*
+.popupLoginBlock>div>.btnLoginBlockBack {
+    display:block;
+    margin-top:86px;
+    margin-left:auto;
+    margin-right:auto;
+    width:160px;
+    height:45px;
+    background: #4BD897;
+    border-radius:12px;
+    border:1px solid #4BD897;
+    box-sizing: border-box;
+    font-size:20px;
+    color:#fff;
+    text-align: center;
+    line-height:2.05;
+    cursor:pointer;
+}*/
+/*
+.popupLoginBlock>div>.btnLoginBlockBack:hover {
+    background: #fff;
+    color:#4BD897;
+}*/
+
+
+
+/*naver 메일 팝업2 - 외부사이트 연결
+==========================================================================*/
+#login .popupHelp {
+    display:none;
+    position:absolute;
+    top:0;
+    left:0;
+    width:406px;
+    height:716px;
+    background: #fff;  /*text-align: center;*/
+    border-radius:60px;
+    font:14px/1.8 "SpoqaHanSans", "dotum", sans-serif;
+    color:#4BD897;
+    animation: opacity .5s 1;
+}
+
+#login .popupHelp>.btnClose {
+    display:block;
+    margin-top:27px;
+    margin-left:26px;
+    width:30px;
+    height:30px; /*height:30px;*/
+    cursor:pointer;
+}
+
+#login .popupHelp>.btnClose>img {
+    width:30px;
+    height:30px;
+}
+
+#login .popupHelp>.btnClose>img:nth-child(2) {display:none;}
+#login .popupHelp>.btnClose:hover img:nth-child(1) {display: none;}
+#login .popupHelp>.btnClose:hover img:nth-child(2) {display: block;}
+
+#login .popupHelp>h1 {
+    margin: 15px auto 0 auto;
+    width:189px;
+    font-size: 27px;
+    text-align:center;
+    line-height:1.66;
+}
+
+#login .popupHelp>ul {
+    margin-top:75px;
+}
+
+#login .popupHelp>ul>li:nth-child(1) {
+    border:0;
+}
+
+#login .popupHelp>ul>li {
+    margin-bottom:53px;
+    overflow:hidden;
+}
+
+
+#login .popupHelp>ul>li>h3 {
+    font-size:20px;
+    color:#4BD897;
+}
+
+#login .popupHelp>ul>li>p {
+    color:#8D8D8D;
+}
+
+#login .popupHelp>ul>li>img {
+    width:64px;
+}
+
+#login .popupHelp>ul>li>span {
+    display:block;
+    margin-top:43px;
+    margin-right:0;
+    width: 336px;
+    height:1px;
+    background: #C6C6C6;
+    float:right;
+}
+
+#login .popupHelp>ul>.kakao>div>a {
+    display:block;
+    width:149px;
+    height:35px;
+    margin:13px auto 0 auto;
+    background: #4BD897;
+    border-radius:7px;
+    color:#fff;
+    font-size:14px;
+    line-height:32px;
+}
+
+
+
+
+
+/*responsive
+==========================================================================*/
+/*
+데스크탑 대형: 1601~1700px
+데스크탑 중형, 노트북: 1200~1600px (저해상도 노트북: 1200~1430px)
+태블릿: 767~1199px (고해상도 태블릿: 1024~1199px)
+모바일: 0~766px (아이폰 플러스: 414px, LG G3~5 / 갤럭시 S8: 0~374px)
+*/
+
+/*데스크탑 중형
+==========================================================================*/
+@media screen and (min-width:1200px) and (max-width:1584px) {
+
+    #login .loginBox {
+        width:24.7%;
+        min-width:338px; /*338px;*/
+        height:596px; /*596.08px;*/
+        margin-top:-298.04px;
+        margin-left:-12.3%; /*-169px;*/
+    }
+
+    #login .help {
+        margin-top:26px;
+        margin-left:84%;
+    }
+
+
+    /*login detail
+    ==========================================================================*/
+    #login .logo {
+        width:6.6%; /*22.5px;*/
+        height:auto; /*35.3px;*/
+        /*margin-top:76px;*/ /*96.65px;*/
+        margin-bottom:40px; /*54px;*/
+    }
+
+    #login h1 {
+        font-size:22px;
+        margin-bottom:124.17px;
+    }
+
+
+    /*sns
+    ==========================================================================*/
+    #login .sns {
+        width:100%;
+        margin-top:181px;
+    }
+
+    #login .sns li { margin-bottom:23.5px;}
+
+    #login .naver { margin-left:16.5%;/*14.5%;*//*47.5px;*/}
+
+    #login h3 {
+        margin-top:11px;
+        font-size: 14px;
+    }
+
+    /*.btn a {width:104px; height:30px; margin-top:56.66px; margin-left:117px; font-size: 14px; }*/
+
+
+
+    /*big bird-i 링크
+    ==========================================================================*/
+    #login .line{
+        width:100%; /*338px;*/
+        height:2px;
+        margin-top:81px;
+    }
+
+    #login .introduce {
+        margin-top:24px;
+        font-size:14px;
+    }
+
+    #login .introduce img { margin-right:5%; /*10px;*/}
+
+
+
+    /*naver 메일 팝업
+    ==========================================================================*/
+    #login .popupN01 {
+        width:100%;
+        height:596px;
+    }
+
+    #login .popupN01>div>.btnNaver {margin-top:47px;}
+
+
+
+    /*naver 메일 팝업2 - 외부사이트 연결
+    ==========================================================================*/
+    #login .popupN02 {
+        width:100%;
+        height:596px;
+    }
+
+    #login .popupN02>h1 {
+        margin-top:60px;
+        font-size: 20px;
+    }
+
+    #login .popupN02>img {
+        margin-top:59.5px;
+        width:84.2%;
+    }
+
+    #login .popupN02>p {margin-top:5.4px;}
+
+    #login .popupN02>div>.btnNaver02 {margin-top:62px;}
+
+
+
+    /* 로그인 차단 모드 팝업
+    ==========================================================================*/
+    #login .popupLoginBlock {
+        width:100%;
+        height:596px;
+    }
+
+    #login .popupLoginBlock>h1 {
+        margin-top:60px;
+        font-size: 20px;
+    }
+
+    #login .popupLoginBlock>p {
+        margin-top: -98px; /*230px;*/
+        margin-left: 56px;
+        /*margin-right:auto;*/
+    }
+
+    /*.popupLoginBlock>div>.btnLoginBlockBack {margin-top:62px;}*/
+
+
+
+    /*popupHelp 문의 팝업
+    ==========================================================================*/
+    #login .popupHelp {width:100%; height:596px;}
+
+    #login .popupHelp>h1 {margin-top:9px;}
+
+    #login .popupHelp>ul {margin-top:50px;}
+
+    #login .popupHelp>ul>li>span {
+        margin-top:28px;
+        width:82%;
+    }
+
+    #login .popupHelp>ul>li {margin-bottom:28px;}
+
+    #login .help {
+        margin-top:26px;
+        margin-left:84%;
+    }
+
+
+    @media screen and (min-width:1440px) and (max-width:1584px) {
+        #login .loginBox {
+            width:23.4%;
+            margin-left:-10%;
+        }
+    }
+
+    @media screen and (min-width:1366px) and (max-width:1440px) {
+        #login .popupN01>p {margin-top:155px;}
+    }
+}
+
+
+
+/*태블릿
+==========================================================================*/
+@media screen and (min-width:767px) and (max-width:1199px) {
+
+    #login .loginBox {
+        width:338px; /*44%; max-width:338px;*/ /*338px;*/
+        height:596px;/*596.08px;*/
+        margin-top:-342px; /*-298.04px;*/
+        margin-left:-169px; /*-20.5%;*/ /*-169px;*/
+    }
+
+    #login .help {margin-left:84%;}
+
+
+    /*login detail
+    ==========================================================================*/
+    #login .logo {
+        width:6.6%; /*22.5px;*/
+        height:auto; /*35.3px;*/
+        /*margin-top:76px;!*96.65px;*!*/
+        margin-bottom:40px; /*54px;*/
+    }
+
+    #login h1 {
+        font-size:22px;
+        margin-bottom:124.17px;
+    }
+
+
+    /*sns
+    ==========================================================================*/
+    #login .sns {
+        width:100%;
+        margin-top:181px;
+    }
+
+    #login .sns li { margin-bottom:23.5px;}
+
+    #login .naver {  margin-left: 14.6%; /*49.5px;*/}
+
+    #login h3 {
+        margin-top:18px;
+        font-size: 14px;
+    }
+
+    /*.btn a {width:104px; height:30px; margin-top:56.66px; margin-left:117px; font-size: 14px; }*/
+
+
+
+    /*big bird-i 링크
+    ==========================================================================*/
+    #login .line{
+        width:100%; /*338px;*/
+        height:2px;
+        margin-top:72px;
+    }
+
+    #login .introduce {
+        margin-top:24px;
+        font-size:14px;
+    }
+
+    #login .introduce img { margin-right:5%; /*10px;*/}
+
+    #login .introduce:hover { color:#4BD897;}
+    #login .introduce:hover img:nth-child(1) {display:inline;}
+    #login .introduce:hover img:nth-child(2) {display:none; }
+
+
+    /*naver 메일 팝업
+     ==========================================================================*/
+    #login .popupN01 {
+        width:100%;
+        height:596px;
+    }
+
+    #login .popupN01>p {margin-top:155px;}
+
+    #login .popupN01>div>.btnNaver {margin-top:43px;}
+
+    #login .popupN01>div>.btnNaver:hover{
+        background:#4BD897;
+        color:#fff;
+    }
+
+
+    /*naver 메일 팝업2 - 외부사이트 연결
+    ==========================================================================*/
+    #login .popupN02 {
+        width:100%;
+        height:596px;
+    }
+
+    #login .popupN02>h1 {
+        margin-top:63.5px;
+        font-size:20px;
+    }
+
+    #login .popupN02>img {
+        margin-top:54.5px;
+        width:84.2%;
+    }
+
+    #login .popupN02>p {margin-top:8px;}
+
+    #login .popupN02>div>.btnNaver02 {margin-top:62px;}
+
+    #login .popupN02>div>.btnNaver02:hover{
+        background:#4BD897;
+        color:#fff;
+    }
+
+
+
+    /* 로그인 차단 모드 팝업
+    ==========================================================================*/
+    #login .popupLoginBlock {
+        width:100%;
+        height:596px;
+    }
+
+    #login .popupLoginBlock>h1 {
+        margin-top:63.5px;
+        font-size:20px;
+    }
+
+    #login .popupLoginBlock>p {
+        margin-top:-96px; /*220px;*/
+        margin-left: 56px; /*auto;*/
+        /*margin-right:auto;*/
+    }
+/*
+    #login .popupLoginBlock>div>.btnLoginBlockBack {margin-top:62px;}
+
+    #login .popupLoginBlock>div>.btnLoginBlockBack:hover{
+        background:#4BD897;
+        color:#fff;
+    }*/
+
+
+
+    /*popupHelp 문의 팝업
+     ==========================================================================*/
+    #login .popupHelp {width:100%; height:596px;}
+
+    #login .popupHelp>h1 {margin-top:0;}
+
+    #login .popupHelp>ul {margin-top:45px;}
+    #login .popupHelp>ul>li {margin-bottom:44px; /*34px;*/}
+    #login .popupHelp>ul>li:last-child {margin-top:-25px; /*34px;*/}
+
+    #login .popupHelp>.btnClose:hover img:nth-child(1) {display: block;}
+    #login .popupHelp>.btnClose:hover img:nth-child(2) {display: none;}
+
+
+
+    #login .help {margin-left:84%; }
+
+    #login .help:hover img:nth-child(1) {display:inline;}
+
+    #login .help:hover img:nth-child(2) {display:none;}
+}
+
+
+
+/*모바일
+==========================================================================*/
+/*@media screen and (min-width:375px) and (max-width:766px)*/
+@media screen and (max-width:766px) {
+
+    #login .loginBox {
+        width:286px; /*76.2%; max-width:286px;*/ /*286px;*/
+        height:504px;
+        margin-top:-252px;
+        margin-left: -143px;/*-38%;*/
+        border-radius:37px; /*29px;*/
+    }
+
+
+    #login .help {
+        margin-top: 17px;
+        margin-left: 84%;
+    }
+
+    /*login detail
+    ==========================================================================*/
+    #login .logo {
+        width:7.3%; /*20.96px;*/
+        height:auto; /*32.89px;*/
+        margin-top:21px; /*38px;*//*60px;*/
+        margin-bottom:34px; /*51.41px;*/
+    }
+
+    #login h1 {
+        font-size:21px;
+        margin-bottom:116.87px;
+    }
+
+
+    /*sns
+    ==========================================================================*/
+    #login .sns {
+        width:100%;
+        margin-top:143px; /*159px;*/
+    }
+    #login .sns li {
+        margin-bottom:0px;
+        margin-right:6.6%;
+    }
+
+    #login .naver { margin-left:10.5%; /*9.9%;*/ /*28.5px;*/}
+    #login .insta img {  margin-right:70%;/*19px;*/}
+    #login .utube img { margin-right:6.6%; /*19px;*/ }
+    #login .twitter img { margin-right:6.6%;/*19px;*/ }
+
+    #login h3 {
+        font-size: 14px;
+        margin-top:14px; /*12px;*/ /*21.36px;*/
+    }
+    /*.btn a {width:104px; height:30px; margin-top:56.66px; margin-left:91px; font-size: 14px; }*/
+
+
+    /*big bird-i 링크
+    ==========================================================================*/
+    #login .line{
+        width:100%; /*286px;*/
+        height:2px;
+        margin-top:66px; /*60px;*/
+    }
+
+    #login .introduce {
+        margin-top:19px;
+        font-size:14px;
+    }
+
+    #login .introduce img { margin-right: 5%; /*10px;*/}
+
+    #login .introduce:hover { color:#4BD897;}
+    #login .introduce:hover img:nth-child(1) {display:inline;}
+    #login .introduce:hover img:nth-child(2) {display:none; }
+
+
+    /*naver 메일 팝업
+    ==========================================================================*/
+    #login .popupN01 {
+        width:100%;
+        height:504px;
+    }
+
+    #login .popupN01>h1 {
+        margin-top:39px;
+        margin-left:34px;
+    }
+
+    #login .popupN01>p {
+        margin-top:116px;
+        margin-left:34px;
+        font-size:14px;
+    }
+
+    #login .popupN01>div>.btnNaver {margin-top:43px;}
+
+    #login .popupN01>div>.btnNaver:hover{
+        background:#4BD897;
+        color:#fff;
+    }
+
+
+    /*naver 메일 팝업2 - 외부사이트 연결
+   ==========================================================================*/
+    #login .popupN02 {
+        width:100%;
+        height:504px;
+    }
+
+    #login .popupN02>h1 {
+        width:100%;
+        margin-top:50px;
+        margin-left:auto; /*34px;*/
+        margin-right:auto;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    #login .popupN02>img {
+        margin-top:48.5px;
+        width:84.2%;
+    }
+
+    #login .popupN02>p {
+        margin-top:10px; /*margin-left:34px;*/
+        font-size:14px;
+        line-height:1.5;
+    }
+
+    #login .popupN02>div>.btnNaver02 {
+        margin-top:57px;
+        height:39px;
+        font-size:14px;
+        line-height:2.5;
+    }
+
+    #login .popupN02>div>.btnNaver02:hover{
+        background:#4BD897;
+        color:#fff;
+    }
+
+
+
+
+    /* 로그인 차단 모드 팝업
+    ==========================================================================*/
+    #login .popupLoginBlock {
+        width:100%;
+        height:504px;
+    }
+
+    #login .popupLoginBlock>h1 {
+        width:100%;
+        margin-top:50px;
+        margin-left:34px;
+        text-align: left;
+        font-size:21px;
+        line-height:1.5;
+    }
+
+    #login .popupLoginBlock>p {
+        margin-top:-96px; /*172px;*/
+        margin-left:34px; /*auto;*/
+        /*margin-right:auto;*/
+        font-size:14px;
+        line-height:1.5;
+    }
+
+    /*
+    #login .popupLoginBlock>div>.btnLoginBlockBack {
+        margin-top:57px;
+        height:39px;
+        font-size:14px;
+        line-height:2.5;
+    }
+
+    #login .popupLoginBlock>div>.btnLoginBlockBack:hover{
+        background:#4BD897;
+        color:#fff;
+    }
+    */
+
+
+
+    /*popupHelp 문의 팝업
+    ==========================================================================*/
+    #login .popupHelp {
+        width:100%;
+        height:504px;
+        border-radius:37px;
+    }
+
+    #login .popupHelp>.btnClose {
+        margin-top:17px;
+        margin-left:18px;
+    }
+
+    #login .popupHelp>h1 {
+        margin-top:0;
+        font-size: 23px;
+    }
+
+    #login .popupHelp>ul {margin-top:42px;}
+
+    #login .popupHelp>ul>li {
+        margin-bottom:25px;
+    }
+
+    #login .popupHelp>ul>.kakao>div>a {margin-top:4px;}
+
+
+    #login .popupHelp>ul>li>h3 {
+        margin-top:0;
+    }
+
+    #login .popupHelp>ul>li>span {
+        margin-top:25px;
+        width:230px;
+    }
+
+    #login .popupHelp>.btnClose:hover img:nth-child(1) {display: block;}
+    #login .popupHelp>.btnClose:hover img:nth-child(2) {display: none;}
+
+    #login .help {
+        margin-top:17px;
+        margin-left:84%;
+    }
+
+    #login .help:hover img:nth-child(1) {display:inline;}
+
+    #login .help:hover img:nth-child(2) {display:none;}
+
+
+
+
+    /*ipone plus
+    ==========================================================================*/
+    @media screen  and (min-width:414px) and (max-width:414px) {
+        #login .loginBox {
+            width:72.4%;
+            margin-left:-36%;
+        }
+
+        #login .popupN02>p {
+            margin-top:2px;
+            margin-left:auto;/*0;*/
+        }
+    }
+
+
+    /*lg g5
+    ==========================================================================*/
+    @media screen and (max-width:374px) {
+        #login .loginBox {
+            height:460px;
+            margin-top:-235px;
+        }
+
+        #login .logo {
+            margin-top:17px;
+            margin-bottom:30px;
+        }
+
+        #login .sns { margin-top:122px; /*137px;*/ }
+
+        #login .line {margin-top:53px; /*39px;*/ /*46px;*/}
+
+
+        /*naver 메일 팝업
+        ==========================================================================*/
+        #login .popupN01 { height:460px;}
+
+        #login .popupN01>h1 {
+            margin-top:38px;
+            margin-bottom:0;
+        }
+
+        #login .popupN01>p {margin-top:85px;}
+
+
+        /*naver 메일 팝업2 - 외부사이트 연결
+         ==========================================================================*/
+        #login .popupN02 { height:460px;}
+        #login .popupN02>h1 {margin-top:41px;}
+        #login .popupN02>img {margin-top:38.5px;}
+        #login .popupN02>div>.btnNaver02 {margin-top:44px;}
+
+
+
+        /* 로그인 차단 모드 팝업
+        ==========================================================================*/
+        #login .popupLoginBlock { height:460px;}
+
+        #login .popupLoginBlock>h1 {
+            margin-top:38px;
+            margin-bottom:0;
+        }
+
+        #login .popupLoginBlock>p {margin-top:22px; /*150px;*/}
+
+
+
+        /*popupHelp 문의 팝업
+       ==========================================================================*/
+        #login .popupHelp { height:460px;/* margin-top:-235px;*/}
+
+        #login .popupHelp>h1 {margin-top:-14px;}
+
+        #login .popupHelp>ul {margin-top:40px;}
+
+        #login .popupHelp>ul>li {margin-bottom:20px;}
+
+        #login .popupHelp>ul>li>span {margin-top:20px;}
+
+        #login .help {margin-top:17px;}
+    }
+}
+
+
+
+

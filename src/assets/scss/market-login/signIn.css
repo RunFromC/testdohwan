@@ -1,0 +1,995 @@
+@keyframes translate {
+    0% { transform:translate(0,-50px); opacity:0;}
+    100% { transform:translate(0,0); opacity:1;}
+}
+
+
+
+@keyframes move-to-left {
+    0% {
+        margin-left: calc( 50% - 123px);
+    }
+
+    100% {
+        margin-left: calc( 50% - 390px);
+    }
+}
+
+@keyframes move-to-right {
+    0% {
+        margin-left: calc( 50% - 390px);
+    }
+
+    100% {
+        margin-left: calc( 50% - 123px);
+    }
+}
+
+
+#signIn {
+    overflow: auto;
+}
+
+#signIn * {
+    font-family: "SpoqaHanSans", "dotum", sans-serif
+}
+
+#signIn #line {
+    width: 100%;
+    height: 18px;
+    z-index: 1;
+    background-color: #4bd897;
+}
+
+#signIn .show {
+    animation: translate 2s 0s;
+}
+#signIn .container {
+    width: 346px;
+    height: auto;
+    margin-top: 88px;
+    margin-left: calc( 50% - 123px);
+    margin-bottom: 99px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 5px 10px 10px 0 rgba(0, 0, 0, 0.16);
+    float: left;
+    overflow: hidden;
+}
+
+#signIn .container button {
+    background: #999; border: none;
+    color: #fff;
+    height: 34px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 34px;
+}
+/* top contents css in container */
+#signIn .container .topContainer {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+#signIn .container .topContainer .title{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    height: 29px;
+    line-height: 29px;
+    font-size: 20px;
+    font-family: "SpoqaHanSans", "dotum", sans-serif;
+    color: #707070;
+    margin-top: 23px;
+}
+
+#signIn .container .topContainer a.backBtn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background:url("../../img/login/btnBack02.png") no-repeat;
+    background-size: 100%;
+    top: 22px;
+    left: 19px;
+}
+
+#signIn .container .topContainer .tab {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-top: 25px;
+}
+
+#signIn .container .topContainer .tab .tabList {
+    width: 50%;
+    font-size: 14px;
+    text-align: center;
+    color: #d1d1d1;
+    border-bottom: 5px solid #d1d1d1;
+    float: left;
+    cursor: pointer;
+}
+
+#signIn .container .topContainer .tab .tabList.active {
+    color: #4bd897;
+    border-bottom: 5px solid #4bd897;
+}
+
+/* style sheet for contents container */
+#signIn .container .contentsContainer {
+    padding:29px 0 25px;
+    height: auto;
+}
+
+#signIn .container .contentsContainer > div{
+    width: calc(100% - 56px) ;
+    padding:0 28px;
+}
+
+#signIn .container .contentsContainer .required{
+    font-size: 13px;
+    line-height: 20px;
+    text-align: left;
+    color: #48d091;
+}
+
+#signIn .container .contentsContainer .required i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("../../img/login/join/mustFill.png") no-repeat;
+    background-size: 100%;
+    float: left;
+    margin-right: 5px;
+}
+
+#signIn .container .contentsContainer .section {
+    height: auto;
+    min-height: 34px;
+    margin-bottom: 13px;
+    overflow: hidden;
+}
+
+#signIn .container .contentsContainer .section:last-child {
+    margin-bottom: 0;
+}
+
+#signIn .container .contentsContainer .section input {
+    width: 189px;
+    height: 19px;
+    float: left;
+    border:1px solid #aaa;
+    border-radius: 6px;
+    color: #707070;
+    padding:7.5px 11px;
+}
+
+#signIn .container .contentsContainer .section input::placeholder {
+    color: #aaa;
+}
+
+#signIn .container .contentsContainer .section button {
+    width: 72px;
+    float: right;
+}
+
+#signIn .container .contentsContainer .section button:focus {
+    outline: none;
+}
+
+#signIn .container .contentsContainer .idBox {
+    margin-top: 25px;
+}
+
+#signIn .container .contentsContainer .selfCertification {
+    margin-top: 52px;
+}
+
+#signIn .container .contentsContainer .selfCertification .phone {
+    width: 70px;
+    margin-left: 12px;
+}
+
+#signIn .container .contentsContainer .selfCertification .phone:first-child {
+    width: 54px;
+    margin-left: 0 !important;
+}
+
+#signIn .container .contentsContainer .selectPlatform {
+    margin-top: 52px;
+}
+
+#signIn .container .contentsContainer .selectPlatform .title{
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    color: #aaa;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList {
+    width: 100%;
+    height: 27px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li {
+    float: left;
+    width: auto;
+    height: 100%;
+    margin-right: 21px;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a {
+    width: 27px;
+    display: block;
+    height: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.naver {
+    background: url("../../img/login/join/platform_join/naver_off.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.instagram {
+    background: url("../../img/login/join/platform_join/insta_off.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.youtube {
+    background: url("../../img/login/join/platform_join/utube_off.png") no-repeat;
+    background-size: 100%;
+    width: 38.4px;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.twitter {
+    background: url("../../img/login/join/platform_join/twitter_off.png") no-repeat;
+    background-size: 100%;
+    width: 30.8px;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.facebook {
+    background: url("../../img/login/join/platform_join/facebook_off.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.naver.active {
+    background: url("../../img/login/join/platform_join/naver_on.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.instagram.active {
+    background: url("../../img/login/join/platform_join/insta_on.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.youtube.active {
+    background: url("../../img/login/join/platform_join/utube_on.png") no-repeat;
+    background-size: 100%;
+    width: 38.4px;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.twitter.active {
+    background: url("../../img/login/join/platform_join/twitter_on.png") no-repeat;
+    background-size: 100%;
+    width: 30.8px;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platformList li a.facebook.active {
+    background: url("../../img/login/join/platform_join/facebook_on.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .selectPlatform #platform {
+    display: none;
+}
+
+#signIn .container .contentsContainer .selectPlatform #url {
+    width: 211px;
+}
+
+#signIn .container .contentsContainer .selectPlatform button {
+    width: 44px;
+}
+
+#signIn .container .contentsContainer .selectPlatform button {
+    width: 44px;
+}
+
+/* next button*/
+#signIn .container .contentsContainer .nextBtn {
+    text-align: center;
+    width: 216px;
+    margin: 49px auto 0;
+}
+
+#signIn .container .contentsContainer button.next{
+    display: inline-block;
+    background-color: #4bd897;
+    line-height: 35px;
+    height: 35px;
+    padding: 0 30px;
+    font-size: 16px;
+    margin-top: 19px;
+}
+
+#signIn .container .contentsContainer button.next img {
+    display: inline-block;
+    float: right;
+    height: 15px;
+    margin-top: 11px;
+    margin-left: 13px;
+}
+
+#signIn .container .contentsContainer .nextBtn #checkboxWrap span.agreeCheckbox{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    float: left;
+    background: url("../../img/login/login_box.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container .contentsContainer .nextBtn #agreeCheckBox:checked + #checkboxWrap .agreeCheckbox{
+    background: url("../../img/login/login_check.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container #step02 .textWrap {
+    margin-top: 81px;
+    text-align: center;
+}
+
+#signIn .container #step02 .textWrap h1 {
+    display: inline-block;
+    height: 27px;
+    line-height: 27px;
+    color:#34c884;
+    font-size: 18px;
+    font-family: "SpoqaHanSans", "dotum", sans-serif;
+}
+
+#signIn .container #step02 .textWrap p {
+    font-size: 14px;
+    color: #707070;
+    margin-top: 7px;
+}
+
+#signIn .container #step02 .mileageWrap {
+    text-align: center;
+    overflow: hidden;
+    margin-top: 58px;
+}
+
+#signIn .container #step02 .mileageWrap div {
+    display: inline-block;
+    width: 129px;
+    height: 40px;
+    margin-bottom: 12px;
+    background: #4bd897;
+    line-height: 40px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 30px;
+}
+
+#signIn .container #step02 .mileageWrap p {
+    font-size: 13px;
+    color: #707070;
+}
+
+#signIn .container .btnWrap {
+    overflow: hidden;
+}
+
+#signIn .container #step02 .btnWrap {
+    margin-top: 154px;
+    margin-bottom: 59px;
+}
+
+#signIn .container .btnWrap .prevBtn{
+    width: 35px;
+    height: 35px;
+    padding:0;
+    background-color: #4bd897;
+    border-radius: 6px;
+    float: left;
+    margin-right: 28px;
+}
+
+#signIn .container .btnWrap .prevBtn img{
+    display: inline-block;
+    float: right;
+    height: 15px;
+    margin: 10px 13.28px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+#signIn .container .btnWrap .next {
+    margin-top: 0 !important;
+    float: left;
+}
+
+#signIn .container .btnWrap a {
+    margin-left: 69px;
+    float: left;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+#signIn .container #step03 .mileageWrap {
+    text-align: center;
+    margin-top: 27px;
+}
+
+#signIn .container #step03 .mileageWrap h1 {
+    color: #34c884;
+    font-size: 16px;
+}
+
+#signIn .container #step03 .mileageWrap #mileage {
+    margin-top: 24px;
+    display: inline-block;
+    width: 129px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 6px;
+    font-size: 30px;
+    color:#fff;
+    background-color: #4bd897;
+}
+
+#signIn .container #step03 .mileageWrap p {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #707070;
+}
+
+#signIn .container #step03 .btnWrap {
+    margin-top: 55px;
+    margin-bottom: 20px;
+}
+
+#signIn .container #step03 .next {
+    width: 129px;
+}
+
+#signIn .container #step03 .prevBtn {
+    margin-right: 43px;
+}
+
+#signIn .container #step03 #additionalInfo {
+    width: calc(100% - 28px);
+    overflow: hidden;
+    margin-left: 28px;
+    margin-top: 70px;
+}
+
+#signIn .container #step03 #additionalInfo li {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 23px;
+}
+
+#signIn .container #step03 #additionalInfo li:last-child {
+    margin-bottom: 0;
+}
+
+#signIn .container #step03 #additionalInfo li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#signIn .container #step03 #additionalInfo li a .infoCheckBox {
+    display: inline-block;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    background: url("../../img/login/join/uncheck.png") no-repeat;
+    background-size: 100%;
+}
+
+#signIn .container #step03 #additionalInfo li a span {
+    display: inline-block;
+    float: left;
+    width: 81px;
+    height: 25px;
+    margin-top: 5px;
+    margin-left: 6px;
+    color:#707070;
+    line-height: 25px;
+}
+
+#signIn .container #step03 #additionalInfo li a .infoArrow {
+    display: inline-block;
+    float: right;
+    width: 7.4px;
+    height: 25px;
+    margin-top: 5px;
+    background: url("../../img/login/join/btnMore.png") no-repeat center;
+    background-size: 7.4px;
+    margin-right: 33.5px;
+}
+
+#signIn .marginBottom {
+    margin-bottom: 48px !important;
+}
+
+#joinFormContainer[join-step='1'] #step01,
+#joinFormContainer[join-step='2'] #step02,
+#joinFormContainer[join-step='3'] #step03 {
+    display: block;
+}
+
+#joinFormContainer[join-step='1'] #step02,
+#joinFormContainer[join-step='1'] #step03,
+#joinFormContainer[join-step='2'] #step01,
+#joinFormContainer[join-step='2'] #step03,
+#joinFormContainer[join-step='3'] #step01,
+#joinFormContainer[join-step='3'] #step02 {
+    display: none;
+}
+
+#joinFormContainer {
+    transition: margin-left 2s;
+}
+
+#joinFormContainer:not([info-type='-1']) {
+    margin-left: 562px;
+}
+
+#joinFormContainer[info-type='-1'] + #additionalInfoTab {
+    display: none;
+}
+
+#joinFormContainer:not([info-type='-1']) + #additionalInfoTab {
+    display: block !important;
+    width: 416px;
+    background: #fff;
+    border-radius: 10px;
+    float: left;
+    margin-left: 35px;
+    margin-top: 390px;
+    overflow: hidden;
+    box-shadow: 5px 10px 10px 0 rgba(0, 0, 0, 0.16);
+    animation: translate 2s 0s;
+}
+
+#joinFormContainer:not([info-type='1']) + #additionalInfoTab {
+    margin-bottom: 300px;
+}
+
+#additionalInfoTab .infoContainer {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+#additionalInfoTab .infoContainer .title {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 16px;
+    color: #707070;
+    background: #eee;
+    margin-top: 46px;
+    text-align: center;
+}
+
+#additionalInfoTab .infoContainer .contents {
+    width: 100%;
+}
+
+#additionalInfoTab .infoContainer .saveWrap {
+    width: 100%;
+}
+
+#additionalInfoTab .infoContainer .saveWrap #saveInfo {
+    width: 111px;
+    height: 35px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4bd897;
+    color:#fff;
+    margin: 0 calc(50% - 55.5px) 27px;
+}
+
+#joinFormContainer[info-type='1'] + #additionalInfoTab {
+    margin-top: 390px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='2'] + #additionalInfoTab {
+    margin-top: 449px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='3'] + #additionalInfoTab {
+    margin-top: 508px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='4'] + #additionalInfoTab {
+    margin-top: 591px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='5'] + #additionalInfoTab {
+    margin-top: 650px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='6'] + #additionalInfoTab {
+    margin-top: 733px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='7'] + #additionalInfoTab {
+    margin-top: 792px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='8'] + #additionalInfoTab {
+    margin-top: 875px;
+    transition: margin-top 1s;
+}
+
+#joinFormContainer[info-type='1'] #additionalInfo a[data-info-type='1'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='2'] #additionalInfo a[data-info-type='2'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='3'] #additionalInfo a[data-info-type='3'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='4'] #additionalInfo a[data-info-type='4'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='5'] #additionalInfo a[data-info-type='5'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='6'] #additionalInfo a[data-info-type='6'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='7'] #additionalInfo a[data-info-type='7'] {
+    background: #eee;
+}
+
+#joinFormContainer[info-type='8'] #additionalInfo a[data-info-type='8'] {
+    background: #eee;
+}
+
+/**/
+#additionalInfoTab .contents > div {
+    display: none;
+}
+
+#joinFormContainer[info-type='1'] + #additionalInfoTab #regionWrap {
+    display: block;
+}
+
+#joinFormContainer[info-type='2'] + #additionalInfoTab #genderWrap {
+    display: block;
+}
+
+#joinFormContainer[info-type='3'] + #additionalInfoTab #ageWrap{
+    display: block;
+}
+
+#joinFormContainer[info-type='4'] + #additionalInfoTab #jobWrap{
+    display: block;
+}
+
+#joinFormContainer[info-type='5'] + #additionalInfoTab #interestWrap{
+    display: block;
+}
+
+#joinFormContainer[info-type='6'] + #additionalInfoTab #marriageWrap{
+    display: block;
+}
+
+#joinFormContainer[info-type='7'] + #additionalInfoTab #childrenWrap{
+    display: block;
+}
+
+#joinFormContainer[info-type='8'] + #additionalInfoTab #petWrap{
+    display: block;
+}
+
+#additionalInfoTab .infoContainer #regionWrap {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 27px;
+}
+
+#additionalInfoTab .infoContainer #regionWrap .selectWrap {
+    float: left;
+    width: 125px;
+    margin-top: 122px;
+    margin-left: 26px;
+}
+
+#additionalInfoTab .infoContainer #regionWrap .selectWrap img{
+    width: 38.8px;
+    margin:0 44px;
+    display: block;
+}
+
+#additionalInfoTab .infoContainer #regionWrap .selectWrap .regionName {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    color: #4bd897;
+    margin-top: 7px;
+    margin-bottom: 21px;
+}
+
+#additionalInfoTab .infoContainer select:focus {
+    outline: none;
+}
+
+#additionalInfoTab .infoContainer select {
+    border-radius: 6px;
+    border:1px solid #aaa;
+    height: 34px;
+    color: #777;
+}
+
+#additionalInfoTab .infoContainer #regionWrap .selectWrap #region {
+    width: 100%;
+}
+
+#additionalInfoTab .infoContainer .contents .regionMap {
+    float: right;
+    margin-top: 39px;
+    margin-right: 29px;
+}
+
+#additionalInfoTab .infoContainer .contents .regionMap object {
+    width: 210px;
+}
+
+#additionalInfoTab #genderWrap {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 62px;
+}
+
+#additionalInfoTab #genderWrap .genderForm {
+    width: 170px;
+    margin-top: 30px;
+    overflow: hidden;
+    margin-left: calc(50% - 85px);
+}
+
+#additionalInfoTab #genderWrap .genderForm > div {
+    width: 77px;
+    height: 123px;
+    background: #eee;
+    margin-right: 16px;
+    text-align: center;
+    float: left;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+#additionalInfoTab #genderWrap .genderForm > div.selected {
+    background: #aaa;
+}
+
+#additionalInfoTab #genderWrap .genderForm > div.selected div{
+    color: #fff;
+}
+#additionalInfoTab #genderWrap .genderForm > div img {
+    width: 22.8px;
+    margin-top: 9px;
+}
+
+#additionalInfoTab #genderWrap .genderForm > div:last-child {
+    margin-right: 0;
+}
+
+#gender {
+    display: none !important;
+}
+
+#additionalInfoTab #ageWrap {
+    overflow: hidden;
+    margin-top: 33px;
+    margin-bottom: 54px;
+}
+
+#additionalInfoTab #ageWrap select,
+#additionalInfoTab #ageWrap div {
+    float: left;
+}
+
+#additionalInfoTab #ageWrap #age {
+    width: 113px;
+    height: 74px;
+    line-height: 74px;
+    font-size: 30px;
+    color: #707070;
+    margin-left: 83px;
+}
+
+#additionalInfoTab #ageWrap #generation {
+    width: 96px;
+    height: 34px;
+    margin-top: 33px;
+    line-height: 34px;
+    font-size: 18px;
+    color:#707070;
+}
+
+#additionalInfoTab #ageWrap div {
+    font-size: 18px;
+    height: 34px;
+    line-height: 34px;
+    color: #707070;
+    margin: 33px 14px 0;
+}
+
+#additionalInfoTab #jobWrap {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 32px;
+    margin-bottom: 41px;
+}
+
+#additionalInfoTab #jobWrap #job {
+    width: 137px;
+    padding-left: 10px;
+    margin-left: calc(50% - 73.5px);
+}
+
+#additionalInfoTab #interestWrap {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 33px;
+    margin-bottom: 42px;
+    text-align: center;
+}
+
+#additionalInfoTab #interestWrap .interestSelectWrap {
+    overflow: hidden;
+    display: inline-block;
+}
+
+#additionalInfoTab #interestWrap .interestSelectWrap > * {
+    float: left;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    color:#707070;
+}
+
+#additionalInfoTab #interestWrap .interestSelectWrap > div {
+    margin-right: 15px;
+}
+
+#additionalInfoTab #interestWrap .interestSelectWrap > select {
+    width: 108px;
+    padding-left: 10px;
+}
+
+#additionalInfoTab #marriageWrap .marriageForm {
+    width: 266px;
+    margin-left: calc(50% - 133px);
+    margin-top: 30px;
+    margin-bottom: 54px;
+    overflow: hidden;
+}
+
+#additionalInfoTab #marriageWrap .marriageForm .marriage {
+    float: left;
+    width: 125px;
+    height: 131px;
+    background: #eee;
+    text-align: center;
+    border-radius: 6px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+#additionalInfoTab #marriageWrap .marriageForm .marriage.selected {
+    background: #aaa;
+    color:#fff;
+}
+
+#additionalInfoTab #marriageWrap .marriageForm .marriage:first-child {
+    margin-right: 16px;
+}
+
+#additionalInfoTab #marriageWrap .marriageForm .marriage:first-child img{
+    width: 100px;
+    margin-top: 13px;
+}
+
+#additionalInfoTab #marriageWrap .marriageForm .marriage:last-child img{
+    width: 60px;
+    margin-top: 21px;
+}
+
+#additionalInfoTab #marriageWrap #marriage {
+    display: none;
+}
+
+#additionalInfoTab #childrenWrap ,
+#additionalInfoTab #petWrap {
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 61px;
+}
+
+#additionalInfoTab #childrenWrap .childrenSelectWrap ,
+#additionalInfoTab #petWrap .petSelectWrap {
+    width: 268px;
+    height: 35px;
+    padding: 11px 20px;
+    margin-left: calc(50% - 154px);
+    border-radius: 6px;
+    background-color:#eee;
+}
+
+#additionalInfoTab #childrenWrap .childrenSelectWrap > * ,
+#additionalInfoTab #petWrap .petSelectWrap > * {
+    float: left;
+    height: 35px;
+}
+
+#additionalInfoTab #petWrap .petSelectWrap > img {
+    width: 25px;
+    height: auto;
+    margin-top: 7.5px;
+}
+
+#additionalInfoTab #childrenWrap .childrenSelectWrap #childrenGeneration ,
+#additionalInfoTab #petWrap .petSelectWrap #animalSpecies {
+    width: 122px;
+    margin-left: 7px;
+    margin-right: 11px;
+}
+
+#additionalInfoTab #childrenWrap .childrenSelectWrap #children ,
+#additionalInfoTab #petWrap .petSelectWrap #pet {
+    width: 103px;
+}
+
+#additionalInfoTab .addSelectFrom {
+    width: 306px;
+    height: 17px;
+    padding: 7.5px 0;
+    background: #fff;
+    border: 1px solid #aaa;
+    text-align: center;
+    box-sizing: unset;
+    border-radius: 6px;
+    margin-left: calc(50% - 154px);
+    margin-top: 21px;
+}
+
+#additionalInfoTab .addSelectFrom img{
+    width: 15px;
+}
