@@ -104,7 +104,7 @@ $errColor: #FF7364;
                 @include icon-default();
                 width: 19px;
                 height: $height;
-                @include background("../../img/eye_gray.png");
+                @include background("~@/assets/img/eye_gray.png");
                 position: absolute;
                 right: 7px;
                 top: 50%;
@@ -112,7 +112,7 @@ $errColor: #FF7364;
               }
 
               .icon-eye.on {
-                @include background("../../img/eye_color.png");
+                @include background("~@/assets/img/eye_color.png");
               }
             }
 

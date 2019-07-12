@@ -33,7 +33,10 @@ button:focus {
   font-family: 'Nanum-Barun-Gothic-Bold', serif;
 }
 
-#join, #welcome {
+#join {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   input::placeholder {
     font-size: 13px;
     color:#707070;
@@ -243,7 +246,7 @@ button:focus {
                   @include icon-default();
                   width: 19px;
                   height: $height;
-                  @include background("../..../../img/eye_gray.png");
+                  @include background("~@/assets/img/eye_gray.png");
                   position: absolute;
                   right: 9px;
                   top: 50%;
@@ -252,7 +255,7 @@ button:focus {
                 }
 
                 .icon-eye.on {
-                  @include background("../..../../img/eye_color.png");
+                  @include background("~@/assets/img/eye_color.png");
                 }
 
               }
@@ -286,8 +289,8 @@ button:focus {
                   cursor: pointer;
                 }
 
-                input:checked + i {
-                  @include background("../..../../img/login_check_box.png");
+                i.checked {
+                  @include background("~@/assets/img/login_check_box.png");
                 }
 
                 span {
@@ -342,7 +345,7 @@ button:focus {
                     height: 22px;
                     float: left;
                     margin-left: 5px;
-                    @include background('../..../../img/joinfinish_botton.png');
+                    @include background('~@/assets/img/joinfinish_botton.png');
                     opacity: 0.1;
                   }
                 }
@@ -373,45 +376,25 @@ button:focus {
                 }
               }
               .box.big {
-
                 .text {
                   width: 170px;
 
                 }
-                img {
-
-
-                }
-              }
-              .box.margin-bottom-31 {
-                .text {
-                  width: 170px;
-
-                }
-                img {
-
-
-                }
               }
 
-
-
-
-              .box-left, .box-right{
+              .box.small {
                 width: 125px;
                 flex-direction: column;
+                margin-right:0px;
                 .text {
                   margin-top: 3px;
                 }
               }
 
-              .box-left {
-                margin-right: 7px;
 
-              }
+              .small:nth-of-type(even) {
+                margin-left: 8px;
 
-              .box-right {
-                margin-left: 0;
               }
 
               .margin-bottom-31 {
@@ -452,7 +435,7 @@ button:focus {
                       height: 15px;
                       float: left;
                       margin-top: 2px;
-                      @include background("../..../../img/back_botton.png");
+                      @include background("~@/assets/img/back_botton.png");
                     }
                   }
 
@@ -463,7 +446,7 @@ button:focus {
                       height: 15px;
                       float: right;
                       margin-top: 2px;
-                      @include background("../..../../img/next_botton.png");
+                      @include background("~@/assets/img/next_botton.png");
                     }
                   }
 
@@ -520,7 +503,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png")
+                    @include background("~@/assets/img/arrow_butt.png")
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -680,7 +663,7 @@ button:focus {
                     display: inline-block;
                     width: 14px;
                     height: 14px;
-                    @include background("../..../../img/arrow_butt.png");
+                    @include background("~@/assets/img/arrow_butt.png");
                     position: absolute;
                     right: 50px;
                     top: 50%;
@@ -729,44 +712,44 @@ button:focus {
                   }
 
                   a#facebook {
-                    @include background("../..../../img/facebook_gray.png");
+                    @include background("~@/assets/img/facebook_gray.png");
                   }
 
                   a#instagram {
-                    @include background("../..../../img/instagram_gray.png");
+                    @include background("~@/assets/img/instagram_gray.png");
                   }
 
                   a#youtube {
-                    @include background("../..../../img/youtube_gray.png");
+                    @include background("~@/assets/img/youtube_gray.png");
                   }
 
                   a#naver {
-                    @include background("../..../../img/naver_gray.png");
+                    @include background("~@/assets/img/naver_gray.png");
                   }
 
                   a#twitter {
-                    @include background("../..../../img/twitter_gray.png");
+                    @include background("~@/assets/img/twitter_gray.png");
                   }
 
                   // ON.
                   a#facebook.on {
-                    @include background("../..../../img/facebook_color.png");
+                    @include background("~@/assets/img/facebook_color.png");
                   }
 
                   a#instagram.on {
-                    @include background("../..../../img/instagram_color.png");
+                    @include background("~@/assets/img/instagram_color.png");
                   }
 
                   a#youtube.on {
-                    @include background("../..../../img/youtube_color.png");
+                    @include background("~@/assets/img/youtube_color.png");
                   }
 
                   a#naver.on {
-                    @include background("../..../../img/naver_color.png");
+                    @include background("~@/assets/img/naver_color.png");
                   }
 
                   a#twitter.on {
-                    @include background("../..../../img/twitter_color.png");
+                    @include background("~@/assets/img/twitter_color.png");
                   }
                 }
 
@@ -819,7 +802,7 @@ button:focus {
                       display: inline-block;
                       width: 13px;
                       height: 13px;
-                      @include background('../..../../img/checkbox_circle.png');
+                      @include background('~@/assets/img/checkbox_circle.png');
                     }
                   }
 
@@ -839,7 +822,7 @@ button:focus {
                       display: inline-block;
                       width: 13px;
                       height: 13px;
-                      @include background('../..../../img/checkbox_check.png');
+                      @include background('~@/assets/img/checkbox_check.png');
                     }
                   }
                   i.icon-questions-mark {
@@ -847,7 +830,7 @@ button:focus {
                     width: 15.5px;
                     height: 15.5px;
                     right: 0;
-                    background: url(../..../../img/question.png) no-repeat;
+                    background: url(~@/assets/img/question.png) no-repeat;
                     background-size: 100%;
                     background-position: center;
                     top: 50%;
@@ -890,7 +873,7 @@ button:focus {
                     -ms-transform: translateY(-50%);
                     -o-transform: translateY(-50%);
                     transform: translateY(-50%);
-                    @include background("../..../../img/question.png");
+                    @include background("~@/assets/img/question.png");
                     cursor: pointer;
                   }
                   > * {
@@ -936,7 +919,7 @@ button:focus {
                       -ms-transform: translateY(-50%);
                       -o-transform: translateY(-50%);
                       transform: translateY(-50%);
-                      @include background("../..../../img/question.png");
+                      @include background("~@/assets/img/question.png");
                       cursor: pointer;
                     }
                     > span {
@@ -968,12 +951,12 @@ button:focus {
                       }
 
                       i.up {
-                        @include background("../..../../img/up_botton.png");
+                        @include background("~@/assets/img/up_botton.png");
                         margin-bottom: 4px;
                       }
 
                       i.down {
-                        @include background("../..../../img/down_botton.png");
+                        @include background("~@/assets/img/down_botton.png");
                       }
                     }
                   }
@@ -1134,7 +1117,7 @@ button:focus {
                     display: block;
                     width: 14px;
                     height: 14px;
-                    @include background("../..../../img/map_search_butt.png");
+                    @include background("~@/assets/img/map_search_butt.png");
                   }
                 }
               }
@@ -1168,37 +1151,37 @@ button:focus {
                     display: inline-block;
                     width: 18px;
                     height: 18px;
-                    @include background('../..../../img/checkbox_circle.png')
+                    @include background('~@/assets/img/checkbox_circle.png')
                   }
                 }
 
                 .gender-wrap:first-child {
                   .image {
-                    @include background('../..../../img/men_gray.png')
+                    @include background('~@/assets/img/men_gray.png')
                   }
                 }
 
                 .gender-wrap:last-child {
                   .image {
-                    @include background('../..../../img/women_gray.png')
+                    @include background('~@/assets/img/women_gray.png')
                   }
                 }
 
                 .gender-wrap.checked {
                   i {
-                    @include background('../..../../img/checkbox_circle_color.png')
+                    @include background('~@/assets/img/checkbox_circle_color.png')
                   }
                 }
 
                 .gender-wrap.checked:first-child {
                   .image {
-                    @include background('../..../../img/men_color.png')
+                    @include background('~@/assets/img/men_color.png')
                   }
                 }
 
                 .gender-wrap.checked:last-child {
                   .image {
-                    @include background('../..../../img/women_color.png')
+                    @include background('~@/assets/img/women_color.png')
                   }
                 }
               }
@@ -1213,11 +1196,11 @@ button:focus {
               }
             }
 
-            #introduce.article {
+            #interests.article {
               .inner-contents {
                 overflow: hidden;
                 position: relative;
-                #introduceSelect {
+                #interestsSelect {
                   position: absolute;
                   top: 40px;
                   left: calc(50% - 102.5px);
@@ -1329,7 +1312,7 @@ button:focus {
                     display: inline-block;
                     width: 18px;
                     height: 18px;
-                    @include background('../..../../img/checkbox_circle.png')
+                    @include background('~@/assets/img/checkbox_circle.png')
                   }
                 }
 
@@ -1337,7 +1320,7 @@ button:focus {
                   .image {
                     width: 75px;
                     height: 79px;
-                    @include background('../..../../img/double_ring_gray.png')
+                    @include background('~@/assets/img/double_ring_gray.png')
                   }
                 }
 
@@ -1346,25 +1329,25 @@ button:focus {
                     margin-top: 25px;
                     width: 54px;
                     height: 54px;
-                    @include background('../..../../img/solo-ring_gray.png')
+                    @include background('~@/assets/img/solo-ring_gray.png')
                   }
                 }
 
                 .marriage-wrap.checked {
                   i {
-                    @include background('../..../../img/checkbox_circle_color.png')
+                    @include background('~@/assets/img/checkbox_circle_color.png')
                   }
                 }
 
                 .marriage-wrap.checked:first-child {
                   .image {
-                    @include background('../..../../img/double_ring.png')
+                    @include background('~@/assets/img/double_ring.png')
                   }
                 }
 
                 .marriage-wrap.checked:last-child {
                   .image {
-                    @include background('../..../../img/solo-ring.png')
+                    @include background('~@/assets/img/solo-ring.png')
                   }
                 }
               }
@@ -1540,7 +1523,7 @@ button:focus {
         display: block;
         width: 29.6px;
         height: 29.6px;
-        @include background("../..../../img/rotation.png");
+        @include background("~@/assets/img/rotation.png");
         position: absolute;
         right: 16.4px;
         top: 32px;
@@ -1551,7 +1534,7 @@ button:focus {
         display: block;
         width: 29.6px;
         height: 29.6px;
-        @include background("../..../../img/rotation.png");
+        @include background("~@/assets/img/rotation.png");
         position: absolute;
         right: 16.4px;
         top: 32px;
@@ -1792,12 +1775,7 @@ button:focus {
                   margin-bottom: 30px;
                   letter-spacing: -0.1px;
                 }
-                .box.big {
-                  .text {
-                    //padding-right: 21px;
-                  }
-                }
-                .box.big.on,.box.margin-bottom-31.on {
+                .box.big.on  {
                   box-sizing: border-box;
                   border:3px solid #68DDA7;
                   img {
@@ -1933,11 +1911,6 @@ button:focus {
                 }
                 .box.big {
                   img{
-                    padding-left: 20px;
-                  }
-                }
-                .box.margin-bottom-31 {
-                  img {
                     padding-left: 20px;
                   }
                 }
@@ -2234,7 +2207,7 @@ button:focus {
                 }
               }
 
-              #introduce.article {
+              #interests.article {
                 .input-selectbox-wrap, .input-text-wrap {
                   left:calc(50% - 95px) !important;
                 }
@@ -2459,7 +2432,7 @@ button:focus {
             width: 24px;
             height: 24px;
             display: inline-block;
-            @include background("../..../../img/login_back_butt.png");
+            @include background("~@/assets/img/login_back_butt.png");
             top: 0;
             left: 25px;
             position: absolute;
@@ -2563,7 +2536,7 @@ button:focus {
                 @include icon-default();
                 width: 19px;
                 height: $height;
-                @include background("../..../../img/eye_gray.png");
+                @include background("~@/assets/img/eye_gray.png");
                 position: absolute;
                 right: 9px;
                 top: 50%;
@@ -2571,7 +2544,7 @@ button:focus {
                 cursor: pointer;
               }
               .icon-eye.on {
-                @include background("../..../../img/eye_color.png");
+                @include background("~@/assets/img/eye_color.png");
               }
             }
             > div.item:last-child {
@@ -2627,8 +2600,8 @@ button:focus {
               border:1px solid $defaultColor;
               @include border-radius(3px);
             }
-            input:checked + i {
-              @include background("../..../../img/login_check_box.png");
+            .checked {
+              @include background("~@/assets/img/login_check_box.png");
             }
             span {
               cursor: default;
@@ -2762,44 +2735,44 @@ button:focus {
               }
 
               a#m-facebook {
-                @include background("../..../../img/facebook_gray.png");
+                @include background("~@/assets/img/facebook_gray.png");
               }
 
               a#m-instagram {
-                @include background("../..../../img/instagram_gray.png");
+                @include background("~@/assets/img/instagram_gray.png");
               }
 
               a#m-youtube {
-                @include background("../..../../img/youtube_gray.png");
+                @include background("~@/assets/img/youtube_gray.png");
               }
 
               a#m-naver {
-                @include background("../..../../img/naver_gray.png");
+                @include background("~@/assets/img/naver_gray.png");
               }
 
               a#m-twitter {
-                @include background("../..../../img/twitter_gray.png");
+                @include background("~@/assets/img/twitter_gray.png");
               }
 
               // ON.
               a#m-facebook.on {
-                @include background("../..../../img/facebook_color.png");
+                @include background("~@/assets/img/facebook_color.png");
               }
 
               a#m-instagram.on {
-                @include background("../..../../img/instagram_color.png");
+                @include background("~@/assets/img/instagram_color.png");
               }
 
               a#m-youtube.on {
-                @include background("../..../../img/youtube_color.png");
+                @include background("~@/assets/img/youtube_color.png");
               }
 
               a#m-naver.on {
-                @include background("../..../../img/naver_color.png");
+                @include background("~@/assets/img/naver_color.png");
               }
 
               a#m-twitter.on {
-                @include background("../..../../img/twitter_color.png");
+                @include background("~@/assets/img/twitter_color.png");
               }
             }
             .recommend-checkbox {
@@ -2812,7 +2785,7 @@ button:focus {
                 height: 15.5px;
                 right: -25px;
                 top: 50%;
-                @include background("../..../../img/question.png");
+                @include background("~@/assets/img/question.png");
                 transform: translateY(-50%);
                 cursor: pointer;
               }
@@ -2838,7 +2811,7 @@ button:focus {
                   display: inline-block;
                   width: 13px;
                   height: 13px;
-                  @include background('../..../../img/checkbox_circle.png');
+                  @include background('~@/assets/img/checkbox_circle.png');
                 }
 
               }
@@ -2864,7 +2837,7 @@ button:focus {
                   display: inline-block;
                   width: 25px;
                   height: 25px;
-                  @include background('../..../../img/checkbox_check.png');
+                  @include background('~@/assets/img/checkbox_check.png');
                 }
                 .icon-questions-mark {
                   position: absolute;
@@ -2873,7 +2846,7 @@ button:focus {
                   right: -25px;
                   top: 50%;
                   transform: translateY(-50%);
-                  @include background("../..../../img/question.png");
+                  @include background("~@/assets/img/question.png");
                   cursor: pointer;
                 }
               }
@@ -2902,7 +2875,7 @@ button:focus {
                 width: 15.5px;
                 height: 15.5px;
                 right: -26px;
-                @include background("../..../../img/question.png");
+                @include background("~@/assets/img/question.png");
               }
               > * {
                 float: left;
@@ -2943,7 +2916,7 @@ button:focus {
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 appearance: none;
-                background: #fff url('../..../../img/down_botton.png') no-repeat 95% 40%;
+                background: #fff url('~@/assets/img/down_botton.png') no-repeat 95% 40%;
                 border: 1px solid #bbbbbb;
               }
               select.percentage-select {
@@ -2999,7 +2972,7 @@ button:focus {
                     margin-top: 5px;
                   }
                   i.down {
-                    @include background("../..../../img/down_botton.png");
+                    @include background("~@/assets/img/down_botton.png");
                   }
                 }
               }
@@ -3174,7 +3147,7 @@ button:focus {
                 display: block;
                 width: 14px;
                 height: 14px;
-                @include background("../..../../img/map_search_butt.png");
+                @include background("~@/assets/img/map_search_butt.png");
               }
             }
             .input-selectbox-wrap {
@@ -3203,7 +3176,7 @@ button:focus {
                   position: absolute;
                   right: 12px;
                   top: calc(50% - 7px);
-                  @include background("../..../../img/arrow_butt.png")
+                  @include background("~@/assets/img/arrow_butt.png")
                 }
                 i.rotate {
                   -webkit-transform: rotate(180deg);
@@ -3402,12 +3375,12 @@ button:focus {
                   margin: 10px auto;
                   width: 18px;
                   height: 18px;
-                  @include background('../..../../img/checkbox_circle.png');
+                  @include background('~@/assets/img/checkbox_circle.png');
                 }
               }
               .gender-wrap:first-child {
                 .image {
-                  @include background('../..../../img/no_select_men.png');
+                  @include background('~@/assets/img/no_select_men.png');
                   -webkit-background-size: cover;
                   background-size: cover;
                 }
@@ -3415,7 +3388,7 @@ button:focus {
 
               .gender-wrap:nth-child(2) {
                 .image {
-                  @include background('../..../../img/no_select_women.png');
+                  @include background('~@/assets/img/no_select_women.png');
                   -webkit-background-size: cover;
                   background-size: cover;
                 }
@@ -3423,13 +3396,13 @@ button:focus {
 
               .gender-wrap.checked {
                 i {
-                  @include background('../..../../img/checkbox_circle_color.png');
+                  @include background('~@/assets/img/checkbox_circle_color.png');
                 }
               }
 
               .gender-wrap.checked:first-child {
                 .image {
-                  @include background('../..../../img/select_men.png');
+                  @include background('~@/assets/img/select_men.png');
                   -webkit-background-size: cover;
                   background-size: cover;
                 }
@@ -3437,7 +3410,7 @@ button:focus {
 
               .gender-wrap.checked:nth-child(2) {
                 .image {
-                  @include background('../..../../img/select_women.png');
+                  @include background('~@/assets/img/select_women.png');
                   -webkit-background-size: cover;
                   background-size: cover;
                 }
@@ -3473,7 +3446,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png")
+                    @include background("~@/assets/img/arrow_butt.png")
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -3509,7 +3482,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png");
+                    @include background("~@/assets/img/arrow_butt.png");
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -3586,7 +3559,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png")
+                    @include background("~@/assets/img/arrow_butt.png")
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -3675,7 +3648,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png")
+                    @include background("~@/assets/img/arrow_butt.png")
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -3840,12 +3813,12 @@ button:focus {
                   margin: 10px auto;
                   width: 18px;
                   height: 18px;
-                  @include background('../..../../img/checkbox_circle.png');
+                  @include background('~@/assets/img/checkbox_circle.png');
                 }
               }
               .marriage-wrap:first-child {
                 .image {
-                  @include background('../..../../img/double_ring_gray.png');
+                  @include background('~@/assets/img/double_ring_gray.png');
                   background-size: unset !important;
                   background-position: bottom;
                 }
@@ -3854,7 +3827,7 @@ button:focus {
 
               .marriage-wrap:nth-child(2) {
                 .image {
-                  @include background('../..../../img/solo-ring_gray.png');
+                  @include background('~@/assets/img/solo-ring_gray.png');
                   background-size: unset !important;
                   background-position: bottom;
                 }
@@ -3863,13 +3836,13 @@ button:focus {
 
               .marriage-wrap.checked {
                 i {
-                  @include background('../..../../img/checkbox_circle_color.png');
+                  @include background('~@/assets/img/checkbox_circle_color.png');
                 }
               }
 
               .marriage-wrap.checked:first-child {
                 .image {
-                  @include background('../..../../img/double_ring.png');
+                  @include background('~@/assets/img/double_ring.png');
                   background-size: unset !important;
                   background-position: bottom;
                 }
@@ -3877,7 +3850,7 @@ button:focus {
 
               .marriage-wrap.checked:nth-child(2) {
                 .image {
-                  @include background('../..../../img/solo-ring.png');
+                  @include background('~@/assets/img/solo-ring.png');
                   background-size: unset !important;
                   background-position: bottom;
                 }
@@ -3909,7 +3882,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png");
+                    @include background("~@/assets/img/arrow_butt.png");
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -4068,7 +4041,7 @@ button:focus {
                     display: inline-block;
                     width: 14px;
                     height: 14px;
-                    @include background("../..../../img/arrow_butt.png");
+                    @include background("~@/assets/img/arrow_butt.png");
                     position: absolute;
                     right: 70px;
                     top: 50%;
@@ -4116,7 +4089,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../..../../img/arrow_butt.png")
+                    @include background("~@/assets/img/arrow_butt.png")
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -4272,7 +4245,7 @@ button:focus {
                     display: inline-block;
                     width: 14px;
                     height: 14px;
-                    @include background("../..../../img/arrow_butt.png");
+                    @include background("~@/assets/img/arrow_butt.png");
                     position: absolute;
                     right: 70px;
                     top: 50%;
@@ -4363,7 +4336,6 @@ button:focus {
         background: #fff;
         top: 0;
         left: 0;
-        display: none;
         overflow: hidden;
         z-index: 999;
         .article {
@@ -4452,6 +4424,7 @@ button:focus {
     }
   }
 }
+
 @keyframes stayvisible {
   from { visibility: visible; } to { visibility: visible; }
 }

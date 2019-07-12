@@ -1,7 +1,7 @@
 <template>
   <div class="card_wrap" id="loginPage">
     <div class="contents type1 open" id="loginTab" v-if="!onQuestionTab">
-      <a href="#" class="icon-questions" @click="toggleQuestionTab(true)"></a>
+      <a href="#" class="icon-questions" @click.prevent="toggleQuestionTab(true)"></a>
       <div class="top">
         <div class="titleWrap">
           <div class="imgWrap">
@@ -42,31 +42,13 @@
       </div>
     </div>
 
-    <questionTab v-else @close="toggleQuestionTab" isQuestionTab="isQuestionTab">
-      <div class="box" id="questionTab">
-        <div class="top">
-          <div class="title">문의</div>
-          <img src="../assets/img/login_ask_kakao icon.png" alt="카카오톡 문의" />
-          <input type="button" class="input-button" value="카카오톡 상담하기" />
-        </div>
-        <div class="middle">
-          <a href="#" class="tel">Tel. 1661 - 6213</a>
-          <div class="text">
-            평일: 10:00 ~ 18:30
-            <br />off-time: 12:30 ~ 13:30
-            <br />(공휴일 휴무)
-          </div>
-        </div>
-        <div class="bottom">
-          <a href="mailto:bigbird-pick@concepters.co.kr" class="email">bigbird-pick@concepters.co.kr</a>
-        </div>
-      </div>
-    </questionTab>
+    <questionTab v-else @close="toggleQuestionTab" />
   </div>
 </template>
 
 <script>
 import questionTab from '../components/QuestionTab';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
     name: 'Home',
@@ -74,26 +56,34 @@ export default {
         return {
             welcome: false,
             onLoginForm: false,
-            onQuestionTab: false,
-            isQuestionTab: true
+            onQuestionTab: false
         };
     },
     computed: {
         checkOnLoginForm() {
             return this.onLoginForm ? 'open' : '';
-        }
+        },
+        ...mapState(['service', 'isQuestionTab'])
     },
     components: {
         questionTab
     },
     methods: {
+        ...mapMutations(['setService']),
         changeLoginType() {
             this.onLoginForm = !this.onLoginForm;
         },
         toggleQuestionTab(isQuestion) {
-            this.isQuestionTab = isQuestion;
+            this.$store.commit('setToggleType', {
+                type: isQuestion
+            });
             this.onQuestionTab = !this.onQuestionTab;
         }
+    },
+    mounted() {
+        console.log(this.$router.currentRoute.path);
+        const path = this.$router.currentRoute.path;
+        this.setService({ path: path });
     }
 };
 </script>
