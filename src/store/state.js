@@ -14,11 +14,24 @@ const state = {
                 naver: false,
                 twiter: false
             },
-            manuscriptFee: {
-                
-            }
-
+            manuscriptFee: {}
         }
+    },
+    profileCard: {
+        default: true,
+        sns: false,
+        pay: false,
+        expectProduct: false,
+        area: false,
+        gender: false,
+        age: false,
+        job: false,
+        interests: false,
+        married: false,
+        children: false,
+        pet: false,
+        bodyProfile: false,
+        skinType: false
     }
 };
 
