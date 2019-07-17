@@ -30,6 +30,13 @@ button:focus {
 }
 
 #join {
+
+    .selectOn {
+        display: block !important; 
+        position: absolute !important; 
+        left: -1px;
+    }
+
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -2847,6 +2854,100 @@ button:focus {
                                 -ms-margin-top: 116px;
                             }
                         }
+                        #body.article {
+                            .inner-contents {
+                              .input-wrap {
+                                margin-top: 20px;
+                                input {
+                                  width: 190px;
+            
+                                }
+                                input::placeholder {
+                                  font-size: 15px!important;
+                                }
+                                span {
+                                  right: 25px!important;
+                                  font-size: 15px!important;
+                                  top: 7px!important;
+                                }
+                              }
+                              .input-wrap:last-child {
+                                padding-bottom: 20px;
+                                border-bottom: 3px solid #E8E8E8!important;
+            
+                              }
+                              .input-wrap:first-child {
+                                margin-top: 30px;
+                                margin-bottom: 20px;
+            
+            
+                              }
+                              #bodySelectbox {
+                                padding: 20px 0!important;
+                                border-top: 3px solid #E8E8E8!important;
+                                border-bottom: 3px solid #E8E8E8!important;
+            
+                                .input-selectbox-wrap {
+                                  width: 190px!important;
+                                  .select2 {
+                                    width: 190px!important;
+                                    span {
+                                      font-size: 15px!important;
+                                    }
+                                    input {
+                                      font-size: 15px!important;
+                                    }
+                                    input::placeholder {
+                                      font-size: 15px!important;
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+            
+                          #skin.article {
+                            .inner-contents {
+                              #skinSelectbox {
+                                padding: 30px 0!important;
+                                .input-selectbox-wrap {
+                                  width: 190px!important;
+                                  .select2 {
+                                    width: 190px!important;
+                                    span {
+                                      font-size: 15px!important;
+                                    }
+                                  }
+                                }
+                                .choice-wrap {
+                                  border-top: 3px solid #E8E8E8!important;
+                                  border-bottom: 3px solid #E8E8E8!important;
+                                  padding-top: 27px!important;
+                                  margin-top: 20px!important;
+                                  padding-bottom: 10px!important;
+                                  .text-wrap {
+                                    .title {
+                                      font-size: 15px!important;
+                                    }
+                                    .text {
+                                      font-size: 12px!important;
+                                    }
+                                  }
+                                  .choice-list2 {
+                                    ul {
+                                      margin-top: 22px!important;
+                                      li {
+                                        width: 100px!important;
+                                        margin: 0 5px 10px!important;
+                                        font-size: 15px!important;
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                          
                         #finishBlock {
                             > .title {
                                 font-size: 18px;
@@ -2874,6 +2975,8 @@ button:focus {
                                 font-size: 15px;
                             }
                         }
+
+
                     }
                 }
 
@@ -5411,16 +5514,17 @@ button:focus {
                         border-top: 3px solid #34c884;
                         max-height: 1000px;
                     }
-                    .accordion-contents.height {
+
+                    #accordion-place.height {
                         height: 600px;
                     }
-                    .accordion-contents.height4 {
+                    #accordion-job.height {
                         height: 500px;
                     }
-                    .accordion-contents.height2 {
+                    #accordion-interests.height {
                         height: 420px;
                     }
-                    .accordion-contents.height3 {
+                    #accordion-product.height {
                         height: 408px;
                     }
 

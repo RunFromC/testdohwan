@@ -323,7 +323,7 @@ button:focus {
                         position: absolute;
                         right: 12px;
                         top: calc(50% - 7px);
-                        background: url(../../img/arrow_butt.png) no-repeat;
+                        background: url(~@/assets/img/arrow_butt.png) no-repeat;
                         background-size: 100%;
                         background-position: center;
                       }
@@ -386,7 +386,7 @@ button:focus {
                   @include icon-default();
                   width: 19px;
                   height: $height;
-                  @include background("../../img/eye_gray.png");
+                  @include background("~@/assets/img/eye_gray.png");
                   position: absolute;
                   right: 9px;
                   top: 50%;
@@ -395,7 +395,7 @@ button:focus {
                 }
 
                 .icon-eye.on {
-                  @include background("../../img/eye_color.png");
+                  @include background("~@/assets/img/eye_color.png");
                 }
 
               }
@@ -431,7 +431,7 @@ button:focus {
                 }
 
                 input:checked + i {
-                  @include background("../../img/login_check_box.png");
+                  @include background("~@/assets/img/login_check_box.png");
                 }
 
                 span {
@@ -501,7 +501,7 @@ button:focus {
                     height: 22px;
                     float: left;
                     margin-left: 5px;
-                    @include background('../../img/joinfinish_botton.png');
+                    @include background('~@/assets/img/joinfinish_botton.png');
                     opacity: 0.1;
                   }
                 }
@@ -611,7 +611,7 @@ button:focus {
                       height: 15px;
                       float: left;
                       margin-top: 2px;
-                      @include background("../../img/back_botton.png");
+                      @include background("~@/assets/img/back_botton.png");
                     }
                   }
 
@@ -622,7 +622,7 @@ button:focus {
                       height: 15px;
                       float: right;
                       margin-top: 2px;
-                      @include background("../../img/next_botton.png");
+                      @include background("~@/assets/img/next_botton.png");
                     }
                   }
 
@@ -679,7 +679,7 @@ button:focus {
                     position: absolute;
                     right: 12px;
                     top: calc(50% - 7px);
-                    @include background("../../img/arrow_butt.png")
+                    @include background("~@/assets/img/arrow_butt.png")
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -830,7 +830,7 @@ button:focus {
                     display: inline-block;
                     width: 14px;
                     height: 14px;
-                    @include background("../../img/arrow_butt.png");
+                    @include background("~@/assets/img/arrow_butt.png");
                   }
                   i.rotate {
                     -webkit-transform: rotate(180deg);
@@ -976,7 +976,7 @@ button:focus {
         display: block;
         width: 29.6px;
         height: 29.6px;
-        @include background("../../img/rotation.png");
+        @include background("~@/assets/img/rotation.png");
         position: absolute;
         right: 16.4px;
         top: 32px;
@@ -987,7 +987,7 @@ button:focus {
         display: block;
         width: 29.6px;
         height: 29.6px;
-        @include background("../../img/rotation.png");
+        @include background("~@/assets/img/rotation.png");
         position: absolute;
         right: 16.4px;
         top: 32px;
@@ -1728,7 +1728,7 @@ button:focus {
             width: 24px;
             height: 24px;
             display: inline-block;
-            @include background("../../img/login_back_butt.png");
+            @include background("~@/assets/img/login_back_butt.png");
             top: 0;
             left: 25px;
             position: absolute;
@@ -1869,7 +1869,7 @@ button:focus {
                       position: absolute;
                       right: 12px;
                       top: calc(50% - 5px);
-                      background: url(../../img/arrow_butt.png) no-repeat;
+                      background: url(~@/assets/img/arrow_butt.png) no-repeat;
                       background-size: 100%;
                       background-position: center;
                     }
@@ -1910,7 +1910,7 @@ button:focus {
                 @include icon-default();
                 width: 19px;
                 height: $height;
-                @include background("../../img/eye_gray.png");
+                @include background("~@/assets/img/eye_gray.png");
                 position: absolute;
                 right: 9px;
                 top: 50%;
@@ -1919,7 +1919,7 @@ button:focus {
               }
 
               .icon-eye.on {
-                @include background("../../img/eye_color.png");
+                @include background("~@/assets/img/eye_color.png");
               }
             }
             > div.item:last-child {
@@ -2016,7 +2016,7 @@ button:focus {
               @include border-radius(3px);
             }
             input:checked + i {
-              @include background("../../img/login_check_box.png");
+              @include background("~@/assets/img/login_check_box.png");
             }
             span {
               cursor: default;
@@ -2116,7 +2116,6 @@ button:focus {
         background: #fff;
         top: 0;
         left: 0;
-        display: none;
         overflow: hidden;
         z-index: 999;
         .article {

@@ -1,5 +1,5 @@
 <template>
-  <div class="add_wrap2 add_wrap_group">
+  <div class="add_wrap2 add_wrap_group" @click="closeSelectList">
     <!-- SNS연동  -->
     <div class="accordion" id="accodion_sns" @click="onClickProfileCard('sns', $event)">
       <ul>
@@ -128,18 +128,19 @@
       </ul>
     </div>
     <div
+      id="accordion-product"
       class="accordion-contents"
       :class="onProfileCard('expectProduct')"
       v-if="checkService('influencer',true)"
     >
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
-          <div class="select3" id="itemselect-btn">
+          <div class="select3 select-btn" id="itemselect-btn">
             <span>공구품목 선택</span>
             <i></i>
           </div>
 
-          <div class="listWrap3 long">
+          <div class="listContents listWrap3 long">
             <ul class="list">
               <li data-sub="0">패션</li>
               <li data-sub="1">뷰티</li>
@@ -196,14 +197,14 @@
         <input type="text" placeholder="지역검색" />
         <i></i>
       </div>
-      <Select />
+
       <div class="input-selectbox-wrap">
-        <div class="select" id="select-btn">
+        <div class="select select-btn" id="select-btn" @click.prevent="showSelectList">
           <span>상세지역</span>
           <i></i>
         </div>
 
-        <div class="listWrap">
+        <div class="listContents listContents listWrap">
           <ul class="list">
             <li>수원시</li>
             <li>성남시</li>
@@ -282,12 +283,12 @@
     >
       <div class="m-age">
         <div class="input-selectbox-wrap mt" id="m_ageGeneration">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>10대</span>
             <i></i>
           </div>
 
-          <div class="listWrap">
+          <div class="listContents listWrap">
             <ul class="list">
               <li data-inx="0" style="display: none">10대</li>
               <li data-inx="1">20대</li>
@@ -300,12 +301,12 @@
         </div>
 
         <div class="input-selectbox-wrap" id="m_ageGroup">
-          <div class="select2">
+          <div class="select2 select-btn" @click.prevent="showSelectList">
             <span>초반</span>
             <i></i>
           </div>
 
-          <div class="listWrap2">
+          <div class="listContents listWrap2">
             <ul class="list">
               <li data-inx="0" style="display: none">초반</li>
               <li data-inx="1">중반</li>
@@ -337,18 +338,19 @@
       </ul>
     </div>
     <div
+      id="accordion-job"
       class="accordion-contents"
       v-if="checkService('brands',true)"
       :class="onProfileCard('job')"
     >
       <div class="m-job">
         <div class="input-selectbox-wrap" id="m-jobSelect">
-          <div class="select2" id="jobselect-btn">
+          <div class="select2 select-btn" id="jobselect-btn" @click.prevent="showSelectList">
             <span>직업선택</span>
             <i></i>
           </div>
 
-          <div class="listWrap2 long">
+          <div class="listContents listWrap2 long">
             <ul class="list">
               <li>모델</li>
               <li>프리랜서</li>
@@ -389,18 +391,19 @@
       </ul>
     </div>
     <div
+      id="accordion-interests"
       class="accordion-contents"
       v-if="checkService('brands',true)"
       :class="onProfileCard('interests')"
     >
       <div class="m-like">
         <div class="input-selectbox-wrap" id="m-interestsSelect">
-          <div class="select3" id="likeselect-btn">
+          <div class="select3 select-btn" id="likeselect-btn" @click.prevent="showSelectList">
             <span>관심사 선택</span>
             <i></i>
           </div>
 
-          <div class="listWrap3 long">
+          <div class="listContents listWrap3 long">
             <ul class="list">
               <li data-sub="0">패션</li>
               <li data-sub="1">뷰티</li>
@@ -493,12 +496,12 @@
         <div id="m_childrenSelectedContainer" class="selected-container none"></div>
 
         <div id="m_childrenSelectBox" class="input-selectbox-wrap">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>자녀 (0명)</span>
             <i></i>
           </div>
 
-          <div class="listWrap" id="m_selectChildren">
+          <div class="listContents listWrap" id="m_selectChildren">
             <ul class="list">
               <li>없음</li>
               <li>1명</li>
@@ -544,12 +547,12 @@
 
         <div id="m_petSelectContainer">
           <div class="input-selectbox-wrap">
-            <div class="select">
+            <div class="select select-btn" @click.prevent="showSelectList">
               <span>동물 종류</span>
               <i></i>
             </div>
 
-            <div class="listWrap">
+            <div class="listContents listWrap">
               <ul class="list">
                 <li>강아지</li>
                 <li>고양이</li>
@@ -560,12 +563,12 @@
           </div>
 
           <div class="input-selectbox-wrap mtb0">
-            <div class="select">
+            <div class="selec select-btnt" @click.prevent="showSelectList">
               <span>몇마리</span>
               <i></i>
             </div>
 
-            <div class="listWrap">
+            <div class="listContents listWrap">
               <ul class="list">
                 <li>1마리</li>
                 <li>2마리</li>
@@ -613,13 +616,13 @@
         </div>
         <div id="m-bodySelectbox">
           <div class="input-selectbox-wrap">
-            <div class="select2">
+            <div class="select2 select-btn" @click.prevent="showSelectList">
               <span>상의 사이즈</span>
               <input type="text" maxlength="10" placeholder="직접입력" style="display: none;" />
               <i></i>
             </div>
 
-            <div class="listWrap2 long">
+            <div class="listContents listWrap2 long">
               <ul class="list">
                 <li>S</li>
                 <li>M</li>
@@ -630,13 +633,13 @@
             </div>
           </div>
           <div class="input-selectbox-wrap">
-            <div class="select2">
+            <div class="select2 select-btn" @click.prevent="showSelectList">
               <span>하의 사이즈</span>
               <input type="text" maxlength="10" placeholder="직접입력" style="display: none;" />
               <i></i>
             </div>
 
-            <div class="listWrap2 long">
+            <div class="listContents listWrap2 long">
               <ul class="list">
                 <li>S</li>
                 <li>M</li>
@@ -685,12 +688,12 @@
     >
       <div class="m-skin">
         <div class="input-selectbox-wrap">
-          <div class="select2">
+          <div class="select2 select-btn" @click.prevent="showSelectList">
             <span>피부 타입</span>
             <i></i>
           </div>
 
-          <div class="listWrap2 long">
+          <div class="listContents listWrap2 long">
             <ul class="list">
               <li>건성</li>
               <li>중성</li>
@@ -730,7 +733,6 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import MapSvg from '../MapSvg';
-import Select from '../Select';
 
 export default {
     name: 'mobileDetailInfo',
@@ -738,6 +740,7 @@ export default {
         return {
             isRecommendCheck: false,
             recommendType: null,
+            gender: false,
             tip: {
                 title: null,
                 text: null
@@ -762,8 +765,7 @@ export default {
         };
     },
     components: {
-        MapSvg,
-        Select
+        MapSvg
     },
     computed: {
         ...mapState(['service', 'profileCard'])
@@ -784,6 +786,7 @@ export default {
             this.profileCard[value] = event ? !this.profileCard[value] : true;
 
             if (event) {
+                this.closeSelectList;
                 const target = event.target.closest('.accordion');
                 const parent = target.closest('div#additionalInfo');
                 const wrap = target.closest('.add_wrap_group');
@@ -814,6 +817,39 @@ export default {
         closeTips() {
             this.tip.title = null;
             this.tip.text = null;
+        },
+        showSelectList(e) {
+            const selectBtn = e.target.closest('div');
+            const accordion = selectBtn.closest('.accordion-contents');
+
+            if (selectBtn.nextSibling.classList.contains('selectOn')) {
+                selectBtn.nextSibling.classList.remove('selectOn');
+
+                if (!accordion) return;
+
+                accordion.classList.remove('height');
+            } else {
+                selectBtn.nextSibling.classList.add('selectOn');
+                selectBtn.nextSibling.style.top =
+                    selectBtn.offsetHeight - 3 + 'px';
+
+                if (!accordion) return;
+
+                accordion.classList.add('height');
+            }
+        },
+        closeSelectList(e) {
+            console.log(e.target);
+            const parent = e.target.closest('#join');
+            if (!e.target.closest('.select-btn') && parent) {
+                parent.querySelectorAll('.listContents').forEach(element => {
+                    element.classList.remove('selectOn');
+                });
+
+                parent.querySelectorAll('.accordion-contents').forEach(el => {
+                    el.classList.remove('height');
+                });
+            }
         }
     }
 };

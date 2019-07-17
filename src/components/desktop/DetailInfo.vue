@@ -32,8 +32,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -108,8 +108,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -137,12 +137,12 @@
         </div>
 
         <div class="input-selectbox-wrap">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>상세지역</span>
             <i></i>
           </div>
 
-          <div class="listWrap">
+          <div class="listContents listWrap">
             <ul class="list">
               <li>수원시</li>
               <li>성남시</li>
@@ -161,8 +161,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -193,8 +193,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -208,12 +208,12 @@
       <div class="header margin-bottom-0">연령</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="ageGeneration">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>10대</span>
             <i></i>
           </div>
 
-          <div class="listWrap">
+          <div class="listContents listWrap">
             <ul class="list">
               <li data-inx="0" style="display:none;">10대</li>
               <li data-inx="1">20대</li>
@@ -226,12 +226,12 @@
         </div>
 
         <div class="input-selectbox-wrap" id="ageGroup">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>초반</span>
             <i></i>
           </div>
 
-          <div class="listWrap">
+          <div class="listContents listWrap">
             <ul class="list">
               <li data-inx="0" style="display: none">초반</li>
               <li data-inx="1">중반</li>
@@ -245,8 +245,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -260,12 +260,12 @@
       <div class="header margin-bottom-0">직업</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="jobSelect">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>직업선택</span>
             <i></i>
           </div>
 
-          <div class="listWrap long">
+          <div class="listContents listWrap long">
             <ul class="list">
               <li>모델</li>
               <li>프리랜서</li>
@@ -289,8 +289,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -304,12 +304,12 @@
       <div class="header margin-bottom-0">관심사</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="interestsSelect">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>관심사 선택</span>
             <i></i>
           </div>
 
-          <div class="listWrap long">
+          <div class="listContents listWrap long">
             <ul class="list">
               <li>패션</li>
               <li>뷰티</li>
@@ -334,8 +334,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -363,8 +363,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -380,12 +380,12 @@
         <div id="childrenSelectedContainer" class="selected-container none"></div>
 
         <div id="childrenSelectBox" class="input-selectbox-wrap">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>자녀 (0명)</span>
             <i></i>
           </div>
 
-          <div class="listWrap" id="selectChildren">
+          <div class="listContents listWrap" id="selectChildren">
             <ul class="list">
               <li>없음</li>
               <li>1명</li>
@@ -405,8 +405,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -423,12 +423,12 @@
 
         <div id="petSelectContainer">
           <div class="input-selectbox-wrap">
-            <div class="select">
+            <div class="select select-btn" @click.prevent="showSelectList">
               <span>동물 종류</span>
               <i></i>
             </div>
 
-            <div class="listWrap">
+            <div class="listContents listWrap">
               <ul class="list">
                 <li>강아지</li>
                 <li>고양이</li>
@@ -439,12 +439,12 @@
           </div>
 
           <div class="input-selectbox-wrap">
-            <div class="select">
+            <div class="select select-btn" @click.prevent="showSelectList">
               <span>몇마리</span>
               <i></i>
             </div>
 
-            <div class="listWrap">
+            <div class="listContents listWrap">
               <ul class="list">
                 <li>1마리</li>
                 <li>2마리</li>
@@ -462,8 +462,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn on">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -477,12 +477,12 @@
       <div class="header margin-bottom-0">희망 공구품목</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="itemSelect">
-          <div class="select">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <span>공구품목 선택</span>
             <i></i>
           </div>
 
-          <div class="listWrap long">
+          <div class="listContents listWrap long">
             <ul class="list">
               <li>패션</li>
               <li>뷰티</li>
@@ -507,8 +507,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -527,7 +527,7 @@
         </div>
         <div id="bodySelectbox">
           <div class="input-selectbox-wrap">
-            <div class="select2">
+            <div class="select2 select-btn" @click.prevent="showSelectList">
               <span>상의 사이즈</span>
               <input
                 type="text"
@@ -539,7 +539,7 @@
               <i></i>
             </div>
 
-            <div class="listWrap2 long">
+            <div class="listContents listWrap2 long">
               <ul class="list">
                 <li>S</li>
                 <li>M</li>
@@ -550,7 +550,7 @@
             </div>
           </div>
           <div class="input-selectbox-wrap">
-            <div class="select2">
+            <div class="select2 select-btn" @click.prevent="showSelectList">
               <span>하의 사이즈</span>
               <input
                 type="text"
@@ -562,7 +562,7 @@
               <i></i>
             </div>
 
-            <div class="listWrap2 long">
+            <div class="listContents listWrap2 long">
               <ul class="list">
                 <li>S</li>
                 <li>M</li>
@@ -587,8 +587,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -602,12 +602,12 @@
       <div class="inner-contents">
         <div id="skinSelectbox">
           <div class="input-selectbox-wrap">
-            <div class="select2">
+            <div class="select2 select-btn" @click.prevent="showSelectList">
               <span>피부타입</span>
               <i></i>
             </div>
 
-            <div class="listWrap2 long">
+            <div class="listContents listWrap2 long">
               <ul class="list">
                 <li>건성</li>
                 <li>중성</li>
@@ -637,8 +637,8 @@
           <li class="back-btn">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn">저장하기</li>
-          <li class="next-btn">
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
@@ -671,6 +671,65 @@ export default {
     extends: mobileDetailInfo,
     template: {
         MapSvg
+    },
+    methods: {
+        saveBtn(event) {
+            this.nextDetailInfo(event);
+        },
+        nextDetailInfo(event) {
+            const id = event.target.closest('.article').getAttribute('id');
+
+            for (const key in this.profileCard) {
+                this.profileCard[key] = false;
+            }
+
+            console.log(this.service);
+
+            if (id === 'sns') {
+                if (this.service === 'market') {
+                    this.profileCard.gender = true;
+                } else {
+                    this.profileCard.pay = true;
+                }
+            } else if (id === 'pay') {
+                if (this.service === 'brands') {
+                    this.profileCard.area = true;
+                } else if (this.service === 'influencer') {
+                    this.profileCard.expectProduct = true;
+                }
+            } else if (id === 'area') {
+                this.profileCard.gender = true;
+            } else if (id === 'gender') {
+                this.profileCard.age = true;
+            } else if (id === 'age') {
+                if (
+                    this.service === 'influencer' ||
+                    this.service === 'market'
+                ) {
+                    this.profileCard.bodyProfile = true;
+                } else {
+                    this.profileCard.job = true;
+                }
+            } else if (id === 'job') {
+                this.profileCard.interests = true;
+            } else if (id === 'interests') {
+                this.profileCard.married = true;
+            } else if (id === 'married') {
+                this.profileCard.children = true;
+            } else if (id === 'children') {
+                this.profileCard.pet = true;
+            } else if (id === 'item') {
+                if (this.service === 'influencer') {
+                    this.profileCard.gender = true;
+                }
+            } else if (id === 'body') {
+                this.profileCard.skinType = true;
+            } else if (id === 'skin') {
+                this.profileCard.skinType = true;
+            } else if (id === 'pet') {
+                this.profileCard.pet = true;
+            }
+        }
     }
 };
 </script>

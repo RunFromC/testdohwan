@@ -1,5 +1,5 @@
 <template>
-    <div id="join">
+    <div id="join" @click.prevent="closeSelectList">
         <div id="header">
             <div class="container">
                 <h1 class="logo">

@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Client from '../views/Client.vue';
 import Find from '../views/Find.vue';
 import Join from '../views/Join.vue';
+import ClientJoin from '../views/client/Join.vue';
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ const router = new Router({
             path: '/client',
             name: 'client',
             component: Client
+        },
+        {
+            path: '/client/join',
+            name: 'clientJoin',
+            component: ClientJoin
         },
         {
             path: '/find',
