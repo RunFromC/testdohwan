@@ -109,12 +109,13 @@
                                         SNS 연동으로 <br>
                                         좀 더 편하게 이용하세요.
                                     </div>
+                                    <div class="point"></div>
                                 </div>
 
                                 <div class="box big" 
                                     @click="onClickProfileCard('pay')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true)" 
-                                    :class="[onProfileCard('pay'), checkService('brands','margin-bottom-31')]">
+                                    :class="[onProfileCard('pay'), checkService('influencer','margin-bottom-31')]">
                                     <img src="~@/assets/img/pay.png" alt="pay">
                                     <div class="text">
                                         <span v-if="checkService('brands',true)">희망 원고료</span>
@@ -122,45 +123,48 @@
                                         <br>
                                         고객사 매칭에 도움이 됩니다.
                                     </div>
+                                    <div class="point"></div>
                                 </div>
 
                                 <div class="box big"
                                     @click="onClickProfileCard('expectProduct')" 
-                                    v-if="checkService('influencer',true)" 
-                                    :class="[onProfileCard('expectProduct'), checkService('influencer','margin-bottom-31')]">
+                                    v-if="checkService('brands',true) || checkService('influencer',true)" 
+                                    :class="[onProfileCard('expectProduct'), checkService('brands','margin-bottom-31')]">
                                     <img src="~@/assets/img/box.png" alt="item">
                                     <div class="text">
                                         희망 공구 품목<br>
                                         고객사 매칭에 도움이 됩니다.
                                     </div>
+                                    <div class="point"></div>
                                 </div>
                                 <div>
-                                    <div class="box small" @click="onClickProfileCard('area')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('area')" 
                                     v-if="checkService('brands',true)" 
                                     :class="onProfileCard('area')">
                                         <img src="~@/assets/img/location.png" alt="area">
                                         <div class="text">
                                             주 활동 지역
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('gender')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)" 
                                     :class="onProfileCard('gender')">
-                                        <img src="~@/assets/img/men_women.png" alt="gender">
+                                        <img src="~@/assets/img/age_.png" alt="gender">
                                         <div class="text">
-                                            성별
+                                            성별/연령
                                         </div>
+                                        <div class="point"></div>
                                     </div>
 
-                                    <div class="box small" @click="onClickProfileCard('age')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('age')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)" 
                                     :class="onProfileCard('age')">
-                                        <img src="~@/assets/img/age.png" alt="age">
+                                        <img src="~@/assets/img/age_.png" alt="age">
                                         <div class="text">
-                                            연령
+                                            성별/연령
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('job')" 
                                     v-if="checkService('brands',true)" 
@@ -169,16 +173,17 @@
                                         <div class="text">
                                             직업
                                         </div>
+                                        <div class="point"></div>
                                     </div>
 
-                                    <div class="box small" @click="onClickProfileCard('interests')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('interests')" 
                                     v-if="checkService('brands',true)" 
                                     :class="onProfileCard('interests')">
                                         <img src="~@/assets/img/like.png" alt="interests">
                                         <div class="text">
                                             관심사
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('married')" 
                                     v-if="checkService('brands',true)" 
@@ -187,6 +192,7 @@
                                         <div class="text">
                                             결혼유무
                                         </div>
+                                        <div class="point"></div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('children')" 
@@ -196,6 +202,7 @@
                                         <div class="text">
                                             자녀관계
                                         </div>
+                                        <div class="point"></div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('pet')" 
@@ -205,23 +212,26 @@
                                         <div class="text">
                                             반려동물
                                         </div>
+                                        <div class="point"></div>
                                     </div>
                                     <div class="box small" @click="onClickProfileCard('bodyProfile')" 
                                     v-if="checkService('market',true) || checkService('influencer', true)" 
                                     :class="onProfileCard('bodyProfile')" >
-                                        <img src="~@/assets/img/body.png" alt="sns">
+                                        <img src="~@/assets/img/body.png" alt="body">
                                         <div class="text">
                                             바디프로필
                                         </div>
+                                        <div class="point"></div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('skinType')" 
-                                    v-if="checkService('market',true) || checkService('influencer', true)" 
+                                    v-if="checkService('brands',true) || checkService('influencer', true)" 
                                     :class="onProfileCard('skinType')">
-                                        <img src="~@/assets/img/skin.png" alt="sns">
+                                        <img src="~@/assets/img/skin.png" alt="skin">
                                         <div class="text">
                                             피부
                                         </div>
+                                        <div class="point"></div>
                                     </div>
                                 </div>
                             </div>

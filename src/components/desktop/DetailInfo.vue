@@ -187,24 +187,6 @@
           <i></i>
         </div>
       </div>
-
-      <div class="button-wrap">
-        <ul>
-          <li class="back-btn" @click="prevDetailInfo">
-            <i></i>뒤로가기
-          </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
-          <li class="next-btn" @click="nextDetailInfo">
-            건너뛰기
-            <i></i>
-          </li>
-        </ul>
-        <button class="join-finish-btn">가입확인</button>
-      </div>
-    </div>
-
-    <!-- age -->
-    <div class="article" id="age" v-if="profileCard.age">
       <div class="header margin-bottom-0">연령</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="ageGeneration">
@@ -255,6 +237,58 @@
       </div>
     </div>
 
+    <!-- age -->
+    <!-- <div class="article" id="age" v-if="profileCard.age">
+      <div class="header margin-bottom-0">연령</div>
+      <div class="inner-contents">
+        <div class="input-selectbox-wrap" id="ageGeneration">
+          <div class="select select-btn" @click.prevent="showSelectList">
+            <span>10대</span>
+            <i></i>
+          </div>
+
+          <div class="listContents listWrap">
+            <ul class="list">
+              <li data-inx="0" style="display:none;">10대</li>
+              <li data-inx="1">20대</li>
+              <li data-inx="2">30대</li>
+              <li data-inx="3">40대</li>
+              <li data-inx="4">50대</li>
+              <li data-inx="5">60대 이상</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="input-selectbox-wrap" id="ageGroup">
+          <div class="select select-btn" @click.prevent="showSelectList">
+            <span>초반</span>
+            <i></i>
+          </div>
+
+          <div class="listContents listWrap">
+            <ul class="list">
+              <li data-inx="0" style="display: none">초반</li>
+              <li data-inx="1">중반</li>
+              <li data-inx="2">후반</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="button-wrap">
+        <ul>
+          <li class="back-btn" @click="prevDetailInfo">
+            <i></i>뒤로가기
+          </li>
+          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="next-btn" @click="nextDetailInfo">
+            건너뛰기
+            <i></i>
+          </li>
+        </ul>
+        <button class="join-finish-btn">가입확인</button>
+      </div>
+    </div>-->
+
     <!-- job -->
     <div class="article" id="job" v-if="profileCard.job">
       <div class="header margin-bottom-0">직업</div>
@@ -300,7 +334,7 @@
     </div>
 
     <!-- interests -->
-    <div class="article" id="interests" v-if="profileCard.interests">
+    <!-- <div class="article" id="interests" v-if="profileCard.interests">
       <div class="header margin-bottom-0">관심사</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="interestsSelect">
@@ -342,7 +376,7 @@
         </ul>
         <button class="join-finish-btn">가입확인</button>
       </div>
-    </div>
+    </div>-->
     <!-- marriage -->
     <div class="article" id="married" v-if="profileCard.married">
       <div class="header margin-bottom-0">결혼유무</div>
@@ -672,18 +706,18 @@ export default {
     data() {
         return {
             currentIndex: 0,
-            brandsList: [
-                'sns',
-                'pay',
-                'area',
-                'gender',
-                'age',
-                'job',
-                'interests',
-                'married',
-                'children',
-                'pet'
-            ],
+            // brandsList: [
+            //     'sns',
+            //     'pay',
+            //     'area',
+            //     'gender',
+            //     'age',
+            //     'job',
+            //     'interests',
+            //     'married',
+            //     'children',
+            //     'pet'
+            // ],
             influencerList: [
                 'sns',
                 'pay',
@@ -693,6 +727,18 @@ export default {
                 'bodyProfile',
                 'skinType'
             ],
+            brandsList: [
+                'sns',
+                'pay',
+                'expectProduct',
+                'gender',
+                'job',
+                'married',
+                'children',
+                'pet',
+                'skinType'
+            ],
+
             marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType']
         };
     },
