@@ -417,10 +417,9 @@ export default {
         }
     },
     mounted() {
-        if(this.service === '') this.$router.push('/');
-
+        this.$store.commit('setLocalService');
         const agent = navigator.userAgent.toLowerCase();
-
+        
         if (
             (navigator.appName == 'Netscape' &&
                 navigator.userAgent.search('Trident') != -1) ||

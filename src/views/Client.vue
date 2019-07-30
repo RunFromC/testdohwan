@@ -83,7 +83,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$router.currentRoute.path);
         const path = this.$router.currentRoute.path;
         this.setService({ path: path });
     }
