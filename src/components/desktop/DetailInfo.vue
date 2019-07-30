@@ -29,7 +29,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -105,7 +105,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -158,7 +158,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -190,7 +190,7 @@
 
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -242,7 +242,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -286,7 +286,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -331,7 +331,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -360,7 +360,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -402,7 +402,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -459,7 +459,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -504,7 +504,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -584,7 +584,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -634,7 +634,7 @@
       </div>
       <div class="button-wrap">
         <ul>
-          <li class="back-btn">
+          <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn">저장하기</li>
@@ -669,6 +669,38 @@ import mobileDetailInfo from '../mobile/DetailInfo.vue';
 export default {
     name: 'desktopDetailInfo',
     extends: mobileDetailInfo,
+    data() {
+        return {
+            currentIndex: 0,
+            brandsList: [
+                'sns',
+                'pay',
+                'area',
+                'gender',
+                'age',
+                'job',
+                'interests',
+                'married',
+                'children',
+                'pet'
+            ],
+            influencerList: [
+                'sns',
+                'pay',
+                'expectProduct',
+                'gender',
+                'age',
+                'bodyProfile',
+                'skinType'
+            ],
+            marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType']
+        };
+    },
+    computed: {
+        getCurrentCard() {
+            return this.$store.getters.getCurrentCard;
+        }
+    },
     template: {
         MapSvg
     },
@@ -676,59 +708,44 @@ export default {
         saveBtn(event) {
             this.nextDetailInfo(event);
         },
+        prevDetailInfo(event) {
+            this.changeDetailInfo('prev');
+        },
         nextDetailInfo(event) {
-            const id = event.target.closest('.article').getAttribute('id');
+            this.changeDetailInfo('next');
+        },
+        changeDetailInfo(type) {
+            let card = this.getCardList();
+
+            if (this.currentIndex === 0 && type === 'prev') return;
+            if (this.currentIndex === card.length - 1 && type === 'next')
+                return;
 
             for (const key in this.profileCard) {
                 this.profileCard[key] = false;
             }
 
-            console.log(this.service);
-
-            if (id === 'sns') {
-                if (this.service === 'market') {
-                    this.profileCard.gender = true;
-                } else {
-                    this.profileCard.pay = true;
-                }
-            } else if (id === 'pay') {
-                if (this.service === 'brands') {
-                    this.profileCard.area = true;
-                } else if (this.service === 'influencer') {
-                    this.profileCard.expectProduct = true;
-                }
-            } else if (id === 'area') {
-                this.profileCard.gender = true;
-            } else if (id === 'gender') {
-                this.profileCard.age = true;
-            } else if (id === 'age') {
-                if (
-                    this.service === 'influencer' ||
-                    this.service === 'market'
-                ) {
-                    this.profileCard.bodyProfile = true;
-                } else {
-                    this.profileCard.job = true;
-                }
-            } else if (id === 'job') {
-                this.profileCard.interests = true;
-            } else if (id === 'interests') {
-                this.profileCard.married = true;
-            } else if (id === 'married') {
-                this.profileCard.children = true;
-            } else if (id === 'children') {
-                this.profileCard.pet = true;
-            } else if (id === 'item') {
-                if (this.service === 'influencer') {
-                    this.profileCard.gender = true;
-                }
-            } else if (id === 'body') {
-                this.profileCard.skinType = true;
-            } else if (id === 'skin') {
-                this.profileCard.skinType = true;
-            } else if (id === 'pet') {
-                this.profileCard.pet = true;
+            if (type === 'prev') {
+                this.profileCard[card[--this.currentIndex]] = true;
+            } else {
+                this.profileCard[card[++this.currentIndex]] = true;
             }
+        },
+        getCardList() {
+            let card = this.brandsList;
+
+            if (this.service === 'influencer') {
+                card = this.influencerList;
+            } else if (this.service === 'market') {
+                card = this.marketList;
+            }
+            return card;
+        }
+    },
+    watch: {
+        getCurrentCard(newValue, oldValue) {
+            let card = this.getCardList();
+            this.currentIndex = card.indexOf(newValue);
         }
     }
 };

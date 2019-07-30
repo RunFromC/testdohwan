@@ -32,7 +32,8 @@ const state = {
         pet: false,
         bodyProfile: false,
         skinType: false
-    }
+    },
+    currentCard: 'default',
 };
 
 export default state;

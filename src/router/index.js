@@ -51,9 +51,11 @@ const router = new Router({
 });
 
 //added 로그인 인증을 위한 네비게이션 가드 추가.
-router.beforeEach((to, from, next) => {
+router.afterEach((to, from) => {
     // todo : 로그인 정보 확인.
-    next();
+    if (!to.name) {
+        console.log('not found page 404');
+    }
 });
 
 export default router;

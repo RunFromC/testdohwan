@@ -113,6 +113,7 @@ export default {
     mounted() {
         const path = this.$router.currentRoute.path;
         this.setService({ path: path });
+        
     }
 };
 </script>

@@ -768,7 +768,7 @@ export default {
         MapSvg
     },
     computed: {
-        ...mapState(['service', 'profileCard'])
+        ...mapState(['service', 'profileCard', 'currentCard'])
     },
     methods: {
         checkService(serviceName, returnValue) {
@@ -781,6 +781,8 @@ export default {
             for (const key in this.profileCard) {
                 if (key !== value) this.profileCard[key] = false;
             }
+
+            this.$store.commit('setCurrentCard', { currentCard: value });
 
             // event 있을 경우 mobile 없을 경우 desktop 화면이다.
             this.profileCard[value] = event ? !this.profileCard[value] : true;
@@ -839,7 +841,6 @@ export default {
             }
         },
         closeSelectList(e) {
-            console.log(e.target);
             const parent = e.target.closest('#join');
             if (!e.target.closest('.select-btn') && parent) {
                 parent.querySelectorAll('.listContents').forEach(element => {
