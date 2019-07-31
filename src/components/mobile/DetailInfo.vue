@@ -115,7 +115,7 @@
       class="accordion"
       id="accordion_item"
       @click="onClickProfileCard('expectProduct', $event)"
-      v-if="checkService('influencer',true)"
+      v-if="checkService('brands',true) || checkService('influencer',true)"
     >
       <ul>
         <li>
@@ -170,7 +170,7 @@
       </div>
     </div>
     <!-- 주 활동 지역  -->
-    <div
+    <!-- <div
       class="accordion"
       id="accordion-hot"
       @click="onClickProfileCard('area', $event)"
@@ -220,7 +220,7 @@
       <div class="button-wrap">
         <button class="hotsave-btn">저장</button>
       </div>
-    </div>
+    </div>-->
     <!-- 성별 -->
     <div
       class="accordion"
@@ -802,7 +802,7 @@ export default {
                 const time = setTimeout(() => {
                     parent.scrollTop = index * 55;
                     clearTimeout(time);
-                }, 300);
+                }, 500);
             }
         },
         onClickRecommendCheck() {

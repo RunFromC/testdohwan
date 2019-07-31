@@ -9,7 +9,7 @@
             </div>
         </div>
         <div id="card-container" ref="cardContainer">
-                <div class="card" id="cardStep1" :class="cardFilp">
+                <div :class="joinPage == false &&  addJoinPage ? 'none': '' || cardFilp" class="card" id="cardStep1" >
                     <div class="front">
                         <a href="#" class="rotate-btn" @click.prevent="onCardFilp"></a>
                         <div class="contents">
@@ -76,14 +76,14 @@
                                     <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
                                     <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                                 </div>
-                                <div class="link_wrap">
+                                <!-- <div class="link_wrap">
                                     <a href="#"><img src="~@/assets/img/market_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/pick_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
-                                </div>
-                                <div class="finished"><a href="#"><span>가입완료</span> <i></i></a></div>
+                                </div> -->
+                                <div class="finished" @click="standardJoin"><a href="#"><span>가입완료</span></a></div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" id="cardStep2">
+                <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep2">
                     <div class="front">
                         <div class="contents">
                             <div class="article" >
@@ -109,7 +109,8 @@
                                         SNS 연동으로 <br>
                                         좀 더 편하게 이용하세요.
                                     </div>
-                                    <div class="point"></div>
+                                    <div class="point"><span>1000포인트 적립</span></div>
+                                    <div class="point-text">+ 1000 P</div> 
                                 </div>
 
                                 <div class="box big" 
@@ -123,7 +124,8 @@
                                         <br>
                                         고객사 매칭에 도움이 됩니다.
                                     </div>
-                                    <div class="point"></div>
+                                    <div class="point"><span>1000포인트 적립</span></div>
+                                    <div class="point-text">+ 1000 P</div>
                                 </div>
 
                                 <div class="box big"
@@ -135,7 +137,8 @@
                                         희망 공구 품목<br>
                                         고객사 매칭에 도움이 됩니다.
                                     </div>
-                                    <div class="point"></div>
+                                    <div class="point"><span>1000포인트 적립</span></div>
+                                    <div class="point-text">+ 1000 P</div>
                                 </div>
                                 <div>
                                     <!-- <div class="box small" @click="onClickProfileCard('area')" 
@@ -154,7 +157,8 @@
                                         <div class="text">
                                             성별/연령
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <!-- <div class="box small" @click="onClickProfileCard('age')" 
@@ -173,7 +177,8 @@
                                         <div class="text">
                                             직업
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <!-- <div class="box small" @click="onClickProfileCard('interests')" 
@@ -192,7 +197,8 @@
                                         <div class="text">
                                             결혼유무
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('children')" 
@@ -202,7 +208,8 @@
                                         <div class="text">
                                             자녀관계
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('pet')" 
@@ -212,7 +219,8 @@
                                         <div class="text">
                                             반려동물
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
                                     <div class="box small" @click="onClickProfileCard('bodyProfile')" 
                                     v-if="checkService('market',true) || checkService('influencer', true)" 
@@ -221,7 +229,8 @@
                                         <div class="text">
                                             바디프로필
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('skinType')" 
@@ -231,7 +240,9 @@
                                         <div class="text">
                                             피부
                                         </div>
-                                        <div class="point"></div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -240,12 +251,24 @@
                     </div>
                 </div>
 
-                <div class="card" id="cardStep3">
-                <div class="front">
-                    <!-- detail info for desktop -->
-                    <DesktopDetailInfo />
+                <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep3">
+                    <div class="front">
+                        <!-- detail info for desktop -->
+                        <DesktopDetailInfo />
+                    </div>
                 </div>
-            </div>
+                <div class="card" id="cardStep4" :class="!addJoinPage ? 'none': '' || !joinPage == false ? 'none': ''">
+                    <div class="front">
+                        <ul class="content">
+                            <li class="title">좀더 소개해주실 수 있으세요?</li>
+                            <li class="sub-text">마일리지 적립, 고객사 매칭 등에 도움이 될 거예요</li>
+                            <li><img src="../assets/img/coin.png" alt="동전탑 이미지"></li>
+                            <li class="point-text">인플루언서 프로필 작성시 총 <strong>8000 포인트</strong> 적립</li>
+                            <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
+                            <li class="skip-btn"><router-link to="/">괜찮아요. 이대로 가입할게요</router-link></li>
+                        </ul>
+                    </div>
+                </div>
 
             <div id="backBlock2"></div>
         </div>
@@ -366,6 +389,8 @@ export default {
             isMobileTermsOn: false,
             isToggleMobileTab: 1,
             isAccodionOn: false,
+            joinPage: false,
+            addJoinPage: false
         }
     },
     computed: {
@@ -380,6 +405,12 @@ export default {
         },       
     },
     methods :{
+        addJoin() {
+            this.joinPage = true;
+        },
+        standardJoin() {
+            this.addJoinPage = !this.addJoinPage
+        },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;
         },

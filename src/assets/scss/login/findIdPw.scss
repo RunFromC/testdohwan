@@ -108,7 +108,7 @@ $errColor: #FF7364;
                 position: absolute;
                 right: 7px;
                 top: 50%;
-                margin-top: division_mid($height);
+                transform: translateY(-50%);
               }
 
               .icon-eye.on {
@@ -320,14 +320,33 @@ $errColor: #FF7364;
           display: inline-block;
           margin-top: 337px;
           font-size: 16px;
-          @include input-button(112px, 34px, $mainColor);
+          @include input-button(112px, 35px, $mainColor);
+          border-radius: 10px;  
           color: #fff;
+          font-family: 'NotoSansKR-Medium';
+          position: absolute;
+          bottom: 24px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .wrong-msg {
+          margin-top: 10px;
+          width: 100%;
+          height: auto;
+          span {
+            text-align: center;
+            display: block;
+            color: red;
+            font-size: 14px;
+          }
         }
       }
 
 
     }
+    
   }
+  
 }
 
 @media screen and (max-width: 767px) {
@@ -371,6 +390,27 @@ $errColor: #FF7364;
               input:first-child {
                 margin-top: 25px !important;
               }
+              
+            }
+
+            #changePw {
+              .inputWrapper {
+                position: relative;
+                width: 232px;
+                height: 34px;
+                margin: 0 auto;
+                display: block;
+                .icon-eye {                  
+                  right: 15px;
+                  
+                }
+              }
+  
+              .inputWrapper:first-child {
+                margin-top: 35px !important;
+                margin-bottom: 11px !important;
+              }
+
             }
           }
         }

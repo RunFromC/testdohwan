@@ -331,22 +331,30 @@ button:focus {
                         }
 
                         .finished {
-                            margin-top: 36px;
-                            height: 22px;
-                            line-height: 22px;
-                            text-align: center;
+                            position: absolute;
+                            bottom: 32px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            
+                            
                             display: flex;
                             align-items: center;
                             justify-content: center;
 
                             a {
-                                font-family: NotoSansKR-Medium, serif;
+                                display: block;
+                                font-family: 'NotoSansKR-Medium', serif;
                                 font-size: 20px;
                                 letter-spacing: -0.5px;
-                                color: #e2e1e1;
+                                color: #fff;
+                                width: 290px;
+                                background: #4BD897;
+                                border-radius: 10px;
+                                text-align: center;
+                                height: 50px;                                
+                                line-height: 50px;
                                 span {
-                                    display: flex;
-                                    float: left;
+                                    text-align: center;
                                 }
                                 i {
                                     display: flex;
@@ -363,6 +371,7 @@ button:focus {
                         }
 
                         .box {
+                            position: relative;
                             width: 258px;
                             height: 80px;
                             box-shadow: rgba(0, 0, 0, 0.1) 0 3px 6px;
@@ -376,6 +385,36 @@ button:focus {
 
                             img {
                             }
+                            .point {
+                                opacity: 0;
+                                span {
+                                    position: absolute;
+                                    bottom: -37px;
+                                    left: 0;
+                                    z-index: 999;
+                                    display: block;
+                                    background: #4BD897;
+                                    width: 120px;
+                                    height: 32px;
+                                    border-radius: 10px;
+                                    text-align: center;
+                                    line-height: 32px;
+                                    font-size: 12px;
+                                    color: #fff;
+                                    z-index: 11;
+                                    opacity: 0;
+                                }                                
+                                span:before {
+                                    z-index: 1;
+                                    content: '';
+                                    position: absolute;
+                                    background: #4BD897;
+                                    top: -3px;
+                                    width: 10px;
+                                    height: 10px;
+                                    transform: rotate(45deg);                                
+                                }
+                            }
 
                             .text {
                                 color: #000;
@@ -384,6 +423,18 @@ button:focus {
                                 line-height: 15px;
                                 display: inline-block;
                                 margin-left: 6px;
+                            }
+                            .point-text {
+                                opacity: 0;
+                                position: absolute;
+                                right: 7px;
+                                top: 5px;
+                                font-size: 12px;
+                                font-family: 'NotoSansKR-Bold';
+                                height: 18px;
+                                line-height: 18px;
+                                color: #4BD897;
+                                
                             }
                         }
                         .box.big {
@@ -412,54 +463,47 @@ button:focus {
                         .box.on {
                             box-sizing: border-box;
                             border: 3px solid #68dda7;
+                            .point-text {
+                                top: 2px;
+                                right: 4px;
+                            }
+                            .point {
+                                opacity: 1;
+                                span {
+                                    left: -3px;
+                                    bottom: -40px;
+                                }
+                            }
                         }
                         .box.save {
-                            background: green;
+                            background: rgba(75, 216, 151,.1);
+                            .point-text {
+                                opacity: 1;
+                            }
                         }
                         .box:hover {
                             box-sizing: border-box;
-                            position: relative;
+                            position: relative;                            
                             
                             .point {
-                                position: absolute;  
-                                z-index: 999;
-                                left: 0;                             
-                            }
-                            .point:after {
-                                content: '1000포인트 적립';                        
-                                position: absolute;
-                                bottom: -75px;
-                                background: #4BD897;
-                                width: 120px;
-                                height: 32px;
-                                border-radius: 10px;
-                                left: 0;
-                                text-align: center;
-                                line-height: 32px;
-                                font-size: 12px;
-                                color: #fff;
+                                opacity: 1;
+                                span {
+                                    opacity: 1;
+                                }
                                 
-                            }
-                            .point:before {
-                                content: '';
-                                position: absolute;
-                                background: #4BD897;
-                                bottom: -63px;
-                                left: 20px;
-                                width: 20px;
-                                height: 20px;
-                                transform: rotate(45deg);                                
                             }
                         }
 
                         .inner-contents {
                             //overflow: hidden;
                             position: relative;
-                            height: 535px;
+                            height: auto;
                         }
 
                         .button-wrap {
                             overflow: hidden;
+                            position: absolute;
+                            bottom: -9px;
                             ul {
                                 float: left;
                                 margin: 0 0 27px;
@@ -1232,11 +1276,13 @@ button:focus {
                                 }
 
                                 span {
+                                    margin-top: 8px;
                                     font-size: 18px;
                                     color: #000000;
                                 }
 
                                 i {
+                                    margin-top: 15px;
                                     display: inline-block;
                                     width: 18px;
                                     height: 18px;
@@ -1315,6 +1361,7 @@ button:focus {
                     #job.article {
                         .inner-contents {
                             overflow: hidden;
+                           
                             #jobSelect {
                                 margin-top: 40px;
                             }
@@ -1521,7 +1568,7 @@ button:focus {
 
                     #item.article {
                         .inner-contents {
-                            overflow: hidden;
+                        
                             position: relative;
                             #itemSelect {
                                 position: absolute;
@@ -2125,6 +2172,77 @@ button:focus {
                 }
             }
         }
+        #cardStep4.card {
+            background: #fff;
+            border-radius: 29px;
+            .front {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .content {
+                    text-align: center;
+                    .title {
+                        font-size: 20px;
+                        height: 29px;
+                        line-height: 29px;
+                        font-family: 'NotoSansKR-Light';
+                        text-align: center;
+                        color: #000;
+                    }
+                    .sub-text {
+                        margin-top: 2px;
+                        max-width: 186px;
+                        font-family: 'NotoSansKR-Light';
+                        height: auto;
+                        line-height: 20px;
+                        font-size: 14px;
+                        margin:2px auto 61px;
+                        
+                    }
+                    .point-text {
+                        font-family: 'NotoSansKr-Regular';
+                        font-size: 22px;
+                        color: #000;
+                        max-width: 233px;
+                        line-height: 28px;
+                        margin: 0 auto;
+                        strong {
+                            font-family: 'NotoSansKr-Medium';
+                            color:#4BD897; 
+                        }
+                    }
+                    .button {
+                        margin-top: 50px;
+                        margin-bottom: 11px;
+                        a {
+                            display: block;
+                            width: 290px;
+                            height: 50px;
+                            border-radius: 10px;
+                            color: #fff;
+                            font-family: 'NotoSansKr-Medium';
+                            background: #4BD897;
+                            text-align: center;
+                            line-height: 50px;
+                            font-size: 20px;
+                        }
+                    }
+                    .skip-btn {
+                        a {
+                        font-family: 'NotoSansKR-Light';
+                        display: block;
+                        font-size: 17px;
+                        color: #AAAAAA;
+                        height: 25px;
+                        line-height: 25px;
+                        }
+                    }
+                    
+                }
+            }
+            
+
+        }
         .card.applyflip {
             .front {
                 -webkit-transform: rotateY(-180deg); /*+180deg*/
@@ -2409,6 +2527,7 @@ button:focus {
                                     padding-left: 17px !important;
                                 }
                             }
+                            
 
                             .input-wrapper {
                                 width: 100%;
@@ -2489,7 +2608,7 @@ button:focus {
 
                             .finished {
                                 margin-top: 15px !important;
-
+                                
                                 a {
                                     font-size: 16px !important;
                                 }
@@ -2532,6 +2651,12 @@ button:focus {
                                     font-size: 11px;
                                     letter-spacing: -0.5px;
                                 }
+                                .point {
+                                    span {
+                                        width: 95px;
+                                        font-size: 10px;
+                                    }
+                                }
                             }
                             .box.small {
                                 width: 95px !important;
@@ -2549,11 +2674,11 @@ button:focus {
                                 margin-left: 0 !important;
                             }
 
-                            .inner-contents {
-                                height: 393px !important;
-                            }
+                            
 
                             .button-wrap {
+                                bottom: 0;
+                                position: absolute;
                                 ul {
                                     li {
                                         cursor: pointer;
@@ -2809,6 +2934,56 @@ button:focus {
                                 }
                             }
                         }
+                        #gender.article {
+                            .inner-contents {
+                                height: 180px;
+                                .gender-wrap {
+                                    width: 92px;
+                                    margin-top: 25px;
+                                    margin-bottom: 14px;
+                                    .image {
+                                        width: 82px;
+                                        height: 92px;
+                                    }
+                                    span {
+                                        margin-top: 4px;
+                                        font-size: 14px;
+                                    }
+                                    i {
+                                        margin-top: 13px;
+                                        width: 15px;
+                                    }
+
+                                }
+                            }
+                            > .inner-contents:nth-child(4) {
+                                
+                                .input-selectbox-wrap:first-child {
+                                    height: 68px;
+                                    margin: 5px auto 12px;    
+                                    .select {
+                                        height: 68px;
+                                        line-height: 68px;
+                                        span {
+                                            font-size: 21px;
+                                        }
+                                    }
+                                }
+                                .input-selectbox-wrap {
+                                    margin: 0 auto 12px;
+                                    .select {
+                                        span {
+                                            font-size: 15px;
+                                        }
+                                    }
+    
+                                    
+                                }
+                            }
+                            .button-wrap {
+                                bottom: 0;
+                            }
+                        }
 
                         #age.article {
                             .input-selectbox-wrap {
@@ -2972,47 +3147,47 @@ button:focus {
                             }
                           }
             
-                          #skin.article {
-                            .inner-contents {
-                              #skinSelectbox {
-                                padding: 30px 0!important;
-                                .input-selectbox-wrap {
-                                  width: 190px!important;
-                                  .select2 {
-                                    width: 190px!important;
-                                    span {
-                                      font-size: 15px!important;
-                                    }
-                                  }
+                        #skin.article {
+                        .inner-contents {
+                            #skinSelectbox {
+                            padding: 30px 0!important;
+                            .input-selectbox-wrap {
+                                width: 190px!important;
+                                .select2 {
+                                width: 190px!important;
+                                span {
+                                    font-size: 15px!important;
                                 }
-                                .choice-wrap {
-                                  border-top: 3px solid #E8E8E8!important;
-                                  border-bottom: 3px solid #E8E8E8!important;
-                                  padding-top: 27px!important;
-                                  margin-top: 20px!important;
-                                  padding-bottom: 10px!important;
-                                  .text-wrap {
-                                    .title {
-                                      font-size: 15px!important;
-                                    }
-                                    .text {
-                                      font-size: 12px!important;
-                                    }
-                                  }
-                                  .choice-list2 {
-                                    ul {
-                                      margin-top: 22px!important;
-                                      li {
-                                        width: 100px!important;
-                                        margin: 0 5px 10px!important;
-                                        font-size: 15px!important;
-                                      }
-                                    }
-                                  }
                                 }
-                              }
                             }
-                          }
+                            .choice-wrap {
+                                border-top: 3px solid #E8E8E8!important;
+                                border-bottom: 3px solid #E8E8E8!important;
+                                padding-top: 27px!important;
+                                margin-top: 20px!important;
+                                padding-bottom: 10px!important;
+                                .text-wrap {
+                                .title {
+                                    font-size: 15px!important;
+                                }
+                                .text {
+                                    font-size: 12px!important;
+                                }
+                                }
+                                .choice-list2 {
+                                ul {
+                                    margin-top: 22px!important;
+                                    li {
+                                    width: 100px!important;
+                                    margin: 0 5px 10px!important;
+                                    font-size: 15px!important;
+                                    }
+                                }
+                                }
+                            }
+                            }
+                        }
+                        }
                           
                         #finishBlock {
                             > .title {
