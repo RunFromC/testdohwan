@@ -2,9 +2,12 @@
     <div id="join" @click.prevent="closeSelectList">
         <div id="header">
             <div class="container">
-                <h1 class="logo">
+                <h1 class="logo" v-if="!this.$store.state.iccMode">
                     <img id="desktopLogo" src="~@/assets/img/logo_join.png" alt="빅버드회원가입">
-                    <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입">
+                    <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입">   
+                </h1>
+                <h1 class="logo" v-else>                    
+                    <span style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
                 </h1>
             </div>
         </div>
@@ -60,9 +63,10 @@
                                 </div>
 
                                 <div class="input-wrapper">
-                                    <div class="item text">
+                                    <div class="item">
                                         <div class="label">이메일</div>
                                         <input type="text" placeholder="직접입력">
+                                        <button>중복확인</button>
                                     </div>
                                 </div>
 
@@ -72,18 +76,18 @@
                                     <div class="label" @click.prevent="termCardFlip(1)">약관동의(필수)</div>
                                     <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                                 </div>
-                                <div class="checkbox-wrap margin-bottom-0" >
+                                <div class="checkbox-wrap margin-bottom-0" v-if="!this.$store.state.iccMode">
                                     <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
                                     <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                                 </div>
-                                <!-- <div class="link_wrap">
+                                <div class="link_wrap" v-if="!this.$store.state.iccMode">
                                     <a href="#"><img src="~@/assets/img/market_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/pick_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
-                                </div> -->
-                                <div class="finished" @click="standardJoin"><a href="#"><span>가입완료</span></a></div>
+                                </div>
+                                <div class="finished" :class="joinPage ? 'none': ''" @click="standardJoin"><a href="#"><span>가입완료</span></a></div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +107,7 @@
                                 </div>
                                 <div class="box big"  
                                     @click="onClickProfileCard('sns')" 
-                                    :class="onProfileCard('sns')">
+                                    :class="onProfileCard('sns') ">
                                     <img src="~@/assets/img/sns.png" alt="sns">
                                     <div class="text">
                                         SNS 연동으로 <br>
@@ -259,13 +263,19 @@
                 </div>
                 <div class="card" id="cardStep4" :class="!addJoinPage ? 'none': '' || !joinPage == false ? 'none': ''">
                     <div class="front">
-                        <ul class="content">
-                            <li class="title">좀더 소개해주실 수 있으세요?</li>
-                            <li class="sub-text">마일리지 적립, 고객사 매칭 등에 도움이 될 거예요</li>
+                        <ul class="content" v-if="!this.$store.state.iccMode">
+                            <li class="title">좀 더 소개해주실 수 있으세요?</li>
+                            <li class="sub-text">포인트 적립, 고객사 매칭 등에 도움이 될 거예요</li>
                             <li><img src="../assets/img/coin.png" alt="동전탑 이미지"></li>
                             <li class="point-text">인플루언서 프로필 작성시 총 <strong>8000 포인트</strong> 적립</li>
                             <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
-                            <li class="skip-btn"><router-link to="/">괜찮아요. 이대로 가입할게요</router-link></li>
+                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요</router-link></li>
+                        </ul>
+                        <ul class="content" v-else>
+                            <li class="title">좀 더 소개해주실 수 있으세요?</li>
+                            <li class="sub-text" style="margin-bottom: 88px;">포인트 적립, 고객사 매칭 등에 도움이 될 거예요</li>                            
+                            <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
+                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 &gt;</router-link></li>
                         </ul>
                     </div>
                 </div>
@@ -329,9 +339,10 @@
                     </div>
 
                     <div class="input-wrapper">
-                        <div class="item text">
+                        <div class="item">
                             <div class="label">이메일</div>
                             <input type="text" placeholder="직접입력">
+                            <button>중복확인</button>
                         </div>
                     </div>
 
@@ -385,6 +396,7 @@ export default {
     extends: MobileDetailInfo,
     data () {
         return {
+            
             isCardFlip: false,
             isMobileTermsOn: false,
             isToggleMobileTab: 1,

@@ -43,7 +43,7 @@
               <div class="certificationTabs" v-if="certification.isCertOn">
                 <div class="certification" id="cert_email" v-if="certification.isCertEmailOn">
                   <input type="text" placeholder="이메일" class="input-text" />
-                  <input type="button" value="인증메일 요청" class="input-button" />
+                  <router-link to="/changePW" class="input-button">인증번호 요청</router-link>
                   <span class="wrongMsg">
                     <i class="none">잘못된 이메일 형식입니다</i>
                   </span>
@@ -61,7 +61,7 @@
                   <div id="certNumberWrap">
                     <input type="text" id="certNumberInput" placeholder="인증번호 입력" />
                     <div id="countDown">05:00</div>
-                    <input type="button" id="certNumberBtn" value="확인" />
+                    <router-link to="/changePW" id="certNumberBtn">확인</router-link>
                   </div>
 
                   <a class="reSendCertNum" href="#">인증번호 재전송 요청 ></a>
@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="bottom">
-          <a href="#" class="go_bigbird_btn">
+          <a href="#" class="go_bigbird_btn" v-if="!this.$store.state.iccMode">
             <img
               v-if="service==='brands'"
               src="~@/assets/img/login_bigbird-i_butt.png"
@@ -99,6 +99,9 @@
               src="~@/assets/img/market_under.png"
               alt="마켓 둘러보기"
             />
+          </a>
+          <a href="#" class="go_bigbird_btn" v-else>
+            <span style="font-size: 16px; color: #4bd897; text-transform: uppercase;">icc 둘러보기</span>
           </a>
         </div>
       </div>

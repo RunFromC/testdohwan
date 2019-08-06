@@ -2,216 +2,213 @@
   <div id="join">
     <div id="header">
       <div class="container">
-        <h1 class="logo">
+        <h1 class="logo" v-if="!this.$store.state.iccMode">
           <img id="desktopLogo" src="~@/assets/img/logo_join.png" alt="빅버드회원가입" />
           <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입" />
+        </h1>
+        <h1 class="logo" v-else>                    
+            <span style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
         </h1>
       </div>
     </div>
         <div id="card-container">
 <!--        <div class="scene">-->
-            <div class="card" id="cardStep1" :class="cardFilp">
-            <div class="front">
-                <a href="#" class="rotate-btn"  @click.prevent="onCardFilp"></a>
-                <div class="contents">
-                    <div class="article">
-                        <div class="header">
-                            1. 정보입력(필수)
-                        </div>
-                        <div class="input-wrapper">
-                            <div class="item">
-                                <div class="label">아이디 </div>
-                                <input type="text">
-                                <button>중복확인</button>
+            <div :class="joinPage == false &&  addJoinPage ? 'none': '' || cardFilp" class="card" id="cardStep1" >
+                <div class="front">
+                    <a href="#" class="rotate-btn"  @click.prevent="onCardFilp"></a>
+                    <div class="contents">
+                        <div class="article">
+                            <div class="header">
+                                1. 정보입력(필수)
                             </div>
-                        </div>
-
-                        <div class="input-wrapper ">
-                            <div class="item password">
-                                <div class="label">비밀번호 </div>
-                                <input type="password" placeholder="영문,숫자 포함 6자리 이상">
-                                <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                            <div class="input-wrapper">
+                                <div class="item">
+                                    <div class="label">아이디 </div>
+                                    <input type="text">
+                                    <button>중복확인</button>
+                                </div>
                             </div>
 
-                            <div class="item password">
-                                <div class="label"> </div>
-                                <input type="password" placeholder="비밀번호 확인">
-                                <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                            </div>
-                        </div>
+                            <div class="input-wrapper ">
+                                <div class="item password">
+                                    <div class="label">비밀번호 </div>
+                                    <input type="password" placeholder="영문,숫자 포함 6자리 이상">
+                                    <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                </div>
 
-                        <div class="input-wrapper ">
-                            <div class="item password">
-                                <div class="label">이름 </div>
-                                <input type="text" placeholder="">
-                            </div>
-
-                            <div class="item">
-                                <div class="label">휴대폰번호 </div>
-                                <input type="text" placeholder="- 없이 입력">
-                                <button>인증하기</button>
+                                <div class="item password">
+                                    <div class="label"> </div>
+                                    <input type="password" placeholder="비밀번호 확인">
+                                    <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                </div>
                             </div>
 
-                            <div class="item">
-                                <div class="label"> </div>
-                                <input type="text" placeholder="인증번호">
-                                <button>확인</button>
+                            <div class="input-wrapper ">
+                                <div class="item password">
+                                    <div class="label">이름 </div>
+                                    <input type="text" placeholder="">
+                                </div>
+
+                                <div class="item">
+                                    <div class="label">휴대폰번호 </div>
+                                    <input type="text" placeholder="- 없이 입력">
+                                    <button>인증하기</button>
+                                </div>
+
+                                <div class="item">
+                                    <div class="label"> </div>
+                                    <input type="text" placeholder="인증번호">
+                                    <button>확인</button>
+                                </div>
+
                             </div>
 
-                        </div>
-
-                        <div class="input-wrapper">
-                            <div class="item password">
-                                <div class="label">이메일</div>
-                                <input type="text" placeholder="직접입력">
+                            <div class="input-wrapper">
+                                <div class="item">
+                                    <div class="label">이메일</div>
+                                    <input type="text" placeholder="직접입력">
+                                    <button>인증하기</button>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="line"></div>
+                            <div class="line"></div>
 
-                        <div class="checkbox-wrap">
-                            <div class="label"  @click.prevent="termCardFlip(1)">약관동의(필수)</div>
-                            <input type="checkbox" class="input-checkbox" >
-                            <i@click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
+                            <div class="checkbox-wrap">
+                                <div class="label"  @click.prevent="termCardFlip(1)">약관동의(필수)</div>
+                                <input type="checkbox" class="input-checkbox" >
+                                <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
+                            </div>
+                            <!-- <div class="checkbox-wrap margin-bottom-0">
+                                <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
+                                <input type="checkbox" class="input-checkbox" >
+                                <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
+                            </div> -->
+                            
+                            <div class="finished"><a href="#" :class="joinPage ? 'none': ''" @click="standardJoin"><span>가입완료</span> </a></div>
                         </div>
-                        <div class="checkbox-wrap margin-bottom-0">
-                            <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
-                            <input type="checkbox" class="input-checkbox" >
-                            <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
-                        </div>
-                        <div class="link_wrap">
-                            <a href="#"><img src="~@/assets/img/market_logo.png" alt=""></a>
-                            <div class="split"></div>
-                            <a href="#"><img src="~@/assets/img/pick_logo.png" alt=""></a>
-                            <div class="split"></div>
-                            <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
-                        </div>
-                        <div class="finished"><a href="#"><span>가입완료</span> <i></i></a></div>
+                    </div>
+                </div>
+                <div class="back">
+                    <a href="#" class="rotate-btn2"  @click.prevent="onCardFilp"></a>
+                    <div class="contents">
+                        <Terms @update="changedTabForTemrs" />
                     </div>
                 </div>
             </div>
-            <div class="back">
-                <a href="#" class="rotate-btn2"  @click.prevent="onCardFilp"></a>
-                <div class="contents">
-                     <Terms @update="changedTabForTemrs" />
-                </div>
-            </div>
-        </div>
 <!--        </div>-->
 <!--        <div class="scene">-->
-            <div class="card" id="cardStep2">
-            <div class="front">
-                <div class="contents">
-                    <div class="article">
-                        <div class="header">
-                           2. 회사정보(선택)
-                        </div>
-                        <div class="input-wrapper mb15">
-                            <div class="item col1">
-                                <div class="label">회사명</div>
-                                <input type="text">
+            <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep2">
+                <div class="front">
+                    <div class="contents">
+                        <div class="article">
+                            <div class="header">
+                            2. 회사정보(선택)
                             </div>
-                        </div>
-
-                        <div class="input-wrapper mb15">
-                            <div class="item col1">
-                                <div class="label">연락처</div>
-                                <input type="text" class="input-phone" maxlength="4" placeholder="010">
-                                <input type="text" class="input-phone" maxlength="4">
-                                <input type="text" class="input-phone" maxlength="4">
-                            </div>
-                        </div>
-
-                        <div class="input-wrapper mb31">
-                            <div class="ceo-btn">
-                                <button>사업자 등록증 업로드</button>
-                                <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
-                                <div class="uploadtexttrue none">
-                                    <span>파일명최대10글자.jpg</span>
-                                    <span>5MB</span>
+                            <div class="input-wrapper mb15">
+                                <div class="item col1">
+                                    <div class="label">회사명</div>
+                                    <input type="text">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="input-wrapper mb15">
-                            <div class="item col1">
-                                <div class="label ceo">사업자<br>등록번호</div>
-                                <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                                <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                                <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
-                            </div>
-                        </div>
-                        <div class="input-wrapper mb31">
-                            <div class="ceo-btn">
-                                <button>통신판매업증 업로드</button>
-                                <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
-                                <div class="uploadtexttrue none">
-                                    <span>파일명최대10글자.jpg</span>
-                                    <span>5MB</span>
+                            <div class="input-wrapper mb15">
+                                <div class="item col1">
+                                    <div class="label">연락처</div>
+                                    <input type="text" class="input-phone" maxlength="4" placeholder="010">
+                                    <input type="text" class="input-phone" maxlength="4">
+                                    <input type="text" class="input-phone" maxlength="4">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="input-wrapper mb15">
-                            <div class="item col1">
-                                <div class="label ceo">통신판매업<br>번호</div>
-                                <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                                <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                                <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                            <div class="input-wrapper mb31">
+                                <div class="ceo-btn">
+                                    <button>사업자 등록증 업로드</button>
+                                    <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
+                                    <div class="uploadtexttrue none">
+                                        <span>파일명최대10글자.jpg</span>
+                                        <span>5MB</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="input-wrapper mb15">
-                            <div class="item col1">
-                                <div class="label">회사 분류</div>
-                                <ul class="select-wrap">
-                                    <li class="select-contents">
-                                        <div class="select">
-                                            <span>대분류</span>
-                                            <i class="rotate"></i>
-                                        </div>
-                                        <div class="listWrap">
-                                            <ul class="list">
-                                                <li>1</li>
-                                                <li>2</li>
-                                                <li>3</li>
-                                                <li>4</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="select-contents">
-                                        <div class="select">
-                                            <span>소분류</span>
-                                            <i class="rotate"></i>
-                                        </div>
-                                        <div class="listWrap">
-                                            <ul class="list">
-                                                <li>1</li>
-                                                <li>2</li>
-                                                <li>3</li>
-                                                <li>4</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <div class="input-wrapper mb15">
+                                <div class="item col1">
+                                    <div class="label ceo">사업자<br>등록번호</div>
+                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3">
+                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2">
+                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                                </div>
                             </div>
-                        </div>
-
-
-                        <div class="input-wrapper">
-                            <div class="item col1">
-                                <div class="label">회사 URL</div>
-                                <input type="text">
+                            <div class="input-wrapper mb31">
+                                <div class="ceo-btn">
+                                    <button>통신판매업증 업로드</button>
+                                    <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
+                                    <div class="uploadtexttrue none">
+                                        <span>파일명최대10글자.jpg</span>
+                                        <span>5MB</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <button id="join-finished">가입확인</button>
+                            <div class="input-wrapper mb15">
+                                <div class="item col1">
+                                    <div class="label ceo">통신판매업<br>번호</div>
+                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3">
+                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2">
+                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                                </div>
+                            </div>
+
+                            <div class="input-wrapper mb15">
+                                <div class="item col1">
+                                    <div class="label">회사 분류</div>
+                                    <ul class="select-wrap">
+                                        <li class="select-contents">
+                                            <div class="select">
+                                                <span>대분류</span>
+                                                <i class="rotate"></i>
+                                            </div>
+                                            <div class="listWrap">
+                                                <ul class="list">
+                                                    <li>1</li>
+                                                    <li>2</li>
+                                                    <li>3</li>
+                                                    <li>4</li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="select-contents">
+                                            <div class="select">
+                                                <span>소분류</span>
+                                                <i class="rotate"></i>
+                                            </div>
+                                            <div class="listWrap">
+                                                <ul class="list">
+                                                    <li>1</li>
+                                                    <li>2</li>
+                                                    <li>3</li>
+                                                    <li>4</li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <div class="input-wrapper">
+                                <div class="item col1">
+                                    <div class="label">회사 URL</div>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <router-link  id="join-finished" to="/client" :class="this.$store.state.welcome = true">회사정보 입력완료</router-link>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-            <div class="card" id="cardStep3">
+            <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep3">
                 <div class="front">
                     <div class="contents" >
                         <div class="article" style="display: block;" id="callkakao">
@@ -254,6 +251,17 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="card" id="cardStep4" :class="!addJoinPage ? 'none': '' || !joinPage == false ? 'none': ''">
+                <div class="front">
+                    <ul class="content">
+                        <li class="title">좀더 소개해주실 수 있으세요?</li>
+                        <li class="sub-text">마일리지 적립, 고객사 매칭 등에 도움이 될 거예요</li>
+                        
+                        <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
+                        <li class="skip-btn"><router-link to="/client" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요</router-link></li>
+                    </ul>
                 </div>
             </div>
     </div>
@@ -444,16 +452,29 @@
 import Terms from '../../components/Terms.vue'
 import TermsMobile from '../../components/TermsMoblie.vue'
 import Join from '../Join';
+import { mapState, mapGetters } from 'vuex';
+
 export default {
     data () {
         return {
             isCardFlip: false,
+            joinPage: false,
+            addJoinPage: false
         }
     },
     extends: Join,
     components: {
         Terms, TermsMobile
     },
+    methods: {
+       
+        addJoin() {
+            this.joinPage = true;
+        },
+        standardJoin() {
+            this.addJoinPage = !this.addJoinPage
+        },
+    }
     
 };
 </script>

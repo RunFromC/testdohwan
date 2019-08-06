@@ -5,7 +5,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+    mounted() {
+        this.$store.commit(
+            'setIccMode',
+            'true' === process.env.VUE_APP_ICC_MODE
+        );
+    }
+};
 </script>
 
 

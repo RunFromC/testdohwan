@@ -6,16 +6,21 @@
         <div class="top">
           <div class="titleWrap">
             <div class="imgWrap">
-              <img src="../assets/img/login_bigbird_icon.png" alt="bigbird" />
+              <img
+                src="../assets/img/login_bigbird_icon.png"
+                alt="bigbird"
+                v-if="!this.$store.state.iccMode"
+              />
+              <span v-else style="font-size: 30px; color: #4bd897">ICC</span>
             </div>
 
-            <div class="text" v-if="!welcome">{{title}}</div>
+            <div class="text" v-if="!this.$store.state.welcome">{{title}}</div>
             <div class="text" v-else>회원가입을 환영합니다</div>
           </div>
-          <div class="loginBox">
+          <div class="loginBox" v-if="!this.$store.state.iccMode">
             <div class="tab1">
               <div class="toggleBtnWrap">
-                <a href="#" @click="changeLoginType">신청받은 플랫폼으로 로그인</a>
+                <a href="#" @click.prevent="changeLoginType">신청받은 플랫폼으로 로그인</a>
               </div>
               <div class="platformList">
                 <a href="#" class="facebook"></a>
@@ -53,15 +58,42 @@
               </form>
             </div>
           </div>
+          <div class="loginBox" v-else>
+            <div class="tab2" style="bottom : 107px">
+              <div class="toggleBtnWrap">
+                <a href="#" @click.prevent="changeLoginType">로그인/회원가입</a>
+              </div>
+              <form action="/" method="get" id="loginForm">
+                <input class="input-text" type="text" placeholder="아이디" />
+                <input class="input-text" type="password" placeholder="비밀번호" />
+                <input class="input-button" type="submit" value="로그인" />
+                <div class="box">
+                  <div class="checkBoxWrap">
+                    <input type="checkbox" class="input-check-box" />
+                    <i></i>
+                    <span>로그인 유지</span>
+                  </div>
+
+                  <router-link to="/find" class="idPwFindBtn">아이디/비밀번호 찾기</router-link>
+                </div>
+
+                <router-link to="/join" class="join_btn" v-if="service !== 'market'">인플루언서 회원가입 ></router-link>
+                <router-link to="/join" class="join_btn" v-else>구매자 회원가입 ></router-link>
+              </form>
+            </div>
+          </div>
         </div>
         <div class="bottom">
-          <a href="#" class="go_bigbird_btn">
+          <a href="#" class="go_bigbird_btn" v-if="!this.$store.state.iccMode">
             <img
               src="../assets/img/login_bigbird-i_butt.png"
               alt="빅버드i 둘러보기"
               v-if="service === 'brands'"
             />
             <img src="../assets/img/market_under.png" alt="빅버드i 둘러보기" v-else />
+          </a>
+          <a href="#" class="go_bigbird_btn" v-else>
+            <span style="font-size: 16px; color: #4bd897; text-transform: uppercase;">icc 둘러보기</span>
           </a>
         </div>
       </div>
@@ -86,7 +118,14 @@ export default {
     },
     computed: {
         checkOnLoginForm() {
-            return this.onLoginForm ? 'open' : '';
+            // return (this.onLoginForm = true ? 'open' : '');
+            return !this.$store.state.iccMode
+                ? this.onLoginForm
+                    ? 'open'
+                    : ''
+                : !this.onLoginForm
+                ? 'open'
+                : '';
         },
         ...mapState(['service', 'isQuestionTab']),
         title() {
@@ -101,7 +140,14 @@ export default {
     methods: {
         ...mapMutations(['setService']),
         changeLoginType() {
-            this.onLoginForm = !this.onLoginForm;
+            if (!this.$store.state.iccMode) {
+                console.log('빅버드야~');
+                this.onLoginForm = !this.onLoginForm;
+            } else {
+                console.log('icc야~');
+                this.onLoginForm = false;
+            }
+            // this.onLoginForm = !this.onLoginForm;
         },
         toggleQuestionTab(isQuestion) {
             this.$store.commit('setToggleType', {
@@ -111,9 +157,7 @@ export default {
         }
     },
     mounted() {
-        const path = this.$router.currentRoute.path;
-        this.setService({ path: path });
-        
+        this.setService({ path: this.$router.currentRoute.path });
     }
 };
 </script>

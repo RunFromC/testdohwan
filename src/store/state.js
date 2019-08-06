@@ -1,6 +1,7 @@
 // service : brands, influencer, client, market  총 4가지 서비스를 관리.
 const state = {
     service: '',
+    iccMode: false,
     isQuestionTab: true,
     join: {
         termIndex: 1,
@@ -18,22 +19,84 @@ const state = {
         }
     },
     profileCard: {
-        default: true,
-        sns: false,
-        pay: false,
-        expectProduct: false,
-        area: false,
-        gender: false,
-        age: false,
-        job: false,
-        interests: false,
-        married: false,
-        children: false,
-        pet: false,
-        bodyProfile: false,
-        skinType: false
+        default: {
+            on: true,
+            save: false,
+            onSaveButton: false
+        },
+        sns: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        pay: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        expectProduct: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        area: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        gender: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        age: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        job: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        interests: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        married: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        children: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        pet: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        bodyProfile: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        skinType: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        },
+        finishBlock: {
+            on: false,
+            save: false,
+            onSaveButton: false
+        }
     },
     currentCard: 'default',
+    welcome: false
 };
 
 export default state;

@@ -182,10 +182,13 @@ button:focus {
                     -webkit-border-radius: 5px;
                     -moz-border-radius: 5px;
                     border-radius: 5px;
-                    background: #4bd897;
+                    background: #a1a1a1;
                     border: none;
                     color: #fff;
                     font-size: 14px;
+                  }
+                  button.on {
+                    background: #4bd897;
                   }
                   > div {
                     position: absolute;
@@ -351,7 +354,7 @@ button:focus {
                 }
 
               }
-              button#join-finished {
+              > a#join-finished {
                 border: none;
                 -webkit-border-radius: 10px;
                 -moz-border-radius: 10px;
@@ -359,6 +362,8 @@ button:focus {
                 background: $mainColor;
                 width: 272px;
                 height: 50px;
+                line-height: 50px;
+                text-align: center;
                 color: #fff;
                 font-size: 20px;
                 display: block;
@@ -478,32 +483,18 @@ button:focus {
               }
 
               .finished {
-                margin-top: 36px;
-                height: 22px;
-                line-height: 22px;
+                margin-top: 36px;                
                 text-align: center;
                 display: flex;
                 align-items: center;
                 justify-content: center;
 
                 a {
-                  font-family: NotoSansKR-Medium, serif;
+                  display: block;
+                  font-family: 'NotoSansKR-Medium';
                   font-size: 20px;
                   letter-spacing: -0.5px;
-                  color:#E2E1E1;
-                  span {
-                    display: flex;
-                    float: left;
-                  }
-                  i {
-                    display: flex;
-                    width: 22px;
-                    height: 22px;
-                    float: left;
-                    margin-left: 5px;
-                    @include background('~@/assets/img/joinfinish_botton.png');
-                    opacity: 0.1;
-                  }
+                  color:#fff;                                 
                 }
               }
 
@@ -1062,6 +1053,78 @@ button:focus {
         }
       }
     }
+    #cardStep4.card {
+      background: #fff;
+      border-radius: 29px;
+      margin-right: 49px;
+      .front {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .content {
+              text-align: center;
+              .title {
+                  font-size: 20px;
+                  height: 29px;
+                  line-height: 29px;
+                  font-family: 'NotoSansKR-Light';
+                  text-align: center;
+                  color: #000;
+              }
+              .sub-text {
+                  margin-top: 2px;
+                  max-width: 186px;
+                  font-family: 'NotoSansKR-Light';
+                  height: auto;
+                  line-height: 20px;
+                  font-size: 14px;
+                  margin:2px auto 61px;
+                  
+              }
+              .point-text {
+                  font-family: 'NotoSansKr-Regular';
+                  font-size: 22px;
+                  color: #000;
+                  max-width: 233px;
+                  line-height: 28px;
+                  margin: 0 auto;
+                  strong {
+                      font-family: 'NotoSansKr-Medium';
+                      color:#4BD897; 
+                  }
+              }
+              .button {
+                  margin-top: 50px;
+                  margin-bottom: 11px;
+                  a {
+                      display: block;
+                      width: 290px;
+                      height: 50px;
+                      border-radius: 10px;
+                      color: #fff;
+                      font-family: 'NotoSansKr-Medium';
+                      background: #4BD897;
+                      text-align: center;
+                      line-height: 50px;
+                      font-size: 20px;
+                  }
+              }
+              .skip-btn {
+                  a {
+                  font-family: 'NotoSansKR-Light';
+                  display: block;
+                  font-size: 17px;
+                  color: #AAAAAA;
+                  height: 25px;
+                  line-height: 25px;
+                  }
+              }
+              
+          }
+      }
+      
+
+  }
   }
   #card-container.iebase {
     .card {
