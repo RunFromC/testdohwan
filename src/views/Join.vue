@@ -25,6 +25,7 @@
                                         <div class="label">아이디 </div>
                                         <input type="text">
                                         <button>중복확인</button>
+                                        <div class="wrong-text none">사용중인 아이디입니다.</div>
                                     </div>
                                 </div>
 
@@ -39,6 +40,7 @@
                                         <div class="label"> </div>
                                         <input type="password" placeholder="비밀번호 확인">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                        <div class="wrong-text none">비밀번호가 일치하지 않습니다</div>
                                     </div>
                                 </div>
 
@@ -46,6 +48,7 @@
                                     <div class="item text">
                                         <div class="label">이름 </div>
                                         <input type="text" placeholder="">
+                                        
                                     </div>
 
                                     <div class="item">
@@ -58,6 +61,7 @@
                                         <div class="label"> </div>
                                         <input type="text" placeholder="인증번호">
                                         <button>확인</button>
+                                        <div class="wrong-text none">본인 인증에 실패하였습니다</div>
                                     </div>
 
                                 </div>
@@ -67,6 +71,7 @@
                                         <div class="label">이메일</div>
                                         <input type="text" placeholder="직접입력">
                                         <button>중복확인</button>
+                                        <div class="wrong-text">잘못된 이메일 형식입니다</div>
                                     </div>
                                 </div>
 
@@ -386,6 +391,7 @@ import TermsMobile from '../components/TermsMoblie.vue'
 import { mapState, mapGetters } from 'vuex';
 import MobileDetailInfo from '../components/mobile/DetailInfo.vue';
 import DesktopDetailInfo from '../components/desktop/DetailInfo.vue';
+import '../assets/scss/login/join.scss'
 
 export default { 
     components: {
@@ -490,5 +496,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/login/join.scss'
+
 </style>

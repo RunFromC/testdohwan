@@ -62,7 +62,7 @@
           href="#"
           id="deskSnsSaveBtn"
           @click="snsSaveBotton()"
-          :class="onSaveButton ? 'on' : ''"
+          :class="onSaveButton ? 'on' : '' "
         >SNS인증하기</a>
         <div class="certification-text" :class="!onSaveButton ? 'none' : ''">
           <span>인증완료 되었습니다</span>
@@ -149,8 +149,8 @@
             <input class="percentage" type="text" maxlength="2" value="-10" />
             <span>%</span>
             <div class="up-down-wrap">
-              <i class="up"></i>
-              <i class="down"></i>
+              <i @click="payUpPersent" class="up"></i>
+              <i @click="payDownPersent" class="down"></i>
             </div>
           </div>
           <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
@@ -707,11 +707,10 @@
       <div class="header margin-bottom-0">희망 공구품목</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="itemSelect">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <!-- <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 입력" />
             <i></i>
           </div>
-
           <div class="listContents listWrap long">
             <ul class="list">
               <li>패션</li>
@@ -723,17 +722,31 @@
               <li>지역</li>
               <li>일상 / 데일리</li>
             </ul>
-          </div>
+          </div>-->
+          <v-select :options="options"></v-select>
         </div>
 
         <div class="choice-list">
           <ul>
-            <li>
-              패션
+            <li v-if="ChoiceList">
+              레
+              123저
+            </li>
+            <li v-if="ChoiceList" class="close">
               <span class="close-btn">
-                <a href="#">X</a>
+                <a href="#" @click="ChoicedeleteList">X</a>
               </span>
             </li>
+            <li v-else @click="deleteChoiceList" class="delete">삭제</li>
+          </ul>
+          <ul>
+            <li v-if="ChoiceList">레저</li>
+            <li v-if="ChoiceList" class="close">
+              <span class="close-btn">
+                <a href="#" @click="ChoicedeleteList">X</a>
+              </span>
+            </li>
+            <li v-else @click="deleteChoiceList" class="delete">삭제</li>
           </ul>
         </div>
       </div>
@@ -967,7 +980,20 @@ export default {
             onSaveButton: false,
             onStatusCheck: 'undefined',
             haveJob: false,
-            showJobList: false
+            showJobList: false,
+            ChoiceList: true,
+            options: [
+                '가족',
+                '패션',
+                '출산',
+                '뷰티',
+                '레져',
+                '책',
+                '출판',
+                '지역',
+                '일상',
+                '데일리'
+            ]
         };
     },
     computed: {
@@ -1073,6 +1099,14 @@ export default {
             for (const key in this.profileCard) {
                 this.profileCard[key].on = false;
             }
+        },
+        payUpPersent() {},
+        payDownPersent() {},
+        ChoicedeleteList() {
+            this.ChoiceList = false;
+        },
+        deleteChoiceList(e) {
+            e.path[1].remove();
         }
     },
     watch: {
