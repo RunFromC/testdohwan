@@ -2,14 +2,17 @@
     <div id="join" @click.prevent="closeSelectList">
         <div id="header">
             <div class="container">
-                <h1 class="logo">
+                <h1 class="logo" v-if="!this.$store.state.iccMode">
                     <img id="desktopLogo" src="~@/assets/img/logo_join.png" alt="빅버드회원가입">
-                    <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입">
+                    <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입">   
+                </h1>
+                <h1 class="logo" v-else>                    
+                    <span style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
                 </h1>
             </div>
         </div>
         <div id="card-container" ref="cardContainer">
-                <div class="card" id="cardStep1" :class="cardFilp">
+                <div :class="joinPage == false &&  addJoinPage ? 'none': '' || cardFilp" class="card" id="cardStep1" >
                     <div class="front">
                         <a href="#" class="rotate-btn" @click.prevent="onCardFilp"></a>
                         <div class="contents">
@@ -22,6 +25,7 @@
                                         <div class="label">아이디 </div>
                                         <input type="text">
                                         <button>중복확인</button>
+                                        <div class="wrong-text none">사용중인 아이디입니다.</div>
                                     </div>
                                 </div>
 
@@ -36,6 +40,7 @@
                                         <div class="label"> </div>
                                         <input type="password" placeholder="비밀번호 확인">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                        <div class="wrong-text none">비밀번호가 일치하지 않습니다</div>
                                     </div>
                                 </div>
 
@@ -43,6 +48,7 @@
                                     <div class="item text">
                                         <div class="label">이름 </div>
                                         <input type="text" placeholder="">
+                                        
                                     </div>
 
                                     <div class="item">
@@ -55,14 +61,17 @@
                                         <div class="label"> </div>
                                         <input type="text" placeholder="인증번호">
                                         <button>확인</button>
+                                        <div class="wrong-text none">본인 인증에 실패하였습니다</div>
                                     </div>
 
                                 </div>
 
                                 <div class="input-wrapper">
-                                    <div class="item text">
+                                    <div class="item">
                                         <div class="label">이메일</div>
                                         <input type="text" placeholder="직접입력">
+                                        <button>중복확인</button>
+                                        <div class="wrong-text">잘못된 이메일 형식입니다</div>
                                     </div>
                                 </div>
 
@@ -72,18 +81,18 @@
                                     <div class="label" @click.prevent="termCardFlip(1)">약관동의(필수)</div>
                                     <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                                 </div>
-                                <div class="checkbox-wrap margin-bottom-0" >
+                                <div class="checkbox-wrap margin-bottom-0" v-if="!this.$store.state.iccMode">
                                     <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
                                     <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                                 </div>
-                                <div class="link_wrap">
+                                <div class="link_wrap" v-if="!this.$store.state.iccMode">
                                     <a href="#"><img src="~@/assets/img/market_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/pick_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
                                 </div>
-                                <div class="finished"><a href="#"><span>가입완료</span> <i></i></a></div>
+                                <div class="finished" :class="joinPage ? 'none': ''" @click="standardJoin"><a href="#"><span>가입완료</span></a></div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" id="cardStep2">
+                <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep2">
                     <div class="front">
                         <div class="contents">
                             <div class="article" >
@@ -103,18 +112,20 @@
                                 </div>
                                 <div class="box big"  
                                     @click="onClickProfileCard('sns')" 
-                                    :class="onProfileCard('sns')">
+                                    :class="onProfileCard('sns') ">
                                     <img src="~@/assets/img/sns.png" alt="sns">
                                     <div class="text">
                                         SNS 연동으로 <br>
                                         좀 더 편하게 이용하세요.
                                     </div>
+                                    <div class="point"><span>1000포인트 적립</span></div>
+                                    <div class="point-text">+ 1000 P</div> 
                                 </div>
 
                                 <div class="box big" 
                                     @click="onClickProfileCard('pay')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true)" 
-                                    :class="[onProfileCard('pay'), checkService('brands','margin-bottom-31')]">
+                                    :class="[onProfileCard('pay'), checkService('influencer','margin-bottom-31')]">
                                     <img src="~@/assets/img/pay.png" alt="pay">
                                     <div class="text">
                                         <span v-if="checkService('brands',true)">희망 원고료</span>
@@ -122,45 +133,51 @@
                                         <br>
                                         고객사 매칭에 도움이 됩니다.
                                     </div>
+                                    <div class="point"><span>1000포인트 적립</span></div>
+                                    <div class="point-text">+ 1000 P</div>
                                 </div>
 
                                 <div class="box big"
                                     @click="onClickProfileCard('expectProduct')" 
-                                    v-if="checkService('influencer',true)" 
-                                    :class="[onProfileCard('expectProduct'), checkService('influencer','margin-bottom-31')]">
+                                    v-if="checkService('brands',true) || checkService('influencer',true)" 
+                                    :class="[onProfileCard('expectProduct'), checkService('brands','margin-bottom-31')]">
                                     <img src="~@/assets/img/box.png" alt="item">
                                     <div class="text">
                                         희망 공구 품목<br>
                                         고객사 매칭에 도움이 됩니다.
                                     </div>
+                                    <div class="point"><span>1000포인트 적립</span></div>
+                                    <div class="point-text">+ 1000 P</div>
                                 </div>
                                 <div>
-                                    <div class="box small" @click="onClickProfileCard('area')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('area')" 
                                     v-if="checkService('brands',true)" 
                                     :class="onProfileCard('area')">
                                         <img src="~@/assets/img/location.png" alt="area">
                                         <div class="text">
                                             주 활동 지역
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('gender')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)" 
                                     :class="onProfileCard('gender')">
-                                        <img src="~@/assets/img/men_women.png" alt="gender">
+                                        <img src="~@/assets/img/age_.png" alt="gender">
                                         <div class="text">
-                                            성별
+                                            성별/연령
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
-                                    <div class="box small" @click="onClickProfileCard('age')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('age')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)" 
                                     :class="onProfileCard('age')">
-                                        <img src="~@/assets/img/age.png" alt="age">
+                                        <img src="~@/assets/img/age_.png" alt="age">
                                         <div class="text">
-                                            연령
+                                            성별/연령
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('job')" 
                                     v-if="checkService('brands',true)" 
@@ -169,16 +186,18 @@
                                         <div class="text">
                                             직업
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
-                                    <div class="box small" @click="onClickProfileCard('interests')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('interests')" 
                                     v-if="checkService('brands',true)" 
                                     :class="onProfileCard('interests')">
                                         <img src="~@/assets/img/like.png" alt="interests">
                                         <div class="text">
                                             관심사
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('married')" 
                                     v-if="checkService('brands',true)" 
@@ -187,6 +206,8 @@
                                         <div class="text">
                                             결혼유무
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('children')" 
@@ -196,6 +217,8 @@
                                         <div class="text">
                                             자녀관계
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('pet')" 
@@ -205,23 +228,30 @@
                                         <div class="text">
                                             반려동물
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
                                     <div class="box small" @click="onClickProfileCard('bodyProfile')" 
                                     v-if="checkService('market',true) || checkService('influencer', true)" 
                                     :class="onProfileCard('bodyProfile')" >
-                                        <img src="~@/assets/img/body.png" alt="sns">
+                                        <img src="~@/assets/img/body.png" alt="body">
                                         <div class="text">
                                             바디프로필
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('skinType')" 
-                                    v-if="checkService('market',true) || checkService('influencer', true)" 
+                                    v-if="checkService('brands',true) || checkService('influencer', true)" 
                                     :class="onProfileCard('skinType')">
-                                        <img src="~@/assets/img/skin.png" alt="sns">
+                                        <img src="~@/assets/img/skin.png" alt="skin">
                                         <div class="text">
                                             피부
                                         </div>
+                                        <div class="point"><span>1000포인트 적립</span></div>
+                                        <div class="point-text">+ 1000 P</div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -230,12 +260,30 @@
                     </div>
                 </div>
 
-                <div class="card" id="cardStep3">
-                <div class="front">
-                    <!-- detail info for desktop -->
-                    <DesktopDetailInfo />
+                <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep3">
+                    <div class="front">
+                        <!-- detail info for desktop -->
+                        <DesktopDetailInfo />
+                    </div>
                 </div>
-            </div>
+                <div class="card" id="cardStep4" :class="!addJoinPage ? 'none': '' || !joinPage == false ? 'none': ''">
+                    <div class="front">
+                        <ul class="content" v-if="!this.$store.state.iccMode">
+                            <li class="title">좀 더 소개해주실 수 있으세요?</li>
+                            <li class="sub-text">포인트 적립, 고객사 매칭 등에 도움이 될 거예요</li>
+                            <li><img src="../assets/img/coin.png" alt="동전탑 이미지"></li>
+                            <li class="point-text">인플루언서 프로필 작성시 총 <strong>8000 포인트</strong> 적립</li>
+                            <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
+                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요</router-link></li>
+                        </ul>
+                        <ul class="content" v-else>
+                            <li class="title">좀 더 소개해주실 수 있으세요?</li>
+                            <li class="sub-text" style="margin-bottom: 88px;">포인트 적립, 고객사 매칭 등에 도움이 될 거예요</li>                            
+                            <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
+                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 &gt;</router-link></li>
+                        </ul>
+                    </div>
+                </div>
 
             <div id="backBlock2"></div>
         </div>
@@ -296,9 +344,10 @@
                     </div>
 
                     <div class="input-wrapper">
-                        <div class="item text">
+                        <div class="item">
                             <div class="label">이메일</div>
                             <input type="text" placeholder="직접입력">
+                            <button>중복확인</button>
                         </div>
                     </div>
 
@@ -342,6 +391,7 @@ import TermsMobile from '../components/TermsMoblie.vue'
 import { mapState, mapGetters } from 'vuex';
 import MobileDetailInfo from '../components/mobile/DetailInfo.vue';
 import DesktopDetailInfo from '../components/desktop/DetailInfo.vue';
+import '../assets/scss/login/join.scss'
 
 export default { 
     components: {
@@ -352,10 +402,13 @@ export default {
     extends: MobileDetailInfo,
     data () {
         return {
+            
             isCardFlip: false,
             isMobileTermsOn: false,
             isToggleMobileTab: 1,
             isAccodionOn: false,
+            joinPage: false,
+            addJoinPage: false
         }
     },
     computed: {
@@ -370,6 +423,12 @@ export default {
         },       
     },
     methods :{
+        addJoin() {
+            this.joinPage = true;
+        },
+        standardJoin() {
+            this.addJoinPage = !this.addJoinPage
+        },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;
         },
@@ -437,5 +496,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/login/join.scss'
+
 </style>

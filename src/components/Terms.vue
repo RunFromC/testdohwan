@@ -4,6 +4,7 @@
       <a href="#" :class="getByJoinData.termIndex === 1 ? 'on' : ''" @click.prevent="toggle">이용약관</a>
       <div class="bar"></div>
       <a
+        v-if="!this.$store.state.iccMode"
         href="#"
         :class="getByJoinData.termIndex === 2 ? 'on' : ''"
         @click.prevent="toggle"
@@ -123,7 +124,7 @@
         <br />3. 비인가자에 대한 출입 통제 개인정보를 보관하고 있는 물리적 보관 장소를 별도로 두고 이에 대해
         출입통제 절차를 수립, 운영하고 있습니다.
       </div>
-      <div class="text" v-else>
+      <div class="text" v-else-if="!this.$store.state.iccMode">
         ==========통합 회원 약관=========
         &lt;컨셉터스&gt;('bigbird-i.com' 이하 '빅버드')는 개인정보보호법에 따라 이용자의 개인정보 보호 및
         권익을 보호하고 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리방침을 두고 있습니다.

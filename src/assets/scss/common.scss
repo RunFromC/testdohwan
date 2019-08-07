@@ -230,3 +230,17 @@ body {
     min-height: 100%;
     background: #eee;
 }
+
+/* claerfix <-- float 쓸때 부모에게 클래스 주면 부모 height영역 살아남 by dhkim */
+.clearfix:before,
+.clearfix:after {
+    display: block;
+    content: '';
+    line-height: 0;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix:before {
+    *zoom: 1;
+}

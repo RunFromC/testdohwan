@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Client from '../views/Client.vue';
 import Find from '../views/Find.vue';
 import Join from '../views/Join.vue';
+import ChangePW from '../views/ChangePW.vue';
 import ClientJoin from '../views/client/Join.vue';
 
 Vue.use(Router);
@@ -41,6 +42,11 @@ const router = new Router({
             path: '/find',
             name: 'find',
             component: Find
+        },
+        {
+            path: '/changePW',
+            name: 'changePW',
+            component: ChangePW
         },
         {
             path: '/join',

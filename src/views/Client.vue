@@ -6,10 +6,11 @@
         <div class="top">
           <div class="titleWrap">
             <div class="imgWrap">
-              <img src="../assets/img/pick_big.png" alt="bigbird" />
+              <img src="../assets/img/pick_big.png" alt="bigbird" v-if="!this.$store.state.iccMode" />
+              <span v-else style="font-size: 30px; color: #4bd897">ICC</span>
             </div>
 
-            <div class="text" v-if="!welcome">보다 정교한, 나만의 인플루언서 선택</div>
+            <div class="text" v-if="!this.$store.state.welcome">보다 정교한, 나만의 인플루언서 선택</div>
             <div class="text" v-else>파트너가 되어 반갑습니다</div>
           </div>
           <div class="loginBox">
@@ -31,14 +32,17 @@
                   <router-link to="/find?service=client" class="idPwFindBtn">아이디/비밀번호 찾기</router-link>
                 </div>
 
-                <router-link to="/client/join" class="join_btn">브랜드 회원가입 ></router-link>
+                <router-link to="/client/join" class="join_btn">광고주 회원가입 ></router-link>
               </form>
             </div>
           </div>
         </div>
         <div class="bottom">
-          <a href="#" class="go_bigbird_btn">
+          <a href="#" class="go_bigbird_btn" v-if="!this.$store.state.iccMode">
             <img src="../assets/img/client_login_butt.png" alt="Pick - 둘러보기" />
+          </a>
+          <a href="#" class="go_bigbird_btn" v-else>
+            <span style="font-size: 16px; color: #4bd897; text-transform: uppercase;">icc 둘러보기</span>
           </a>
         </div>
       </div>

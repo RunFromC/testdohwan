@@ -115,7 +115,7 @@
       class="accordion"
       id="accordion_item"
       @click="onClickProfileCard('expectProduct', $event)"
-      v-if="checkService('influencer',true)"
+      v-if="checkService('brands',true) || checkService('influencer',true)"
     >
       <ul>
         <li>
@@ -170,7 +170,7 @@
       </div>
     </div>
     <!-- 주 활동 지역  -->
-    <div
+    <!-- <div
       class="accordion"
       id="accordion-hot"
       @click="onClickProfileCard('area', $event)"
@@ -220,7 +220,7 @@
       <div class="button-wrap">
         <button class="hotsave-btn">저장</button>
       </div>
-    </div>
+    </div>-->
     <!-- 성별 -->
     <div
       class="accordion"
@@ -738,6 +738,7 @@ export default {
     name: 'mobileDetailInfo',
     data() {
         return {
+            currentIndex: 0,
             isRecommendCheck: false,
             recommendType: null,
             gender: false,
@@ -775,17 +776,20 @@ export default {
             return this.service === serviceName ? returnValue : '';
         },
         onProfileCard(type) {
-            return this.profileCard[type] ? 'on' : '';
+            return this.profileCard[type].on ? 'on' : '';
         },
         onClickProfileCard(value, event) {
+            console.log(this.currentIndex);
             for (const key in this.profileCard) {
-                if (key !== value) this.profileCard[key] = false;
+                if (key !== value) this.profileCard[key].on = false;
             }
 
             this.$store.commit('setCurrentCard', { currentCard: value });
 
             // event 있을 경우 mobile 없을 경우 desktop 화면이다.
-            this.profileCard[value] = event ? !this.profileCard[value] : true;
+            this.profileCard[value].on = event
+                ? !this.profileCard[value].on
+                : true;
 
             if (event) {
                 this.closeSelectList;
@@ -802,7 +806,7 @@ export default {
                 const time = setTimeout(() => {
                     parent.scrollTop = index * 55;
                     clearTimeout(time);
-                }, 300);
+                }, 500);
             }
         },
         onClickRecommendCheck() {
@@ -851,6 +855,16 @@ export default {
                     el.classList.remove('height');
                 });
             }
+        },
+        getCardList() {
+            let card = this.brandsList;
+
+            if (this.service === 'influencer') {
+                card = this.influencerList;
+            } else if (this.service === 'market') {
+                card = this.marketList;
+            }
+            return card;
         }
     }
 };
