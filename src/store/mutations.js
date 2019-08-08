@@ -16,7 +16,6 @@ const mutations = {
         localStorage.setItem('service', service);
     },
     setLocalService(state) {
-        console.log('haha');
         state.service = localStorage.getItem('service');
     },
     setToggleType(state, payload) {
