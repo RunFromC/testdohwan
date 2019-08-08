@@ -62,9 +62,9 @@
           href="#"
           id="deskSnsSaveBtn"
           @click="snsSaveBotton()"
-          :class="onSaveButton ? 'on' : '' "
+          :class="this.profileCard.sns.onSaveButton ? 'on' : '' "
         >SNS인증하기</a>
-        <div class="certification-text" :class="!onSaveButton ? 'none' : ''">
+        <div class="certification-text" :class="!this.profileCard.sns.onSaveButton ? 'none' : ''">
           <span>인증완료 되었습니다</span>
         </div>
       </div>
@@ -73,7 +73,7 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn" :class="onSaveButton">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="this.profileCard.sns.onSaveButton">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -84,7 +84,11 @@
     </div>
     <!--  pay profileCard.pay -->
     <div class="article" id="pay" v-if="profileCard.pay.on">
-      <div class="header margin-bottom-0">희망 원고료</div>
+      <div
+        v-if="checkService('brands',true) && !this.$store.state.iccMode"
+        class="header margin-bottom-0"
+      >희망 원고료</div>
+      <div v-else class="header margin-bottom-0">희망 수수료</div>
       <div class="inner-contents">
         <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
           <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
@@ -99,21 +103,32 @@
         </div>
 
         <div class="recommend-checkbox" v-else>
-          <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
+          <div
+            class="uncheck"
+            v-if="!isRecommendCheck"
+            @click.prevent="onClickRecommendCheck"
+            style="width: 100%; box-sizing: border-box;"
+          >
             <span>ICC 추천을 받을게요</span>
             <i></i>
           </div>
-          <div class="checked" v-else @click.prevent="onClickRecommendCheck">
+          <div
+            class="checked"
+            v-else
+            @click.prevent="onClickRecommendCheck"
+            style="width: 100%;     "
+          >
             <i></i>
             <span>ICC 추천을 받을게요</span>
           </div>
-          <i class="icon-questions-mark" @click.prevent="showTips(1)"></i>
         </div>
 
-        <div class="title">기본 원고료</div>
+        <div class="title" v-if="checkService('brands',true) && !this.$store.state.iccMode">기본 원고료</div>
+        <div class="title" v-else>기본 개런티</div>
 
         <div class="pay-input-wrap">
-          <span>원고료</span>
+          <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
+          <span v-else>개런티</span>
           <div class="pay-wrap">
             <input class="pay" type="text" maxlength="4" placeholder="1000" />
             <span>만원</span>
@@ -140,7 +155,8 @@
         </div>
 
         <div class="pay-input-wrap">
-          <span>원고료</span>
+          <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
+          <span v-else>개런티</span>
           <div class="pay-wrap">
             <input class="pay" type="text" maxlength="4" placeholder="1000" />
             <span>만원</span>
@@ -161,7 +177,7 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="isRecommendCheck ? 'on' : ''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -221,7 +237,7 @@
           </li>
         </ul>
 
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
     <!-- gender -->
@@ -280,13 +296,17 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li
+            class="save-btn"
+            @click="saveBtn"
+            :class="this.profileCard.gender.onSaveButton = true ? 'on':''"
+          >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -338,7 +358,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">가입확인</button>
+        <button class="join-finish-btn">프로필입력완료</button>
       </div>
     </div>-->
 
@@ -361,37 +381,6 @@
           </li>
         </ul>
         <div class="status-selectbox-wrap clearfix" id="jobSelect" :class="!haveJob ? 'none': ''">
-          <!-- <div>
-            <div class="select small" @click.prevent="showSelectList">
-              <span>현 직업</span>
-              <i></i>
-            </div>
-            <div class="select select-btn" @click.prevent="showSelectList">
-              <input type="text" placeholder="직업선택, 선택" />
-              <i></i>
-            </div>
-            <div class="listContents listWrap long">
-              <ul class="list">
-                <li>모델</li>
-                <li>프리랜서</li>
-                <li>마케터</li>
-                <li>주부</li>
-                <li>유튜브 크리에이터</li>
-                <li>디자이너</li>
-                <li>포토그래퍼</li>
-                <li>여행작가</li>
-                <li>개발자</li>
-                <li>개발자</li>
-                <li>개발자</li>
-                <li>개발자</li>
-                <li>개발자</li>
-              </ul>
-            </div>
-
-            <div class="add-btn">
-              <a class="plus" href="#"></a>
-            </div>
-          </div>-->
           <ul class="status-selectbox">
             <li class="select-box clearfix">
               <ul class="select-first">
@@ -400,8 +389,8 @@
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-first">
-                <li>현 직업</li>
+              <ul class="list-first none">
+                <li class="none">현 직업</li>
                 <li>전 직업</li>
               </ul>
             </li>
@@ -412,7 +401,7 @@
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-second">
+              <ul class="list-second none">
                 <li>모델</li>
                 <li>프리랜서</li>
                 <li>마케터</li>
@@ -448,7 +437,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -493,7 +482,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">가입확인</button>
+        <button class="join-finish-btn">프로필입력완료</button>
       </div>
     </div>-->
     <!-- marriage -->
@@ -522,7 +511,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -622,7 +611,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -698,7 +687,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -707,46 +696,34 @@
       <div class="header margin-bottom-0">희망 공구품목</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="itemSelect">
-          <!-- <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 입력" />
             <i></i>
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
-              <li>패션</li>
-              <li>뷰티</li>
-              <li>취미</li>
-              <li>레져</li>
-              <li>책 / 출판</li>
-              <li>출산 / 육아</li>
-              <li>지역</li>
-              <li>일상 / 데일리</li>
+              <li @click="itemOnSave()">패션</li>
+              <li @click="itemOnSave()">뷰티</li>
+              <li @click="itemOnSave()">취미</li>
+              <li @click="itemOnSave()">레져</li>
+              <li @click="itemOnSave()">책 / 출판</li>
+              <li @click="itemOnSave()">출산 / 육아</li>
+              <li @click="itemOnSave()">지역</li>
+              <li @click="itemOnSave()">일상 / 데일리</li>
             </ul>
-          </div>-->
-          <v-select :options="options"></v-select>
+          </div>
+          <!-- <v-select placeholder="선택해주세요" :options="item" @input="myAction"></v-select> -->
         </div>
 
         <div class="choice-list">
           <ul>
-            <li v-if="ChoiceList">
-              레
-              123저
-            </li>
-            <li v-if="ChoiceList" class="close">
+            <li></li>
+            <li class="close">
               <span class="close-btn">
-                <a href="#" @click="ChoicedeleteList">X</a>
+                <a href="#">X</a>
               </span>
             </li>
-            <li v-else @click="deleteChoiceList" class="delete">삭제</li>
-          </ul>
-          <ul>
-            <li v-if="ChoiceList">레저</li>
-            <li v-if="ChoiceList" class="close">
-              <span class="close-btn">
-                <a href="#" @click="ChoicedeleteList">X</a>
-              </span>
-            </li>
-            <li v-else @click="deleteChoiceList" class="delete">삭제</li>
+            <li class="delete none">삭제</li>
           </ul>
         </div>
       </div>
@@ -755,13 +732,17 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li
+            class="save-btn"
+            @click="saveBtn"
+            :class="this.profileCard.expectProduct.onSaveButton = true ? 'on':''"
+          >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -841,7 +822,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
     <!-- Skin -->
@@ -891,7 +872,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">가입확인</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
     <div class="article brand market" v-if="profileCard.finishBlock.on" id="finishBlock">
@@ -923,6 +904,7 @@ import { log } from 'util';
 export default {
     name: 'desktopDetailInfo',
     extends: mobileDetailInfo,
+
     data() {
         return {
             // brandsList: [
@@ -977,23 +959,10 @@ export default {
                 4: false,
                 5: false
             },
-            onSaveButton: false,
-            onStatusCheck: 'undefined',
-            haveJob: false,
-            showJobList: false,
-            ChoiceList: true,
-            options: [
-                '가족',
-                '패션',
-                '출산',
-                '뷰티',
-                '레져',
-                '책',
-                '출판',
-                '지역',
-                '일상',
-                '데일리'
-            ]
+            snsOnSaveButton: false,
+            payOnSaveButton: false,
+            itemOnSaveButton: false,
+            onStatusCheck: 'undefined'
         };
     },
     computed: {
@@ -1004,7 +973,12 @@ export default {
     template: {
         MapSvg
     },
+
     methods: {
+        myAction(selectKey) {
+            console.log(selectKey);
+            this.keyPush = selectKey;
+        },
         statusCheck(value) {
             this.onStatusCheck = value;
         },
@@ -1012,8 +986,16 @@ export default {
             if (el.includes(this.onStatusCheck)) return 'on';
         },
         snsSaveBotton() {
-            this.onSaveButton = !this.onSaveButton ? 'on' : '';
+            this.profileCard.sns.onSaveButton = !this.profileCard.sns
+                .onSaveButton
+                ? 'on'
+                : '';
         },
+        itemOnSave() {
+            this.profileCard.expectProduct.onSaveButton == true;
+        },
+
+        genderAgeOnSave() {},
         //셀렉트 메뉴
         isText(e) {
             let text = e.target.innerText;
@@ -1030,6 +1012,7 @@ export default {
         //둘중 하나 선택하기
         eitherSelect(value) {
             this.isCheck = value;
+            this.profileCard.gender.onSaveButton == true;
         },
         checkEither(el) {
             if (el.includes(this.isCheck)) return 'checked';
@@ -1064,6 +1047,26 @@ export default {
 
         saveBtn(event) {
             if (event.target.className.includes('on')) {
+                if (this.currentCard === 'sns') {
+                    this.profileCard.sns.save = true;
+                } else if (this.currentCard === 'pay') {
+                    this.profileCard.pay.save = true;
+                } else if (this.currentCard === 'expectProduct') {
+                    this.profileCard.expectProduct.save = true;
+                } else if (this.currentCard === 'gender') {
+                    this.profileCard.gender.save = true;
+                } else if (this.currentCard === 'job') {
+                    this.profileCard.job.save = true;
+                } else if (this.currentCard === 'married') {
+                    this.profileCard.married.save = true;
+                } else if (this.currentCard === 'children') {
+                    this.profileCard.children.save = true;
+                } else if (this.currentCard === 'pet') {
+                    this.profileCard.pet.save = true;
+                } else if (this.currentCard === 'skinType') {
+                    this.profileCard.skinType.save = true;
+                }
+
                 this.nextDetailInfo(event);
             }
             return;
@@ -1101,13 +1104,7 @@ export default {
             }
         },
         payUpPersent() {},
-        payDownPersent() {},
-        ChoicedeleteList() {
-            this.ChoiceList = false;
-        },
-        deleteChoiceList(e) {
-            e.path[1].remove();
-        }
+        payDownPersent() {}
     },
     watch: {
         getCurrentCard(newValue, oldValue) {

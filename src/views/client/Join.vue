@@ -7,7 +7,8 @@
           <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입" />
         </h1>
         <h1 class="logo" v-else>                    
-            <span style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
+            <span id="desktopLogo" style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
+            <span id="tabletLogo" style="font-size: 14px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
         </h1>
       </div>
     </div>
@@ -26,6 +27,7 @@
                                     <div class="label">아이디 </div>
                                     <input type="text">
                                     <button>중복확인</button>
+                                   
                                 </div>
                             </div>
 
@@ -40,6 +42,7 @@
                                     <div class="label"> </div>
                                     <input type="password" placeholder="비밀번호 확인">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                    
                                 </div>
                             </div>
 
@@ -59,6 +62,7 @@
                                     <div class="label"> </div>
                                     <input type="text" placeholder="인증번호">
                                     <button>확인</button>
+
                                 </div>
 
                             </div>
@@ -68,6 +72,7 @@
                                     <div class="label">이메일</div>
                                     <input type="text" placeholder="직접입력">
                                     <button>인증하기</button>
+                                    
                                 </div>
                             </div>
 
@@ -104,14 +109,14 @@
                             <div class="header">
                             2. 회사정보(선택)
                             </div>
-                            <div class="input-wrapper mb15">
+                            <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">회사명</div>
                                     <input type="text">
                                 </div>
                             </div>
 
-                            <div class="input-wrapper mb15">
+                            <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">연락처</div>
                                     <input type="text" class="input-phone" maxlength="4" placeholder="010">
@@ -120,7 +125,7 @@
                                 </div>
                             </div>
 
-                            <div class="input-wrapper mb31">
+                            <div class="input-wrapper pb31">
                                 <div class="ceo-btn">
                                     <button>사업자 등록증 업로드</button>
                                     <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
@@ -131,7 +136,7 @@
                                 </div>
                             </div>
 
-                            <div class="input-wrapper mb15">
+                            <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label ceo">사업자<br>등록번호</div>
                                     <input type="text" class="ceo-num" placeholder="123" maxlength="3">
@@ -139,7 +144,7 @@
                                     <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
                                 </div>
                             </div>
-                            <div class="input-wrapper mb31">
+                            <div class="input-wrapper pb31">
                                 <div class="ceo-btn">
                                     <button>통신판매업증 업로드</button>
                                     <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
@@ -150,7 +155,7 @@
                                 </div>
                             </div>
 
-                            <div class="input-wrapper mb15">
+                            <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label ceo">통신판매업<br>번호</div>
                                     <input type="text" class="ceo-num" placeholder="123" maxlength="3">
@@ -159,7 +164,7 @@
                                 </div>
                             </div>
 
-                            <div class="input-wrapper mb15">
+                            <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">회사 분류</div>
                                     <ul class="select-wrap">
@@ -176,21 +181,7 @@
                                                     <li>4</li>
                                                 </ul>
                                             </div>
-                                        </li>
-                                        <li class="select-contents">
-                                            <div class="select">
-                                                <span>소분류</span>
-                                                <i class="rotate"></i>
-                                            </div>
-                                            <div class="listWrap">
-                                                <ul class="list">
-                                                    <li>1</li>
-                                                    <li>2</li>
-                                                    <li>3</li>
-                                                    <li>4</li>
-                                                </ul>
-                                            </div>
-                                        </li>
+                                        </li>                                        
                                     </ul>
                                 </div>
                             </div>

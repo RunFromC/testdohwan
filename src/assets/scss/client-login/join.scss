@@ -18,6 +18,14 @@ $colorAAA: #AAA;
 .mb38 {margin-bottom: 38px !important;}
 .mb50 {margin-bottom: 50px !important;}
 
+.pb10 {padding-bottom: 10px !important;}
+.pb15 {padding-bottom: 15px !important;}
+.pb35 {padding-bottom: 35px !important;}
+.pb31 {padding-bottom: 31px !important;}
+.pb30 {padding-bottom: 30px !important;}
+.pb38 {padding-bottom: 38px !important;}
+.pb50 {padding-bottom: 50px !important;}
+
 .margin-bottom-0 {
   margin-bottom: 0 !important;
 }
@@ -172,7 +180,6 @@ button:focus {
                 position: relative;
                 width: 272px;
                 height: auto;
-                margin: 0 auto 25px;
                 .ceo-btn {
                   float: right;
                   button {
@@ -237,6 +244,22 @@ button:focus {
                     letter-spacing: -0.1px;
                     font-size: 12px;
                     cursor: pointer;
+                  }
+                  .wrong-text {
+                    position: absolute;
+                    height: 25px;
+                    left: 95px;
+                    bottom: -25px;
+                    font-size: 12px;
+                    color: #ff0000;
+                  }
+                  .possible-text {
+                      position: absolute;
+                      height: 25px;
+                      left: 95px;
+                      bottom: -25px;
+                      font-size: 12px;
+                      color: #000;
                   }
                 }
 
@@ -305,9 +328,11 @@ button:focus {
                     border-radius: 5px;
                     background: #fff;
                     margin-right: 10px;
+                    box-sizing: border-box;
+
                     .select {
                       cursor: pointer;
-                      width: 78px;
+                      width: 188px;
                       height: 34px;
                       text-align: center;
                       line-height: 34px;
@@ -315,6 +340,8 @@ button:focus {
                       font-family: Nanum-Barun-Gothic-normal, serif;
                       position: relative;
                       padding-left: 10px;
+                      box-sizing: border-box;
+
                       span {
                         font-size: 14px !important;
                         color: #A1A1A1;
@@ -1056,7 +1083,6 @@ button:focus {
     #cardStep4.card {
       background: #fff;
       border-radius: 29px;
-      margin-right: 49px;
       .front {
           display: flex;
           align-items: center;
@@ -1064,21 +1090,23 @@ button:focus {
           .content {
               text-align: center;
               .title {
-                  font-size: 20px;
-                  height: 29px;
-                  line-height: 29px;
-                  font-family: 'NotoSansKR-Light';
+                  letter-spacing: -1.25px;
+                  font-size: 25px;
+                  height: 37px;
+                  line-height: 37px;
+                  font-family: 'NotoSansKR-Medium';
                   text-align: center;
                   color: #000;
               }
               .sub-text {
                   margin-top: 2px;
-                  max-width: 186px;
+                  max-width: 195px;
                   font-family: 'NotoSansKR-Light';
                   height: auto;
-                  line-height: 20px;
-                  font-size: 14px;
+                  line-height: 24px;
+                  font-size: 16px;
                   margin:2px auto 61px;
+                  color: #707070;
                   
               }
               .point-text {
@@ -1101,6 +1129,7 @@ button:focus {
                       width: 290px;
                       height: 50px;
                       border-radius: 10px;
+                      box-sizing: border-box;
                       color: #fff;
                       font-family: 'NotoSansKr-Medium';
                       background: #4BD897;
@@ -1110,11 +1139,12 @@ button:focus {
                   }
               }
               .skip-btn {
+                  display: inline-block;
                   a {
                   font-family: 'NotoSansKR-Light';
                   display: block;
                   font-size: 17px;
-                  color: #AAAAAA;
+                  color: #000;
                   height: 25px;
                   line-height: 25px;
                   }
@@ -1124,7 +1154,7 @@ button:focus {
       }
       
 
-  }
+    }
   }
   #card-container.iebase {
     .card {
@@ -1306,7 +1336,7 @@ button:focus {
 
               .input-wrapper {
                 width: 100%;
-                margin-bottom: 22px;
+                margin-bottom: 0;
                 .ceo-btn {
                   button {
                     width: 144px!important;
@@ -1345,6 +1375,7 @@ button:focus {
                     font-size: 10px;
                     letter-spacing: -0.1px;
                   }
+                  
                 }
 
                 > div.item.text, div.item.password, div.item.email {
@@ -1402,7 +1433,7 @@ button:focus {
                     .select-contents {
                       margin-right: 4px;
                       .select {
-                        width: 59px;
+                        width: 144px;
                         height: 26px;
                         span {
                           font-size: 10px!important;
@@ -1425,18 +1456,19 @@ button:focus {
 
               }
               .input-wrapper:nth-child(4) {
-                margin-bottom: 18px!important;
+                padding-bottom: 18px!important;
               }
               .input-wrapper:nth-child(6) {
-                margin-bottom: 18px!important;
+                padding-bottom: 18px!important;
               }
-              button#join-finished {
-                width: 230px!important;
+              > a#join-finished {
+                width: 228px!important;
                 height: 38px!important;
                 -webkit-border-radius: 10px;
                 -moz-border-radius: 10px;
                 border-radius: 10px;
                 font-size: 14px!important;
+                line-height: 38px;
               }
 
 
@@ -1730,7 +1762,60 @@ button:focus {
           }
         }
       }
-      //}
+      #cardStep4.card {                
+        .front {                    
+            .content {                       
+                .title {
+                    letter-spacing: -0.95px;
+                    font-size: 19px;
+                    height: 28px;
+                    line-height: 28px;
+                }
+                .sub-text {
+                    max-width: 235px;
+                    height: auto;
+                    line-height: 17px;
+                    font-size: 11px;
+                    margin:9px auto 91px;
+                    
+                }
+                .point-text {
+                    font-family: 'NotoSansKr-Regular';
+                    font-size: 22px;
+                    color: #000;
+                    max-width: 233px;
+                    line-height: 28px;
+                    margin: 0 auto;
+                    strong {
+                        font-family: 'NotoSansKr-Medium';
+                        color:#4BD897; 
+                    }
+                }
+                .button {
+                    margin-bottom: 9px;
+                    a {
+                        width: 230px;
+                        height: 40px;                                
+                        line-height: 40px;
+                        font-size: 15px;
+                        letter-spacing: -0.75px;
+                    }
+                }
+                .skip-btn {
+                    a {
+                    font-size: 13px;
+                    
+                    height: 19px;
+                    line-height: 19px;
+                    }
+                }
+                
+            }
+        }
+        
+
+      }
+      
 
       .scene:last-child {
         margin-right: unset !important;
