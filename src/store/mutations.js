@@ -33,6 +33,9 @@ const mutations = {
     },
     setIccMode(state, bool) {
         state.iccMode = bool;
+    },
+    setCertification(state, data) {
+        state.certification = data;
     }
 };
 

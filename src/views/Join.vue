@@ -688,7 +688,26 @@ export default {
                 this.trAdd = res.data.trAdd;
             }).catch((err) => {
                 console.log(err)
-            })
+            });
+
+        
+        // cert result.
+        window.cert_result = (data) => {
+            this.$axios('get',`/cert/decrypte?rec_cert=${data.rec_cert}&certNum=${data.certNum}`, 
+            {}).then((res) => {
+                if(res.data.result === 'fail') {
+                    console.log('오류가 발생했습니다.');
+                } else if(res.data.result === 'exists') {
+                    console.log('이미 인증 받은 핸드폰 번호입니다.')
+                } else {
+                    this.phoneNumber = res.data.phoneNumber;
+                    this.name = res.data.name;
+                }
+            }).catch((err) => {
+                console.log(err)
+                alert('오류가 발생했습니다.')
+            });
+        };
     }
 }
 </script>
