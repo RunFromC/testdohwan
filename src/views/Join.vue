@@ -383,7 +383,7 @@
                         <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
-                    <div class="m-finished" id="welcome-finished"><a href="#"><span>가입완료</span> <i></i></a></div>
+                    <div class="m-finished" id="welcome-finished"><a href="#" @click.prevent="toggleMobileTab(2)"><span>가입완료</span> <i></i></a></div>
                 </div>
                 <div class="tab" id="additionalInfo" v-else>
                     <div class="add_wrap add_wrap_group" v-if="!isAccodionOn">
@@ -493,6 +493,9 @@ export default {
         },       
     },
     methods: {
+        addInforShow(){ //가입완료 클릭시 추가정보 탭으로 이동
+            this.isToggleMobileTab === 2;
+        },
         idCheck() { // 아이디 중복확인
             if(this.id) {
                 let validity = /^[A-Za-z0-9]{4,12}$/i; // 영문,숫자 포함 4~12자리
@@ -611,14 +614,14 @@ export default {
             this.joinPage = true;            
         },
         standardJoin() {
-            // this.addJoinPage = !this.addJoinPage
-            if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.certNumber && this.email) {
-                if(this.getByFormData.termsOfUse == false) {
-                    alert('약관동의 체크해주세요');
-                }
-            } else {
-                alert('정보를 모두 입력해주세요');
-            }
+            this.addJoinPage = !this.addJoinPage
+            // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.certNumber && this.email) {
+            //     if(this.getByFormData.termsOfUse == false) {
+            //         alert('약관동의 체크해주세요');
+            //     }
+            // } else {
+            //     alert('정보를 모두 입력해주세요');
+            // }
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;

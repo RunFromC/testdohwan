@@ -210,6 +210,7 @@ button:focus {
                                     height: $height;
                                     line-height: $height;
                                     font-size: 13px;
+                                    font-family: 'NanumBarunGothic';
                                 }
 
                                 input {
@@ -4782,7 +4783,7 @@ button:focus {
                         bottom: 0;
                         width: 100%;
                         height: 50px;
-                        background: #4bd897;
+                        background: #AAAAAA;                        
                         margin-top: 15px;
                         text-align: center;
                         line-height: 50px;
@@ -4791,6 +4792,9 @@ button:focus {
                         a {
                             color: #fff;
                             display: block;
+                        }
+                        a.on {
+                            background: #4bd897;
                         }
                     }
                     .checkbox-wrap {
@@ -4888,7 +4892,7 @@ button:focus {
                     }
                     .accordion {
                         width: 100%;
-                        height: 50px;
+                        // height: 50px;
                         margin: 5px auto 0;
 
                         ul {
@@ -4938,7 +4942,8 @@ button:focus {
                         background: #f8f8f8;
                         overflow: hidden;
                         max-height: 0;
-                        transition: max-height 1s;
+                        border-top: 3px solid #fff;
+                        transition: max-height .5s, border-top 0.1s ;
                         .certification-list {
                             display: flex;
                             width: 100%;
@@ -7083,9 +7088,9 @@ button:focus {
                     }
 
                     .accordion-contents.on {
-                        transition: max-height 1s;
-                        border-top: 3px solid #34c884;
+                        transition: max-height 1s, border-top 0.2s ;
                         max-height: 1000px;
+                        border-top: 3px solid #4BD897;
                     }
 
                     #accordion-place.height {
@@ -7147,7 +7152,7 @@ button:focus {
                     padding-bottom: 70px !important;
                     height: calc(100% - 100px);
                     overflow: auto;
-                    
+                    scroll-behavior: smooth;
                 }
             }
             .m_agreebox {

@@ -975,40 +975,6 @@ export default {
 
     data() {
         return {
-            // brandsList: [
-            //     'sns',
-            //     'pay',
-            //     'area',
-            //     'gender',
-            //     'age',
-            //     'job',
-            //     'interests',
-            //     'married',
-            //     'children',
-            //     'pet'
-            // ],
-            influencerList: [
-                'sns',
-                'pay',
-                'expectProduct',
-                'gender',
-                'age',
-                'bodyProfile',
-                'skinType'
-            ],
-            brandsList: [
-                'sns',
-                'pay',
-                'expectProduct',
-                'gender',
-                'job',
-                'married',
-                'children',
-                'pet',
-                'skinType'
-            ],
-
-            marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
             isCheck: undefined,
             skinDefault: '피부타입',
             ageDefault: '10대',
@@ -1132,64 +1098,6 @@ export default {
             }
         },
 
-        saveBtn(event) {
-            if (event.target.className.includes('on')) {
-                if (this.currentCard === 'sns') {
-                    this.profileCard.sns.save = true;
-                } else if (this.currentCard === 'pay') {
-                    this.profileCard.pay.save = true;
-                } else if (this.currentCard === 'expectProduct') {
-                    this.profileCard.expectProduct.save = true;
-                } else if (this.currentCard === 'gender') {
-                    this.profileCard.gender.save = true;
-                } else if (this.currentCard === 'job') {
-                    this.profileCard.job.save = true;
-                } else if (this.currentCard === 'married') {
-                    this.profileCard.married.save = true;
-                } else if (this.currentCard === 'children') {
-                    this.profileCard.children.save = true;
-                } else if (this.currentCard === 'pet') {
-                    this.profileCard.pet.save = true;
-                } else if (this.currentCard === 'skinType') {
-                    this.profileCard.skinType.save = true;
-                }
-
-                this.nextDetailInfo(event);
-            }
-            return;
-        },
-
-        prevDetailInfo(event) {
-            this.changeDetailInfo('prev');
-        },
-        nextDetailInfo(event) {
-            this.changeDetailInfo('next');
-        },
-        changeDetailInfo(type) {
-            let card = this.getCardList();
-            if (this.currentIndex === 0 && type === 'prev') return;
-            if (this.currentIndex === card.length - 1 && type === 'next')
-                return;
-
-            this.clearCardList();
-
-            let currentCard;
-            if (type === 'prev') {
-                currentCard = card[this.currentIndex - 1];
-            } else {
-                currentCard = card[this.currentIndex + 1];
-            }
-
-            this.$store.commit('setCurrentCard', {
-                currentCard: currentCard
-            });
-            this.profileCard[currentCard].on = true;
-        },
-        clearCardList() {
-            for (const key in this.profileCard) {
-                this.profileCard[key].on = false;
-            }
-        },
         payUpPersent() {},
         payDownPersent() {}
     },
