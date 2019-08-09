@@ -6,6 +6,7 @@ import Find from '../views/Find.vue';
 import Join from '../views/Join.vue';
 import ChangePW from '../views/ChangePW.vue';
 import ClientJoin from '../views/client/Join.vue';
+import CertSuccess from '../views/CertSuccess.vue';
 
 Vue.use(Router);
 
@@ -52,6 +53,11 @@ const router = new Router({
             path: '/join',
             name: 'join',
             component: Join
+        },
+        {
+            path: '/cert/success',
+            name: 'certSuccess',
+            component: CertSuccess
         }
     ]
 });

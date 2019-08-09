@@ -16,7 +16,6 @@ const mutations = {
         localStorage.setItem('service', service);
     },
     setLocalService(state) {
-        console.log('haha');
         state.service = localStorage.getItem('service');
     },
     setToggleType(state, payload) {
@@ -34,6 +33,9 @@ const mutations = {
     },
     setIccMode(state, bool) {
         state.iccMode = bool;
+    },
+    setCertification(state, data) {
+        state.certification = data;
     }
 };
 

@@ -200,7 +200,7 @@ button:focus {
                             > div.item {
                                 position: relative;
                                 float: left;
-                                margin: 0 0 15px;
+                                margin: 0 0 25px;
                                 * {
                                     float: left;
                                 }
@@ -220,8 +220,18 @@ button:focus {
                                     border-radius: 5px 0px 0px 5px;
                                     
                                 }
-
                                 
+                                .possible-text, .wrong-text {
+                                    position: absolute;
+                                    height: 25px;
+                                    left: 95px;
+                                    bottom: -25px;
+                                    font-size: 12px;
+                                    color: #FF8173;
+                                }
+                                .possible-text {
+                                    color: #000;
+                                }
 
                                 button {
                                     width: 53px;
@@ -232,6 +242,10 @@ button:focus {
                                     color: #fff;
                                     letter-spacing: -0.1px;
                                     font-size: 12px;
+                                    cursor: default;
+                                }
+                                button.on {
+                                    background: #68DDA7;
                                     cursor: pointer;
                                 }
                                 button.on {
@@ -361,6 +375,7 @@ button:focus {
                                 text-align: center;
                                 height: 50px;                                
                                 line-height: 50px;
+                                cursor: default;
                                 span {
                                     text-align: center;
                                 }
@@ -376,7 +391,7 @@ button:focus {
                                     opacity: 0.1;
                                 }
                             }
-                            a.on {background: #4BD897;}
+                            a.on {background: #4BD897; cursor: pointer;}
                         }
 
                         .box {
@@ -3013,7 +3028,7 @@ button:focus {
                                 padding: 0 0 20px;
 
                                 > div.item {
-                                    margin-bottom: 10px;
+                                    margin-bottom: 20px;
                                     > div.label {
                                         width: 61px;
                                         height: 26px !important;
@@ -3038,7 +3053,17 @@ button:focus {
                                         font-size: 10px;
                                         letter-spacing: -0.1px;
                                     }
-                                    
+                                    .possible-text, .wrong-text {
+                                        position: absolute;
+                                        height: 25px;
+                                        left: 75px;
+                                        bottom: -25px;
+                                        font-size: 11px;
+                                        color: #FF8173;
+                                    }
+                                    .possible-text {
+                                        color: #000;
+                                    }
                                 }
                                 > div.item.text,
                                 div.item.password {
@@ -3057,7 +3082,6 @@ button:focus {
                                 .label {
                                     height: 15px !important;
                                     line-height: 15px !important;
-                                    color: #000 !important;
                                     font-size: 13px !important;
                                     margin-right: 5px !important;
                                 }
@@ -4661,11 +4685,12 @@ button:focus {
                         overflow: hidden;
                         width: 272px;
                         height: auto;
-                        margin: 0 auto 25px;
+                        margin: 0 auto;
+                        padding: 0 0 25px;
                         > div.item {
                             position: relative;
                             float: left;
-                            margin: 0 0 15px;
+                            margin: 0 0 25px;
                             * {
                                 float: left;
                             }
@@ -4692,6 +4717,7 @@ button:focus {
                                 color: $defaultColor;
                                 font-size: 13px;
                             }
+                            
                             button {
                                 position: absolute;
                                 top: 0;
@@ -4706,9 +4732,22 @@ button:focus {
                                 border-radius: 0 5px 5px 0;
                                 border: 1px solid #bbbbbb;
                                 color: #fff;
+                                cursor: default;
+                            }
+                            button.on {
+                                background: #68DDA7;
                                 cursor: pointer;
                             }
-
+                            .possible-text, .wrong-text {
+                                position: absolute;
+                                left: 85px;
+                                bottom: -20px;
+                                font-size: 12px;
+                                color: #FF8173;
+                            }
+                            .possible-text {
+                                color: #000;
+                            }
                             .icon-eye {
                                 $height: 12px;
                                 @include icon-default();
