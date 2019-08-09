@@ -23,9 +23,9 @@
                                 <div class="input-wrapper">
                                     <div class="item">
                                         <div class="label">아이디 </div>
-                                        <input type="text" v-model="id" @keyup="enterKey">
-                                        <button @click="idCheck" :class="id ? 'on':''">중복확인</button>
-                                        <div class="wrong-text" v-if="idValidityText">영어,숫자 포함 4자리 이상</div>
+                                        <input type="text" v-model="id" placeholder="영문,숫자 포함 4~12자리">
+                                        <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
+                                        <div class="wrong-text" v-if="idValidityText">영문,숫자 포함 4~12자리</div>
                                         <div class="possible-text" v-if="idPossibleText">사용가능한 아이디입니다</div>
                                         <div class="wrong-text" v-if="idWrongText">사용중인 아이디입니다</div>
                                     </div>
@@ -34,13 +34,14 @@
                                 <div class="input-wrapper ">
                                     <div class="item password">
                                         <div class="label">비밀번호 </div>
-                                        <input type="password" placeholder="영문,숫자 포함 6자리 이상" v-model="pw" @keyup="enterKey" v-on:focusout="pwCheck">
+                                        <input type="password" placeholder="영문,숫자,특수문자 포함 6~14자리" v-model="pw" v-on:focusout="pwInput">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
                                     </div>
 
                                     <div class="item password">
                                         <div class="label"> </div>
-                                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="enterKey" v-on:focusout="pwCheck">
+                                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" v-on:focusout="pwCheck">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                         <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                                     </div>
@@ -49,21 +50,22 @@
                                 <div class="input-wrapper ">
                                     <div class="item text">
                                         <div class="label">이름 </div>
-                                        <input type="text" placeholder="" v-model="name">
+                                        <input type="text" placeholder="한글,영문,()만 포함 2자이상" v-model="name" v-on:focusout="nameCheck">
+                                        <div class="wrong-text" v-if="nameValidityText">한글,영문,()만 포함 2자이상</div>
                                     </div>
 
                                     <div class="item">
                                         <div class="label">휴대폰번호 </div>
-                                        <input type="text" placeholder="- 없이 입력" v-model="phoneNumber" @keyup="enterKey">
-                                        <button @click="phoneCheck" :class="phoneNumber ? 'on':''">인증하기</button>
+                                        <input type="text" placeholder="- 없이 입력" v-model="phoneNumber">
+                                        <button @click="phoneCheck" :class="phoneNumber ? 'on':''" v-bind:disabled="phoneCertDisable">인증하기</button>
                                     </div>
 
                                     <div class="item">
                                         <div class="label"> </div>
-                                        <input type="text" placeholder="인증번호" v-model="certNumber" @keyup="enterKey">
-                                        <button @click="phoneCheckConfirm" :class="certNumber ? 'on':''">확인</button>
-                                        <div class="possible-text none">본인 인증에 성공하였습니다</div>
-                                        <div class="wrong-text none">본인 인증에 실패하였습니다</div>
+                                        <input type="text" placeholder="인증번호" v-model="certNumber">
+                                        <button @click="phoneCheckConfirm" :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
+                                        <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                                        <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                                     </div>
 
                                 </div>
@@ -71,8 +73,8 @@
                                 <div class="input-wrapper">
                                     <div class="item">
                                         <div class="label">이메일</div>
-                                        <input type="text" placeholder="직접입력" v-model="email" @keyup="enterKey">
-                                        <button @click="eamilCheck" :class="email ? 'on':''">중복확인</button>
+                                        <input type="text" placeholder="직접입력" v-model="email">
+                                        <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
                                         <div class="wrong-text" v-if="emailValidityText">잘못된 이메일 형식입니다</div>
                                         <div class="possible-text" v-if="emailPossibleText">사용가능한 이메일입니다</div>
                                         <div class="wrong-text" v-if="emailWrongText">사용중인 이메일입니다</div>
@@ -96,7 +98,9 @@
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
                                 </div>
-                                <div class="finished" :class="joinPage ? 'none': ''" @click="standardJoin"><a href="#"><span>가입완료</span></a></div>
+                                <div class="finished" :class="joinPage ? 'none': ''" @click="standardJoin">
+                                    <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&certNumber&&email ? 'on':''"><span>가입완료</span></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -308,41 +312,49 @@
                     <div class="input-wrapper">
                         <div class="item">
                             <div class="label">아이디 </div>
-                            <input type="text">
-                            <button>중복확인</button>
+                            <input type="text" v-model="id" placeholder="영문,숫자 포함 4~12자리">
+                            <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
+                            <div class="wrong-text" v-if="idValidityText">영문,숫자 포함 4~12자리</div>
+                            <div class="possible-text" v-if="idPossibleText">사용가능한 아이디입니다</div>
+                            <div class="wrong-text" v-if="idWrongText">사용중인 아이디입니다</div>
                         </div>
                     </div>
 
                     <div class="input-wrapper ">
                         <div class="item password">
                             <div class="label">비밀번호 </div>
-                            <input type="password" placeholder="영문,숫자 포함 6자리 이상">
-                            <i class="icon-eye" @click.prevent="changePwType"></i>
+                            <input type="password" placeholder="영문,숫자,특수문자 포함 6~14자리" v-model="pw" v-on:focusout="pwInput">
+                            <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                            <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
                         </div>
 
                         <div class="item password">
                             <div class="label"> </div>
-                            <input type="password" placeholder="비밀번호 확인">
-                            <i class="icon-eye" @click.prevent="changePwType"></i>
+                            <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" v-on:focusout="pwCheck">
+                            <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                            <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                         </div>
                     </div>
 
                     <div class="input-wrapper ">
                         <div class="item text">
                             <div class="label">이름 </div>
-                            <input type="text" placeholder="">
+                            <input type="text" placeholder="한글,영문,()만 포함 2자이상" v-model="name" v-on:focusout="nameCheck">
+                            <div class="wrong-text" v-if="nameValidityText">한글,영문,()만 포함 2자이상</div>
                         </div>
 
                         <div class="item">
                             <div class="label">휴대폰번호 </div>
-                            <input type="text" placeholder="- 없이 입력">
-                            <button>인증하기</button>
+                            <input type="text" placeholder="- 없이 입력" v-model="phoneNumber">
+                            <button @click="phoneCheck" :class="phoneNumber ? 'on':''" v-bind:disabled="phoneCertDisable">인증하기</button>
                         </div>
 
                         <div class="item">
                             <div class="label"> </div>
-                            <input type="text" placeholder="인증번호">
-                            <button>확인</button>
+                            <input type="text" placeholder="인증번호" v-model="certNumber">
+                            <button @click="phoneCheckConfirm" :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
+                            <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                            <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                         </div>
 
                     </div>
@@ -350,8 +362,12 @@
                     <div class="input-wrapper">
                         <div class="item">
                             <div class="label">이메일</div>
-                            <input type="text" placeholder="직접입력">
-                            <button>중복확인</button>
+                            <input type="text" placeholder="직접입력" v-model="email">
+                            <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
+                            <div class="wrong-text" v-if="emailValidityText">잘못된 이메일 형식입니다</div>
+                            <div class="possible-text" v-if="emailPossibleText">사용가능한 이메일입니다</div>
+                            <div class="wrong-text" v-if="emailWrongText">사용중인 이메일입니
+                                다</div>
                         </div>
                     </div>
 
@@ -366,7 +382,7 @@
                         <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
-                    <div class="m-finished" id="welcome-finished"><a href="#"><span>가입하기</span> <i></i></a></div>
+                    <div class="m-finished" id="welcome-finished"><a href="#"><span>가입완료</span> <i></i></a></div>
                 </div>
                 <div class="tab" id="additionalInfo" v-else>
                     <div class="add_wrap add_wrap_group" v-if="!isAccodionOn">
@@ -416,24 +432,32 @@ export default {
             idValidityText: false,
             idPossibleText: false,
             idWrongText: false,
+            idCheckDisable: true,
 
             pw:'',
             pwAgain:'',
+            pwValidityText: false,
             pwWrongText: false,
 
             name: '',
+            nameValidityText: false,
 
             phoneNumber: '',
+            certNumber: '',
+            certPossibleText: false,
+            certWrongText: false,
             // 인증하기
             trCert: '',
             trUrl: '',
             trAdd: '',
-            certNumber: '',
+            phoneCertDisable: true,
+            certCheckDisable: true,
 
             email: '',
             emailValidityText: false,
             emailPossibleText: false,
             emailWrongText: false,
+            emailCheckDisable: true,
 
             isCardFlip: false,
             isMobileTermsOn: false,
@@ -441,6 +465,20 @@ export default {
             isAccodionOn: false,
             joinPage: false,
             addJoinPage: false
+        }
+    },
+    watch: {
+        id(newValue) {
+            this.idCheckDisable = newValue ? false : true;
+        },
+        phoneNumber(newValue) {
+            this.phoneCertDisable = newValue ? false : true;
+        },
+        certNumber(newValue) {
+            this.certCheckDisable = newValue ? false : true;
+        },
+        email(newValue) {
+            this.emailCheckDisable = newValue ? false : true;
         }
     },
     computed: {
@@ -455,85 +493,70 @@ export default {
         },       
     },
     methods: {
-        enterKey() {
-            if(window.event.keyCode == 13) {
-                this.idCheck();
-                this.pwCheck();
-                this.phoneCheck();
-                this.phoneCheckConfirm();
-                this.eamilCheck();
+        idCheck() { // 아이디 중복확인
+            if(this.id) {
+                let validity = /^[A-Za-z0-9]{4,12}$/i; // 영문,숫자 포함 4~12자리
+                if(this.id.match(validity) != null) {
+                    this.$axios('post','/check/id', {
+                        id: this.id
+                    }).then((res) => {
+                        if(res.data.result > 0) { // 사용X(중복)
+                            this.idWrongText = true;
+                            this.idPossibleText = false;
+                            this.idValidityText = false;
+                        } else { // 사용O
+                            this.idPossibleText = true;
+                            this.idWrongText = false;
+                            this.idValidityText = false;
+                        }
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                } else {
+                    this.idValidityText = true;
+                    this.idPossibleText = false;
+                    this.idWrongText = false;
+                }
             }
         },
-        idCheck() { // 아이디 중복확인
-            this.$axios('post','/check/id', {
-                id: this.id
-            }).then((data) => {
-                let validity = /^[A-Za-z0-9]{4,12}$/;
-                if(this.id.match(validity) != null) {
-                    console.log('성공');
-                    
+        pwInput() { // 비밀번호 입력
+            if(this.pw || this.pwAgain) {
+                let validity = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,14}$/i; // 영문,숫자,특수문자 포함 6~14자리
+                if(this.pw.match(validity) != null) {
+                    this.pwValidityText = false;
                 } else {
-                    console.log('실패');
-                    
+                    this.pwValidityText = true;
                 }
-            })
+            }
         },
-        // idCheck() { // 아이디 중복확인
-        //     if(this.id) {
-        //         this.$axios('post','/check/id', {
-        //             id: this.id
-        //         }).then((res) => {
-        //             var a = /^[A-Za-z0-9]{4,12}$/; //영대소문자,숫자 4~12자리
-        //             if(a) { // 유효성 검사
-        //                 if(res.data.result > 0) { // 중복(사용불가능)
-        //                     this.idWrongText = true;
-        //                     this.idPossibleText = false;
-        //                     this.idValidityText = false;
-        //                 } else { // 사용가능
-        //                     this.idPossibleText = true;
-        //                     this.idWrongText = false;
-        //                     this.idValidityText = false;
-        //                 }
-        //             } else {
-        //                 this.idValidityText = true;
-        //                 this.idWrongText = false;
-        //                 this.idPossibleText = false;
-        //             }
-        //         }).catch((err) => {
-        //             console.log(err)
-        //         })
-        //     } else if(!this.id) {
-        //         alert('아이디를 입력해주세요');
-        //     }
-        // },
-        pwCheck() { // 비밀번호
+        pwCheck() { // 비밀번호 확인
             if(this.pw && this.pwAgain) {
-                this.$axios('post','/check/pw', {
-                    pw: this.pw,
-                    pwAgain: this.pwAgain
-                }).then((res) => {
-                    console.log(res);
-                    if(this.pw !== this.pwAgain) {
-                        this.pwWrongText = true;
-                    } else {
-                        this.pwWrongText = false;
-                    }
-                }).catch((err) => {
-                    console.log(err)
-                })
-            } else if(!this.pw && !this.pwAgain) {
-                alert('비밀번호를 입력해주세요');
+                if(this.pw !== this.pwAgain) {
+                    this.pwWrongText = true;
+                } else {
+                    this.pwWrongText = false;
+                }
             }
         },
         nameCheck() { // 이름
-
+            if(this.name) {
+                let validity = /^[가-힣a-zA-z()\s]{2,}$/i; // 한글,영문,()만 포함 2자이상
+                if(this.name.match(validity) != null) {
+                    this.nameValidityText = false;
+                } else {
+                    this.nameValidityText = true;
+                }
+            }
         },
         phoneCheck() { // 휴대폰 본인인증
-        //  if(this.phoneNumber) {
-
-        //  } else if(!this.phoneNumber) {
-        //      alert('휴대폰번호를 입력해주세요')
-        //  }
+            // if(this.phoneNumber) {
+            //     let validity = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i;
+            //     if(this.phoneNumber.match(validity) != null) {
+            //         console.log('유효성검사 성공');
+            //     } else {
+            //         console.log('유효성검사 실패');
+            //     }
+            // }
             var certWindow;
             function openCertification() {
                 window.name = "Bigbird - i";
@@ -548,7 +571,6 @@ export default {
                     }
                     document.requestCert.target = 'KMCISWindow';
                 }
-                console.log(document.requestCert)
                 document.requestCert.action = 'https://www.kmcert.com/kmcis/web/kmcisReq.jsp';
                 document.requestCert.submit();  
             }
@@ -559,30 +581,42 @@ export default {
         },
         eamilCheck() { // 이메일 중복확인
             if(this.email) {
-                this.$axios('post','/check/email', {
-                    email: this.email
-                }).then((res) => {
-                    if(res.data.result > 0) { // 중복(사용불가능)
-                        this.emailWrongText = true;
-                        this.emailPossibleText = false;
-                        this.emailValidityText = false;
-                    } else { // 사용가능
-                        this.emailPossibleText = true;
-                        this.emailWrongText = false;
-                        this.emailValidityText = false;
-                    }
-                }).catch((err) => {
-                    console.log(err)
-                })
-            } else if(!this.email) {
-                alert('이메일을 입력해주세요');
-            }
+                let validity = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; // 이메일 정규식(보통사이트)
+                if(this.email.match(validity) != null) {
+                    this.$axios('post','/check/email', {
+                        email: this.email
+                    }).then((res) => {
+                        if(res.data.result > 0) { // 사용X(중복)
+                            this.emailWrongText = true;
+                            this.emailPossibleText = false;
+                            this.emailValidityText = false;
+                        } else { // 사용O
+                            this.emailPossibleText = true;
+                            this.emailWrongText = false;
+                            this.emailValidityText = false;
+                        }
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+                } else {
+                    this.emailValidityText = true;
+                    this.emailPossibleText = false;
+                    this.emailWrongText = false;
+                }
+            } 
         },
         addJoin() {
             this.joinPage = true;
         },
         standardJoin() {
-            this.addJoinPage = !this.addJoinPage
+            // this.addJoinPage = !this.addJoinPage
+            if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.certNumber && this.email) {
+                if(this.getByFormData.termsOfUse == false) {
+                    alert('약관동의 체크해주세요');
+                }
+            } else {
+                alert('정보를 모두 입력해주세요');
+            }
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;
@@ -623,7 +657,6 @@ export default {
             }
         },
         toggleMobileTab(index) { 
-            console.log('click', index);
             this.isToggleMobileTab = index;
         },
         accodionOpen() {

@@ -8,7 +8,7 @@ import './assets/scss/config.scss';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
 
-Vue.prototype.$axios = axios
+Vue.prototype.$axios = axios;
 Vue.component('v-select', vSelect);
 Vue.config.productionTip = false;
 
