@@ -16,7 +16,8 @@
           <div class="loginBox">
             <div class="tab2">
               <div class="toggleBtnWrap">
-                <a href="#">빅버드 ID 로그인</a>
+                <a href="#" v-if="!this.$store.state.iccMode">빅버드 ID 로그인</a>
+                <a href="#" v-else>로그인/회원가입</a>
               </div>
               <form action="/?service=client" method="get" id="loginForm">
                 <input class="input-text" type="text" placeholder="아이디" />

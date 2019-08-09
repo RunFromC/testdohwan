@@ -2,7 +2,7 @@
   <div class="article">
     <div class="btn-wrap">
       <a href="#" :class="getByJoinData.termIndex === 1 ? 'on' : ''" @click.prevent="toggle">이용약관</a>
-      <div class="bar"></div>
+      <div class="bar" v-if="!this.$store.state.iccMode"></div>
       <a
         v-if="!this.$store.state.iccMode"
         href="#"

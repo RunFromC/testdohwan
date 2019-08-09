@@ -3,9 +3,10 @@
     <div class="article">
       <div class="btn-wrap">
         <a href="#" :class="getByJoinData.termIndex === 1 ? 'on' : ''" @click.prevent="toggle">이용약관</a>
-        <div class="bar"></div>
+        <div class="bar" v-if="!this.$store.state.iccMode"></div>
         <a
           href="#"
+          v-if="!this.$store.state.iccMode"
           :class="getByJoinData.termIndex === 2 ? 'on' : ''"
           @click.prevent="toggle"
         >통합 회원 약관</a>

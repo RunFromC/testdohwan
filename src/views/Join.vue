@@ -7,11 +7,12 @@
                     <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입">   
                 </h1>
                 <h1 class="logo" v-else>                    
-                    <span style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
+                    <span id="desktopLogo" style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
+                    <span id="tabletLogo" style="font-size: 14px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
                 </h1>
             </div>
         </div>
-        <div id="card-container" ref="cardContainer">
+        <div id="card-container" ref="cardContainer" :class="joinPage ? 'min' : ''">
                 <div :class="joinPage == false &&  addJoinPage ? 'none': '' || cardFilp" class="card" id="cardStep1" >
                     <div class="front">
                         <a href="#" class="rotate-btn" @click.prevent="onCardFilp"></a>
@@ -120,7 +121,7 @@
                                 </div>
                                 <div class="box big"  
                                     @click="onClickProfileCard('sns')" 
-                                    :class="onProfileCard('sns') ">
+                                    :class="[onProfileCard('sns'), this.profileCard.sns.save ? 'save': '' ]">
                                     <img src="~@/assets/img/sns.png" alt="sns">
                                     <div class="text">
                                         SNS 연동으로 <br>
@@ -133,10 +134,10 @@
                                 <div class="box big" 
                                     @click="onClickProfileCard('pay')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true)" 
-                                    :class="[onProfileCard('pay'), checkService('influencer','margin-bottom-31')]">
+                                    :class="[onProfileCard('pay'), checkService('influencer','margin-bottom-31') , this.profileCard.pay.save ? 'save': '']">
                                     <img src="~@/assets/img/pay.png" alt="pay">
                                     <div class="text">
-                                        <span v-if="checkService('brands',true)">희망 원고료</span>
+                                        <span v-if="checkService('brands',true) && !this.$store.state.iccMode">희망 원고료</span>
                                         <span v-else>희망 수수료</span>
                                         <br>
                                         고객사 매칭에 도움이 됩니다.
@@ -148,7 +149,7 @@
                                 <div class="box big"
                                     @click="onClickProfileCard('expectProduct')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true)" 
-                                    :class="[onProfileCard('expectProduct'), checkService('brands','margin-bottom-31')]">
+                                    :class="[onProfileCard('expectProduct'), checkService('brands','margin-bottom-31'), this.profileCard.expectProduct.save ? 'save': '']">
                                     <img src="~@/assets/img/box.png" alt="item">
                                     <div class="text">
                                         희망 공구 품목<br>
@@ -169,7 +170,7 @@
 
                                     <div class="box small" @click="onClickProfileCard('gender')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)" 
-                                    :class="onProfileCard('gender')">
+                                    :class="[onProfileCard('gender'), this.profileCard.gender.save ? 'save': '']">
                                         <img src="~@/assets/img/age_.png" alt="gender">
                                         <div class="text">
                                             성별/연령
@@ -189,7 +190,7 @@
 
                                     <div class="box small" @click="onClickProfileCard('job')" 
                                     v-if="checkService('brands',true)" 
-                                    :class="onProfileCard('job')">
+                                    :class="[onProfileCard('job'), this.profileCard.job.save ? 'save': '']">
                                         <img src="~@/assets/img/job.png" alt="job">
                                         <div class="text">
                                             직업
@@ -209,7 +210,7 @@
 
                                     <div class="box small" @click="onClickProfileCard('married')" 
                                     v-if="checkService('brands',true)" 
-                                    :class="onProfileCard('married')">
+                                    :class="[onProfileCard('married'), this.profileCard.married.save ? 'save': '']">
                                         <img src="~@/assets/img/married.png" alt="married">
                                         <div class="text">
                                             결혼유무
@@ -220,7 +221,7 @@
 
                                     <div class="box small" @click="onClickProfileCard('children')" 
                                     v-if="checkService('brands',true)" 
-                                    :class="onProfileCard('children')">
+                                    :class="[onProfileCard('children'), this.profileCard.children.save ? 'save': '']">
                                         <img src="~@/assets/img/baby.png" alt="children">
                                         <div class="text">
                                             자녀관계
@@ -231,7 +232,7 @@
 
                                     <div class="box small" @click="onClickProfileCard('pet')" 
                                     v-if="checkService('brands',true)"  
-                                    :class="onProfileCard('pet')">
+                                    :class="[onProfileCard('pet'), this.profileCard.pet.save ? 'save': '']">
                                         <img src="~@/assets/img/pet.png" alt="pet">
                                         <div class="text">
                                             반려동물
@@ -252,7 +253,7 @@
 
                                     <div class="box small" @click="onClickProfileCard('skinType')" 
                                     v-if="checkService('brands',true) || checkService('influencer', true)" 
-                                    :class="onProfileCard('skinType')">
+                                    :class="[onProfileCard('skinType'), this.profileCard.skinType.save ? 'save': '']">
                                         <img src="~@/assets/img/skin.png" alt="skin">
                                         <div class="text">
                                             피부
@@ -378,7 +379,7 @@
                         <div class="label" @click.prevent="openTermsMobile(1)">약관동의(필수)</div>
                         <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                     </div>
-                    <div class="checkbox-wrap margin-bottom-58">
+                    <div class="checkbox-wrap margin-bottom-58" v-if="!this.$store.state.iccMode">
                         <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
@@ -458,7 +459,6 @@ export default {
             emailPossibleText: false,
             emailWrongText: false,
             emailCheckDisable: true,
-
             isCardFlip: false,
             isMobileTermsOn: false,
             isToggleMobileTab: 1,
@@ -608,7 +608,7 @@ export default {
             } 
         },
         addJoin() {
-            this.joinPage = true;
+            this.joinPage = true;            
         },
         standardJoin() {
             // this.addJoinPage = !this.addJoinPage

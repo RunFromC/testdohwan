@@ -70,7 +70,7 @@ button:focus {
                 float: left;
                 display: block;
                 margin-top: 27px;
-                img#tabletLogo {
+                #tabletLogo {
                     display: none;
                 }
             }
@@ -218,6 +218,7 @@ button:focus {
                                     height: $height - 2px;
                                     border: 1px solid #aaaaaa;
                                     border-radius: 5px 0px 0px 5px;
+                                    
                                 }
                                 
                                 .possible-text, .wrong-text {
@@ -246,6 +247,9 @@ button:focus {
                                 button.on {
                                     background: #68DDA7;
                                     cursor: pointer;
+                                }
+                                button.on {
+                                    background: #4bd897;
                                 }
                             }
 
@@ -558,7 +562,9 @@ button:focus {
                                 padding: 15px 0 30px;
                                 border-bottom: 4px solid #E8E8E8;
                                 border-top: 4px solid #E8E8E8;
+                                
                                 .status-selectbox {
+                                    
                                     padding-top: 15px;
                                     display: flex;
                                     justify-content: center;
@@ -603,9 +609,11 @@ button:focus {
                                             border: 1px solid #BBBBBB;
                                             border-top: none;
                                             top: 37px;
+                                            left: 0;
                                             max-height: 269px;
                                             overflow-y: auto;
                                             z-index: 10;
+                                            display: none;
                                             > li {
                                                 font-size: 13px;
                                                 margin: 0 5px;
@@ -652,6 +660,7 @@ button:focus {
                                                 }
                                                 
                                                 input {
+                                                    
                                                     font-size: 14px;
                                                     width: 100%;
                                                     color: #000;
@@ -675,6 +684,8 @@ button:focus {
 
                                         }
                                         .list-second {
+                                            left: 0;
+                                            display: none;
                                             position: absolute;
                                             background: #fff;
                                             border-radius: 0 0 5px 5px;
@@ -715,16 +726,16 @@ button:focus {
                                 .status-btn {
                                     ul {                                        
                                         float: left;
-                                        margin-top: 5.5px;
+                                        margin-top: 7px;
                                         .status-add {
                                            a {
-                                               display: block;
+                                                display: block;
                                                 width: 25px;
                                                 height: 25px;
-                                                background: #4BD897;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
                                                 color: #fff;
-                                                 border-radius: 5px;
-                                                 line-height: 25px;
+                                                border-radius: 5px;
+                                                line-height: 25px;
                                            }
 
                                         }
@@ -733,7 +744,7 @@ button:focus {
                                                 display: block;
                                                  width: 25px;
                                                  height: 25px;
-                                                 background: #4BD897;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
                                                  color: #fff;
                                                  line-height: 25px;
                                                  border-radius: 5px;
@@ -871,12 +882,13 @@ button:focus {
                                     padding: 9px 0;
                                     width: 175px;
                                     max-height: 112px;
+                                    box-sizing: border-box;
 
                                     li {
+                                        text-align: center;
                                         cursor: pointer;
                                         height: 29px;
                                         line-height: 29px;
-                                        text-align: center;
                                         font-size: 14px;
                                         font-family: Nanum-Barun-Gothic-normal,
                                             serif;
@@ -1662,6 +1674,60 @@ button:focus {
                                     margin-right: 0;
                                 }
                             }
+                            .status-selectbox-wrap {  
+                                
+                                .status-selectbox {
+                                    
+                                    .select-box {     
+                                        .select-first {
+                                            li {
+                                                span{
+                                                    color:#000;
+                                                }
+                                            }
+                                        }
+                                        .list-first {                                            
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                border-top: 1px solid #E2E1E1;
+                                                padding-bottom: 15px;
+                                            } 
+
+                                        }                                                                            
+                                    }
+                                    .select-box.big {
+                                        .select-second {
+                                            li {
+                                                i {display: none;}
+                                            }
+                                        }
+                                        .list-second {
+                                            text-align: left;
+                                            
+                                            li {
+                                                color: #000;                                                
+                                                padding: 15px 0 0 15px;
+                                                
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+                                            
+
+                                        }
+                                        
+                                    }
+                                }
+                                
+                            }
+                            
+
                             
                             
                             
@@ -1930,9 +1996,9 @@ button:focus {
                                     .select-second {
                                         width: 100px;
                                         li {
-                                            padding:  0;
                                             span {
                                                 color: #707070;
+                                                padding-left: 0;
                                             }
                                         }
                                     }
@@ -1948,19 +2014,31 @@ button:focus {
                     #item.article {
                         .inner-contents {
                             position: relative;
+                            .input-selectbox-wrap {
+                                .listWrap {
+                                    .list {
+                                        padding: 9px 0 9px 12.5px;
+                                        >li {
+                                            text-align: left;
+                                        }
+                                    }
+                                }
+                            }
                             #itemSelect {
                                 max-width: 200px;
                                 margin: 40px auto 0;
                                 z-index: 1;
-                                border: none;
+                                border: 1px solid #bbb;
+                                
                                 input {
                                     font-size: 18px;
                                     height: 20px;
                                     line-height: 20px;   
+                                    max-width: 170px;
                                 }
                                 input::placeholder {
                                     font-size: 18px;
-                                    text-align: center;
+                                    
                                 }
                             }
                             .choice-list {
@@ -2878,22 +2956,24 @@ button:focus {
                 width: calc(100% - 100px);
                 height: 55px;
                 .logo {
-                    margin-top: 13px;
-                    img#tabletLogo {
+                    margin-top: 20px;
+                    #tabletLogo {
                         display: block;
                     }
-                    img#desktopLogo {
+                    #desktopLogo {
                         display: none;
                     }
                 }
             }
         }
+        #card-container.min {
+            min-width: 1030px;
+        }
 
         #card-container {
             float: unset;
             margin-top: 60px;
-
-            min-width: 1030px;
+            // min-width: 1030px;
             height: calc(100% - 60px);
             //margin: 0 auto;
             //display: block ;
@@ -3035,6 +3115,9 @@ button:focus {
                                 
                                 a {
                                     font-size: 16px !important;
+                                    width: 220px;
+                                    height: 38px;
+                                    line-height: 38px;
                                 }
                             }
 
@@ -3170,6 +3253,230 @@ button:focus {
                                 margin: 0 auto !important;
                                 display: block;
                             }
+                            .inner-contents {
+                                .status {
+                                    margin: 30px 0;                                    
+                                    > li {
+                                        margin-right: 61px;
+                                        a {
+                                            display: block;
+                                            em {
+                                                font-size: 14px;
+                                                height: 16px;
+                                                line-height: 16px;
+                                            }
+                                            span {
+                                                background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                                background-size: 100%;
+                                                width: 14px;
+                                                height: 14px;
+                                                display: block;
+                                                margin: 13px auto 0;
+                                            }
+                                        }
+                                        a.on {
+                                            span {         
+                                                background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+
+                                                width: 14px;
+                                                display: block;
+                                                margin: 13px auto 0;
+                                                height: 14px;
+                                                background-size: 100%;
+                                            }
+                                        }
+                                        
+                                    }
+                                    > li:last-child {
+                                        margin-right: 0;
+                                    }
+                                }
+                                .status-selectbox-wrap {
+                                    padding: 15px 0 30px;
+                                    border-bottom: 4px solid #E8E8E8;
+                                    border-top: 4px solid #E8E8E8;
+                                    
+                                    .status-selectbox {
+                                        
+                                        padding-top: 15px;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-box {
+                                            margin-right: 5px;
+                                            float: left;
+                                            position: relative;
+                                            
+                                            .select-first {
+                                                width: 88px;
+                                                box-sizing: border-box;
+                                                height: 40px;
+                                                border: 1px solid #BBBBBB;   
+                                                border-radius: 5px;                                         
+                                                li {
+                                                    cursor: pointer;
+                                                    position: relative;
+                                                    span {
+                                                        font-size: 14px;
+                                                        display: block;
+                                                        line-height: 40px;
+                                                        text-align: left;
+                                                        padding-left: 15px;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 9px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 18px;
+                                                        height: 18px;
+                                                    }
+                                                }
+                                            }
+                                            .list-first {
+                                                position: absolute;
+                                                width: 88px;
+                                                box-sizing: border-box;
+                                                background: #fff;
+                                                border-radius: 0 0 5px 5px;
+                                                border: 1px solid #BBBBBB;
+                                                border-top: none;
+                                                top: 37px;
+                                                max-height: 269px;
+                                                overflow-y: auto;
+                                                z-index: 10;
+                                                > li {
+                                                    font-size: 13px;
+                                                    margin: 0 5px;
+                                                    padding: 15px 0 0;
+                                                    cursor: pointer;
+    
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 15px;
+                                                } 
+    
+                                            }
+                                            .list-first::-webkit-scrollbar {
+                                                width: 5px;
+                                            }
+                                            .list-first::-webkit-scrollbar-thumb {
+                                                border-radius: 5px;
+                                                background: #eeeeee;
+                                            }                                        
+                                        }
+                                        .select-box.big {
+                                            position: relative;
+                                            margin-right: 10px;
+                                            float: left;
+                                            display: flex;
+                                            justify-content: center;
+                                            .select-second {
+                                                width: 162px;
+                                                box-sizing: border-box;
+                                                border: 1px solid #BBBBBB;   
+                                                border-radius: 5px;
+                                                height: 40px;
+                                                li {
+                                                    box-sizing: border-box;
+                                                    line-height: 40px;
+                                                    padding: 0 20px;
+                                                    span {
+                                                        font-size: 14px;
+                                                        color: #000;
+                                                        padding-left: 5px;
+                                                    }
+                                                    
+                                                    input {
+                                                        
+                                                        font-size: 14px;
+                                                        width: 100%;
+                                                        color: #000;
+                                                        
+                                                        
+                                                    }
+                                                    input::placeholder {
+                                                        color: #C1C1C1;
+                                                        font-size: 14px;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 9px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 18px;
+                                                        height: 18px;
+                                                    }
+                                                }
+    
+                                            }
+                                            .list-second {
+                                                position: absolute;
+                                                background: #fff;
+                                                border-radius: 0 0 5px 5px;
+                                                border: 1px solid #BBBBBB;
+                                                box-sizing: border-box;
+                                                border-top: none;
+                                                height: auto;
+                                                max-height: 269px;
+                                                overflow-y: auto;
+                                                width: 162px;
+                                                z-index: 10;
+                                                top: 37px;
+                                                li {
+                                                    font-size: 13px;
+                                                    margin: 0 5px;
+                                                    padding: 15px 0 0;
+                                                    cursor: pointer;
+                                                    background: #fff;
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 15px;
+                                                }
+                                                
+    
+                                            }
+                                            .list-second::-webkit-scrollbar {
+                                                width: 5px;
+                                            }
+                                            .list-second::-webkit-scrollbar-thumb {
+                                                border-radius: 5px;
+                                                background: #eeeeee;
+                                            }
+                                        }
+                                    }
+                                    .status-btn {
+                                        ul {                                        
+                                            float: left;
+                                            margin-top: 4.5px;
+                                            .status-add {
+                                               a {
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    border-radius: 4px;
+                                                    line-height: 20px;
+                                               }
+    
+                                            }
+                                            .status-remove {
+                                                a {
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    line-height: 20px;
+                                                    border-radius: 4px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         #sns.article {
@@ -3177,6 +3484,7 @@ button:focus {
                                 overflow: hidden;
                                 .certification-list {
                                     margin-top: 30px;
+                                    height: 30px;
 
                                     a {
                                         width: 30px;
@@ -3190,7 +3498,7 @@ button:focus {
                                 }
 
                                 #deskSnsSaveBtn {
-                                    margin: 23px auto;
+                                    margin: 23px auto 10px;
                                     width: 160px;
                                     height: 30px;
                                     line-height: 30px;
@@ -3198,6 +3506,13 @@ button:focus {
 
                                 #deskSnsSaveBtn.on {
                                     background: $mainColor;
+                                }
+                                .certification-text {
+                                    span {
+                                        font-size: 12px;
+                                        line-height: 14px;
+                                        height: 14px;
+                                    }
                                 }
                                 
                             }
@@ -3240,6 +3555,7 @@ button:focus {
                                 input {
                                     font-size: 12px !important;
                                 }
+                                
 
                                 .pay-wrap {
                                     width: 88px !important;
@@ -3247,6 +3563,12 @@ button:focus {
                                     margin-right: 6px !important;
                                     .pay {
                                         background: unset !important;
+                                        height: 20px;
+                                        text-align: left;
+                                    }
+                                    input::placeholder  {
+                                        font-size: 12px !important;
+                                        line-height: 28px !important;
                                     }
 
                                     span {
@@ -3276,6 +3598,7 @@ button:focus {
                                         width: 25px !important;
                                         line-height: 28px !important;
                                     }
+                                    
 
                                     .up-down-wrap {
                                         margin-left: 6px;
@@ -3307,10 +3630,13 @@ button:focus {
                                     height: 28px !important;
                                     input {
                                         font-size: 12px !important;
-                                        width: 90px !important;
+                                        width: 75px !important;
                                         margin-right: 11px !important;
                                     }
-
+                                    input::placeholder {
+                                     font-size: 12px !important;
+                                     
+                                    }
                                     span {
                                         font-size: 12px !important;
                                     }
@@ -3425,6 +3751,155 @@ button:focus {
                             }
                         }
 
+                        #job.article {
+                            .inner-contents {
+                                .status {
+                                    margin: 30px 0;                                    
+                                    > li {
+                                        margin-right: 61px;
+                                        a {
+                                            display: block;
+                                            em {
+                                                font-size: 14px;
+                                                height: 16px;
+                                                line-height: 16px;
+                                            }
+                                            span {
+                                                background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                                background-size: 100%;
+                                                width: 14px;
+                                                height: 14px;
+                                                display: block;
+                                                margin: 13px auto 0;
+                                            }
+                                        }
+                                        a.on {
+                                            span {         
+                                                background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+
+                                                width: 14px;
+                                                display: block;
+                                                margin: 13px auto 0;
+                                                height: 14px;
+                                                background-size: 100%;
+                                            }
+                                        }
+                                        
+                                    }
+                                    > li:last-child {
+                                        margin-right: 0;
+                                    }
+                                }
+                                .status-selectbox-wrap { 
+                                    padding: 15px 0 20px;  
+                                    .status-selectbox {  
+                                        padding-top: 5px;
+                                        .select-box {
+                                            margin-right: 5px;
+                                            float: left;
+                                            position: relative;
+                                            
+                                            .select-first {
+                                                width: 70px;
+                                                height: 30px;
+                                                li {
+                                                    cursor: pointer;
+                                                    position: relative;
+                                                    span {
+                                                        font-size: 13px;
+                                                        line-height: 27px;
+                                                        padding-left: 10px;
+                                                        color: #000;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 5px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 12px;
+                                                        height: 10px;
+                                                    }
+                                                }
+                                            }
+                                            .list-first {
+                                                width: 70px;
+                                                top: 27px;
+                                                > li {
+                                                    font-size: 12px;
+                                                    margin: 0 5px;
+                                                    padding: 15px 0 10px;
+                                                    cursor: pointer;
+                                                    border-top: 1px solid #E2E1E1;
+    
+                                                }
+                                                
+    
+                                            }                                                                               
+                                        }
+                                        .select-box.big {                                            
+                                            .select-second {
+                                                width: 115px;
+                                                height: 30px;
+                                                li {
+                                                    box-sizing: border-box;
+                                                    line-height: 30px;
+                                                    padding: 0 10px;
+                                                    span {
+                                                        font-size: 13px;
+                                                        color: #000;
+                                                        padding-left: 5px;
+                                                    }
+                                                    
+                                                    input {
+                                                        
+                                                        font-size: 13px;
+                                                        width: 100%;
+                                                        color: #000;
+                                                        
+                                                        
+                                                    }
+                                                    input::placeholder {
+                                                        color: #C1C1C1;
+                                                        font-size: 13px;
+                                                    }                                                    
+                                                }
+    
+                                            }
+                                            .list-second {                                                
+                                                width: 115px;
+                                                top: 27px;
+                                                max-height: 273px;
+                                                li {
+                                                    font-size: 12px;
+                                                    margin: 0 5px;
+                                                    padding: 10px 0 0 5px;
+                                                    cursor: pointer;
+                                                    background: #fff;
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 10px;
+                                                }
+                                                
+    
+                                            }
+                                            .list-second::-webkit-scrollbar {
+                                                width: 5px;
+                                            }
+                                            .list-second::-webkit-scrollbar-thumb {
+                                                border-radius: 5px;
+                                                background: #eeeeee;
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                        }
+
                         #interests.article {
                             .input-selectbox-wrap,
                             .input-text-wrap {
@@ -3455,7 +3930,182 @@ button:focus {
                             }
                         }
 
-                        #children.article,
+                        #children.article {
+                            .inner-contents {
+                                height: 353px !important;
+                                .selected-container {
+                                    margin-bottom: 30px;
+                                    border-bottom: 4px solid #e8e8e8;
+                                    text-align: center;
+
+                                    .selected-item {
+                                        span:first-child {
+                                            margin-left: 20px;
+                                        }
+                                        span.gender {
+                                            margin-right: 60px;
+                                        }
+
+                                        i {
+                                            right: 25px;
+                                        }
+                                        i.rotate {
+                                            -webkit-transform: rotate(180deg);
+                                            -moz-transform: rotate(180deg);
+                                            -ms-transform: rotate(180deg);
+                                            -o-transform: rotate(180deg);
+                                        }
+                                    }
+                                }
+                                .status-selectbox-wrap {                                    
+                                    .status-selectbox {
+                                        padding-top: 5px;
+                                        .select-box {
+                                            .select-first {
+                                                width: 80px;
+                                                height: 30px;                                                                                   
+                                                li {
+                                                    cursor: pointer;
+                                                    position: relative;
+                                                    span {
+                                                        font-size: 13px;
+                                                        display: block;
+                                                        line-height: 30px;
+                                                        padding-left: 17px;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 9px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 18px;
+                                                        height: 18px;
+                                                    }
+                                                }
+                                            }
+                                            .list-first {
+                                               
+                                                width: 80px;
+                                               
+                                                border-top: none;
+                                                top: 27px;
+                                                max-height: 208px;
+                                                overflow-y: auto;
+                                                z-index: 10;
+                                                > li {
+                                                    font-size: 13px;
+                                                    padding: 8px 0 0;    
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 10px;
+                                                } 
+    
+                                            }
+                                                                                 
+                                        }
+                                        .select-box.big {                                            
+                                            .select-second {
+                                                width: 80px;                                                
+                                                height: 30px;
+                                                li {
+                                                    box-sizing: border-box;
+                                                    line-height: 30px;
+                                                    padding: 0;
+                                                    span {
+                                                        font-size: 13px;
+                                                        color: #000;
+                                                        display: block;
+                                                        text-align: left;
+                                                        padding-left: 17px;
+                                                    }
+                                                    
+                                                    input {
+                                                        font-size: 13px;
+                                                  }
+                                                    input::placeholder {
+                                                        color: #C1C1C1;
+                                                        font-size: 13px;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 9px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 18px;
+                                                        height: 18px;
+                                                    }
+                                                }
+    
+                                            }
+                                            .list-second {
+                                                position: absolute;
+                                                background: #fff;
+                                                border-radius: 0 0 5px 5px;
+                                                border: 1px solid #BBBBBB;
+                                                box-sizing: border-box;
+                                                border-top: none;
+                                                height: auto;
+                                                max-height: 269px;
+                                                overflow-y: auto;
+                                                width: 80px;
+                                                z-index: 10;
+                                                top: 27px;
+                                                li {
+                                                    font-size: 13px;
+                                                    margin: 0 5px;
+                                                    padding: 8px 0 0;
+                                                    cursor: pointer;
+                                                    background: #fff;
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 10px;
+                                                }
+                                                
+    
+                                            }
+                                            .list-second::-webkit-scrollbar {
+                                                width: 5px;
+                                            }
+                                            .list-second::-webkit-scrollbar-thumb {
+                                                border-radius: 5px;
+                                                background: #eeeeee;
+                                            }
+                                        }
+                                    }
+                                    .status-btn {
+                                        ul {                                        
+                                            float: left;
+                                            margin-top: 4.5px;
+                                            .status-add {
+                                               a {
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    border-radius: 4px;
+                                                    line-height: 20px;
+                                               }
+    
+                                            }
+                                            .status-remove {
+                                                a {
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    line-height: 20px;
+                                                    border-radius: 4px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         #pet.article {
                             .inner-contents {
                                 height: 353px !important;
@@ -3483,31 +4133,152 @@ button:focus {
                                         }
                                     }
                                 }
-                                .status-selectbox-wrap {                            
-                                    .status-selectbox {                                
-                                        .select-box {  
+                                .status-selectbox-wrap {                                    
+                                    .status-selectbox {
+                                        padding-top: 5px;
+                                        .select-box {
                                             .select-first {
-                                                width: 100px;
+                                                width: 80px;
+                                                height: 30px;                                                                                   
+                                                li {
+                                                    cursor: pointer;
+                                                    position: relative;
+                                                    span {
+                                                        font-size: 13px;
+                                                        display: block;
+                                                        line-height: 30px;
+                                                        padding-left: 6px;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 3px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 18px;
+                                                        height: 18px;
+                                                    }
+                                                }
                                             }
-                                            .list-first {                                        
-                                                width: 100px; 
-                                            }                                        
+                                            .list-first {
+                                               
+                                                width: 80px;
+                                               
+                                                border-top: none;
+                                                top: 27px;
+                                                max-height: 208px;
+                                                overflow-y: auto;
+                                                z-index: 10;
+                                                > li {
+                                                    font-size: 13px;
+                                                    padding: 8px 0 0;    
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 10px;
+                                                } 
+    
+                                            }
+                                                                                 
                                         }
-                                        .select-box.big {
-                                            position: relative;
-                                            margin-right: 10px;
-                                            float: left;
-                                            display: flex;
-                                            justify-content: center;
+                                        .select-box.big {                                            
                                             .select-second {
-                                                width: 100px;
+                                                width: 80px;                                                
+                                                height: 30px;
+                                                li {
+                                                    box-sizing: border-box;
+                                                    line-height: 30px;
+                                                    padding: 0;
+                                                    span {
+                                                        font-size: 13px;
+                                                        color: #000;
+                                                        display: block;
+                                                        text-align: left;
+                                                        padding-left: 17px;
+                                                    }
+                                                    
+                                                    input {
+                                                        font-size: 13px;
+                                                  }
+                                                    input::placeholder {
+                                                        color: #C1C1C1;
+                                                        font-size: 13px;
+                                                    }
+                                                    i {
+                                                        position: absolute;
+                                                        right: 3px;
+                                                        top: 50%;
+                                                        transform: translateY(-50%);
+                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                        width: 18px;
+                                                        height: 18px;
+                                                    }
+                                                }
+    
                                             }
-                                            .list-second {                                        
-                                                width: 100px;
-                                            }                                    
+                                            .list-second {
+                                                position: absolute;
+                                                background: #fff;
+                                                border-radius: 0 0 5px 5px;
+                                                border: 1px solid #BBBBBB;
+                                                box-sizing: border-box;
+                                                border-top: none;
+                                                height: auto;
+                                                max-height: 269px;
+                                                overflow-y: auto;
+                                                width: 80px;
+                                                z-index: 10;
+                                                top: 27px;
+                                                li {
+                                                    font-size: 13px;
+                                                    margin: 0 5px;
+                                                    padding: 8px 0 0;
+                                                    cursor: pointer;
+                                                    background: #fff;
+                                                }
+                                                li:first-child {
+                                                    border-top: 1px solid #E2E1E1;
+                                                }
+                                                li:last-child {
+                                                    padding-bottom: 10px;
+                                                }
+                                                
+    
+                                            }
+                                            .list-second::-webkit-scrollbar {
+                                                width: 5px;
+                                            }
+                                            .list-second::-webkit-scrollbar-thumb {
+                                                border-radius: 5px;
+                                                background: #eeeeee;
+                                            }
                                         }
                                     }
-                                    
+                                    .status-btn {
+                                        ul {                                        
+                                            float: left;
+                                            margin-top: 4.5px;
+                                            .status-add {
+                                               a {
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    border-radius: 4px;
+                                                    line-height: 20px;
+                                               }
+    
+                                            }
+                                            .status-remove {
+                                                a {
+                                                    width: 20px;
+                                                    height: 20px;
+                                                    line-height: 20px;
+                                                    border-radius: 4px;
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
                             }
 
@@ -3668,6 +4439,47 @@ button:focus {
                                 bottom: 0;
                             }
                         }
+                        #item.article {
+                            .inner-contents {
+                                .input-selectbox-wrap {
+                                    line-height: 30px;
+                                    height: 30px;
+                                    .select {
+                                        line-height: 30px;
+                                        height: 30px;
+                                    } 
+                                }
+                                #itemSelect {
+                                    input {
+                                        font-size: 14px;
+                                    }
+                                    input::placeholder {
+                                        font-size: 14px;
+                                        color: #C1C1C1;
+                                    }
+                                }
+                                .choice-list {
+                                    max-width: 190px;
+                                    bottom: -294px;
+                                    > ul {
+                                        width: 90px;
+                                        height: 30px;
+                                        li {
+                                            border-radius: 10px;
+                                            width: 90px;
+                                            height: 30px;
+                                            box-sizing: border-box;
+                                        }
+                                        li.close {
+                                            width: 15px;
+                                            height: 15px;
+                                            line-height: 15px;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
 
 
                     }
@@ -3713,6 +4525,59 @@ button:focus {
             }
 
             //}
+            #cardStep4.card {                
+                .front {                    
+                    .content {                       
+                        .title {
+                            letter-spacing: -0.95px;
+                            font-size: 19px;
+                            height: 28px;
+                            line-height: 28px;
+                        }
+                        .sub-text {
+                            max-width: 235px;
+                            height: auto;
+                            line-height: 17px;
+                            font-size: 11px;
+                            margin:9px auto 91px;
+                            
+                        }
+                        .point-text {
+                            font-family: 'NotoSansKr-Regular';
+                            font-size: 22px;
+                            color: #000;
+                            max-width: 233px;
+                            line-height: 28px;
+                            margin: 0 auto;
+                            strong {
+                                font-family: 'NotoSansKr-Medium';
+                                color:#4BD897; 
+                            }
+                        }
+                        .button {
+                            margin-bottom: 9px;
+                            a {
+                                width: 230px;
+                                height: 40px;                                
+                                line-height: 40px;
+                                font-size: 15px;
+                                letter-spacing: -0.75px;
+                            }
+                        }
+                        .skip-btn {
+                            a {
+                            font-size: 13px;
+                            
+                            height: 19px;
+                            line-height: 19px;
+                            }
+                        }
+                        
+                    }
+                }
+                
+    
+            }
         }
 
         @media (orientation: landscape) {
