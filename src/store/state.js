@@ -96,7 +96,8 @@ const state = {
         }
     },
     currentCard: 'default',
-    welcome: false
+    welcome: false,
+    certification: null
 };
 
 export default state;
