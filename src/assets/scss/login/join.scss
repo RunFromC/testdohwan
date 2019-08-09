@@ -594,9 +594,11 @@ button:focus {
                                             border: 1px solid #BBBBBB;
                                             border-top: none;
                                             top: 37px;
+                                            left: 0;
                                             max-height: 269px;
                                             overflow-y: auto;
                                             z-index: 10;
+                                            display: none;
                                             > li {
                                                 font-size: 13px;
                                                 margin: 0 5px;
@@ -667,6 +669,8 @@ button:focus {
 
                                         }
                                         .list-second {
+                                            left: 0;
+                                            display: none;
                                             position: absolute;
                                             background: #fff;
                                             border-radius: 0 0 5px 5px;

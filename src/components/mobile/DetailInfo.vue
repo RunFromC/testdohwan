@@ -825,7 +825,7 @@ export default {
             this.tip.text = null;
         },
         showSelectList(e) {
-            const selectBtn = e.target.closest('div');
+            const selectBtn = e.target.closest('div, ul');
             const accordion = selectBtn.closest('.accordion-contents');
 
             if (selectBtn.nextSibling.classList.contains('selectOn')) {

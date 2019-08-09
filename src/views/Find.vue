@@ -8,23 +8,23 @@
           <div class="container">
             <div class="title">아이디/비밀번호 찾기</div>
             <div class="tabBtnWrap">
-              <a href="#" @click.prevent="toggleTab" :class="!isTabToggle ? 'on' : '' ">아이디</a>
-              <a href="#" @click.prevent="toggleTab" :class="isTabToggle ? 'on' : '' ">비밀번호</a>
+              <a href="#" @click.prevent="toggleTab('id')" :class="isTabToggle('id')">아이디</a>
+              <a href="#" @click.prevent="toggleTab('pw')" :class="isTabToggle('pw')">비밀번호</a>
             </div>
 
             <div class="tab">
               <div class="inputArea">
-                <div id="findID" :class="isTabToggle ? 'none' : '' ">
+                <div id="findID" v-if="isTabToggle('id')">
                   <input class="input-text" type="text" placeholder="이름" />
                 </div>
-                <div id="findPW" :class="!isTabToggle ? 'none' : '' ">
+                <div id="findPW" v-else>
                   <input class="input-text" type="text" placeholder="가입된 아이디" />
                   <input class="input-text" type="text" placeholder="이름" />
                 </div>
               </div>
 
               <div class="text">인증수단 선택</div>
-              <div class="certificationBtnWrap" v-if="!certification.isCertOn">
+              <div class="certificationBtnWrap" :class="!certification.isCertOn ? 'none': ''">
                 <input
                   id="email"
                   type="button"
@@ -40,17 +40,23 @@
                   @click.prevent="onCertification(true,'phone')"
                 />
               </div>
-              <div class="certificationTabs" v-if="certification.isCertOn">
+              <div class="certificationTabs">
                 <div class="certification" id="cert_email" v-if="certification.isCertEmailOn">
                   <input type="text" placeholder="이메일" class="input-text" />
-                  <router-link to="/changePW" class="input-button">인증번호 요청</router-link>
+                  <a href="#" class="input-button">인증번호 요청</a>
                   <span class="wrongMsg">
                     <i class="none">잘못된 이메일 형식입니다</i>
                   </span>
                   <a href="#">인증메일 재전송 요청 ></a>
+
+                  <div id="certNumberWrap">
+                    <input type="text" id="certNumberInput" placeholder="인증번호 입력" />
+                    <div id="countDown">05:00</div>
+                    <a href="#" id="certNumberBtn">확인</a>
+                  </div>
                 </div>
 
-                <div class="certification" id="cert_phone" v-if="certification.isCertPhoneOn">
+                <div class="certification" id="cert_phone" v-else-if="certification.isCertPhoneOn">
                   <div class="phoneNumberWrap">
                     <input type="text" placeholder="핸드폰" class="input-phone" />
                     <input type="text" class="input-phone" />
@@ -61,7 +67,7 @@
                   <div id="certNumberWrap">
                     <input type="text" id="certNumberInput" placeholder="인증번호 입력" />
                     <div id="countDown">05:00</div>
-                    <router-link to="/changePW" id="certNumberBtn">확인</router-link>
+                    <a href="#" id="certNumberBtn">확인</a>
                   </div>
 
                   <a class="reSendCertNum" href="#">인증번호 재전송 요청 ></a>
@@ -119,9 +125,9 @@ export default {
     data() {
         return {
             onQuestionTab: false,
-            isTabToggle: false,
+            isTabToggleValue: 'id',
             certification: {
-                isCertOn: false,
+                isCertOn: true,
                 isCertEmailOn: false,
                 isCertPhoneOn: false
             }
@@ -134,18 +140,25 @@ export default {
         questionTab
     },
     methods: {
+        toggleTab(value) {
+            this.isTabToggleValue = value;
+        },
+        isTabToggle(el) {
+            if (el.includes(this.isTabToggleValue)) return 'on';
+        },
         toggleQuestionTab(isQuestion) {
             this.$store.commit('setToggleType', {
                 type: isQuestion
             });
             this.onQuestionTab = !this.onQuestionTab;
         },
-        toggleTab() {
-            this.isTabToggle = !this.isTabToggle;
-            this.certification.isCertOn = false;
-        },
+        // toggleTab(type) {
+        //     this.isTabToggle = !this.isTabToggle;
+        //     this.certification.isCertOn = false;
+        //     console.log(type);
+        // },
         onCertification(onOff, type) {
-            this.certification.isCertOn = onOff;
+            this.certification.isCertOn = false;
             if (type.includes('email')) {
                 this.certification.isCertEmailOn = true;
                 this.certification.isCertPhoneOn = false;
@@ -153,7 +166,7 @@ export default {
                 this.certification.isCertEmailOn = false;
                 this.certification.isCertPhoneOn = true;
             }
-            console.log(this.certification);
+            console.log(type, this.certification, onOff);
         }
     },
     mounted() {

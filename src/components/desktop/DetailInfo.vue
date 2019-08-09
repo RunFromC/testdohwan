@@ -79,7 +79,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
     <!--  pay profileCard.pay -->
@@ -183,7 +183,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
       <div class="pay-text-wrap" id="Paytext1" v-if="tip.title">
         <div class="paytext">{{tip.title}}</div>
@@ -237,7 +237,7 @@
           </li>
         </ul>
 
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
     <!-- gender -->
@@ -306,7 +306,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -368,13 +368,21 @@
       <div class="inner-contents">
         <ul id="jobStatus" class="status clearfix">
           <li>
-            <a href="#" @click="[statusCheck('y'), haveJob = true]" :class="checkStatus('y') ">
+            <a
+              href="#"
+              @click="[statusCheck('y','job'), haveJob = true]"
+              :class="checkStatus('y','job') "
+            >
               <em>있음</em>
               <span></span>
             </a>
           </li>
           <li>
-            <a href="#" @click="[statusCheck('n'), haveJob = false]" :class="checkStatus('n')">
+            <a
+              href="#"
+              @click="[statusCheck('n','job'), haveJob = false]"
+              :class="checkStatus('n','job')"
+            >
               <em>없음</em>
               <span></span>
             </a>
@@ -383,25 +391,25 @@
         <div class="status-selectbox-wrap clearfix" id="jobSelect" :class="!haveJob ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first">
+              <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
                   <span>현 직업</span>
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-first none">
-                <li class="none">현 직업</li>
-                <li>전 직업</li>
+              <ul class="list-first listContents">
+                <li v-if="!selectText">현 직업</li>
+                <li v-else>전 직업</li>
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second">
+              <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
                   <input type="text" placeholder="직업선택, 검색" />
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-second none">
+              <ul class="list-second listContents">
                 <li>모델</li>
                 <li>프리랜서</li>
                 <li>마케터</li>
@@ -424,6 +432,46 @@
               </ul>
             </li>
           </ul>
+          <!-- <ul class="status-selectbox">
+            <li class="select-box clearfix">
+              <ul class="select-first" @click.prevent="showSelectList">
+                <li>
+                  <span>현 직업</span>
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-first">
+                <li v-if="!selectText">현 직업</li>
+                <li v-else>전 직업</li>
+              </ul>
+            </li>
+            <li class="select-box big clearfix">
+              <ul class="select-second" @click.prevent="showSelectList">
+                <li>
+                  <input type="text" placeholder="직업선택, 검색" />
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-second">
+                <li>모델</li>
+                <li>프리랜서</li>
+                <li>마케터</li>
+                <li>주부</li>
+                <li>유튜브 크리에이터</li>
+                <li>디자이너</li>
+                <li>포토그래퍼</li>
+                <li>여행작가</li>
+                <li>개발자</li>
+              </ul>
+            </li>
+            <li class="status-btn clearfix">
+              <ul>
+                <li class="status-remove">
+                  <a href="#">-</a>
+                </li>
+              </ul>
+            </li>
+          </ul>-->
         </div>
       </div>
       <div class="button-wrap">
@@ -437,7 +485,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -511,7 +559,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -537,28 +585,40 @@
         <div class="inner-contents">-->
         <ul id="childStatus" class="status clearfix">
           <li>
-            <a href="#" @click="[statusCheck('y'), haveJob = true]" :class="checkStatus('y') ">
+            <a
+              href="#"
+              @click="[statusCheck('y','child'), haveChild = true]"
+              :class="checkStatus('y','child') "
+            >
               <em>있음</em>
               <span></span>
             </a>
           </li>
           <li>
-            <a href="#" @click="[statusCheck('n'), haveJob = false]" :class="checkStatus('n')">
+            <a
+              href="#"
+              @click="[statusCheck('n','child'), haveChild = false]"
+              :class="checkStatus('n','child')"
+            >
               <em>없음</em>
               <span></span>
             </a>
           </li>
         </ul>
-        <div class="status-selectbox-wrap clearfix" id="childSelect" :class="!haveJob ? 'none': ''">
+        <div
+          class="status-selectbox-wrap clearfix"
+          id="childSelect"
+          :class="!haveChild ? 'none': ''"
+        >
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first">
+              <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
                   <span>연령</span>
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-first">
+              <ul class="list-first listContents">
                 <li>0~1세</li>
                 <li>2~3세</li>
                 <li>4~5세</li>
@@ -572,13 +632,13 @@
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second">
+              <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
                   <span>성별</span>
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-second">
+              <ul class="list-second listContents">
                 <li>남자</li>
                 <li>여자</li>
               </ul>
@@ -611,7 +671,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -621,28 +681,36 @@
       <div class="inner-contents">
         <ul id="petStatus" class="status clearfix">
           <li>
-            <a href="#" @click="[statusCheck('y'), haveJob = true]" :class="checkStatus('y') ">
+            <a
+              href="#"
+              @click="[statusCheck('y','pet'), havePet = true]"
+              :class="checkStatus('y','pet') "
+            >
               <em>있음</em>
               <span></span>
             </a>
           </li>
           <li>
-            <a href="#" @click="[statusCheck('n'), haveJob = false]" :class="checkStatus('n')">
+            <a
+              href="#"
+              @click="[statusCheck('n','pet'), havePet = false]"
+              :class="checkStatus('n','pet')"
+            >
               <em>없음</em>
               <span></span>
             </a>
           </li>
         </ul>
-        <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!haveJob ? 'none': ''">
+        <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first">
+              <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
                   <span>동물 종류</span>
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-first">
+              <ul class="list-first listContents">
                 <li>강아지</li>
                 <li>고양이</li>
                 <li>햄스터</li>
@@ -650,13 +718,13 @@
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second">
+              <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
                   <span>몇마리</span>
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-second">
+              <ul class="list-second listContents">
                 <li>1마리</li>
                 <li>2마리</li>
                 <li>3마리</li>
@@ -687,7 +755,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -702,14 +770,14 @@
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
-              <li @click="itemOnSave()">패션</li>
-              <li @click="itemOnSave()">뷰티</li>
-              <li @click="itemOnSave()">취미</li>
-              <li @click="itemOnSave()">레져</li>
-              <li @click="itemOnSave()">책 / 출판</li>
-              <li @click="itemOnSave()">출산 / 육아</li>
-              <li @click="itemOnSave()">지역</li>
-              <li @click="itemOnSave()">일상 / 데일리</li>
+              <li>패션</li>
+              <li>뷰티</li>
+              <li>취미</li>
+              <li>레저</li>
+              <li>책 / 출판</li>
+              <li>출산 / 육아</li>
+              <li>지역</li>
+              <li>일상 / 데일리</li>
             </ul>
           </div>
           <!-- <v-select placeholder="선택해주세요" :options="item" @input="myAction"></v-select> -->
@@ -735,14 +803,14 @@
           <li
             class="save-btn"
             @click="saveBtn"
-            :class="this.profileCard.expectProduct.onSaveButton = true ? 'on':''"
+            :class="this.profileCard.expectProduct.onSaveButton ? 'on':''"
           >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
 
@@ -822,7 +890,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
       </div>
     </div>
     <!-- Skin -->
@@ -941,7 +1009,7 @@ export default {
             ],
 
             marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
-            isCheck: 'undefined',
+            isCheck: undefined,
             skinDefault: '피부타입',
             ageDefault: '10대',
             generationDefault: '초반',
@@ -962,7 +1030,15 @@ export default {
             snsOnSaveButton: false,
             payOnSaveButton: false,
             itemOnSaveButton: false,
-            onStatusCheck: 'undefined'
+            onStatusCheck: {
+                job: null,
+                child: null,
+                pet: null
+            },
+            haveJob: false,
+            haveChild: false,
+            havePet: false,
+            selectText: false
         };
     },
     computed: {
@@ -975,15 +1051,20 @@ export default {
     },
 
     methods: {
+        selectOnOff(event) {
+            console.log(event.target);
+            this.selectText = true;
+        },
         myAction(selectKey) {
             console.log(selectKey);
             this.keyPush = selectKey;
         },
-        statusCheck(value) {
-            this.onStatusCheck = value;
+        statusCheck(value, type) {
+            this.onStatusCheck[type] = value;
+            console.log(this.onStatusCheck[type]);
         },
-        checkStatus(el) {
-            if (el.includes(this.onStatusCheck)) return 'on';
+        checkStatus(el, type) {
+            if (el.includes(this.onStatusCheck[type])) return 'on';
         },
         snsSaveBotton() {
             this.profileCard.sns.onSaveButton = !this.profileCard.sns
@@ -991,8 +1072,9 @@ export default {
                 ? 'on'
                 : '';
         },
-        itemOnSave() {
-            this.profileCard.expectProduct.onSaveButton == true;
+        itemOnSave(event) {
+            this.profileCard.expectProduct.onSaveButton = true;
+            console.log(event.target);
         },
 
         genderAgeOnSave() {},
@@ -1042,7 +1124,12 @@ export default {
         },
         joinCheck() {
             this.clearCardList();
-            this.profileCard['finishBlock'].on = true;
+            if (!this.$store.state.iccMode) {
+                this.profileCard['finishBlock'].on = true;
+            } else {
+                this.$store.state.welcome = true;
+                location.href = '/';
+            }
         },
 
         saveBtn(event) {

@@ -359,7 +359,7 @@
                         <div class="label" @click.prevent="openTermsMobile(1)">약관동의(필수)</div>
                         <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                     </div>
-                    <div class="checkbox-wrap margin-bottom-58">
+                    <div class="checkbox-wrap margin-bottom-58" v-if="!this.$store.state.iccMode">
                         <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
