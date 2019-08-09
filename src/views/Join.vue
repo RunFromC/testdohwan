@@ -558,6 +558,7 @@ export default {
             //     }
             // }
             var certWindow;
+            
             function openCertification() {
                 window.name = "Bigbird - i";
                 var UserAgent = navigator.userAgent;
@@ -574,6 +575,7 @@ export default {
                 document.requestCert.action = 'https://www.kmcert.com/kmcis/web/kmcisReq.jsp';
                 document.requestCert.submit();  
             }
+
             openCertification();
         },
         phoneCheckConfirm() { // 휴대폰 인증번호 확인
