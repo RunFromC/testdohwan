@@ -52,22 +52,24 @@
                                 <div class="input-wrapper ">
                                     <div class="item text">
                                         <div class="label">이름 </div>
-                                        <input type="text" v-model="name">
+                                        <input type="text" v-model="name" disabled>
                                     </div>
 
                                     <div class="item">
                                         <div class="label">휴대폰번호 </div>
-                                        <input type="text" placeholder="- 없이 입력" v-model="phoneNumber">
-                                        <button @click="phoneCheck" :class="phoneNumber ? 'on':''" v-bind:disabled="phoneCertDisable">인증하기</button>
+                                        <input type="text" v-model="phoneNumber" disabled>
+                                        <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
+                                        <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                                        <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                                     </div>
 
-                                    <div class="item">
+                                    <!-- <div class="item">
                                         <div class="label"> </div>
                                         <input type="text" v-model="certNumber">
                                         <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
                                         <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                                         <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 
@@ -342,22 +344,24 @@
                     <div class="input-wrapper ">
                         <div class="item text">
                             <div class="label">이름 </div>
-                            <input type="text" v-model="name">
+                            <input type="text" v-model="name" disabled>
                         </div>
 
                         <div class="item">
                             <div class="label">휴대폰번호 </div>
-                            <input type="text" placeholder="- 없이 입력" v-model="phoneNumber">
-                            <button @click="phoneCheck" :class="phoneNumber ? 'on':''" v-bind:disabled="phoneCertDisable">인증하기</button>
+                            <input type="text" v-model="phoneNumber" disabled>
+                            <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
+                            <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                            <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                         </div>
 
-                        <div class="item">
+                        <!-- <div class="item">
                             <div class="label"> </div>
                             <input type="text" v-model="certNumber">
                             <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
                             <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                             <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
-                        </div>
+                        </div> -->
 
                     </div>
 
@@ -453,8 +457,6 @@ export default {
             trCert: '',
             trUrl: '',
             trAdd: '',
-            phoneCertDisable: true,
-            certCheckDisable: true,
 
             email: '',
             emailValidityText: false,
@@ -476,12 +478,6 @@ export default {
     watch: {
         id(newValue) {
             this.idCheckDisable = newValue ? false : true;
-        },
-        phoneNumber(newValue) {
-            this.phoneCertDisable = newValue ? false : true;
-        },
-        certNumber(newValue) {
-            this.certCheckDisable = newValue ? false : true;
         },
         email(newValue) {
             this.emailCheckDisable = newValue ? false : true;
@@ -751,16 +747,22 @@ export default {
             this.$axios('get',`/cert/decrypte?rec_cert=${data.rec_cert}&certNum=${data.certNum}`, 
             {}).then((res) => {
                 if(res.data.result === 'fail') {
-                    console.log('오류가 발생했습니다.');
+                    alert('오류가 발생했습니다.');
+                    this.certWrongText = true;
+                    this.certPossibleText = false;
                 } else if(res.data.result === 'exists') {
-                    console.log('이미 인증 받은 핸드폰 번호입니다.')
+                    // console.log('이미 인증 받은 핸드폰 번호입니다.')
+                    this.certWrongText = true;
+                    this.certPossibleText = false;
                 } else {
+                    this.certPossibleText = true;
+                    this.certWrongText = false;
                     this.phoneNumber = res.data.phoneNumber;
                     this.name = res.data.name;
                 }
             }).catch((err) => {
                 console.log(err)
-                alert('오류가 발생했습니다.')
+                alert('오류가 발생했습니다.');
             });
         };
     }
