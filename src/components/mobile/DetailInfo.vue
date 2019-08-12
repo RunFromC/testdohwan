@@ -13,20 +13,23 @@
       </ul>
     </div>
     <div class="accordion-contents" :class="onProfileCard('sns')">
-      <div class="certification-list">
+      <div class="certification-list" v-if="!this.$store.state.iccMode">
         <a href="#" id="m-facebook"></a>
         <a href="#" id="m-instagram"></a>
         <a href="#" id="m-youtube"></a>
         <a href="#" id="m-naver"></a>
         <a href="#" id="m-twitter"></a>
       </div>
+      <div class="certification-list" v-else>
+        <a href="#" id="m-instagram"></a>
+      </div>
       <div class="SNS-btn">
         <a href="#">SNS인증하기</a>
       </div>
-      <button class="SNSsave-btn">저장</button>
+      <button class="SNSsave-btn on" @click="saveBtn">저장</button>
     </div>
 
-    <!-- 희망원고료  -->
+    <!-- 희망원고료 , 희망수수료  -->
     <div
       class="accordion"
       id="accodion_pay"
@@ -37,7 +40,8 @@
         <li>
           <img class="icon" src="~@/assets/img/pay.png" alt="희망원고료아이콘" />
         </li>
-        <li>희망원고료</li>
+        <li v-if="!this.$store.state.iccMode">희망원고료</li>
+        <li v-else>희망수수료</li>
         <li>
           <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
         </li>
@@ -50,18 +54,22 @@
     >
       <div class="recommend-checkbox">
         <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-          <span>빅버드 추천을 받을게요</span>
+          <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
+          <span v-else>ICC 추천 받을게요</span>
           <i class="circle"></i>
         </div>
         <div class="checked" v-else @click.prevent="onClickRecommendCheck">
           <i class="check_box"></i>
-          <span>빅버드 추천을 받을게요</span>
+          <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
+          <span v-else>ICC 추천 받을게요</span>
         </div>
         <i class="icon-questions-mark" @click.prevent="showTips(1)"></i>
       </div>
-      <div class="pay-title">기본 원고료</div>
+      <div class="pay-title" v-if="!this.$store.state.iccMode">기본 원고료</div>
+      <div class="pay-title" v-else>보장 개런티</div>
       <div class="pay-input-wrap">
-        <span>원고료</span>
+        <span v-if="!this.$store.state.iccMode">원고료</span>
+        <span v-else>개런티</span>
         <div class="pay-wrap">
           <input class="pay" type="text" maxlength="4" />
           <span>만원</span>
@@ -92,7 +100,8 @@
         </div>
       </div>
       <div class="pay-input-wrap">
-        <span>원고료</span>
+        <span v-if="!this.$store.state.iccMode">원고료</span>
+        <span v-else>개런티</span>
         <div class="pay-wrap">
           <input class="pay" type="text" maxlength="4" />
           <span>만원</span>
@@ -106,7 +115,7 @@
         <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
       </div>
       <div class="button-wrap">
-        <button class="Paysave-btn">저장</button>
+        <button class="Paysave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
 
@@ -114,8 +123,8 @@
     <div
       class="accordion"
       id="accordion_item"
-      @click="onClickProfileCard('expectProduct', $event)"
       v-if="checkService('brands',true) || checkService('influencer',true)"
+      @click="onClickProfileCard('expectProduct', $event)"
     >
       <ul>
         <li>
@@ -131,7 +140,7 @@
       id="accordion-product"
       class="accordion-contents"
       :class="onProfileCard('expectProduct')"
-      v-if="checkService('influencer',true)"
+      v-if="checkService('brands',true) || checkService('influencer',true)"
     >
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
@@ -165,7 +174,7 @@
         <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
 
         <div class="button-wrap">
-          <button class="itemsave-btn">저장</button>
+          <button class="itemsave-btn on" @click="saveBtn">저장</button>
         </div>
       </div>
     </div>
@@ -221,7 +230,7 @@
         <button class="hotsave-btn">저장</button>
       </div>
     </div>-->
-    <!-- 성별 -->
+    <!-- 성별, 연령 -->
     <div
       class="accordion"
       id="accordion_gender"
@@ -256,7 +265,7 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button class="gendersave-btn">저장</button>
+        <button class="gendersave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
     <!-- 연령 -->
@@ -317,7 +326,7 @@
       </div>
 
       <div class="button-wrap">
-        <button class="agesave-btn">저장</button>
+        <button class="agesave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
     <!-- 직업 -->
@@ -370,7 +379,7 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button class="jobsave-btn">저장</button>
+        <button class="jobsave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
     <!-- 관심사 -->
@@ -428,7 +437,7 @@
         <div class="alert-text none">관심사는 6개를 초과 선택할 수 없습니다</div>
 
         <div class="button-wrap">
-          <button class="likesave-btn">저장</button>
+          <button class="likesave-btn on" @click="saveBtn">저장</button>
         </div>
       </div>
     </div>
@@ -466,7 +475,7 @@
           <i></i>
         </div>
         <div class="button-wrap">
-          <button class="marrysave-btn">저장</button>
+          <button class="marrysave-btn on" @click="saveBtn">저장</button>
         </div>
       </div>
     </div>
@@ -517,7 +526,7 @@
         <button class="addBtnWrap">+</button>
       </div>
       <div class="button-wrap">
-        <button class="babysave-btn">저장</button>
+        <button class="babysave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
     <!-- 반려동물 -->
@@ -583,7 +592,7 @@
         <button class="addBtnWrap">+</button>
       </div>
       <div class="button-wrap">
-        <button class="petsave-btn" onclick="location.href='/welcome' ">저장</button>
+        <button class="petsave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
 
@@ -660,7 +669,7 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button class="bodysave-btn">저장</button>
+        <button class="bodysave-btn on" @click="saveBtn">저장</button>
       </div>
     </div>
 
@@ -717,13 +726,13 @@
           </div>
         </div>
         <div class="button-wrap">
-          <button class="skinsave-btn">저장</button>
+          <button class="skinsave-btn on" @click="saveBtn">저장</button>
         </div>
       </div>
     </div>
     <div class="m-finished">
       <a href="#">
-        <span>가입하기</span>
+        <span>프로필입력완료</span>
         <i></i>
       </a>
     </div>
@@ -738,6 +747,50 @@ export default {
     name: 'mobileDetailInfo',
     data() {
         return {
+            // brandsList: [
+            //     'sns',
+            //     'pay',
+            //     'area',
+            //     'gender',
+            //     'age',
+            //     'job',
+            //     'interests',
+            //     'married',
+            //     'children',
+            //     'pet'
+            // ],
+            // influencerList: [
+            //     'sns',
+            //     'pay',
+            //     'expectProduct',
+            //     'gender',
+            //     'age',
+            //     'bodyProfile',
+            //     'skinType'
+            // ],
+            influencerList: [
+                'sns',
+                'pay',
+                'expectProduct',
+                'gender',
+                'job',
+                'married',
+                'children',
+                'pet',
+                'skinType'
+            ],
+            brandsList: [
+                'sns',
+                'pay',
+                'expectProduct',
+                'gender',
+                'job',
+                'married',
+                'children',
+                'pet',
+                'skinType'
+            ],
+            marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
             currentIndex: 0,
             isRecommendCheck: false,
             recommendType: null,
@@ -803,10 +856,11 @@ export default {
                 );
 
                 wrap.style.marginBottom = 35 * index + 'px';
-                const time = setTimeout(() => {
-                    parent.scrollTop = index * 55;
-                    clearTimeout(time);
-                }, 500);
+                parent.scrollTop = index * 58;
+                // const time = setTimeout(() => {
+                //     parent.scrollTop = index * 58;
+                //     clearTimeout(time);
+                // }, 500);
             }
         },
         onClickRecommendCheck() {
@@ -865,6 +919,64 @@ export default {
                 card = this.marketList;
             }
             return card;
+        },
+        prevDetailInfo(event) {
+            this.changeDetailInfo('prev');
+        },
+        nextDetailInfo(event) {
+            this.changeDetailInfo('next');
+        },
+        changeDetailInfo(type) {
+            let card = this.getCardList();
+            if (this.currentIndex === 0 && type === 'prev') return;
+            if (this.currentIndex === card.length - 1 && type === 'next')
+                return;
+
+            this.clearCardList();
+
+            let currentCard;
+            if (type === 'prev') {
+                currentCard = card[this.currentIndex - 1];
+            } else {
+                currentCard = card[this.currentIndex + 1];
+            }
+
+            this.$store.commit('setCurrentCard', {
+                currentCard
+            });
+            this.profileCard[currentCard].on = true;
+        },
+        saveBtn(event) {
+            console.log('click', event);
+            if (event.target.className.includes('on')) {
+                if (this.currentCard === 'sns') {
+                    this.profileCard.sns.save = true;
+                } else if (this.currentCard === 'pay') {
+                    this.profileCard.pay.save = true;
+                } else if (this.currentCard === 'expectProduct') {
+                    this.profileCard.expectProduct.save = true;
+                } else if (this.currentCard === 'gender') {
+                    this.profileCard.gender.save = true;
+                } else if (this.currentCard === 'job') {
+                    this.profileCard.job.save = true;
+                } else if (this.currentCard === 'married') {
+                    this.profileCard.married.save = true;
+                } else if (this.currentCard === 'children') {
+                    this.profileCard.children.save = true;
+                } else if (this.currentCard === 'pet') {
+                    this.profileCard.pet.save = true;
+                } else if (this.currentCard === 'skinType') {
+                    this.profileCard.skinType.save = true;
+                }
+
+                this.nextDetailInfo(event);
+            }
+            return;
+        },
+        clearCardList() {
+            for (const key in this.profileCard) {
+                this.profileCard[key].on = false;
+            }
         }
     }
 };

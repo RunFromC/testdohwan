@@ -8,8 +8,16 @@
           <div class="container">
             <div class="title">아이디/비밀번호 찾기</div>
             <div class="tabBtnWrap">
-              <a href="#" @click.prevent="toggleTab('id')" :class="isTabToggle('id')">아이디</a>
-              <a href="#" @click.prevent="toggleTab('pw')" :class="isTabToggle('pw')">비밀번호</a>
+              <a
+                href="#"
+                @click.prevent="[toggleTab('id'), onCertification(false)]"
+                :class="isTabToggle('id')"
+              >아이디</a>
+              <a
+                href="#"
+                @click.prevent="[toggleTab('pw'), onCertification(false)]"
+                :class="isTabToggle('pw')"
+              >비밀번호</a>
             </div>
 
             <div class="tab">
@@ -24,7 +32,7 @@
               </div>
 
               <div class="text">인증수단 선택</div>
-              <div class="certificationBtnWrap" :class="!certification.isCertOn ? 'none': ''">
+              <div class="certificationBtnWrap" v-if="this.certification.isCertOn">
                 <input
                   id="email"
                   type="button"
@@ -40,20 +48,20 @@
                   @click.prevent="onCertification(true,'phone')"
                 />
               </div>
-              <div class="certificationTabs">
+              <div class="certificationTabs" v-else>
                 <div class="certification" id="cert_email" v-if="certification.isCertEmailOn">
                   <input type="text" placeholder="이메일" class="input-text" />
-                  <a href="#" class="input-button">인증번호 요청</a>
+                  <a href="#" class="input-button" @click="certInputOnOff">인증번호 요청</a>
                   <span class="wrongMsg">
                     <i class="none">잘못된 이메일 형식입니다</i>
                   </span>
-                  <a href="#">인증메일 재전송 요청 ></a>
-
-                  <div id="certNumberWrap">
+                  <div id="certNumberWrap" v-show="certification.isCertInputOn">
                     <input type="text" id="certNumberInput" placeholder="인증번호 입력" />
                     <div id="countDown">05:00</div>
                     <a href="#" id="certNumberBtn">확인</a>
                   </div>
+
+                  <a href="#">인증메일 재전송 요청 ></a>
                 </div>
 
                 <div class="certification" id="cert_phone" v-else-if="certification.isCertPhoneOn">
@@ -62,13 +70,13 @@
                     <input type="text" class="input-phone" />
                     <input type="text" class="input-phone" />
                   </div>
-                  <input type="button" value="인증번호 요청" class="input-button" />
 
                   <div id="certNumberWrap">
                     <input type="text" id="certNumberInput" placeholder="인증번호 입력" />
                     <div id="countDown">05:00</div>
                     <a href="#" id="certNumberBtn">확인</a>
                   </div>
+                  <input type="button" value="인증번호 요청" class="input-button" />
 
                   <a class="reSendCertNum" href="#">인증번호 재전송 요청 ></a>
                   <span class="resMessage none">인증번호가 일치하지 않습니다.</span>
@@ -129,7 +137,8 @@ export default {
             certification: {
                 isCertOn: true,
                 isCertEmailOn: false,
-                isCertPhoneOn: false
+                isCertPhoneOn: false,
+                isCertInputOn: false
             }
         };
     },
@@ -140,6 +149,9 @@ export default {
         questionTab
     },
     methods: {
+        certInputOnOff() {
+            this.certification.isCertInputOn = true;
+        },
         toggleTab(value) {
             this.isTabToggleValue = value;
         },
@@ -158,7 +170,8 @@ export default {
         //     console.log(type);
         // },
         onCertification(onOff, type) {
-            this.certification.isCertOn = false;
+            this.certification.isCertOn = onOff;
+            this.certification.isCertOn = !this.certification.isCertOn;
             if (type.includes('email')) {
                 this.certification.isCertEmailOn = true;
                 this.certification.isCertPhoneOn = false;
@@ -166,7 +179,6 @@ export default {
                 this.certification.isCertEmailOn = false;
                 this.certification.isCertPhoneOn = true;
             }
-            console.log(type, this.certification, onOff);
         }
     },
     mounted() {

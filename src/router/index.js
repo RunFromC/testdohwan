@@ -7,6 +7,7 @@ import Join from '../views/Join.vue';
 import ChangePW from '../views/ChangePW.vue';
 import ClientJoin from '../views/client/Join.vue';
 import CertSuccess from '../views/CertSuccess.vue';
+import Policy from '../views/privacy/Policy.vue';
 
 Vue.use(Router);
 
@@ -58,6 +59,11 @@ const router = new Router({
             path: '/cert/success',
             name: 'certSuccess',
             component: CertSuccess
+        },
+        {
+            path: '/privacy/policy',
+            name: 'policy',
+            component: Policy
         }
     ]
 });
