@@ -24,25 +24,26 @@
                                 <div class="input-wrapper">
                                     <div class="item">
                                         <div class="label">아이디 </div>
-                                        <input type="text" v-model="id" placeholder="영문,숫자 포함 4~12자리">
+                                        <input type="text" v-model="id" @keyup="idvalidationReset">
                                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                                        <div class="wrong-text" v-if="idValidityText">영문,숫자 포함 4~12자리</div>
-                                        <div class="possible-text" v-if="idPossibleText">사용가능한 아이디입니다</div>
-                                        <div class="wrong-text" v-if="idWrongText">사용중인 아이디입니다</div>
+                                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                                        <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
+                                        <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
+                                        <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
                                     </div>
                                 </div>
 
                                 <div class="input-wrapper ">
                                     <div class="item password">
                                         <div class="label">비밀번호 </div>
-                                        <input type="password" placeholder="영문,숫자,특수문자 포함 6~14자리" v-model="pw" v-on:focusout="pwInput">
+                                        <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                         <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
                                     </div>
 
                                     <div class="item password">
                                         <div class="label"> </div>
-                                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" v-on:focusout="pwCheck">
+                                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                         <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                                     </div>
@@ -51,8 +52,7 @@
                                 <div class="input-wrapper ">
                                     <div class="item text">
                                         <div class="label">이름 </div>
-                                        <input type="text" placeholder="한글,영문,()만 포함 2자이상" v-model="name" v-on:focusout="nameCheck">
-                                        <div class="wrong-text" v-if="nameValidityText">한글,영문,()만 포함 2자이상</div>
+                                        <input type="text" v-model="name">
                                     </div>
 
                                     <div class="item">
@@ -63,8 +63,8 @@
 
                                     <div class="item">
                                         <div class="label"> </div>
-                                        <input type="text" placeholder="인증번호" v-model="certNumber">
-                                        <button @click="phoneCheckConfirm" :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
+                                        <input type="text" v-model="certNumber">
+                                        <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
                                         <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                                         <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                                     </div>
@@ -74,11 +74,12 @@
                                 <div class="input-wrapper">
                                     <div class="item">
                                         <div class="label">이메일</div>
-                                        <input type="text" placeholder="직접입력" v-model="email">
+                                        <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset">
                                         <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
-                                        <div class="wrong-text" v-if="emailValidityText">잘못된 이메일 형식입니다</div>
-                                        <div class="possible-text" v-if="emailPossibleText">사용가능한 이메일입니다</div>
-                                        <div class="wrong-text" v-if="emailWrongText">사용중인 이메일입니다</div>
+                                        <div class="wrong-text" v-if="email && emailValidityText">잘못된 이메일 형식입니다</div>
+                                        <div class="possible-text" v-if="email && emailPossibleText">사용가능한 이메일입니다</div>
+                                        <div class="wrong-text" v-if="email && emailWrongText">사용중인 이메일입니다</div>
+                                        <div class="wrong-text" v-if="email && emailCheckText">중복확인이 필요합니다</div>
                                     </div>
                                 </div>
 
@@ -100,7 +101,7 @@
                                     <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
                                 </div>
                                 <div class="finished" :class="joinPage ? 'none': ''" @click="standardJoin">
-                                    <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&certNumber&&email ? 'on':''"><span>가입완료</span></a>
+                                    <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''"><span>가입완료</span></a>
                                 </div>
                             </div>
                         </div>
@@ -313,25 +314,26 @@
                     <div class="input-wrapper">
                         <div class="item">
                             <div class="label">아이디 </div>
-                            <input type="text" v-model="id" placeholder="영문,숫자 포함 4~12자리">
+                            <input type="text" v-model="id" @keyup="idvalidationReset">
                             <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                            <div class="wrong-text" v-if="idValidityText">영문,숫자 포함 4~12자리</div>
-                            <div class="possible-text" v-if="idPossibleText">사용가능한 아이디입니다</div>
-                            <div class="wrong-text" v-if="idWrongText">사용중인 아이디입니다</div>
+                            <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                            <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
+                            <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
+                            <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
                         </div>
                     </div>
 
                     <div class="input-wrapper ">
                         <div class="item password">
                             <div class="label">비밀번호 </div>
-                            <input type="password" placeholder="영문,숫자,특수문자 포함 6~14자리" v-model="pw" v-on:focusout="pwInput">
+                            <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                             <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                             <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
                         </div>
 
                         <div class="item password">
                             <div class="label"> </div>
-                            <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" v-on:focusout="pwCheck">
+                            <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck">
                             <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                             <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                         </div>
@@ -340,8 +342,7 @@
                     <div class="input-wrapper ">
                         <div class="item text">
                             <div class="label">이름 </div>
-                            <input type="text" placeholder="한글,영문,()만 포함 2자이상" v-model="name" v-on:focusout="nameCheck">
-                            <div class="wrong-text" v-if="nameValidityText">한글,영문,()만 포함 2자이상</div>
+                            <input type="text" v-model="name">
                         </div>
 
                         <div class="item">
@@ -352,8 +353,8 @@
 
                         <div class="item">
                             <div class="label"> </div>
-                            <input type="text" placeholder="인증번호" v-model="certNumber">
-                            <button @click="phoneCheckConfirm" :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
+                            <input type="text" v-model="certNumber">
+                            <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
                             <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                             <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                         </div>
@@ -363,12 +364,12 @@
                     <div class="input-wrapper">
                         <div class="item">
                             <div class="label">이메일</div>
-                            <input type="text" placeholder="직접입력" v-model="email">
+                            <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset">
                             <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
-                            <div class="wrong-text" v-if="emailValidityText">잘못된 이메일 형식입니다</div>
-                            <div class="possible-text" v-if="emailPossibleText">사용가능한 이메일입니다</div>
-                            <div class="wrong-text" v-if="emailWrongText">사용중인 이메일입니
-                                다</div>
+                            <div class="wrong-text" v-if="email && emailValidityText">잘못된 이메일 형식입니다</div>
+                            <div class="possible-text" v-if="email && emailPossibleText">사용가능한 이메일입니다</div>
+                            <div class="wrong-text" v-if="email && emailWrongText">사용중인 이메일입니다</div>
+                            <div class="wrong-text" v-if="email && emailCheckText">중복확인이 필요합니다</div>
                         </div>
                     </div>
 
@@ -383,7 +384,10 @@
                         <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
-                    <div class="m-finished" id="welcome-finished"><a href="#" @click.prevent="toggleMobileTab(2)"><span>가입완료</span> <i></i></a></div>
+
+                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="standardJoin">
+                        <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''"><span>가입완료</span></a>
+                    </div>
                 </div>
                 <div class="tab" id="additionalInfo" v-else>
                     <div class="add_wrap add_wrap_group" v-if="!isAccodionOn">
@@ -433,6 +437,7 @@ export default {
             idValidityText: false,
             idPossibleText: false,
             idWrongText: false,
+            idCheckText: false,
             idCheckDisable: true,
 
             pw:'',
@@ -441,8 +446,6 @@ export default {
             pwWrongText: false,
 
             name: '',
-            nameValidityText: false,
-
             phoneNumber: '',
             certNumber: '',
             certPossibleText: false,
@@ -458,7 +461,11 @@ export default {
             emailValidityText: false,
             emailPossibleText: false,
             emailWrongText: false,
+            emailCheckText: false,
             emailCheckDisable: true,
+
+            userIndex: 0, //가입완료시 받는 userIndex
+
             isCardFlip: false,
             isMobileTermsOn: false,
             isToggleMobileTab: 1,
@@ -496,10 +503,25 @@ export default {
         addInforShow(){ //가입완료 클릭시 추가정보 탭으로 이동
             this.isToggleMobileTab === 2;
         },
+        idvalidationReset(e) {
+            if(e.code === 'Enter') return;
+            this.idCheckText = true;
+            this.idWrongText = false;
+            this.idPossibleText = false;
+            this.idValidityText = false;
+        },
+        emailvalidationReset(e) {
+            if(e.code === 'Enter') return;
+            this.emailCheckText = true;
+            this.emailWrongText = false;
+            this.emailPossibleText = false;
+            this.emailValidityText = false;
+        },
         idCheck() { // 아이디 중복확인
+            this.idCheckText = false;
             if(this.id) {
                 let validity = /^[A-Za-z0-9]{4,12}$/i; // 영문,숫자 포함 4~12자리
-                if(this.id.match(validity) != null) {
+                if(validity.test(this.id)) {
                     this.$axios('post','/check/id', {
                         id: this.id
                     }).then((res) => {
@@ -525,7 +547,7 @@ export default {
         pwInput() { // 비밀번호 입력
             if(this.pw || this.pwAgain) {
                 let validity = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,14}$/i; // 영문,숫자,특수문자 포함 6~14자리
-                if(this.pw.match(validity) != null) {
+                if(validity.test(this.pw)) {
                     this.pwValidityText = false;
                 } else {
                     this.pwValidityText = true;
@@ -538,16 +560,6 @@ export default {
                     this.pwWrongText = true;
                 } else {
                     this.pwWrongText = false;
-                }
-            }
-        },
-        nameCheck() { // 이름
-            if(this.name) {
-                let validity = /^[가-힣a-zA-z()\s]{2,}$/i; // 한글,영문,()만 포함 2자이상
-                if(this.name.match(validity) != null) {
-                    this.nameValidityText = false;
-                } else {
-                    this.nameValidityText = true;
                 }
             }
         },
@@ -581,13 +593,11 @@ export default {
 
             openCertification();
         },
-        phoneCheckConfirm() { // 휴대폰 인증번호 확인
-
-        },
         eamilCheck() { // 이메일 중복확인
+            this.emailCheckText = false;
             if(this.email) {
                 let validity = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; // 이메일 정규식(보통사이트)
-                if(this.email.match(validity) != null) {
+                if(validity.test(this.email)) {
                     this.$axios('post','/check/email', {
                         email: this.email
                     }).then((res) => {
@@ -613,15 +623,59 @@ export default {
         addJoin() {
             this.joinPage = true;            
         },
-        standardJoin() {
-            this.addJoinPage = !this.addJoinPage
-            // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.certNumber && this.email) {
-            //     if(this.getByFormData.termsOfUse == false) {
-            //         alert('약관동의 체크해주세요');
-            //     }
-            // } else {
-            //     alert('정보를 모두 입력해주세요');
-            // }
+        standardJoin() { // 가입완료
+            if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
+                if(this.idValidityText) {
+                    alert("아이디는 영문,숫자 포함 4~12자로 입력해주세요");
+                    return;
+                }
+                if(this.idWrongText) {
+                    alert("사용중인 아이디입니다 다시 입력해주세요");
+                    return;
+                }
+                if(this.idCheckText) {
+                    alert("아이디 중복확인해주세요");
+                    return;
+                }
+                if(this.pwValidityText) {
+                    alert("비밀번호는 영문,숫자,특수문자 포함 6~12자로 입력해주세요");
+                    return;
+                }
+                if(this.pwWrongText) {
+                    alert("비밀번호가 일치하지 않습니다");
+                    return;
+                }
+                if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
+                    alert("본인인증이 필요합니다");
+                    return;
+                }
+                if(this.emailValidityText) {
+                    alert("잘못된 이메일 형식입니다 다시 입력해주세요");
+                    return;
+                }
+                if(this.emailWrongText) {
+                    alert("사용중인 이메일입니다 다시 입력해주세요");
+                    return;
+                }
+                if(this.emailCheckText) {
+                    alert("이메일 중복확인해주세요");
+                    return;
+                }
+                this.$axios('post','/join', {
+                    id: this.id,
+                    pw: this.pw,
+                    name: this.name,
+                    phoneNumber: this.phoneNumber,
+                    email: this.email
+                }).then((res) => {
+                    this.userIndex = res.data.userIdx;
+                }).catch((err) => {
+                    console.log(err);
+                })
+                this.addJoinPage = !this.addJoinPage;
+            } else {
+                alert('정보를 모두 입력해주세요');
+            }
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;
