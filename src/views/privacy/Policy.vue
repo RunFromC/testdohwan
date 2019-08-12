@@ -283,6 +283,6 @@ export default {
 
 <style>
 #policy {
-    margin: 8px;
+    margin: 9px;
 }
 </style>
