@@ -1152,6 +1152,7 @@ button:focus {
                                     color: #000;
                                 }
                             }
+                            
                         }
                     }
 
@@ -4478,6 +4479,7 @@ button:focus {
                                         }
                                     }
                                 }
+                                
                             }
                             
                         }
@@ -5165,9 +5167,15 @@ button:focus {
                                     border: none;
                                     margin-right: 5px;
                                 }
+                                .pay::placeholder {
+                                    font-size: 14px;
+                                    color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-Bold',
+                                        serif;
+                                }
                                 span {
                                     font-size: 14px;
-                                    font-family: Nanum-Barun-Gothic-Bold,
+                                    font-family: 'Nanum-Barun-Gothic-Bold',
                                         sans-serif;
                                 }
                             }
@@ -5357,6 +5365,12 @@ button:focus {
                                     text-align: right;
                                     background: none !important;
                                 }
+                                .pay::placeholder {
+                                    font-size: 14px;
+                                    color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-Bold',
+                                        serif;
+                                }
                                 span {
                                     font-size: 14px;
                                 }
@@ -5377,6 +5391,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 font-size: 14px;
                                 display: block;
+                                cursor: default;
+                            }
+                            .Paysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                         }
                         .area-map {
@@ -5438,6 +5457,17 @@ button:focus {
                                 font-size: 20px;
                                 font-family: Nanum-Barun-Gothic-normal, serif;
                                 position: relative;
+                                
+                                
+                                input {
+                                    font-size: 18px;
+                                    padding: 0 30px 0 20px;
+                                    width: 153px;
+                                }
+                                input::placeholder {
+                                    font-size: 18px;
+                                    
+                                }
 
                                 i {
                                     display: block;
@@ -5464,7 +5494,6 @@ button:focus {
                                 display: none;
                                 margin: 0 auto;
                                 width: 100%;
-                                max-height: 130px;
                                 border: 1px solid #bbbbbb;
                                 border-top: none;
                                 overflow: hidden;
@@ -5474,21 +5503,21 @@ button:focus {
                                 .list {
                                     border-top: 1px solid #e2e1e1;
                                     margin: 0 auto;
-                                    padding: 9px 0;
+                                    padding: 15px 0;
                                     width: 175px;
-                                    max-height: 112px;
+                                    text-align: left;
 
                                     li {
+                                        padding-left: 6px;
                                         height: 29px;
                                         line-height: 29px;
-                                        text-align: center;
                                         font-size: 14px;
                                         cursor: pointer;
-                                        font-family: Nanum-Barun-Gothic-normal,
+                                        font-family: 'Nanum-Barun-Gothic-normal',
                                             serif;
+                                        color: #000;
                                     }
-                                    overflow-y: auto;
-                                    overflow-x: hidden;
+                                   
                                 }
                             }
                             .list::-webkit-scrollbar {
@@ -5514,6 +5543,11 @@ button:focus {
                                 text-align: center;
                                 margin: 28px auto 20px;
                                 display: block;
+                                cursor: default;
+                            }
+                            button.hotsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.gendersave-btn {
                                 display: block;
@@ -5529,6 +5563,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.gendersave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.agesave-btn {
                                 display: block;
@@ -5544,10 +5583,15 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.agesave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.jobsave-btn {
                                 display: block;
-                                margin: 40px auto 20px;
+                                margin: 0 auto 20px;
                                 -webkit-border-radius: 10px;
                                 -moz-border-radius: 10px;
                                 border-radius: 10px;
@@ -5559,6 +5603,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.jobsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.likesave-btn {
                                 display: block;
@@ -5574,6 +5623,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.likesave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.marrysave-btn {
                                 display: inline-block;
@@ -5589,6 +5643,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.marrysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.babysave-btn {
                                 display: block;
@@ -5604,6 +5663,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.babysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.petsave-btn {
                                 display: block;
@@ -5619,6 +5683,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.petsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.bodysave-btn {
                               display: block;
@@ -5634,6 +5703,11 @@ button:focus {
                               font-family: NotoSansKR-Regular, sans-serif;
                               text-align: center;
                               background: $colorAAA;
+                              cursor: default;
+                            }
+                            button.bodysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.itemsave-btn {
                               display: block;
@@ -5649,6 +5723,11 @@ button:focus {
                               font-family: NotoSansKR-Regular, sans-serif;
                               text-align: center;
                               background: $colorAAA;
+                              cursor: default;
+                            }
+                            button.itemsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.skinsave-btn {
                               width: 112px;
@@ -5664,10 +5743,14 @@ button:focus {
                               text-align: center;
                               margin: 28px auto 20px;
                               display: block;
+                              cursor: default;
+                            }
+                            button.skinsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                         }
                         .m-gender {
-                            overflow: hidden;
                             margin: 40px auto;
                             display: block;
                             width: 204px;
@@ -5744,20 +5827,17 @@ button:focus {
                                     background-size: cover;
                                 }
                             }
-                        }
-                        .m-age {
-                            > div:last-child {
-                                margin-top: 15px;
-                            }
+                            
                             .input-selectbox-wrap {
+                                float: left;
                                 width: 205px - 2px;
                                 height: auto;
                                 border: 1px solid #bbbbbb;
                                 border-radius: 5px;
-                                margin: 30px auto 15px;
                                 position: relative;
                                 background: #fff;
-
+                                box-sizing: border-box;
+                                
                                 .select {
                                     cursor: pointer;
                                     width: 205px - 2px;
@@ -5828,7 +5908,13 @@ button:focus {
                                     }
                                 }
                             }
-
+                            
+                            #m-ageGeneration {
+                                margin-top: 40px;
+                            }
+                            #m-ageGroup {
+                                margin-bottom: 40px;
+                            }
                             .listWrap2 {
                                 position: relative;
                                 z-index: 1;
@@ -5870,7 +5956,9 @@ button:focus {
                                 background: #eeeeee;
                             }
                         }
+                       
                         .m-job {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
@@ -5962,6 +6050,239 @@ button:focus {
                             .list::-webkit-scrollbar-thumb {
                                 border-radius: 5px;
                                 background: #eeeeee;
+                            }
+                            .status {
+                                text-align: center;
+                                margin: 30px 0;
+                                display: inline-block;
+                                >li {
+                                    float: left;
+                                    margin-right: 50px;
+                                    a {
+                                        display: block;
+                                        em {
+                                            font-size: 16px;
+                                            height: 27px;
+                                            line-height: 27px;
+                                            color: #000;
+                                        }
+                                        span {
+                                            background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                            width: 18px;
+                                            height: 18px;
+                                            display: block;
+                                            margin: 10px auto 0;
+                                        }
+                                    }
+                                    a.on {
+                                        span {                                            
+                                            background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+                                        }
+                                    }
+                                    
+                                }
+                                > li:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                            .status-selectbox-wrap {
+                                padding: 15px 0 30px;
+                                border-bottom: 4px solid #E8E8E8;
+                                border-top: 4px solid #E8E8E8;
+                                margin: 0 auto 40px;
+                                width: 305px;
+                                
+                                .status-selectbox {
+                                    
+                                    padding-top: 15px;
+                                    display: flex;
+                                    justify-content: center;
+                                    .select-box {
+                                        margin-right: 5px;
+                                        float: left;
+                                        position: relative;
+                                        
+                                        .select-first {
+                                            width: 88px;
+                                            box-sizing: border-box;
+                                            height: 40px;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;  
+                                            background: #fff;                                       
+                                            li {
+                                                cursor: pointer;
+                                                position: relative;
+                                                span {
+                                                    font-size: 14px;
+                                                    display: block;
+                                                    line-height: 40px;
+                                                    text-align: left;
+                                                    padding-left: 15px;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 9px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+                                        }
+                                        .list-first {
+                                            position: absolute;
+                                            width: 88px;
+                                            box-sizing: border-box;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            border-top: none;
+                                            top: 37px;
+                                            left: 0;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            z-index: 10;
+                                            display: none;
+                                            > li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 15px 0 0;
+                                                cursor: pointer;
+
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            } 
+
+                                        }
+                                        .list-first::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-first::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }                                        
+                                    }
+                                    .select-box.big {
+                                        position: relative;
+                                        margin-right: 10px;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-second {
+                                            background: #fff;
+                                            width: 162px;
+                                            box-sizing: border-box;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;
+                                            height: 40px;
+                                            li {
+                                                box-sizing: border-box;
+                                                line-height: 40px;
+                                                padding: 0 20px;
+                                                span {
+                                                    font-size: 14px;
+                                                    color: #000;
+                                                    padding-left: 5px;
+                                                }
+                                                
+                                                input {
+                                                    
+                                                    font-size: 14px;
+                                                    width: 100%;
+                                                    color: #000;
+                                                    
+                                                    
+                                                }
+                                                input::placeholder {
+                                                    color: #C1C1C1;
+                                                    font-size: 14px;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 9px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+
+                                        }
+                                        .list-second {
+                                            left: 0;
+                                            display: none;
+                                            position: absolute;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            box-sizing: border-box;
+                                            border-top: none;
+                                            height: auto;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            width: 162px;
+                                            z-index: 10;
+                                            top: 37px;
+                                            li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 15px 0 0;
+                                                cursor: pointer;
+                                                background: #fff;
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+
+                                        }
+                                        .list-second::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-second::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }
+                                    }
+                                }
+                                .status-btn {
+                                    ul {                                        
+                                        float: left;
+                                        margin-top: 7px;
+                                        .status-add {
+                                           a {
+                                                display: block;
+                                                width: 25px;
+                                                height: 25px;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
+                                                color: #fff;
+                                                border-radius: 5px;
+                                                line-height: 25px;
+                                           }
+
+                                        }
+                                        .status-remove {
+                                            a {
+                                                display: block;
+                                                 width: 25px;
+                                                 height: 25px;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
+                                                 color: #fff;
+                                                 line-height: 25px;
+                                                 border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                         .m-like {
@@ -6425,6 +6746,7 @@ button:focus {
                             }
                         }
                         .m-pet {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
@@ -6489,7 +6811,7 @@ button:focus {
                                             text-align: center;
                                             font-size: 14px;
                                             cursor: pointer;
-                                            font-family: Nanum-Barun-Gothic-normal,
+                                            font-family: 'Nanum-Barun-Gothic-normal',
                                                 serif;
                                         }
 
@@ -6632,8 +6954,76 @@ button:focus {
                                 border: none;
                                 display: block;
                             }
+                            .status {
+                                text-align: center;
+                                margin: 30px 0;
+                                display: inline-block;
+                                >li {
+                                    float: left;
+                                    margin-right: 50px;
+                                    a {
+                                        display: block;
+                                        em {
+                                            font-size: 16px;
+                                            height: 27px;
+                                            line-height: 27px;
+                                            color: #000;
+                                        }
+                                        span {
+                                            background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                            width: 18px;
+                                            height: 18px;
+                                            display: block;
+                                            margin: 10px auto 0;
+                                        }
+                                    }
+                                    a.on {
+                                        span {                                            
+                                            background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+                                        }
+                                    }
+                                    
+                                }
+                                > li:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                            .status-selectbox-wrap {                            
+                                .status-selectbox {                                
+                                    .select-box {  
+                                        .select-first {
+                                            width: 100px;
+                                            
+                                        }
+                                        .list-first {                                        
+                                            width: 100px; 
+                                        }                                        
+                                    }
+                                    .select-box.big {
+                                        position: relative;
+                                        margin-right: 10px;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-second {
+                                            width: 100px;
+                                            li {
+                                                span {
+                                                    color: #707070;
+                                                    padding-left: 0;
+                                                }
+                                            }
+                                        }
+                                        .list-second {                                        
+                                            width: 100px;
+                                        }                                    
+                                    }
+                                }
+                                
+                            }
                         }
                         .m-item {
+                            text-align: center;
                           .input-selectbox-wrap {
                             width: 205px - 2px;
                             height: auto;
@@ -6745,8 +7135,7 @@ button:focus {
                           }
                           .choice-list {
                             width: 246px;
-                            overflow: hidden;
-                            display: block;
+                            display: inline-block;
                             margin: 15px auto 0;
                             > ul {
                               position: relative;
@@ -6782,6 +7171,20 @@ button:focus {
                                 transform: translate(-50%, -50%);
                                 border:2px solid #DEF8EC;
                                 color: red;
+                              }
+                              li.close {
+                                position: absolute;
+                                width: 20px;
+                                height: 20px;
+                                right: -5px;
+                                top: -5px;
+                                background: #E2E1E1;
+                                line-height: 20px;                                
+                                border: none;
+                                .close-btn {
+                                    a {display: block;}
+                                }   
+                                  
                               }
                             }
             
@@ -6932,7 +7335,7 @@ button:focus {
                                   cursor: pointer;
                                   background: #fff;
                                 }
-                                li.on {
+                                li.checked {
                                   background: #4BD897!important;
                                   -moz-background: #4BD897;
                                   -ms-background: #4BD897;
@@ -7106,7 +7509,10 @@ button:focus {
                         height: 420px;
                     }
                     #accordion-product.height {
-                        height: 408px;
+                        height: 350px;
+                    }
+                    #accordion-gender.height {
+                        height: 700px;
                     }
 
                     .SNS-btn {
@@ -7141,6 +7547,11 @@ button:focus {
                         text-align: center;
                         font-family: NotoSansKR-Regular, sans-serif;
                         border: 0;
+                        cursor: default;
+                    }
+                    button.SNSsave-btn.on {
+                        background: #4bd897;
+                        cursor: pointer;
                     }
                 }
                 #requiredInfo.tab {

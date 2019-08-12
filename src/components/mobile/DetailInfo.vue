@@ -33,8 +33,8 @@
     <div
       class="accordion"
       id="accodion_pay"
-      v-if="checkService('brands',true) || checkService('influencer',true)"
       @click="onClickProfileCard('pay', $event)"
+      v-if="checkService('brands',true) || checkService('influencer',true)"
     >
       <ul>
         <li>
@@ -71,7 +71,7 @@
         <span v-if="!this.$store.state.iccMode">원고료</span>
         <span v-else>개런티</span>
         <div class="pay-wrap">
-          <input class="pay" type="text" maxlength="4" />
+          <input class="pay" type="text" maxlength="4" placeholder="1000" />
           <span>만원</span>
         </div>
         <select class="percentage-select">
@@ -95,7 +95,7 @@
       <div class="product-input-wrap">
         <span>제품가</span>
         <div class="product-wrap">
-          <input type="text" class="pay" maxlength="9" />
+          <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
           <span>원 이상</span>
         </div>
       </div>
@@ -103,7 +103,7 @@
         <span v-if="!this.$store.state.iccMode">원고료</span>
         <span v-else>개런티</span>
         <div class="pay-wrap">
-          <input class="pay" type="text" maxlength="4" />
+          <input class="pay" type="text" maxlength="4" placeholder="1000" />
           <span>만원</span>
         </div>
         <select class="percentage-select">
@@ -144,32 +144,37 @@
     >
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
-          <div class="select3 select-btn" id="itemselect-btn">
-            <span>공구품목 선택</span>
+          <div class="select select-btn" @click.prevent="showSelectList">
+            <input type="text" placeholder="공구품목 선택, 입력" />
             <i></i>
           </div>
-
-          <div class="listContents listWrap3 long">
+          <div class="listContents listWrap long">
             <ul class="list">
-              <li data-sub="0">패션</li>
-              <li data-sub="1">뷰티</li>
-              <li data-sub="2">취미</li>
-              <li data-sub="3">레져</li>
-              <li data-sub="4">책 / 출판</li>
-              <li data-sub="5">출산 / 육아</li>
-              <li data-sub="6">지역</li>
-              <li data-sub="7">일상 / 데일리</li>
+              <li>패션</li>
+              <li>뷰티</li>
+              <li>취미</li>
+              <li>레저</li>
+              <li>책 / 출판</li>
+              <li>출산 / 육아</li>
+              <li>지역</li>
+              <li>일상 / 데일리</li>
             </ul>
           </div>
         </div>
 
-        <div class="input-text-wrap" id="m-item">
-          <input type="text" placeholder="기타 공구품목 입력" maxlength="6" />
-        </div>
-
         <div class="alert-text none">6글자 초과 입력할 수 없습니다</div>
 
-        <div class="choice-list"></div>
+        <div class="choice-list">
+          <ul>
+            <li></li>
+            <li class="close">
+              <span class="close-btn">
+                <a href="#">X</a>
+              </span>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+        </div>
 
         <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
 
@@ -239,9 +244,9 @@
     >
       <ul>
         <li>
-          <img class="icon" src="~@/assets/img/men_women.png" alt="성별아이콘" />
+          <img class="icon" src="~@/assets/img/age_.png" alt="gender" />
         </li>
-        <li>성별</li>
+        <li>성별/연령</li>
         <li>
           <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
         </li>
@@ -253,47 +258,27 @@
       v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
     >
       <div class="m-gender">
-        <div class="gender-wrap gender-img radio-wrap checked">
+        <div
+          class="gender-wrap gender-img radio-wrap"
+          @click="eitherSelect('m')"
+          :class="checkEither('m')"
+        >
           <div class="image"></div>
           <span>남성</span>
           <i></i>
         </div>
-        <div class="gender-wrap gender-img radio-wrap">
+        <div
+          class="gender-wrap gender-img radio-wrap"
+          @click="eitherSelect('w')"
+          :class="checkEither('w')"
+        >
           <div class="image"></div>
           <span>여성</span>
           <i></i>
         </div>
-      </div>
-      <div class="button-wrap">
-        <button class="gendersave-btn on" @click="saveBtn">저장</button>
-      </div>
-    </div>
-    <!-- 연령 -->
-    <div
-      class="accordion"
-      id="accordion_age"
-      @click="onClickProfileCard('age', $event)"
-      v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
-    >
-      <ul>
-        <li>
-          <img class="icon" src="~@/assets/img/age.png" alt="연령아이콘" />
-        </li>
-        <li>연령</li>
-        <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
-        </li>
-      </ul>
-    </div>
-    <div
-      class="accordion-contents"
-      :class="onProfileCard('age')"
-      v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
-    >
-      <div class="m-age">
-        <div class="input-selectbox-wrap mt" id="m_ageGeneration">
+        <div class="input-selectbox-wrap" id="m-ageGeneration">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <span>10대</span>
+            <span>{{ageDefault}}</span>
             <i></i>
           </div>
 
@@ -309,9 +294,9 @@
           </div>
         </div>
 
-        <div class="input-selectbox-wrap" id="m_ageGroup">
+        <div class="input-selectbox-wrap" id="m-ageGroup">
           <div class="select2 select-btn" @click.prevent="showSelectList">
-            <span>초반</span>
+            <span>{{generationDefault}}</span>
             <i></i>
           </div>
 
@@ -323,12 +308,12 @@
             </ul>
           </div>
         </div>
-      </div>
-
-      <div class="button-wrap">
-        <button class="agesave-btn on" @click="saveBtn">저장</button>
+        <div class="button-wrap">
+          <button class="gendersave-btn on" @click="saveBtn">저장</button>
+        </div>
       </div>
     </div>
+
     <!-- 직업 -->
     <div
       class="accordion"
@@ -353,29 +338,72 @@
       :class="onProfileCard('job')"
     >
       <div class="m-job">
-        <div class="input-selectbox-wrap" id="m-jobSelect">
-          <div class="select2 select-btn" id="jobselect-btn" @click.prevent="showSelectList">
-            <span>직업선택</span>
-            <i></i>
-          </div>
-
-          <div class="listContents listWrap2 long">
-            <ul class="list">
-              <li>모델</li>
-              <li>프리랜서</li>
-              <li>마케터</li>
-              <li>주부</li>
-              <li>유튜브 크리에이터</li>
-              <li>디자이너</li>
-              <li>포토그래퍼</li>
-              <li>여행작가</li>
-              <li>개발자</li>
-              <li>개발자</li>
-              <li>개발자</li>
-              <li>개발자</li>
-              <li>개발자</li>
-            </ul>
-          </div>
+        <ul id="m-jobStatus" class="status clearfix">
+          <li>
+            <a
+              href="#"
+              @click="[statusCheck('y','job'), haveJob = true]"
+              :class="checkStatus('y','job') "
+            >
+              <em>있음</em>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              @click="[statusCheck('n','job'), haveJob = false]"
+              :class="checkStatus('n','job')"
+            >
+              <em>없음</em>
+              <span></span>
+            </a>
+          </li>
+        </ul>
+        <div class="status-selectbox-wrap clearfix" id="m-jobSelect" :class="!haveJob ? 'none': ''">
+          <ul class="status-selectbox">
+            <li class="select-box clearfix">
+              <ul class="select-first select-btn" @click.prevent="showSelectList">
+                <li>
+                  <span>현 직업</span>
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-first listContents">
+                <li v-if="!selectText">현 직업</li>
+                <li v-else>전 직업</li>
+              </ul>
+            </li>
+            <li class="select-box big clearfix">
+              <ul class="select-second select-btn" @click.prevent="showSelectList">
+                <li>
+                  <input type="text" placeholder="직업선택, 검색" />
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-second listContents">
+                <li>모델</li>
+                <li>프리랜서</li>
+                <li>마케터</li>
+                <li>주부</li>
+                <li>유튜브 크리에이터</li>
+                <li>디자이너</li>
+                <li>포토그래퍼</li>
+                <li>여행작가</li>
+                <li>개발자</li>
+              </ul>
+            </li>
+            <li class="status-btn clearfix">
+              <ul>
+                <li class="status-add">
+                  <a href="#">+</a>
+                </li>
+                <li class="status-remove none">
+                  <a href="#">-</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="button-wrap">
@@ -383,7 +411,7 @@
       </div>
     </div>
     <!-- 관심사 -->
-    <div
+    <!-- <div
       class="accordion"
       id="accordion_like"
       v-if="checkService('brands',true)"
@@ -440,7 +468,7 @@
           <button class="likesave-btn on" @click="saveBtn">저장</button>
         </div>
       </div>
-    </div>
+    </div>-->
     <!-- 결혼 유무 -->
     <div
       class="accordion"
@@ -464,12 +492,12 @@
       :class="onProfileCard('married')"
     >
       <div class="m-marry">
-        <div class="marriage-wrap radio-wrap checked">
+        <div class="marriage-wrap radio-wrap" @click="eitherSelect('y')" :class="checkEither('y')">
           <div class="image"></div>
           <span>기혼</span>
           <i></i>
         </div>
-        <div class="marriage-wrap radio-wrap">
+        <div class="marriage-wrap radio-wrap" @click="eitherSelect('n')" :class="checkEither('n')">
           <div class="image"></div>
           <span>미혼</span>
           <i></i>
@@ -552,44 +580,70 @@
       :class="onProfileCard('pet')"
     >
       <div class="m-pet">
-        <div id="m_petSelectedContainer" class="selected-container none"></div>
-
-        <div id="m_petSelectContainer">
-          <div class="input-selectbox-wrap">
-            <div class="select select-btn" @click.prevent="showSelectList">
-              <span>동물 종류</span>
-              <i></i>
-            </div>
-
-            <div class="listContents listWrap">
-              <ul class="list">
+        <ul id="m-petStatus" class="status clearfix">
+          <li>
+            <a
+              href="#"
+              @click="[statusCheck('y','pet'), havePet = true]"
+              :class="checkStatus('y','pet') "
+            >
+              <em>있음</em>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              @click="[statusCheck('n','pet'), havePet = false]"
+              :class="checkStatus('n','pet')"
+            >
+              <em>없음</em>
+              <span></span>
+            </a>
+          </li>
+        </ul>
+        <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
+          <ul class="status-selectbox">
+            <li class="select-box clearfix">
+              <ul class="select-first select-btn" @click.prevent="showSelectList">
+                <li>
+                  <span>동물 종류</span>
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-first listContents">
                 <li>강아지</li>
                 <li>고양이</li>
                 <li>햄스터</li>
                 <li>기타</li>
               </ul>
-            </div>
-          </div>
-
-          <div class="input-selectbox-wrap mtb0">
-            <div class="selec select-btnt" @click.prevent="showSelectList">
-              <span>몇마리</span>
-              <i></i>
-            </div>
-
-            <div class="listContents listWrap">
-              <ul class="list">
+            </li>
+            <li class="select-box big clearfix">
+              <ul class="select-second select-btn" @click.prevent="showSelectList">
+                <li>
+                  <span>몇마리</span>
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-second listContents">
                 <li>1마리</li>
                 <li>2마리</li>
                 <li>3마리</li>
                 <li>4마리 이상</li>
               </ul>
-            </div>
-          </div>
-          <div id="m_petSelectedContainer" class="selected-container"></div>
+            </li>
+            <li class="status-btn clearfix">
+              <ul>
+                <li class="status-add">
+                  <a href="#">+</a>
+                </li>
+                <li class="status-remove none">
+                  <a href="#">-</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-
-        <button class="addBtnWrap">+</button>
       </div>
       <div class="button-wrap">
         <button class="petsave-btn on" @click="saveBtn">저장</button>
@@ -674,12 +728,7 @@
     </div>
 
     <!-- 피부 -->
-    <div
-      class="accordion"
-      id="accordion_skin"
-      v-if="checkService('market',true) || checkService('influencer', true)"
-      @click="onClickProfileCard('skinType', $event)"
-    >
+    <div class="accordion" id="accordion_skin" @click="onClickProfileCard('skinType', $event)">
       <ul>
         <li>
           <img class="icon" src="~@/assets/img/skin.png" alt="피부아이콘" />
@@ -690,24 +739,20 @@
         </li>
       </ul>
     </div>
-    <div
-      class="accordion-contents"
-      v-if="checkService('market',true) || checkService('influencer', true)"
-      :class="onProfileCard('skinType')"
-    >
+    <div class="accordion-contents" :class="onProfileCard('skinType')">
       <div class="m-skin">
         <div class="input-selectbox-wrap">
           <div class="select2 select-btn" @click.prevent="showSelectList">
-            <span>피부 타입</span>
+            <span>{{skinDefault}}</span>
             <i></i>
           </div>
 
           <div class="listContents listWrap2 long">
             <ul class="list">
-              <li>건성</li>
-              <li>중성</li>
-              <li>지성</li>
-              <li>복합성</li>
+              <li @click="isText">건성</li>
+              <li @click="isText">중성</li>
+              <li @click="isText">지성</li>
+              <li @click="isText">복합성</li>
             </ul>
           </div>
         </div>
@@ -718,10 +763,10 @@
           </div>
           <div class="choice-list2">
             <ul>
-              <li>해당없음</li>
-              <li>아토피</li>
-              <li>여드름</li>
-              <li>민감성</li>
+              <li @click="checkSelect(0)" :class="isSkinOnOff[0] ? 'checked' : ''">해당없음</li>
+              <li @click="checkSelect(1)" :class="isSkinOnOff[1] ? 'checked' : ''">아토피</li>
+              <li @click="checkSelect(2)" :class="isSkinOnOff[2] ? 'checked' : ''">여드름</li>
+              <li @click="checkSelect(3)" :class="isSkinOnOff[3] ? 'checked' : ''">민감성</li>
             </ul>
           </div>
         </div>
@@ -747,6 +792,35 @@ export default {
     name: 'mobileDetailInfo',
     data() {
         return {
+            basicValue: '-10',
+            comboValue: '-10',
+            isSkinOnOff: {
+                0: false,
+                1: false,
+                2: false,
+                3: false
+            },
+            isCertificationOnOff: {
+                0: false,
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false
+            },
+            selectText: false,
+            haveJob: false,
+            haveChild: false,
+            havePet: false,
+            skinDefault: '피부타입',
+            ageDefault: '10대',
+            generationDefault: '초반',
+            onStatusCheck: {
+                job: null,
+                child: null,
+                pet: null
+            },
+            isCheck: undefined,
             // brandsList: [
             //     'sns',
             //     'pay',
@@ -825,6 +899,65 @@ export default {
         ...mapState(['service', 'profileCard', 'currentCard'])
     },
     methods: {
+        //희망수수료 개런티 카운트
+        payUpPersent(type) {
+            console.log(type);
+            if (type === 'basicsUp' && this.basicValue > -40) {
+                this.basicValue = this.basicValue - 5;
+            } else if (type === 'comboUp' && this.comboValue > -40) {
+                this.comboValue = this.comboValue - 5;
+            }
+        },
+        payDownPersent(type) {
+            console.log(type);
+            if (type === 'basicsDown' && this.basicValue < -10) {
+                this.basicValue = this.basicValue + 5;
+            } else if (type === 'comboDown' && this.comboValue < -10) {
+                this.comboValue = this.comboValue + 5;
+            }
+        },
+        //셀렉트 선택 피부,연령
+        isText(e) {
+            let text = e.target.innerText;
+            console.log();
+            if (e.target.closest('#skin, .m-skin')) {
+                this.skinDefault = text;
+            } else if (e.target.closest('#ageGeneration, #m-ageGeneration')) {
+                this.ageDefault = text;
+            } else {
+                this.generationDefault = text;
+            }
+        },
+
+        //피부고민 중복선택,온오프
+        checkSelect(idx) {
+            if (idx === 0) {
+                for (const keys in this.isSkinOnOff) {
+                    console.log(keys);
+                    this.isSkinOnOff[keys] = false;
+                }
+            } else {
+                this.isSkinOnOff[0] = false;
+            }
+
+            this.isSkinOnOff[idx] = !this.isSkinOnOff[idx];
+        },
+        //직업
+        statusCheck(value, type) {
+            this.onStatusCheck[type] = value;
+            console.log(this.onStatusCheck[type]);
+        },
+        checkStatus(el, type) {
+            if (el.includes(this.onStatusCheck[type])) return 'on';
+        },
+        //성별,연령
+        eitherSelect(value) {
+            this.isCheck = value;
+            this.profileCard.gender.onSaveButton == true;
+        },
+        checkEither(el) {
+            if (el.includes(this.isCheck)) return 'checked';
+        },
         checkService(serviceName, returnValue) {
             return this.service === serviceName ? returnValue : '';
         },

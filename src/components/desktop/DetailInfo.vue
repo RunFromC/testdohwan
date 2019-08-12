@@ -134,11 +134,11 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" value="-10" />
+            <input class="percentage" type="text" maxlength="2" v-model="basicValue" />
             <span>%</span>
             <div class="up-down-wrap">
-              <i class="up"></i>
-              <i class="down"></i>
+              <i class="up" @click="payUpPersent('basicsUp')"></i>
+              <i class="down" @click="payDownPersent('basicsDown')"></i>
             </div>
           </div>
           <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(2)"></i>
@@ -162,11 +162,11 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" value="-10" />
+            <input class="percentage" type="text" maxlength="2" v-model="comboValue" />
             <span>%</span>
             <div class="up-down-wrap">
-              <i @click="payUpPersent" class="up"></i>
-              <i @click="payDownPersent" class="down"></i>
+              <i @click="payUpPersent('comboUp')" class="up"></i>
+              <i @click="payDownPersent('comboDown')" class="down"></i>
             </div>
           </div>
           <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
@@ -975,36 +975,9 @@ export default {
 
     data() {
         return {
-            isCheck: undefined,
-            skinDefault: '피부타입',
-            ageDefault: '10대',
-            generationDefault: '초반',
-            isSkinOnOff: {
-                0: false,
-                1: false,
-                2: false,
-                3: false
-            },
-            isCertificationOnOff: {
-                0: false,
-                1: false,
-                2: false,
-                3: false,
-                4: false,
-                5: false
-            },
             snsOnSaveButton: false,
             payOnSaveButton: false,
-            itemOnSaveButton: false,
-            onStatusCheck: {
-                job: null,
-                child: null,
-                pet: null
-            },
-            haveJob: false,
-            haveChild: false,
-            havePet: false,
-            selectText: false
+            itemOnSaveButton: false
         };
     },
     computed: {
@@ -1044,41 +1017,6 @@ export default {
         },
 
         genderAgeOnSave() {},
-        //셀렉트 메뉴
-        isText(e) {
-            let text = e.target.innerText;
-            console.log();
-            if (e.target.closest('#skin')) {
-                this.skinDefault = text;
-            } else if (e.target.closest('#ageGeneration')) {
-                this.ageDefault = text;
-            } else {
-                this.generationDefault = text;
-            }
-        },
-
-        //둘중 하나 선택하기
-        eitherSelect(value) {
-            this.isCheck = value;
-            this.profileCard.gender.onSaveButton == true;
-        },
-        checkEither(el) {
-            if (el.includes(this.isCheck)) return 'checked';
-        },
-
-        //피부고민 중복선택,온오프
-        checkSelect(idx) {
-            if (idx === 0) {
-                for (const keys in this.isSkinOnOff) {
-                    console.log(keys);
-                    this.isSkinOnOff[keys] = false;
-                }
-            } else {
-                this.isSkinOnOff[0] = false;
-            }
-
-            this.isSkinOnOff[idx] = !this.isSkinOnOff[idx];
-        },
 
         //sns 연동 아이콘 온오프
         checkCertification(idx) {
@@ -1096,10 +1034,7 @@ export default {
                 this.$store.state.welcome = true;
                 location.href = '/';
             }
-        },
-
-        payUpPersent() {},
-        payDownPersent() {}
+        }
     },
     watch: {
         getCurrentCard(newValue, oldValue) {
