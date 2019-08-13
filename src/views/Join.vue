@@ -620,58 +620,59 @@ export default {
             this.joinPage = true;            
         },
         standardJoin() { // 가입완료
-            if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
-                if(this.idValidityText) {
-                    alert("아이디는 영문,숫자 포함 4~12자로 입력해주세요");
-                    return;
-                }
-                if(this.idWrongText) {
-                    alert("사용중인 아이디입니다 다시 입력해주세요");
-                    return;
-                }
-                if(this.idCheckText) {
-                    alert("아이디 중복확인해주세요");
-                    return;
-                }
-                if(this.pwValidityText) {
-                    alert("비밀번호는 영문,숫자,특수문자 포함 6~12자로 입력해주세요");
-                    return;
-                }
-                if(this.pwWrongText) {
-                    alert("비밀번호가 일치하지 않습니다");
-                    return;
-                }
-                if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
-                    alert("본인인증이 필요합니다");
-                    return;
-                }
-                if(this.emailValidityText) {
-                    alert("잘못된 이메일 형식입니다 다시 입력해주세요");
-                    return;
-                }
-                if(this.emailWrongText) {
-                    alert("사용중인 이메일입니다 다시 입력해주세요");
-                    return;
-                }
-                if(this.emailCheckText) {
-                    alert("이메일 중복확인해주세요");
-                    return;
-                }
-                this.$axios('post','/join', {
-                    id: this.id,
-                    pw: this.pw,
-                    name: this.name,
-                    phoneNumber: this.phoneNumber,
-                    email: this.email
-                }).then((res) => {
-                    this.userIndex = res.data.userIdx;
-                }).catch((err) => {
-                    console.log(err);
-                })
-                this.addJoinPage = !this.addJoinPage;
-            } else {
-                alert('정보를 모두 입력해주세요');
-            }
+            // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
+            //     if(this.idValidityText) {
+            //         alert("아이디는 영문,숫자 포함 4~12자로 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.idWrongText) {
+            //         alert("사용중인 아이디입니다 다시 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.idCheckText) {
+            //         alert("아이디 중복확인해주세요");
+            //         return;
+            //     }
+            //     if(this.pwValidityText) {
+            //         alert("비밀번호는 영문,숫자,특수문자 포함 6~12자로 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.pwWrongText) {
+            //         alert("비밀번호가 일치하지 않습니다");
+            //         return;
+            //     }
+            //     if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
+            //         alert("본인인증이 필요합니다");
+            //         return;
+            //     }
+            //     if(this.emailValidityText) {
+            //         alert("잘못된 이메일 형식입니다 다시 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.emailWrongText) {
+            //         alert("사용중인 이메일입니다 다시 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.emailCheckText) {
+            //         alert("이메일 중복확인해주세요");
+            //         return;
+            //     }
+            //     this.$axios('post','/join', {
+            //         id: this.id,
+            //         pw: this.pw,
+            //         name: this.name,
+            //         phoneNumber: this.phoneNumber,
+            //         email: this.email
+            //     }).then((res) => {
+            //         this.userIndex = res.data.userIdx;
+            //     }).catch((err) => {
+            //         console.log(err);
+            //     })
+            //     this.addJoinPage = !this.addJoinPage;
+            // } else {
+            //     alert('정보를 모두 입력해주세요');
+            // }
+            this.addJoinPage = !this.addJoinPage;
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;
@@ -734,10 +735,10 @@ export default {
                 this.$refs.containerWrap.classList.add('edge');
             }
         }
-
         // cert init 
         this.$axios('get','/cert/init', {
             }).then((res) => {
+                console.log(res);
                 this.trCert = res.data.trCert;
                 this.trUrl = res.data.trUrl;
                 this.trAdd = res.data.trAdd;

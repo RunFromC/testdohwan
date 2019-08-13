@@ -79,7 +79,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
       </div>
     </div>
     <!--  pay profileCard.pay -->
@@ -968,6 +968,7 @@
 import MapSvg from '../../components/MapSvg.vue';
 import mobileDetailInfo from '../mobile/DetailInfo.vue';
 import { log } from 'util';
+import { async } from 'q';
 
 export default {
     name: 'desktopDetailInfo',
@@ -1033,10 +1034,42 @@ export default {
             if (el.includes(this.onStatusCheck[type])) return 'on';
         },
         snsSaveBotton() {
-            this.profileCard.sns.onSaveButton = !this.profileCard.sns
-                .onSaveButton
-                ? 'on'
-                : '';
+            // this.profileCard.sns.onSaveButton = !this.profileCard.sns
+            //     .onSaveButton
+            //     ? 'on'
+            //     : '';
+
+            this.authInstagram();
+        },
+        authInstagram() {
+            const redirectUri = 'http://member.concepters.co.kr/auth/instagram';
+            const clientId = 'cacd978cda8742149e4b7240e9481acb';
+
+            // get result from child
+            window.authResultForInsta = async data => {
+                console.log(data);
+
+                try {
+                    const res = await this.$axios(
+                        'get',
+                        `/auth/instagram?code=${data.code}&errorReason=${data.errorReason}&error=${data.error}`,
+                        {}
+                    );
+
+                    if (res === 'success') {
+                        alert('인증에 성공 하셨습니다.');
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+
+            // popup open
+            window.open(
+                `https://api.instagram.com/oauth/authorize/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`,
+                '_blank',
+                'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+            );
         },
         itemOnSave(event) {
             this.profileCard.expectProduct.onSaveButton = true;
@@ -1090,11 +1123,12 @@ export default {
         },
         joinCheck() {
             this.clearCardList();
+
             if (!this.$store.state.iccMode) {
                 this.profileCard['finishBlock'].on = true;
             } else {
                 this.$store.state.welcome = true;
-                location.href = '/';
+                this.$router.push('/');
             }
         },
 
