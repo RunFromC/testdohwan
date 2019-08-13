@@ -69,7 +69,7 @@
                 <input class="input-button" type="submit" value="로그인" />
                 <div class="box">
                   <div class="checkBoxWrap">
-                    <input type="checkbox" class="input-check-box" :class="checkOnOff" />
+                    <input type="checkbox" class="input-check-box" />
                     <i></i>
                     <span>로그인 유지</span>
                   </div>
