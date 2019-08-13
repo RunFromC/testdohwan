@@ -36,6 +36,9 @@ const mutations = {
     },
     setCertification(state, data) {
         state.certification = data;
+    },
+    setCurrentIndex(state, data) {
+        state.currentIndex = data;
     }
 };
 

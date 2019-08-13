@@ -30,12 +30,7 @@
     </div>
 
     <!-- 희망원고료 , 희망수수료  -->
-    <div
-      class="accordion"
-      id="accodion_pay"
-      @click="onClickProfileCard('pay', $event)"
-      v-if="checkService('brands',true) || checkService('influencer',true)"
-    >
+    <div class="accordion" id="accodion_pay" @click="onClickProfileCard('pay', $event)">
       <ul>
         <li>
           <img class="icon" src="~@/assets/img/pay.png" alt="희망원고료아이콘" />
@@ -145,8 +140,7 @@
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 입력" />
-            <i></i>
+            <input type="text" placeholder="공구품목 선택, 검색" />
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
@@ -166,11 +160,44 @@
 
         <div class="choice-list">
           <ul>
-            <li></li>
+            <li>뷰티</li>
             <li class="close">
-              <span class="close-btn">
-                <a href="#">X</a>
-              </span>
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
             </li>
             <li class="delete none">삭제</li>
           </ul>
@@ -237,8 +264,8 @@
     </div>-->
     <!-- 성별, 연령 -->
     <div
-      class="accordion"
       id="accordion_gender"
+      class="accordion"
       @click="onClickProfileCard('gender', $event)"
       v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
     >
@@ -254,6 +281,7 @@
     </div>
     <div
       class="accordion-contents"
+      id="accordion-gender"
       :class="onProfileCard('gender')"
       v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
     >
@@ -284,12 +312,12 @@
 
           <div class="listContents listWrap">
             <ul class="list">
-              <li data-inx="0" style="display: none">10대</li>
-              <li data-inx="1">20대</li>
-              <li data-inx="2">30대</li>
-              <li data-inx="3">40대</li>
-              <li data-inx="4">50대</li>
-              <li data-inx="5">60대 이상</li>
+              <li @click="isText">10대</li>
+              <li @click="isText">20대</li>
+              <li @click="isText">30대</li>
+              <li @click="isText">40대</li>
+              <li @click="isText">50대</li>
+              <li @click="isText">60대 이상</li>
             </ul>
           </div>
         </div>
@@ -302,9 +330,9 @@
 
           <div class="listContents listWrap2">
             <ul class="list">
-              <li data-inx="0" style="display: none">초반</li>
-              <li data-inx="1">중반</li>
-              <li data-inx="2">후반</li>
+              <li @click="isText">초반</li>
+              <li @click="isText">중반</li>
+              <li @click="isText">후반</li>
             </ul>
           </div>
         </div>
@@ -363,7 +391,7 @@
         <div class="status-selectbox-wrap clearfix" id="m-jobSelect" :class="!haveJob ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>현 직업</span>
                   <i></i>
@@ -375,10 +403,9 @@
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <input type="text" placeholder="직업선택, 검색" />
-                  <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
@@ -525,33 +552,84 @@
       </ul>
     </div>
     <div
+      id="accordion-baby"
       class="accordion-contents"
       v-if="checkService('brands',true)"
       :class="onProfileCard('children')"
     >
-      <div class="m_baby" id="m_children">
-        <div id="m_childrenSelectedContainer" class="selected-container none"></div>
-
-        <div id="m_childrenSelectBox" class="input-selectbox-wrap">
-          <div class="select select-btn" @click.prevent="showSelectList">
-            <span>자녀 (0명)</span>
-            <i></i>
-          </div>
-
-          <div class="listContents listWrap" id="m_selectChildren">
-            <ul class="list">
-              <li>없음</li>
-              <li>1명</li>
-              <li>2명</li>
-              <li>3명</li>
-              <li>4명 이상</li>
-            </ul>
-          </div>
+      <div class="m-baby" id="m-children">
+        <ul id="m-childStatus" class="status clearfix">
+          <li>
+            <a
+              href="#"
+              @click="[statusCheck('y','child'), haveChild = true]"
+              :class="checkStatus('y','child') "
+            >
+              <em>있음</em>
+              <span></span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              @click="[statusCheck('n','child'), haveChild = false]"
+              :class="checkStatus('n','child')"
+            >
+              <em>없음</em>
+              <span></span>
+            </a>
+          </li>
+        </ul>
+        <div
+          class="status-selectbox-wrap clearfix"
+          id="childSelect"
+          :class="!haveChild ? 'none': ''"
+        >
+          <ul class="status-selectbox">
+            <li class="select-box clearfix">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
+                <li>
+                  <span>연령</span>
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-first listContents">
+                <li>0~1세</li>
+                <li>2~3세</li>
+                <li>4~5세</li>
+                <li>6~7세</li>
+                <li>초등학생</li>
+                <li>중학생</li>
+                <li>고등학생</li>
+                <li>20대</li>
+                <li>30대</li>
+                <li>40대</li>
+              </ul>
+            </li>
+            <li class="select-box big clearfix">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
+                <li>
+                  <span>성별</span>
+                  <i></i>
+                </li>
+              </ul>
+              <ul class="list-second listContents">
+                <li>남자</li>
+                <li>여자</li>
+              </ul>
+            </li>
+            <li class="status-btn clearfix">
+              <ul>
+                <li class="status-add">
+                  <a href="#">+</a>
+                </li>
+                <li class="status-remove none">
+                  <a href="#"></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
-
-        <div id="m_childrenInfoWrap" class="select-container"></div>
-
-        <button class="addBtnWrap">+</button>
       </div>
       <div class="button-wrap">
         <button class="babysave-btn on" @click="saveBtn">저장</button>
@@ -575,6 +653,7 @@
       </ul>
     </div>
     <div
+      id="accordion-pet"
       class="accordion-contents"
       v-if="checkService('brands',true)"
       :class="onProfileCard('pet')"
@@ -605,9 +684,9 @@
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>동물 종류</span>
+                  <span>동물종류</span>
                   <i></i>
                 </li>
               </ul>
@@ -619,7 +698,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>몇마리</span>
                   <i></i>
@@ -865,7 +944,7 @@ export default {
                 'skinType'
             ],
             marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
-            currentIndex: 0,
+
             isRecommendCheck: false,
             recommendType: null,
             gender: false,
@@ -896,7 +975,10 @@ export default {
         MapSvg
     },
     computed: {
-        ...mapState(['service', 'profileCard', 'currentCard'])
+        ...mapState(['service', 'profileCard', 'currentCard']),
+        ...mapGetters({
+            currentIndex: 'getCurrentIndex'
+        })
     },
     methods: {
         //희망수수료 개런티 카운트
@@ -965,7 +1047,6 @@ export default {
             return this.profileCard[type].on ? 'on' : '';
         },
         onClickProfileCard(value, event) {
-            console.log(this.currentIndex);
             for (const key in this.profileCard) {
                 if (key !== value) this.profileCard[key].on = false;
             }
@@ -990,10 +1071,6 @@ export default {
 
                 wrap.style.marginBottom = 35 * index + 'px';
                 parent.scrollTop = index * 58;
-                // const time = setTimeout(() => {
-                //     parent.scrollTop = index * 58;
-                //     clearTimeout(time);
-                // }, 500);
             }
         },
         onClickRecommendCheck() {
@@ -1011,15 +1088,27 @@ export default {
             this.tip.title = null;
             this.tip.text = null;
         },
+        showSelectList2(e) {
+            const selectBtn = e.target.closest('ul');
+            const accordion = selectBtn.closest('.accordion-contents');
+
+            this.showSelectList(e);
+            if (selectBtn.classList.contains('select-first')) {
+                accordion
+                    .querySelector('.list-second')
+                    .classList.remove('selectOn');
+            } else {
+                accordion
+                    .querySelector('.list-first')
+                    .classList.remove('selectOn');
+            }
+        },
         showSelectList(e) {
             const selectBtn = e.target.closest('div, ul');
             const accordion = selectBtn.closest('.accordion-contents');
-
             if (selectBtn.nextSibling.classList.contains('selectOn')) {
                 selectBtn.nextSibling.classList.remove('selectOn');
-
                 if (!accordion) return;
-
                 accordion.classList.remove('height');
             } else {
                 selectBtn.nextSibling.classList.add('selectOn');
@@ -1027,7 +1116,6 @@ export default {
                     selectBtn.offsetHeight - 3 + 'px';
 
                 if (!accordion) return;
-
                 accordion.classList.add('height');
             }
         },
@@ -1080,7 +1168,6 @@ export default {
             this.profileCard[currentCard].on = true;
         },
         saveBtn(event) {
-            console.log('click', event);
             if (event.target.className.includes('on')) {
                 if (this.currentCard === 'sns') {
                     this.profileCard.sns.save = true;
@@ -1101,7 +1188,6 @@ export default {
                 } else if (this.currentCard === 'skinType') {
                     this.profileCard.skinType.save = true;
                 }
-
                 this.nextDetailInfo(event);
             }
             return;
@@ -1110,6 +1196,15 @@ export default {
             for (const key in this.profileCard) {
                 this.profileCard[key].on = false;
             }
+        }
+    },
+    watch: {
+        getCurrentCard(newValue, oldValue) {
+            let card = this.getCardList();
+            let currentIndex = card.indexOf(newValue);
+            this.$store.commit('setCurrentIndex', {
+                currentIndex
+            });
         }
     }
 };

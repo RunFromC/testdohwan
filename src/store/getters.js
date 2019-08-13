@@ -11,7 +11,9 @@ const getters = {
     getCurrentCard(store) {
         return store.currentCard;
     },
-    
+    getCurrentIndex(store) {
+        return store.currentIndex.currentIndex;
+    }
 };
 
 export default getters;

@@ -97,7 +97,8 @@ const state = {
     },
     currentCard: 'default',
     welcome: false,
-    certification: null
+    certification: null,
+    currentIndex: 0
 };
 
 export default state;

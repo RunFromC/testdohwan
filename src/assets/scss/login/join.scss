@@ -36,6 +36,9 @@ button:focus {
         position: absolute !important; 
         left: -1px;
     }
+    .rotate {
+        transform: rotate(-90deg);
+    }
 
     width: 100vw;
     height: 100vh;
@@ -1291,6 +1294,7 @@ button:focus {
                                     .pay::placeholder {
                                         font-size: 18px;
                                         color: #000;
+                                        text-align: right;
                                     }
                                 }
 
@@ -1770,6 +1774,7 @@ button:focus {
                                     font-family: 'Nanum-Barun-Gothic-normal',
                                         serif;
                                     text-align: center;
+                                    color: #E2E1E1;
                                 }
 
                                 input::placeholder {
@@ -2037,9 +2042,13 @@ button:focus {
                                     height: 20px;
                                     line-height: 20px;   
                                     max-width: 170px;
+                                    color: #707070;
+
                                 }
                                 input::placeholder {
                                     font-size: 18px;
+                                    color: #E2E1E1;
+
                                     
                                 }
                             }
@@ -2092,16 +2101,48 @@ button:focus {
                                         color: red;
                                     }
                                     li.close {
-                                        position: absolute;
-                                        width: 20px;
-                                        height: 20px;
-                                        right: -5px;
-                                        top: -5px;
-                                        background: #E2E1E1;
-                                        line-height: 20px;
-                                        z-index: 10;
                                         border: none;
+                                        position: absolute;
+                                        left: 0;
+                                        top: 0;
+                                        .closeImg {
+                                            position: absolute;
+                                            width: 20px;
+                                            height: 20px;
+                                            right: -5px;
+                                            top: -5px;
+                                            background: #E2E1E1;
+                                            line-height: 20px;
+                                            z-index: 10;
+                                            display: block;  
+                                            border-radius: 50%;                                   
+                                        }
+                                        .closeImg::after {
+                                            content: '';
+                                            position: absolute;
+                                            height: 16px;
+                                            width: 2px;
+                                            background: #fff;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) rotate(-45deg);
+    
+                                        }
+                                        .closeImg::before {
+                                            content: '';
+                                            position: absolute;
+                                            height: 16px;
+                                            width: 2px;
+                                            background: #fff;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) rotate(45deg);
+    
+                                        }
                                     }
+                                    
+                                    
+                                    
                                 }
                             }
                         }
@@ -2748,6 +2789,9 @@ button:focus {
                 -webkit-transform: rotateX(0deg) rotateY(0deg);
             }
         }
+        .card:last-child {
+            margin-right: 0;
+            }
 
         .rotate-btn {
             display: block;
@@ -4464,20 +4508,55 @@ button:focus {
                                     max-width: 190px;
                                     bottom: -294px;
                                     > ul {
+                                        margin-left: 2.5px;
+                                        margin-right: 2.5px;
                                         width: 90px;
                                         height: 30px;
                                         li {
+                                            font-size: 13px;
                                             border-radius: 10px;
                                             width: 90px;
                                             height: 30px;
+                                            line-height: 30px;
                                             box-sizing: border-box;
                                         }
+                                        
                                         li.close {
-                                            width: 15px;
-                                            height: 15px;
-                                            line-height: 15px;
+                                            border: none;
+                                            
+                                            .closeImg {       
+                                                width: 15px;                                         
+                                                height: 15px;
+                                                line-height: 15px;   
+                                                display: block;  
+                                                right: -2px;
+                                                top: -6px;                              
+                                            }
+                                            .closeImg::after {
+                                                content: '';
+                                                position: absolute;
+                                                height: 12px;
+                                                width: 2px;
+                                                background: #fff;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%) rotate(-45deg);
+        
+                                            }
+                                            .closeImg::before {
+                                                content: '';
+                                                position: absolute;
+                                                height: 12px;
+                                                width: 2px;
+                                                background: #fff;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%) rotate(45deg);
+        
+                                            }
                                         }
                                     }
+                                    
                                 }
                                 
                             }
@@ -5455,7 +5534,7 @@ button:focus {
                                 text-align: center;
                                 line-height: 40px;
                                 font-size: 20px;
-                                font-family: Nanum-Barun-Gothic-normal, serif;
+                                font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 position: relative;
                                 
                                 
@@ -5463,9 +5542,14 @@ button:focus {
                                     font-size: 18px;
                                     padding: 0 30px 0 20px;
                                     width: 153px;
+                                    color: #C1C1C1;
+                                    font-family: 'Nanum-Barun-Gothic-normal';
                                 }
                                 input::placeholder {
                                     font-size: 18px;
+                                    color: #C1C1C1;
+                                    font-family: 'Nanum-Barun-Gothic-normal';
+                                
                                     
                                 }
 
@@ -5711,7 +5795,7 @@ button:focus {
                             }
                             button.itemsave-btn {
                               display: block;
-                              margin: 15px auto 30px;
+                              margin: 30px auto 20px;
                               -webkit-border-radius: 10px;
                               -moz-border-radius: 10px;
                               border-radius: 10px;
@@ -5849,7 +5933,7 @@ button:focus {
                                         serif;
                                     position: relative;
 
-                                    i {
+                                    .icon {
                                         display: block;
                                         width: 14px;
                                         height: 14px;
@@ -5860,7 +5944,7 @@ button:focus {
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
-                                    i.rotate {
+                                    .icon.rotate {
                                         -webkit-transform: rotate(180deg);
                                         -moz-transform: rotate(180deg);
                                         -ms-transform: rotate(180deg);
@@ -5876,6 +5960,14 @@ button:focus {
                                         font-family: Nanum-Barun-Gothic-normal,
                                             serif;
                                         position: relative;
+                                    }
+                                }
+                                .listWrap {
+                                    .list {
+                                        text-align: center;
+                                        > li {
+                                            color: #707070;
+                                        }
                                     }
                                 }
                                 .select2 {
@@ -6086,15 +6178,14 @@ button:focus {
                                 }
                             }
                             .status-selectbox-wrap {
-                                padding: 15px 0 30px;
+                                padding: 10px 0 20px;
                                 border-bottom: 4px solid #E8E8E8;
                                 border-top: 4px solid #E8E8E8;
                                 margin: 0 auto 40px;
                                 width: 305px;
                                 
-                                .status-selectbox {
-                                    
-                                    padding-top: 15px;
+                                .status-selectbox {                                    
+                                    padding-top: 10px;
                                     display: flex;
                                     justify-content: center;
                                     .select-box {
@@ -6118,6 +6209,7 @@ button:focus {
                                                     line-height: 40px;
                                                     text-align: left;
                                                     padding-left: 15px;
+                                                    color: #000;
                                                 }
                                                 i {
                                                     position: absolute;
@@ -6191,7 +6283,7 @@ button:focus {
                                                 }
                                                 
                                                 input {
-                                                    
+                                                    font-family: 'Nanum-Barun-Gothic-normal';
                                                     font-size: 14px;
                                                     width: 100%;
                                                     color: #000;
@@ -6199,7 +6291,8 @@ button:focus {
                                                     
                                                 }
                                                 input::placeholder {
-                                                    color: #C1C1C1;
+                                                    font-family: 'Nanum-Barun-Gothic-normal';
+                                                    color: #E2E1E1;
                                                     font-size: 14px;
                                                 }
                                                 i {
@@ -6232,9 +6325,10 @@ button:focus {
                                             li {
                                                 font-size: 13px;
                                                 margin: 0 5px;
-                                                padding: 15px 0 0;
+                                                padding: 15px 0 0 15px;
                                                 cursor: pointer;
                                                 background: #fff;
+                                                text-align: left;
                                             }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
@@ -6456,7 +6550,7 @@ button:focus {
                         }
                         .m-marry {
                             overflow: hidden;
-                            margin: 33px auto;
+                            margin: 0 auto 20px;
                             display: block;
                             width: 204px;
                             .marriage-wrap {
@@ -6534,7 +6628,8 @@ button:focus {
                                 }
                             }
                         }
-                        .m_baby {
+                        .m-baby {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
@@ -6743,6 +6838,247 @@ button:focus {
                                 font-size: 22px;
                                 border: none;
                                 display: block;
+                            }
+                            .status {
+                                text-align: center;
+                                margin: 30px 0 20px;
+                                display: inline-block;
+                                >li {
+                                    float: left;
+                                    margin-right: 50px;
+                                    a {
+                                        display: block;
+                                        em {
+                                            font-size: 16px;
+                                            height: 27px;
+                                            line-height: 27px;
+                                            color: #000;
+                                        }
+                                        span {
+                                            background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                            width: 18px;
+                                            height: 18px;
+                                            display: block;
+                                            margin: 10px auto 0;
+                                        }
+                                    }
+                                    a.on {
+                                        span {                                            
+                                            background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+                                        }
+                                    }
+                                    
+                                }
+                                > li:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                            .status-selectbox-wrap {
+                                padding: 10px 0 20px;
+                                border-bottom: 4px solid #E8E8E8;
+                                border-top: 4px solid #E8E8E8;
+                                max-width: 305px;
+                                display: block;
+                                margin: 0 auto;
+                                
+                                .status-selectbox {                                    
+                                    padding-top: 10px;
+                                    display: flex;
+                                    justify-content: center;
+                                    .select-box {
+                                        margin-right: 5px;
+                                        float: left;
+                                        position: relative;
+                                        
+                                        .select-first {
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            height: 40px;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;   
+                                            background: #fff;                                      
+                                            li {
+                                                cursor: pointer;
+                                                position: relative;
+                                                span {
+                                                    font-size: 14px;
+                                                    display: block;
+                                                    line-height: 38px;
+                                                    text-align: left;
+                                                    padding-left: 13px;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                    letter-spacing: -1px;
+                                                    color: #707070;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+                                        }
+                                        .list-first {
+                                            position: absolute;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            border-top: none;
+                                            top: 37px;
+                                            left: 0;
+                                            max-height: 150px;
+                                            overflow-y: auto;
+                                            z-index: 10;
+                                            display: none;
+                                            > li {
+                                                font-size: 14px;
+                                                margin: 0 5px;
+                                                cursor: pointer;
+                                                font-family: 'Nanum-Barun-Gothic-normal';
+                                                color: #707070;
+                                                line-height: 35px;
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 5px;
+                                            } 
+
+                                        }
+                                        .list-first::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-first::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }                                        
+                                    }
+                                    .select-box.big {
+                                        position: relative;
+                                        margin-right: 10px;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-second {
+                                            background: #fff;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;
+                                            height: 40px;
+                                            li {
+                                                box-sizing: border-box;
+                                                line-height: 38px;
+                                                text-align: left;
+                                                padding-left: 13px;
+                                                span {
+                                                    font-size: 14px;
+                                                    color: #707070;
+                                                    padding-left: 0;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+
+                                                    
+                                                }
+                                                
+                                                input {
+                                                    
+                                                    font-size: 14px;
+                                                    width: 100%;
+                                                    color: #000;
+                                                    
+                                                    
+                                                }
+                                                input::placeholder {
+                                                    color: #C1C1C1;
+                                                    font-size: 14px;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 9px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+
+                                        }
+                                        .list-second {
+                                            left: 0;
+                                            display: none;
+                                            position: absolute;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            box-sizing: border-box;
+                                            border-top: none;
+                                            height: auto;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            width: 100px;
+                                            z-index: 10;
+                                            top: 37px;
+                                            li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 10px 0 0;
+                                                cursor: pointer;
+                                                background: #fff;
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+
+                                        }
+                                        .list-second::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-second::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }
+                                    }
+                                }
+                                .status-btn {
+                                    ul {                                        
+                                        float: left;
+                                        margin-top: 7px;
+                                        .status-add {
+                                           a {
+                                                display: block;
+                                                width: 25px;
+                                                height: 25px;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
+                                                color: #fff;
+                                                border-radius: 5px;
+                                                line-height: 25px;
+                                           }
+
+                                        }
+                                        .status-remove {
+                                            a {
+                                                display: block;
+                                                 width: 25px;
+                                                 height: 25px;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
+                                                 color: #fff;
+                                                 line-height: 25px;
+                                                 border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                         .m-pet {
@@ -6956,7 +7292,7 @@ button:focus {
                             }
                             .status {
                                 text-align: center;
-                                margin: 30px 0;
+                                margin: 30px 0 20px;
                                 display: inline-block;
                                 >li {
                                     float: left;
@@ -6988,15 +7324,89 @@ button:focus {
                                     margin-right: 0;
                                 }
                             }
-                            .status-selectbox-wrap {                            
-                                .status-selectbox {                                
-                                    .select-box {  
+                            .status-selectbox-wrap {
+                                padding: 10px 0 20px;
+                                border-bottom: 4px solid #E8E8E8;
+                                border-top: 4px solid #E8E8E8;
+                                max-width: 305px;
+                                display: block;
+                                margin: 0 auto;
+                                
+                                .status-selectbox {                                    
+                                    padding-top: 10px;
+                                    display: flex;
+                                    justify-content: center;
+                                    .select-box {
+                                        margin-right: 5px;
+                                        float: left;
+                                        position: relative;
+                                        
                                         .select-first {
                                             width: 100px;
-                                            
+                                            box-sizing: border-box;
+                                            height: 40px;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;   
+                                            background: #fff;                                      
+                                            li {
+                                                cursor: pointer;
+                                                position: relative;
+                                                span {
+                                                    font-size: 14px;
+                                                    display: block;
+                                                    line-height: 38px;
+                                                    text-align: left;
+                                                    padding-left: 13px;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                    letter-spacing: -1px;
+                                                    color: #707070;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
                                         }
-                                        .list-first {                                        
-                                            width: 100px; 
+                                        .list-first {
+                                            position: absolute;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            border-top: none;
+                                            top: 37px;
+                                            left: 0;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            z-index: 10;
+                                            display: none;
+                                            > li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 10px 0 0;
+                                                cursor: pointer;
+
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            } 
+
+                                        }
+                                        .list-first::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-first::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
                                         }                                        
                                     }
                                     .select-box.big {
@@ -7006,21 +7416,118 @@ button:focus {
                                         display: flex;
                                         justify-content: center;
                                         .select-second {
+                                            background: #fff;
                                             width: 100px;
+                                            box-sizing: border-box;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;
+                                            height: 40px;
                                             li {
+                                                box-sizing: border-box;
+                                                line-height: 38px;
+                                                padding-right: 19px;
                                                 span {
+                                                    font-size: 14px;
                                                     color: #707070;
                                                     padding-left: 0;
+                                                    
+                                                }
+                                                
+                                                input {
+                                                    
+                                                    font-size: 14px;
+                                                    width: 100%;
+                                                    color: #000;
+                                                    
+                                                    
+                                                }
+                                                input::placeholder {
+                                                    color: #C1C1C1;
+                                                    font-size: 14px;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 9px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
                                                 }
                                             }
+
                                         }
-                                        .list-second {                                        
+                                        .list-second {
+                                            left: 0;
+                                            display: none;
+                                            position: absolute;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            box-sizing: border-box;
+                                            border-top: none;
+                                            height: auto;
+                                            max-height: 269px;
+                                            overflow-y: auto;
                                             width: 100px;
-                                        }                                    
+                                            z-index: 10;
+                                            top: 37px;
+                                            li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 10px 0 0;
+                                                cursor: pointer;
+                                                background: #fff;
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+
+                                        }
+                                        .list-second::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-second::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }
                                     }
                                 }
-                                
+                                .status-btn {
+                                    ul {                                        
+                                        float: left;
+                                        margin-top: 7px;
+                                        .status-add {
+                                           a {
+                                                display: block;
+                                                width: 25px;
+                                                height: 25px;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
+                                                color: #fff;
+                                                border-radius: 5px;
+                                                line-height: 25px;
+                                           }
+
+                                        }
+                                        .status-remove {
+                                            a {
+                                                display: block;
+                                                 width: 25px;
+                                                 height: 25px;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
+                                                 color: #fff;
+                                                 line-height: 25px;
+                                                 border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                }
                             }
+                            
                         }
                         .m-item {
                             text-align: center;
@@ -7029,9 +7536,9 @@ button:focus {
                             height: auto;
                             border: 1px solid #BBBBBB;
                             border-radius: 5px;
-                            margin: 30px auto 15px;
+                            margin: 30px auto 60px;
                             background: #fff;
-                            .select3 {
+                            .select {
                               cursor: pointer;
                               width: 205px - 2px;
                               height: 40px - 2px;
@@ -7055,7 +7562,7 @@ button:focus {
                                 -moz-transform: rotate(180deg);
                                 -ms-transform: rotate(180deg);
                                 -o-transform: rotate(180deg);
-                              }
+                              }                              
                             }
                           }
                           .input-text-wrap {
@@ -7113,7 +7620,7 @@ button:focus {
                                 height: 33px;
                                 line-height: 33px;
                                 text-align: center;
-                                font-size: 14px;
+                                font-size: 13px;
                                 cursor: pointer;
                                 font-family: Nanum-Barun-Gothic-normal, serif;
                               }
@@ -7134,7 +7641,7 @@ button:focus {
                             }
                           }
                           .choice-list {
-                            width: 246px;
+                            max-width: 270px;
                             display: inline-block;
                             margin: 15px auto 0;
                             > ul {
@@ -7144,19 +7651,17 @@ button:focus {
                               float: left;
                               cursor: pointer;
                               margin-bottom: 10px;
-                              margin-left: 3px;
-                              :nth-child(2n-1) {
-                                margin-left: 0!important;
-                                margin-right: 0!important;
-                              }
+                              margin-right: 25px;                              
                               li {
+                                background: #fff;
                                 border: 2px solid #4BD897;
                                 color: #4BD897;
                                 font-size: 16px;
-                                width: 116px;
-                                height: 36px;
+                                width: 120px;
+                                box-sizing: border-box;
+                                height: 40px;
                                 text-align: center;
-                                line-height: 38px;
+                                line-height: 40px;
                                 font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 border-radius: 15px;
                               }
@@ -7173,20 +7678,51 @@ button:focus {
                                 color: red;
                               }
                               li.close {
-                                position: absolute;
-                                width: 20px;
-                                height: 20px;
-                                right: -5px;
-                                top: -5px;
-                                background: #E2E1E1;
-                                line-height: 20px;                                
                                 border: none;
-                                .close-btn {
-                                    a {display: block;}
-                                }   
-                                  
-                              }
+                                background: none;
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                .closeImg {
+                                    position: absolute;
+                                    width: 20px;
+                                    height: 20px;
+                                    right: -5px;
+                                    top: -5px;
+                                    background: #E2E1E1;
+                                    line-height: 20px;
+                                    z-index: 0;
+                                    display: block;  
+                                    border-radius: 50%;                                   
+                                }
+                                .closeImg::after {
+                                    content: '';
+                                    position: absolute;
+                                    height: 16px;
+                                    width: 2px;
+                                    background: #fff;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%) rotate(-45deg);
+
+                                }
+                                .closeImg::before {
+                                    content: '';
+                                    position: absolute;
+                                    height: 16px;
+                                    width: 2px;
+                                    background: #fff;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%) rotate(45deg);
+
+                                }                               
+                              }                              
                             }
+                            > ul:nth-child(2n) {
+                                margin-left: 0!important;
+                                margin-right: 0!important;
+                              }
             
                           }
                           .alert-text {
@@ -7390,106 +7926,7 @@ button:focus {
                             margin-top: 0;
                             margin-bottom: 40px;
                           }
-                          #m-bodySelectbox {
-                            width: 310px;
-                            padding-top: 20px;
-                            padding-bottom: 20px;
-                            border-top: 4px solid #E8E8E8;
-                            border-bottom: 4px solid #E8E8E8;
-                            margin: 0 auto;
-                            .input-selectbox-wrap {
-                              width: 203px;
-                              margin: 0 auto;
-                              .select2 {
-                                height: 38px;
-                                width: 100%;
-                                margin: 0 auto;
-                                line-height: 38px;
-                                text-align: center;
-                                font-size: 18px;
-                                input {
-                                  font-size: 18px;
-                                  text-align: center;
-                                  width: 100%;
-                                }
-                                input::placeholder{
-                                  font-size: 18px;
-                                }
-                                i {
-                                  display: block;
-                                  width: 14px;
-                                  height: 14px;
-                                  position: absolute;
-                                  right: 12px;
-                                  top: calc(50% - 7px);
-                                  cursor: pointer;
-                                  @include background("~@/assets/img/arrow_butt.png");
-            
-                                }
-                                i.rotate {
-                                  -webkit-transform: rotate(180deg);
-                                  -moz-transform: rotate(180deg);
-                                  -ms-transform: rotate(180deg);
-                                  -o-transform: rotate(180deg);
-                                }
-            
-                              }
-                              .listWrap2 {
-                                position: relative;
-                                z-index: 1;
-                                display: none;
-                                margin: 0 auto;
-                                width: 100%;
-                                max-height: 150px;
-                                border: 1px solid #BBBBBB;
-                                border-top: none;
-                                overflow: hidden;
-                                border-radius: 0 0 5px 5px;
-                                background: #fff;
-            
-                                ul.list {
-                                  border-top: 1px solid #e2e1e1;
-                                  margin: 0 auto;
-                                  padding: 9px 0;
-                                  width: 175px;
-                                  max-height: 112px;
-            
-                                  li {
-                                    cursor: pointer;
-                                    height: 29px;
-                                    line-height: 29px;
-                                    text-align: center;
-                                    font-size: 14px;
-                                    font-family: Nanum-Barun-Gothic-normal, serif;
-                                  }
-            
-                                  overflow-y: auto;
-                                  overflow-x: hidden;
-                                }
-            
-                              }
-            
-                              .listWrap.long {
-                                max-height: 280px;
-                                .list {
-                                  max-height: 274px;
-                                  li.on {
-                                    color: #4bd897;
-                                  }
-                                }
-                              }
-                              .list::-webkit-scrollbar {
-                                width: 5px;
-                              }
-                              .list::-webkit-scrollbar-thumb {
-                                border-radius: 5px;
-                                background: #EEEEEE;
-                              }
-                            }
-                            .input-selectbox-wrap:first-child{
-                              margin-bottom: 15px;
-                            }
-                          }
+                          
                         }
                     }
 
@@ -7509,10 +7946,16 @@ button:focus {
                         height: 420px;
                     }
                     #accordion-product.height {
-                        height: 350px;
+                        height: 385px;
                     }
                     #accordion-gender.height {
-                        height: 700px;
+                        height: 567px;
+                    }
+                    #accordion-pet.height {
+                        height: 328px;
+                    }
+                    #accordion-baby.height {
+                        height: 341px;
                     }
 
                     .SNS-btn {

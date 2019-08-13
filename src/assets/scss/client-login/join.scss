@@ -985,10 +985,10 @@ button:focus {
            transform:rotateX(0deg) rotateY(0deg);
            -webkit-transform: rotateX(0deg) rotateY(0deg);
          }
-       }
+      }
       .card:last-child {
       margin-right: 0;
-    }
+      }
 
       .rotate-btn {
         display: block;
@@ -1083,6 +1083,7 @@ button:focus {
     #cardStep4.card {
       background: #fff;
       border-radius: 29px;
+      margin-right: 49px;
       .front {
           display: flex;
           align-items: center;
@@ -1099,13 +1100,12 @@ button:focus {
                   color: #000;
               }
               .sub-text {
+                  max-width: none !important;
                   margin-top: 2px;
-                  max-width: 195px;
                   font-family: 'NotoSansKR-Light';
                   height: auto;
                   line-height: 24px;
                   font-size: 16px;
-                  margin:2px auto 61px;
                   color: #707070;
                   
               }
@@ -1122,7 +1122,7 @@ button:focus {
                   }
               }
               .button {
-                  margin-top: 50px;
+                  margin-top: 113px;
                   margin-bottom: 11px;
                   a {
                       display: block;
@@ -1133,9 +1133,9 @@ button:focus {
                       color: #fff;
                       font-family: 'NotoSansKr-Medium';
                       background: #4BD897;
-                      text-align: center;
                       line-height: 50px;
                       font-size: 20px;
+                      margin: 0 auto;
                   }
               }
               .skip-btn {
@@ -1772,7 +1772,7 @@ button:focus {
                     line-height: 28px;
                 }
                 .sub-text {
-                    max-width: 235px;
+                    max-width: none !important;
                     height: auto;
                     line-height: 17px;
                     font-size: 11px;

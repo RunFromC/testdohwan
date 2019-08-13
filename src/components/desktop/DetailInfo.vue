@@ -261,7 +261,7 @@
         <div class="input-selectbox-wrap" id="ageGeneration">
           <div class="select select-btn" @click.prevent="showSelectList">
             <span>{{ageDefault}}</span>
-            <i></i>
+            <i class="icon"></i>
           </div>
 
           <div class="listContents listWrap">
@@ -279,7 +279,7 @@
         <div class="input-selectbox-wrap" id="ageGroup">
           <div class="select select-btn" @click.prevent="showSelectList">
             <span>{{generationDefault}}</span>
-            <i></i>
+            <i class="icon"></i>
           </div>
 
           <div class="listContents listWrap">
@@ -766,7 +766,6 @@
         <div class="input-selectbox-wrap" id="itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 입력" />
-            <i></i>
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
@@ -785,11 +784,44 @@
 
         <div class="choice-list">
           <ul>
-            <li></li>
+            <li>뷰티</li>
             <li class="close">
-              <span class="close-btn">
-                <a href="#">X</a>
-              </span>
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
             </li>
             <li class="delete none">삭제</li>
           </ul>
@@ -1034,13 +1066,6 @@ export default {
                 this.$store.state.welcome = true;
                 location.href = '/';
             }
-        }
-    },
-    watch: {
-        getCurrentCard(newValue, oldValue) {
-            let card = this.getCardList();
-            this.currentIndex = card.indexOf(newValue);
-            console.log(this.currentIndex);
         }
     }
 };
