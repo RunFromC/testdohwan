@@ -219,7 +219,7 @@ button:focus {
                                     height: $height - 2px;
                                     border: 1px solid #aaaaaa;
                                     border-radius: 5px 0px 0px 5px;
-                                    
+                                    font-family: 'NanumBarunGothic';
                                 }
                                 
                                 .possible-text, .wrong-text {
@@ -248,9 +248,6 @@ button:focus {
                                 button.on {
                                     background: #68DDA7;
                                     cursor: pointer;
-                                }
-                                button.on {
-                                    background: #4bd897;
                                 }
                             }
 
@@ -304,6 +301,7 @@ button:focus {
                                 height: 20px;
                                 line-height: 20px;
                                 cursor: pointer;
+                                font-family: 'NotoSansKR-Light';
                             }
 
                             i {
@@ -4702,6 +4700,7 @@ button:focus {
                                 line-height: 34px;
                                 color: $defaultColor;
                                 width: 80px;
+                                font-family: 'NanumBarunGothic';
                             }
                             input {
                                 width: 176px;
@@ -4713,6 +4712,7 @@ button:focus {
                                 border: 1px solid #bbbbbb;
                                 color: $defaultColor;
                                 font-size: 13px;
+                                font-family: 'NanumBarunGothic';
                             }
                             input::placeholder {
                                 color: $defaultColor;
@@ -4738,6 +4738,7 @@ button:focus {
                             button.on {
                                 background: #68DDA7;
                                 cursor: pointer;
+                                border: none;
                             }
                             .possible-text, .wrong-text {
                                 position: absolute;
@@ -4794,11 +4795,8 @@ button:focus {
                             display: block;
                         }
                         a.on {
-                            background: #4bd897;
+                            background: #4BD897;
                         }
-                    }
-                    .m-finished a.on {
-                        background: #4BD897;
                     }
                     .checkbox-wrap {
                         width: 280px;
@@ -4811,10 +4809,8 @@ button:focus {
                             height: 20px;
                             line-height: 20px;
                             color: $defaultColor;
-                            font-family: 'Noto Sans CJK KR', 'sans-serif';
-                            font-weight: lighter;
+                            font-family: 'NotoSansKR-Light';
                             cursor: pointer;
-                            text-decoration: underline;
                         }
                         i {
                             cursor: pointer;

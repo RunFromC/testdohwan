@@ -12,7 +12,7 @@
         </h1>
       </div>
     </div>
-        <div id="card-container">
+        <div id="card-container" ref="cardContainer" :class="joinPage ? 'min' : ''">
 <!--        <div class="scene">-->
             <div :class="joinPage == false &&  addJoinPage ? 'none': '' || cardFilp" class="card" id="cardStep1" >
                 <div class="front">
@@ -25,54 +25,64 @@
                             <div class="input-wrapper">
                                 <div class="item">
                                     <div class="label">아이디 </div>
-                                    <input type="text">
-                                    <button>중복확인</button>
-                                   
+                                    <input type="text" v-model="id" @keyup="idvalidationReset">
+                                    <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
+                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                                    <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
+                                    <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
+                                    <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
                                 </div>
                             </div>
 
                             <div class="input-wrapper ">
                                 <div class="item password">
                                     <div class="label">비밀번호 </div>
-                                    <input type="password" placeholder="영문,숫자 포함 6자리 이상">
+                                    <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                                    <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
                                 </div>
 
                                 <div class="item password">
                                     <div class="label"> </div>
-                                    <input type="password" placeholder="비밀번호 확인">
+                                    <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                                    
+                                    <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                                 </div>
                             </div>
 
                             <div class="input-wrapper ">
                                 <div class="item password">
                                     <div class="label">이름 </div>
-                                    <input type="text" placeholder="">
+                                    <input type="text" v-model="name" disabled>
                                 </div>
 
                                 <div class="item">
                                     <div class="label">휴대폰번호 </div>
-                                    <input type="text" placeholder="- 없이 입력">
-                                    <button>인증하기</button>
+                                    <input type="text" v-model="phoneNumber" disabled>
+                                    <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
+                                    <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                                    <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                                 </div>
 
-                                <div class="item">
+                                <!-- <div class="item">
                                     <div class="label"> </div>
-                                    <input type="text" placeholder="인증번호">
-                                    <button>확인</button>
-
-                                </div>
+                                    <input type="text" v-model="certNumber">
+                                    <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
+                                    <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                                    <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                                </div> -->
 
                             </div>
 
                             <div class="input-wrapper">
                                 <div class="item">
                                     <div class="label">이메일</div>
-                                    <input type="text" placeholder="직접입력">
-                                    <button>인증하기</button>
-                                    
+                                    <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset">
+                                    <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
+                                    <div class="wrong-text" v-if="email && emailValidityText">잘못된 이메일 형식입니다</div>
+                                    <div class="possible-text" v-if="email && emailPossibleText">사용가능한 이메일입니다</div>
+                                    <div class="wrong-text" v-if="email && emailWrongText">사용중인 이메일입니다</div>
+                                    <div class="wrong-text" v-if="email && emailCheckText">중복확인이 필요합니다</div>
                                 </div>
                             </div>
 
@@ -83,18 +93,26 @@
                                 <input type="checkbox" class="input-checkbox" >
                                 <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                             </div>
-                            <!-- <div class="checkbox-wrap margin-bottom-0">
+                            <div class="checkbox-wrap margin-bottom-0" v-if="!this.$store.state.iccMode">
                                 <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
                                 <input type="checkbox" class="input-checkbox" >
                                 <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
-                            </div> -->
-                            
-                            <div class="finished"><a href="#" :class="joinPage ? 'none': ''" @click="standardJoin"><span>가입완료</span> </a></div>
+                            </div>
+                            <div class="link_wrap" v-if="!this.$store.state.iccMode">
+                                <a href="#"><img src="~@/assets/img/market_logo.png" alt=""></a>
+                                <div class="split"></div>
+                                <a href="#"><img src="~@/assets/img/pick_logo.png" alt=""></a>
+                                <div class="split"></div>
+                                <a href="#"><img src="~@/assets/img/bigbird-i_logo.png" alt=""></a>
+                            </div>
+                            <div class="finished" :class="joinPage ? 'none': ''" @click="standardJoin">
+                                <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''"><span>가입완료</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="back">
-                    <a href="#" class="rotate-btn2"  @click.prevent="onCardFilp"></a>
+                    <a href="#" class="rotate-btn2" @click.prevent="onCardFilp"></a>
                     <div class="contents">
                         <Terms @update="changedTabForTemrs" />
                     </div>
@@ -260,7 +278,7 @@
     <div id="m-container">
         <div class="header">
             <div class="header-title">
-                <a href="/client" class="icon-back-btn"><i></i></a>
+                <router-link to="/client" class="icon-back-btn"><i></i></router-link>
                 <span>브랜드 회원가입</span>
             </div>
             <div class="tab-list">
@@ -273,37 +291,63 @@
                 <div class="input-wrapper">
                     <div class="item">
                         <div class="label">아이디 </div>
-                        <input type="text">
-                        <button>중복확인</button>
+                        <input type="text" v-model="id" @keyup="idvalidationReset">
+                        <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
+                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                        <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
+                        <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
+                        <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
                     </div>
                 </div>
 
                 <div class="input-wrapper ">
                     <div class="item password">
                         <div class="label">비밀번호 </div>
-                        <input type="password" placeholder="영문,숫자 포함 6자리 이상">
-                        <i class="icon-eye" @click.prevent="changePwType"></i>
+                        <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
+                        <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
                     </div>
 
                     <div class="item password">
                         <div class="label"> </div>
-                        <input type="password" placeholder="비밀번호 확인">
-                        <i class="icon-eye" @click.prevent="changePwType"></i>
+                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck">
+                        <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                        <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                     </div>
                 </div>
 
                 <div class="input-wrapper ">
                     <div class="item">
                         <div class="label">이름 </div>
-                        <input type="text" placeholder="">
-                        <button>실명인증</button>
+                        <input type="text" v-model="name" disabled>
                     </div>
+
+                    <div class="item">
+                        <div class="label">휴대폰번호 </div>
+                        <input type="text" v-model="phoneNumber" disabled>
+                        <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
+                        <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                        <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                    </div>
+
+                    <!-- <div class="item">
+                        <div class="label"> </div>
+                        <input type="text" v-model="certNumber">
+                        <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
+                        <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
+                        <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                    </div> -->
                 </div>
 
                 <div class="input-wrapper">
                     <div class="item text">
                         <div class="label">이메일</div>
-                        <input type="text" placeholder="">
+                        <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset">
+                        <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
+                        <div class="wrong-text" v-if="email && emailValidityText">잘못된 이메일 형식입니다</div>
+                        <div class="possible-text" v-if="email && emailPossibleText">사용가능한 이메일입니다</div>
+                        <div class="wrong-text" v-if="email && emailWrongText">사용중인 이메일입니다</div>
+                        <div class="wrong-text" v-if="email && emailCheckText">중복확인이 필요합니다</div>
                     </div>
                 </div>
 
@@ -313,12 +357,14 @@
                     <div class="label" @click.prevent="openTermsMobile(1)">약관동의(필수)</div>
                     <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                 </div>
-                <div class="checkbox-wrap margin-bottom-58">
+                <div class="checkbox-wrap margin-bottom-58" v-if="!this.$store.state.iccMode">
                     <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                     <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                 </div>
 
-                <div class="m-finished" id="welcome-finished"><a href="#"><span>가입하기</span> <i></i></a></div>
+                <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="standardJoin">
+                    <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''"><span>가입완료</span></a>
+                </div>
             </div>
             <div class="tab" id="additionalInfo" v-else>
                 <div class="add_wrap add_wrap_group"  v-if="!isAccodionOn">
@@ -427,7 +473,7 @@
                     </div>
 
                     <div class="m-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</div>
-                    <div class="m-finished"><a href="#"><span>가입하기</span><i></i></a></div>
+                    <div class="m-finished"><a href="#"><span>가입완료</span><i></i></a></div>
                 </div>
             </div>
         </div>
@@ -458,15 +504,8 @@ export default {
         Terms, TermsMobile
     },
     methods: {
-       
-        addJoin() {
-            this.joinPage = true;
-        },
-        standardJoin() {
-            this.addJoinPage = !this.addJoinPage
-        },
-    }
-    
+        
+    },
 };
 </script>
 
