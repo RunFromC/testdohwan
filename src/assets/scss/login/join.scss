@@ -4873,9 +4873,11 @@ button:focus {
                         a {
                             color: #fff;
                             display: block;
+                            cursor: default;
                         }
                         a.on {
                             background: #4bd897;
+                            cursor: pointer;
                         }
                     }
                     .m-finished a.on {
@@ -4921,59 +4923,65 @@ button:focus {
                     .checkbox-wrap.margin-bottom-58 {
                         margin-bottom: 30px !important;
                     }
-                    .title {
-                        margin-top: 55px;
-                        font-size: 18px;
-                        font-family: 'NotoSansKR-Regular', 'sans-serif';
-                        text-align: center;
-                        color: #000;
-                    }
-                    .text {
-                        margin-top: 3px;
-                        text-align: center;
-                        color: #a7a6a6;
-                        font-size: 13px;
-                        font-family: 'NotoSansKR-Light', 'sans-serif';
-                    }
-                    img.top {
-                        display: block;
-                        margin: 40px auto 0;
-                        width: 115px;
-                    }
-                    .text2 {
-                        color: #000;
-                        font-size: 18px;
-                        text-align: center;
-                        font-family: 'NotoSansKR-Regular', 'sans-serif';
-                        span {
-                            color: #4bd897;
+                    .add_wrap {
+                        margin-top: calc(50% - 130px);
+                        margin-bottom: calc(50% - 130px);
+                        .title {                            
                             font-size: 18px;
+                            font-family: 'NotoSansKR-Regular', 'sans-serif';
+                            text-align: center;
+                            color: #000;
                         }
-                    }
-                    button.add_btn {
-                        width: 230px;
-                        height: 40px;
-                        color: #fff;
-                        background: #4bd897;
-                        font-size: 16px;
-                        border: 0;
-                        -webkit-border-radius: 8px;
-                        -moz-border-radius: 8px;
-                        border-radius: 8px;
-                        display: block;
-                        margin: 32px auto 0;
-                        font-family: 'NotoSansKR-Medium', 'sans-serif';
-                        cursor: pointer;
-                    }
-                    .skip {
-                        text-align: center;
-                        margin-top: 10px;
-                        a {
-                            font-size: 14px;
-                            color: #666666;
+                        .text {
+                            margin: 0 auto;
+                            margin-top: 1.6px;
+                            text-align: center;
+                            line-height: 17.5px;
+                            color: #a7a6a6;
+                            font-size: 13px;
                             font-family: 'NotoSansKR-Light', 'sans-serif';
                         }
+                        img.top {
+                            display: block;
+                            margin: 40px auto 0;
+                            width: 115px;
+                        }
+                        .text2 {
+                            color: #000;
+                            font-size: 18px;
+                            text-align: center;
+                            font-family: 'NotoSansKR-Regular', 'sans-serif';
+                            span {
+                                color: #4bd897;
+                                font-size: 18px;
+                            }
+                        }
+                        button.add_btn {
+                            width: 230px;
+                            height: 40px;
+                            color: #fff;
+                            background: #4bd897;
+                            font-size: 16px;
+                            border: 0;
+                            -webkit-border-radius: 8px;
+                            -moz-border-radius: 8px;
+                            border-radius: 8px;
+                            display: block;
+                            margin: 95px auto 0;
+                            font-family: 'NotoSansKR-Medium', 'sans-serif';
+                            cursor: pointer;
+                        }
+                        .skip {
+                            text-align: center;
+                            margin-top: 10px;
+                            a {
+                                font-size: 14px;
+                                color: #666666;
+                                font-family: 'NotoSansKR-Light', 'sans-serif';
+                            }
+                        }
                     }
+                    
                     .accordion {
                         width: 100%;
                         // height: 50px;
@@ -5542,12 +5550,12 @@ button:focus {
                                     font-size: 18px;
                                     padding: 0 30px 0 20px;
                                     width: 153px;
-                                    color: #C1C1C1;
+                                    color: #000;
                                     font-family: 'Nanum-Barun-Gothic-normal';
                                 }
                                 input::placeholder {
                                     font-size: 18px;
-                                    color: #C1C1C1;
+                                    color: #707070;
                                     font-family: 'Nanum-Barun-Gothic-normal';
                                 
                                     
@@ -5599,7 +5607,7 @@ button:focus {
                                         cursor: pointer;
                                         font-family: 'Nanum-Barun-Gothic-normal',
                                             serif;
-                                        color: #000;
+                                        color: #707070;
                                     }
                                    
                                 }
@@ -5851,7 +5859,8 @@ button:focus {
                                     display: block;
                                     text-align: center;
                                     font-size: 16px;
-                                    font-family: NotoSansKR-Regular, sans-serif;
+                                    font-family: 'Nanum-Barun-Gothic-normal',
+                                    serif;
                                     color: #000;
                                 }
                                 i {
@@ -5961,6 +5970,9 @@ button:focus {
                                             serif;
                                         position: relative;
                                     }
+                                    span.on {
+                                        color: #000;
+                                    }
                                 }
                                 .listWrap {
                                     .list {
@@ -5980,6 +5992,9 @@ button:focus {
                                     font-family: Nanum-Barun-Gothic-normal,
                                         serif;
                                     position: relative;
+                                    span.on {
+                                        color: #000;
+                                    }
 
                                     i {
                                         display: block;
@@ -6208,12 +6223,13 @@ button:focus {
                                                     display: block;
                                                     line-height: 40px;
                                                     text-align: left;
-                                                    padding-left: 15px;
+                                                    padding-left: 13px;
                                                     color: #000;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
                                                 }
                                                 i {
                                                     position: absolute;
-                                                    right: 9px;
+                                                    right: 6px;
                                                     top: 50%;
                                                     transform: translateY(-50%);
                                                     background: url(~@/assets/img/arrow_butt.png) no-repeat center;
@@ -6241,6 +6257,7 @@ button:focus {
                                                 margin: 0 5px;
                                                 padding: 15px 0 0;
                                                 cursor: pointer;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
 
                                             }
                                             li:first-child {
@@ -6292,12 +6309,12 @@ button:focus {
                                                 }
                                                 input::placeholder {
                                                     font-family: 'Nanum-Barun-Gothic-normal';
-                                                    color: #E2E1E1;
+                                                    color: #707070;
                                                     font-size: 14px;
                                                 }
                                                 i {
                                                     position: absolute;
-                                                    right: 9px;
+                                                    right: 6px;
                                                     top: 50%;
                                                     transform: translateY(-50%);
                                                     background: url(~@/assets/img/arrow_butt.png) no-repeat center;
@@ -6317,7 +6334,7 @@ button:focus {
                                             box-sizing: border-box;
                                             border-top: none;
                                             height: auto;
-                                            max-height: 269px;
+                                            max-height: 187px;
                                             overflow-y: auto;
                                             width: 162px;
                                             z-index: 10;
@@ -6329,6 +6346,7 @@ button:focus {
                                                 cursor: pointer;
                                                 background: #fff;
                                                 text-align: left;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
                                             }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
@@ -6567,7 +6585,8 @@ button:focus {
                                     display: block;
                                     text-align: center;
                                     font-size: 16px;
-                                    font-family: NotoSansKR-Regular, sans-serif;
+                                    font-family: 'Nanum-Barun-Gothic-normal',
+                                    serif;
                                     color: #000;
                                 }
                                 i {
@@ -6853,6 +6872,7 @@ button:focus {
                                             height: 27px;
                                             line-height: 27px;
                                             color: #000;
+                                            font-family: 'Nanum-Barun-Gothic', 'serif';
                                         }
                                         span {
                                             background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
@@ -6909,6 +6929,9 @@ button:focus {
                                                     font-family: 'Nanum-Barun-Gothic', 'serif';
                                                     letter-spacing: -1px;
                                                     color: #707070;
+                                                }
+                                                span.on {
+                                                    color: #000;
                                                 }
                                                 i {
                                                     position: absolute;
@@ -6982,8 +7005,9 @@ button:focus {
                                                     color: #707070;
                                                     padding-left: 0;
                                                     font-family: 'Nanum-Barun-Gothic', 'serif';
-
-                                                    
+                                                }
+                                                span.on {
+                                                    color: #000;
                                                 }
                                                 
                                                 input {
@@ -7031,6 +7055,7 @@ button:focus {
                                                 padding: 10px 0 0;
                                                 cursor: pointer;
                                                 background: #fff;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
                                             }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
@@ -7304,6 +7329,8 @@ button:focus {
                                             height: 27px;
                                             line-height: 27px;
                                             color: #000;
+                                            font-family: 'Nanum-Barun-Gothic', 'serif';
+
                                         }
                                         span {
                                             background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
@@ -7361,6 +7388,9 @@ button:focus {
                                                     letter-spacing: -1px;
                                                     color: #707070;
                                                 }
+                                                span.on {
+                                                    color: #000;
+                                                }
                                                 i {
                                                     position: absolute;
                                                     right: 10px;
@@ -7391,6 +7421,7 @@ button:focus {
                                                 margin: 0 5px;
                                                 padding: 10px 0 0;
                                                 cursor: pointer;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
 
                                             }
                                             li:first-child {
@@ -7430,7 +7461,11 @@ button:focus {
                                                     font-size: 14px;
                                                     color: #707070;
                                                     padding-left: 0;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
                                                     
+                                                }
+                                                span.on {
+                                                    color: #000;
                                                 }
                                                 
                                                 input {
@@ -7438,12 +7473,14 @@ button:focus {
                                                     font-size: 14px;
                                                     width: 100%;
                                                     color: #000;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
                                                     
                                                     
                                                 }
                                                 input::placeholder {
-                                                    color: #C1C1C1;
+                                                    color: #707070;
                                                     font-size: 14px;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
                                                 }
                                                 i {
                                                     position: absolute;
@@ -7478,6 +7515,7 @@ button:focus {
                                                 padding: 10px 0 0;
                                                 cursor: pointer;
                                                 background: #fff;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
                                             }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
@@ -7586,11 +7624,12 @@ button:focus {
                               margin: 0 auto;
                               line-height: 20px;
                               text-align: center;
+                              color: #000;
                               
                             }
             
                             input::placeholder {
-                              color:#E2E1E1;
+                              color:#707070;
                               font-size: 18px;
                               font-family: Nanum-Barun-Gothic-normal, sans-serif;
                               text-align: center;
@@ -7747,6 +7786,7 @@ button:focus {
                               font-size: 20px;
                               font-family: Nanum-Barun-Gothic-normal, serif;
                               position: relative;
+                              span.on {color:#000;}
                               input {
                                 text-align: center;
                                 font-size: 18px;
@@ -7831,8 +7871,7 @@ button:focus {
                             border-bottom: 4px solid #E8E8E8;
                             margin: 0 auto;
                             .text-wrap {
-            
-            
+                                text-align: center;                  
                               .title {
                                 font-size: 18px;
                                 margin-top: 0;
@@ -7940,7 +7979,7 @@ button:focus {
                         height: 600px;
                     }
                     #accordion-job.height {
-                        height: 500px;
+                        height: 388px;
                     }
                     #accordion-interests.height {
                         height: 420px;

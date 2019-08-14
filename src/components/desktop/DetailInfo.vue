@@ -124,7 +124,7 @@
         </div>
 
         <div class="title" v-if="checkService('brands',true) && !this.$store.state.iccMode">기본 원고료</div>
-        <div class="title" v-else>기본 개런티</div>
+        <div class="title" v-else>보장 개런티</div>
 
         <div class="pay-input-wrap">
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
@@ -299,7 +299,7 @@
           <li
             class="save-btn"
             @click="saveBtn"
-            :class="this.profileCard.gender.onSaveButton = true ? 'on':''"
+            :class="this.profileCard.gender.onSaveButton == true ? 'on':''"
           >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
@@ -611,36 +611,36 @@
           :class="!haveChild ? 'none': ''"
         >
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="childAge">
               <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>연령</span>
+                  <span>{{childAgeDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li>0~1세</li>
-                <li>2~3세</li>
-                <li>4~5세</li>
-                <li>6~7세</li>
-                <li>초등학생</li>
-                <li>중학생</li>
-                <li>고등학생</li>
-                <li>20대</li>
-                <li>30대</li>
-                <li>40대</li>
+                <li @click="isText">0~1세</li>
+                <li @click="isText">2~3세</li>
+                <li @click="isText">4~5세</li>
+                <li @click="isText">6~7세</li>
+                <li @click="isText">초등학생</li>
+                <li @click="isText">중학생</li>
+                <li @click="isText">고등학생</li>
+                <li @click="isText">20대</li>
+                <li @click="isText">30대</li>
+                <li @click="isText">40대</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="childGender">
               <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>성별</span>
+                  <span>{{childGenderDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>남자</li>
-                <li>여자</li>
+                <li @click="isText">남자</li>
+                <li @click="isText">여자</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -703,32 +703,32 @@
         </ul>
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="petType">
               <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>동물 종류</span>
+                  <span>{{petTypeDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li>강아지</li>
-                <li>고양이</li>
-                <li>햄스터</li>
-                <li>기타</li>
+                <li @click="isText">강아지</li>
+                <li @click="isText">고양이</li>
+                <li @click="isText">햄스터</li>
+                <li @click="isText">기타</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="petDigit">
               <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>몇마리</span>
+                  <span>{{petDigitDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>1마리</li>
-                <li>2마리</li>
-                <li>3마리</li>
-                <li>4마리 이상</li>
+                <li @click="isText">1마리</li>
+                <li @click="isText">2마리</li>
+                <li @click="isText">3마리</li>
+                <li @click="isText">4마리 이상</li>
               </ul>
             </li>
             <li class="status-btn clearfix">

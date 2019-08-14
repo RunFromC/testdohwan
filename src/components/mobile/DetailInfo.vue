@@ -398,7 +398,7 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-if="!selectText">현 직업</li>
+                <li v-if="selectText">현 직업</li>
                 <li v-else>전 직업</li>
               </ul>
             </li>
@@ -586,36 +586,36 @@
           :class="!haveChild ? 'none': ''"
         >
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="m-childAge">
               <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>연령</span>
+                  <span>{{childAgeDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li>0~1세</li>
-                <li>2~3세</li>
-                <li>4~5세</li>
-                <li>6~7세</li>
-                <li>초등학생</li>
-                <li>중학생</li>
-                <li>고등학생</li>
-                <li>20대</li>
-                <li>30대</li>
-                <li>40대</li>
+                <li @click="isText">0~1세</li>
+                <li @click="isText">2~3세</li>
+                <li @click="isText">4~5세</li>
+                <li @click="isText">6~7세</li>
+                <li @click="isText">초등학생</li>
+                <li @click="isText">중학생</li>
+                <li @click="isText">고등학생</li>
+                <li @click="isText">20대</li>
+                <li @click="isText">30대</li>
+                <li @click="isText">40대</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="m-childGender">
               <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>성별</span>
+                  <span>{{childGenderDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>남자</li>
-                <li>여자</li>
+                <li @click="isText">남자</li>
+                <li @click="isText">여자</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -683,32 +683,32 @@
         </ul>
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="m-petType">
               <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>동물종류</span>
+                  <span>{{petTypeDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li>강아지</li>
-                <li>고양이</li>
-                <li>햄스터</li>
-                <li>기타</li>
+                <li @click="isText">강아지</li>
+                <li @click="isText">고양이</li>
+                <li @click="isText">햄스터</li>
+                <li @click="isText">기타</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="m-petDigit">
               <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>몇마리</span>
+                  <span>{{petDigitDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>1마리</li>
-                <li>2마리</li>
-                <li>3마리</li>
-                <li>4마리 이상</li>
+                <li @click="isText">1마리</li>
+                <li @click="isText">2마리</li>
+                <li @click="isText">3마리</li>
+                <li @click="isText">4마리 이상</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -871,8 +871,10 @@ export default {
     name: 'mobileDetailInfo',
     data() {
         return {
+            //개런티 퍼센트
             basicValue: '-10',
             comboValue: '-10',
+
             isSkinOnOff: {
                 0: false,
                 1: false,
@@ -891,6 +893,10 @@ export default {
             haveJob: false,
             haveChild: false,
             havePet: false,
+            petDigitDefault: '몇마리',
+            petTypeDefault: '동물종류',
+            childGenderDefault: '성별',
+            childAgeDefault: '연령',
             skinDefault: '피부타입',
             ageDefault: '10대',
             generationDefault: '초반',
@@ -999,13 +1005,20 @@ export default {
             }
         },
         //셀렉트 선택 피부,연령
-        isText(e) {
+        isText(e, idx) {
             let text = e.target.innerText;
-            console.log();
             if (e.target.closest('#skin, .m-skin')) {
                 this.skinDefault = text;
             } else if (e.target.closest('#ageGeneration, #m-ageGeneration')) {
                 this.ageDefault = text;
+            } else if (e.target.closest('#childAge, #m-childAge')) {
+                this.childAgeDefault = text;
+            } else if (e.target.closest('#childGender, #m-childGender')) {
+                this.childGenderDefault = text;
+            } else if (e.target.closest('#petType, #m-petType')) {
+                this.petTypeDefault = text;
+            } else if (e.target.closest('#petDigit, #m-petDigit')) {
+                this.petDigitDefault = text;
             } else {
                 this.generationDefault = text;
             }
@@ -1035,7 +1048,8 @@ export default {
         //성별,연령
         eitherSelect(value) {
             this.isCheck = value;
-            this.profileCard.gender.onSaveButton == true;
+            this.profileCard.gender.onSaveButton = true;
+            console.log(this.profileCard.gender.onSaveButton);
         },
         checkEither(el) {
             if (el.includes(this.isCheck)) return 'checked';
