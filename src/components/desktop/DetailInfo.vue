@@ -131,7 +131,7 @@
         </div>
 
         <div class="title" v-if="checkService('brands',true) && !this.$store.state.iccMode">기본 원고료</div>
-        <div class="title" v-else>기본 개런티</div>
+        <div class="title" v-else>보장 개런티</div>
 
         <div class="pay-input-wrap">
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
@@ -141,11 +141,11 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" value="-10" />
+            <input class="percentage" type="text" maxlength="2" v-model="basicValue" />
             <span>%</span>
             <div class="up-down-wrap">
-              <i class="up"></i>
-              <i class="down"></i>
+              <i class="up" @click="payUpPersent('basicsUp')"></i>
+              <i class="down" @click="payDownPersent('basicsDown')"></i>
             </div>
           </div>
           <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(2)"></i>
@@ -169,11 +169,11 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" value="-10" />
+            <input class="percentage" type="text" maxlength="2" v-model="comboValue" />
             <span>%</span>
             <div class="up-down-wrap">
-              <i @click="payUpPersent" class="up"></i>
-              <i @click="payDownPersent" class="down"></i>
+              <i @click="payUpPersent('comboUp')" class="up"></i>
+              <i @click="payDownPersent('comboDown')" class="down"></i>
             </div>
           </div>
           <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
@@ -268,7 +268,7 @@
         <div class="input-selectbox-wrap" id="ageGeneration">
           <div class="select select-btn" @click.prevent="showSelectList">
             <span>{{ageDefault}}</span>
-            <i></i>
+            <i class="icon"></i>
           </div>
 
           <div class="listContents listWrap">
@@ -286,7 +286,7 @@
         <div class="input-selectbox-wrap" id="ageGroup">
           <div class="select select-btn" @click.prevent="showSelectList">
             <span>{{generationDefault}}</span>
-            <i></i>
+            <i class="icon"></i>
           </div>
 
           <div class="listContents listWrap">
@@ -306,7 +306,7 @@
           <li
             class="save-btn"
             @click="saveBtn"
-            :class="this.profileCard.gender.onSaveButton = true ? 'on':''"
+            :class="this.profileCard.gender.onSaveButton == true ? 'on':''"
           >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
@@ -618,36 +618,36 @@
           :class="!haveChild ? 'none': ''"
         >
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="childAge">
               <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>연령</span>
+                  <span>{{childAgeDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li>0~1세</li>
-                <li>2~3세</li>
-                <li>4~5세</li>
-                <li>6~7세</li>
-                <li>초등학생</li>
-                <li>중학생</li>
-                <li>고등학생</li>
-                <li>20대</li>
-                <li>30대</li>
-                <li>40대</li>
+                <li @click="isText">0~1세</li>
+                <li @click="isText">2~3세</li>
+                <li @click="isText">4~5세</li>
+                <li @click="isText">6~7세</li>
+                <li @click="isText">초등학생</li>
+                <li @click="isText">중학생</li>
+                <li @click="isText">고등학생</li>
+                <li @click="isText">20대</li>
+                <li @click="isText">30대</li>
+                <li @click="isText">40대</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="childGender">
               <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>성별</span>
+                  <span>{{childGenderDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>남자</li>
-                <li>여자</li>
+                <li @click="isText">남자</li>
+                <li @click="isText">여자</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -710,32 +710,32 @@
         </ul>
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="petType">
               <ul class="select-first select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>동물 종류</span>
+                  <span>{{petTypeDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li>강아지</li>
-                <li>고양이</li>
-                <li>햄스터</li>
-                <li>기타</li>
+                <li @click="isText">강아지</li>
+                <li @click="isText">고양이</li>
+                <li @click="isText">햄스터</li>
+                <li @click="isText">기타</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="petDigit">
               <ul class="select-second select-btn" @click.prevent="showSelectList">
                 <li>
-                  <span>몇마리</span>
+                  <span>{{petDigitDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>1마리</li>
-                <li>2마리</li>
-                <li>3마리</li>
-                <li>4마리 이상</li>
+                <li @click="isText">1마리</li>
+                <li @click="isText">2마리</li>
+                <li @click="isText">3마리</li>
+                <li @click="isText">4마리 이상</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -773,7 +773,6 @@
         <div class="input-selectbox-wrap" id="itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 입력" />
-            <i></i>
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
@@ -792,11 +791,44 @@
 
         <div class="choice-list">
           <ul>
-            <li></li>
+            <li>뷰티</li>
             <li class="close">
-              <span class="close-btn">
-                <a href="#">X</a>
-              </span>
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
+          <ul>
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
             </li>
             <li class="delete none">삭제</li>
           </ul>
@@ -983,24 +1015,6 @@ export default {
 
     data() {
         return {
-            isCheck: undefined,
-            skinDefault: '피부타입',
-            ageDefault: '10대',
-            generationDefault: '초반',
-            isSkinOnOff: {
-                0: false,
-                1: false,
-                2: false,
-                3: false
-            },
-            isCertificationOnOff: {
-                0: false,
-                1: false,
-                2: false,
-                3: false,
-                4: false,
-                5: false
-            },
             snsOnSaveButton: false,
             payOnSaveButton: false,
             itemOnSaveButton: false,
@@ -1103,41 +1117,6 @@ export default {
         },
 
         genderAgeOnSave() {},
-        //셀렉트 메뉴
-        isText(e) {
-            let text = e.target.innerText;
-            console.log();
-            if (e.target.closest('#skin')) {
-                this.skinDefault = text;
-            } else if (e.target.closest('#ageGeneration')) {
-                this.ageDefault = text;
-            } else {
-                this.generationDefault = text;
-            }
-        },
-
-        //둘중 하나 선택하기
-        eitherSelect(value) {
-            this.isCheck = value;
-            this.profileCard.gender.onSaveButton == true;
-        },
-        checkEither(el) {
-            if (el.includes(this.isCheck)) return 'checked';
-        },
-
-        //피부고민 중복선택,온오프
-        checkSelect(idx) {
-            if (idx === 0) {
-                for (const keys in this.isSkinOnOff) {
-                    console.log(keys);
-                    this.isSkinOnOff[keys] = false;
-                }
-            } else {
-                this.isSkinOnOff[0] = false;
-            }
-
-            this.isSkinOnOff[idx] = !this.isSkinOnOff[idx];
-        },
 
         //sns 연동 아이콘 온오프
         checkCertification(idx) {
@@ -1156,16 +1135,6 @@ export default {
                 this.$store.state.welcome = true;
                 this.$router.push('/');
             }
-        },
-
-        payUpPersent() {},
-        payDownPersent() {}
-    },
-    watch: {
-        getCurrentCard(newValue, oldValue) {
-            let card = this.getCardList();
-            this.currentIndex = card.indexOf(newValue);
-            console.log(this.currentIndex);
         }
     }
 };

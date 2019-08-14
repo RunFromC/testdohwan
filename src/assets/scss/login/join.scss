@@ -36,6 +36,9 @@ button:focus {
         position: absolute !important; 
         left: -1px;
     }
+    .rotate {
+        transform: rotate(-90deg);
+    }
 
     width: 100vw;
     height: 100vh;
@@ -1164,6 +1167,7 @@ button:focus {
                                     color: #FF8173;
                                 }
                             }
+                            
                         }
                     }
 
@@ -1302,6 +1306,7 @@ button:focus {
                                     .pay::placeholder {
                                         font-size: 18px;
                                         color: #000;
+                                        text-align: right;
                                     }
                                 }
 
@@ -1783,6 +1788,7 @@ button:focus {
                                     font-family: 'Nanum-Barun-Gothic-normal',
                                         serif;
                                     text-align: center;
+                                    color: #E2E1E1;
                                 }
 
                                 input::placeholder {
@@ -2125,16 +2131,48 @@ button:focus {
                                         color: red;
                                     }
                                     li.close {
-                                        position: absolute;
-                                        width: 20px;
-                                        height: 20px;
-                                        right: -5px;
-                                        top: -5px;
-                                        background: #E2E1E1;
-                                        line-height: 20px;
-                                        z-index: 10;
                                         border: none;
+                                        position: absolute;
+                                        left: 0;
+                                        top: 0;
+                                        .closeImg {
+                                            position: absolute;
+                                            width: 20px;
+                                            height: 20px;
+                                            right: -5px;
+                                            top: -5px;
+                                            background: #E2E1E1;
+                                            line-height: 20px;
+                                            z-index: 10;
+                                            display: block;  
+                                            border-radius: 50%;                                   
+                                        }
+                                        .closeImg::after {
+                                            content: '';
+                                            position: absolute;
+                                            height: 16px;
+                                            width: 2px;
+                                            background: #fff;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) rotate(-45deg);
+    
+                                        }
+                                        .closeImg::before {
+                                            content: '';
+                                            position: absolute;
+                                            height: 16px;
+                                            width: 2px;
+                                            background: #fff;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) rotate(45deg);
+    
+                                        }
                                     }
+                                    
+                                    
+                                    
                                 }
                             }
                         }
@@ -2784,6 +2822,9 @@ button:focus {
                 -webkit-transform: rotateX(0deg) rotateY(0deg);
             }
         }
+        .card:last-child {
+            margin-right: 0;
+            }
 
         .rotate-btn {
             display: block;
@@ -4509,21 +4550,57 @@ button:focus {
                                     max-width: 190px;
                                     bottom: -294px;
                                     > ul {
+                                        margin-left: 2.5px;
+                                        margin-right: 2.5px;
                                         width: 90px;
                                         height: 30px;
                                         li {
+                                            font-size: 13px;
                                             border-radius: 10px;
                                             width: 90px;
                                             height: 30px;
+                                            line-height: 30px;
                                             box-sizing: border-box;
                                         }
+                                        
                                         li.close {
-                                            width: 15px;
-                                            height: 15px;
-                                            line-height: 15px;
+                                            border: none;
+                                            
+                                            .closeImg {       
+                                                width: 15px;                                         
+                                                height: 15px;
+                                                line-height: 15px;   
+                                                display: block;  
+                                                right: -2px;
+                                                top: -6px;                              
+                                            }
+                                            .closeImg::after {
+                                                content: '';
+                                                position: absolute;
+                                                height: 12px;
+                                                width: 2px;
+                                                background: #fff;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%) rotate(-45deg);
+        
+                                            }
+                                            .closeImg::before {
+                                                content: '';
+                                                position: absolute;
+                                                height: 12px;
+                                                width: 2px;
+                                                background: #fff;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%) rotate(45deg);
+        
+                                            }
                                         }
                                     }
+                                    
                                 }
+                                
                             }
                             
                         }
@@ -4841,9 +4918,11 @@ button:focus {
                         a {
                             color: #fff;
                             display: block;
+                            cursor: default;
                         }
                         a.on {
-                            background: #4BD897;
+                            background: #4bd897;
+                            cursor: pointer;
                         }
                     }
                     .checkbox-wrap {
@@ -4884,59 +4963,65 @@ button:focus {
                     .checkbox-wrap.margin-bottom-58 {
                         margin-bottom: 30px !important;
                     }
-                    .title {
-                        margin-top: 55px;
-                        font-size: 18px;
-                        font-family: 'NotoSansKR-Regular', 'sans-serif';
-                        text-align: center;
-                        color: #000;
-                    }
-                    .text {
-                        margin-top: 3px;
-                        text-align: center;
-                        color: #a7a6a6;
-                        font-size: 13px;
-                        font-family: 'NotoSansKR-Light', 'sans-serif';
-                    }
-                    img.top {
-                        display: block;
-                        margin: 40px auto 0;
-                        width: 115px;
-                    }
-                    .text2 {
-                        color: #000;
-                        font-size: 18px;
-                        text-align: center;
-                        font-family: 'NotoSansKR-Regular', 'sans-serif';
-                        span {
-                            color: #4bd897;
+                    .add_wrap {
+                        margin-top: calc(50% - 130px);
+                        margin-bottom: calc(50% - 130px);
+                        .title {                            
                             font-size: 18px;
+                            font-family: 'NotoSansKR-Regular', 'sans-serif';
+                            text-align: center;
+                            color: #000;
                         }
-                    }
-                    button.add_btn {
-                        width: 230px;
-                        height: 40px;
-                        color: #fff;
-                        background: #4bd897;
-                        font-size: 16px;
-                        border: 0;
-                        -webkit-border-radius: 8px;
-                        -moz-border-radius: 8px;
-                        border-radius: 8px;
-                        display: block;
-                        margin: 32px auto 0;
-                        font-family: 'NotoSansKR-Medium', 'sans-serif';
-                        cursor: pointer;
-                    }
-                    .skip {
-                        text-align: center;
-                        margin-top: 10px;
-                        a {
-                            font-size: 14px;
-                            color: #666666;
+                        .text {
+                            margin: 0 auto;
+                            margin-top: 1.6px;
+                            text-align: center;
+                            line-height: 17.5px;
+                            color: #a7a6a6;
+                            font-size: 13px;
                             font-family: 'NotoSansKR-Light', 'sans-serif';
                         }
+                        img.top {
+                            display: block;
+                            margin: 40px auto 0;
+                            width: 115px;
+                        }
+                        .text2 {
+                            color: #000;
+                            font-size: 18px;
+                            text-align: center;
+                            font-family: 'NotoSansKR-Regular', 'sans-serif';
+                            span {
+                                color: #4bd897;
+                                font-size: 18px;
+                            }
+                        }
+                        button.add_btn {
+                            width: 230px;
+                            height: 40px;
+                            color: #fff;
+                            background: #4bd897;
+                            font-size: 16px;
+                            border: 0;
+                            -webkit-border-radius: 8px;
+                            -moz-border-radius: 8px;
+                            border-radius: 8px;
+                            display: block;
+                            margin: 95px auto 0;
+                            font-family: 'NotoSansKR-Medium', 'sans-serif';
+                            cursor: pointer;
+                        }
+                        .skip {
+                            text-align: center;
+                            margin-top: 10px;
+                            a {
+                                font-size: 14px;
+                                color: #666666;
+                                font-family: 'NotoSansKR-Light', 'sans-serif';
+                            }
+                        }
                     }
+                    
                     .accordion {
                         width: 100%;
                         // height: 50px;
@@ -5209,9 +5294,15 @@ button:focus {
                                     border: none;
                                     margin-right: 5px;
                                 }
+                                .pay::placeholder {
+                                    font-size: 14px;
+                                    color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-Bold',
+                                        serif;
+                                }
                                 span {
                                     font-size: 14px;
-                                    font-family: Nanum-Barun-Gothic-Bold,
+                                    font-family: 'Nanum-Barun-Gothic-Bold',
                                         sans-serif;
                                 }
                             }
@@ -5401,6 +5492,12 @@ button:focus {
                                     text-align: right;
                                     background: none !important;
                                 }
+                                .pay::placeholder {
+                                    font-size: 14px;
+                                    color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-Bold',
+                                        serif;
+                                }
                                 span {
                                     font-size: 14px;
                                 }
@@ -5421,6 +5518,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 font-size: 14px;
                                 display: block;
+                                cursor: default;
+                            }
+                            .Paysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                         }
                         .area-map {
@@ -5480,8 +5582,24 @@ button:focus {
                                 text-align: center;
                                 line-height: 40px;
                                 font-size: 20px;
-                                font-family: Nanum-Barun-Gothic-normal, serif;
+                                font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 position: relative;
+                                
+                                
+                                input {
+                                    font-size: 18px;
+                                    padding: 0 30px 0 20px;
+                                    width: 153px;
+                                    color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-normal';
+                                }
+                                input::placeholder {
+                                    font-size: 18px;
+                                    color: #707070;
+                                    font-family: 'Nanum-Barun-Gothic-normal';
+                                
+                                    
+                                }
 
                                 i {
                                     display: block;
@@ -5508,7 +5626,6 @@ button:focus {
                                 display: none;
                                 margin: 0 auto;
                                 width: 100%;
-                                max-height: 130px;
                                 border: 1px solid #bbbbbb;
                                 border-top: none;
                                 overflow: hidden;
@@ -5518,21 +5635,21 @@ button:focus {
                                 .list {
                                     border-top: 1px solid #e2e1e1;
                                     margin: 0 auto;
-                                    padding: 9px 0;
+                                    padding: 15px 0;
                                     width: 175px;
-                                    max-height: 112px;
+                                    text-align: left;
 
                                     li {
+                                        padding-left: 6px;
                                         height: 29px;
                                         line-height: 29px;
-                                        text-align: center;
                                         font-size: 14px;
                                         cursor: pointer;
-                                        font-family: Nanum-Barun-Gothic-normal,
+                                        font-family: 'Nanum-Barun-Gothic-normal',
                                             serif;
+                                        color: #707070;
                                     }
-                                    overflow-y: auto;
-                                    overflow-x: hidden;
+                                   
                                 }
                             }
                             .list::-webkit-scrollbar {
@@ -5558,6 +5675,11 @@ button:focus {
                                 text-align: center;
                                 margin: 28px auto 20px;
                                 display: block;
+                                cursor: default;
+                            }
+                            button.hotsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.gendersave-btn {
                                 display: block;
@@ -5573,6 +5695,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.gendersave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.agesave-btn {
                                 display: block;
@@ -5588,10 +5715,15 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.agesave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.jobsave-btn {
                                 display: block;
-                                margin: 40px auto 20px;
+                                margin: 0 auto 20px;
                                 -webkit-border-radius: 10px;
                                 -moz-border-radius: 10px;
                                 border-radius: 10px;
@@ -5603,6 +5735,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.jobsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.likesave-btn {
                                 display: block;
@@ -5618,6 +5755,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.likesave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.marrysave-btn {
                                 display: inline-block;
@@ -5633,6 +5775,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.marrysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.babysave-btn {
                                 display: block;
@@ -5648,6 +5795,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.babysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.petsave-btn {
                                 display: block;
@@ -5663,6 +5815,11 @@ button:focus {
                                 font-family: NotoSansKR-Regular, sans-serif;
                                 text-align: center;
                                 background: $colorAAA;
+                                cursor: default;
+                            }
+                            button.petsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.bodysave-btn {
                               display: block;
@@ -5678,10 +5835,15 @@ button:focus {
                               font-family: NotoSansKR-Regular, sans-serif;
                               text-align: center;
                               background: $colorAAA;
+                              cursor: default;
+                            }
+                            button.bodysave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.itemsave-btn {
                               display: block;
-                              margin: 15px auto 30px;
+                              margin: 30px auto 20px;
                               -webkit-border-radius: 10px;
                               -moz-border-radius: 10px;
                               border-radius: 10px;
@@ -5693,6 +5855,11 @@ button:focus {
                               font-family: NotoSansKR-Regular, sans-serif;
                               text-align: center;
                               background: $colorAAA;
+                              cursor: default;
+                            }
+                            button.itemsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                             button.skinsave-btn {
                               width: 112px;
@@ -5708,10 +5875,14 @@ button:focus {
                               text-align: center;
                               margin: 28px auto 20px;
                               display: block;
+                              cursor: default;
+                            }
+                            button.skinsave-btn.on {
+                                background: $mainColor;
+                                cursor: pointer;
                             }
                         }
                         .m-gender {
-                            overflow: hidden;
                             margin: 40px auto;
                             display: block;
                             width: 204px;
@@ -5728,7 +5899,8 @@ button:focus {
                                     display: block;
                                     text-align: center;
                                     font-size: 16px;
-                                    font-family: NotoSansKR-Regular, sans-serif;
+                                    font-family: 'Nanum-Barun-Gothic-normal',
+                                    serif;
                                     color: #000;
                                 }
                                 i {
@@ -5788,20 +5960,17 @@ button:focus {
                                     background-size: cover;
                                 }
                             }
-                        }
-                        .m-age {
-                            > div:last-child {
-                                margin-top: 15px;
-                            }
+                            
                             .input-selectbox-wrap {
+                                float: left;
                                 width: 205px - 2px;
                                 height: auto;
                                 border: 1px solid #bbbbbb;
                                 border-radius: 5px;
-                                margin: 30px auto 15px;
                                 position: relative;
                                 background: #fff;
-
+                                box-sizing: border-box;
+                                
                                 .select {
                                     cursor: pointer;
                                     width: 205px - 2px;
@@ -5813,7 +5982,7 @@ button:focus {
                                         serif;
                                     position: relative;
 
-                                    i {
+                                    .icon {
                                         display: block;
                                         width: 14px;
                                         height: 14px;
@@ -5824,7 +5993,7 @@ button:focus {
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
-                                    i.rotate {
+                                    .icon.rotate {
                                         -webkit-transform: rotate(180deg);
                                         -moz-transform: rotate(180deg);
                                         -ms-transform: rotate(180deg);
@@ -5841,6 +6010,17 @@ button:focus {
                                             serif;
                                         position: relative;
                                     }
+                                    span.on {
+                                        color: #000;
+                                    }
+                                }
+                                .listWrap {
+                                    .list {
+                                        text-align: center;
+                                        > li {
+                                            color: #707070;
+                                        }
+                                    }
                                 }
                                 .select2 {
                                     cursor: pointer;
@@ -5852,7 +6032,10 @@ button:focus {
                                     font-family: Nanum-Barun-Gothic-normal,
                                         serif;
                                     position: relative;
-                                    
+                                    span.on {
+                                        color: #000;
+                                    }
+
                                     i {
                                         display: block;
                                         width: 14px;
@@ -5872,7 +6055,13 @@ button:focus {
                                     }
                                 }
                             }
-
+                            
+                            #m-ageGeneration {
+                                margin-top: 40px;
+                            }
+                            #m-ageGroup {
+                                margin-bottom: 40px;
+                            }
                             .listWrap2 {
                                 position: relative;
                                 z-index: 1;
@@ -5914,7 +6103,9 @@ button:focus {
                                 background: #eeeeee;
                             }
                         }
+                       
                         .m-job {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
@@ -6006,6 +6197,244 @@ button:focus {
                             .list::-webkit-scrollbar-thumb {
                                 border-radius: 5px;
                                 background: #eeeeee;
+                            }
+                            .status {
+                                text-align: center;
+                                margin: 30px 0;
+                                display: inline-block;
+                                >li {
+                                    float: left;
+                                    margin-right: 50px;
+                                    a {
+                                        display: block;
+                                        em {
+                                            font-size: 16px;
+                                            height: 27px;
+                                            line-height: 27px;
+                                            color: #000;
+                                        }
+                                        span {
+                                            background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                            width: 18px;
+                                            height: 18px;
+                                            display: block;
+                                            margin: 10px auto 0;
+                                        }
+                                    }
+                                    a.on {
+                                        span {                                            
+                                            background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+                                        }
+                                    }
+                                    
+                                }
+                                > li:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                            .status-selectbox-wrap {
+                                padding: 10px 0 20px;
+                                border-bottom: 4px solid #E8E8E8;
+                                border-top: 4px solid #E8E8E8;
+                                margin: 0 auto 40px;
+                                width: 305px;
+                                
+                                .status-selectbox {                                    
+                                    padding-top: 10px;
+                                    display: flex;
+                                    justify-content: center;
+                                    .select-box {
+                                        margin-right: 5px;
+                                        float: left;
+                                        position: relative;
+                                        
+                                        .select-first {
+                                            width: 88px;
+                                            box-sizing: border-box;
+                                            height: 40px;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;  
+                                            background: #fff;                                       
+                                            li {
+                                                cursor: pointer;
+                                                position: relative;
+                                                span {
+                                                    font-size: 14px;
+                                                    display: block;
+                                                    line-height: 40px;
+                                                    text-align: left;
+                                                    padding-left: 13px;
+                                                    color: #000;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 6px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+                                        }
+                                        .list-first {
+                                            position: absolute;
+                                            width: 88px;
+                                            box-sizing: border-box;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            border-top: none;
+                                            top: 37px;
+                                            left: 0;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            z-index: 10;
+                                            display: none;
+                                            > li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 15px 0 0;
+                                                cursor: pointer;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
+
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            } 
+
+                                        }
+                                        .list-first::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-first::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }                                        
+                                    }
+                                    .select-box.big {
+                                        position: relative;
+                                        margin-right: 10px;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-second {
+                                            background: #fff;
+                                            width: 162px;
+                                            box-sizing: border-box;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;
+                                            height: 40px;
+                                            li {
+                                                box-sizing: border-box;
+                                                line-height: 40px;
+                                                padding: 0 20px;
+                                                span {
+                                                    font-size: 14px;
+                                                    color: #000;
+                                                    padding-left: 5px;
+                                                }
+                                                
+                                                input {
+                                                    font-family: 'Nanum-Barun-Gothic-normal';
+                                                    font-size: 14px;
+                                                    width: 100%;
+                                                    color: #000;
+                                                    
+                                                    
+                                                }
+                                                input::placeholder {
+                                                    font-family: 'Nanum-Barun-Gothic-normal';
+                                                    color: #707070;
+                                                    font-size: 14px;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 6px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+
+                                        }
+                                        .list-second {
+                                            left: 0;
+                                            display: none;
+                                            position: absolute;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            box-sizing: border-box;
+                                            border-top: none;
+                                            height: auto;
+                                            max-height: 187px;
+                                            overflow-y: auto;
+                                            width: 162px;
+                                            z-index: 10;
+                                            top: 37px;
+                                            li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 15px 0 0 15px;
+                                                cursor: pointer;
+                                                background: #fff;
+                                                text-align: left;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+
+                                        }
+                                        .list-second::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-second::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }
+                                    }
+                                }
+                                .status-btn {
+                                    ul {                                        
+                                        float: left;
+                                        margin-top: 7px;
+                                        .status-add {
+                                           a {
+                                                display: block;
+                                                width: 25px;
+                                                height: 25px;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
+                                                color: #fff;
+                                                border-radius: 5px;
+                                                line-height: 25px;
+                                           }
+
+                                        }
+                                        .status-remove {
+                                            a {
+                                                display: block;
+                                                 width: 25px;
+                                                 height: 25px;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
+                                                 color: #fff;
+                                                 line-height: 25px;
+                                                 border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                         .m-like {
@@ -6179,7 +6608,7 @@ button:focus {
                         }
                         .m-marry {
                             overflow: hidden;
-                            margin: 33px auto;
+                            margin: 0 auto 20px;
                             display: block;
                             width: 204px;
                             .marriage-wrap {
@@ -6196,7 +6625,8 @@ button:focus {
                                     display: block;
                                     text-align: center;
                                     font-size: 16px;
-                                    font-family: NotoSansKR-Regular, sans-serif;
+                                    font-family: 'Nanum-Barun-Gothic-normal',
+                                    serif;
                                     color: #000;
                                 }
                                 i {
@@ -6257,7 +6687,8 @@ button:focus {
                                 }
                             }
                         }
-                        .m_baby {
+                        .m-baby {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
@@ -6467,8 +6898,256 @@ button:focus {
                                 border: none;
                                 display: block;
                             }
+                            .status {
+                                text-align: center;
+                                margin: 30px 0 20px;
+                                display: inline-block;
+                                >li {
+                                    float: left;
+                                    margin-right: 50px;
+                                    a {
+                                        display: block;
+                                        em {
+                                            font-size: 16px;
+                                            height: 27px;
+                                            line-height: 27px;
+                                            color: #000;
+                                            font-family: 'Nanum-Barun-Gothic', 'serif';
+                                        }
+                                        span {
+                                            background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                            width: 18px;
+                                            height: 18px;
+                                            display: block;
+                                            margin: 10px auto 0;
+                                        }
+                                    }
+                                    a.on {
+                                        span {                                            
+                                            background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+                                        }
+                                    }
+                                    
+                                }
+                                > li:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                            .status-selectbox-wrap {
+                                padding: 10px 0 20px;
+                                border-bottom: 4px solid #E8E8E8;
+                                border-top: 4px solid #E8E8E8;
+                                max-width: 305px;
+                                display: block;
+                                margin: 0 auto;
+                                
+                                .status-selectbox {                                    
+                                    padding-top: 10px;
+                                    display: flex;
+                                    justify-content: center;
+                                    .select-box {
+                                        margin-right: 5px;
+                                        float: left;
+                                        position: relative;
+                                        
+                                        .select-first {
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            height: 40px;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;   
+                                            background: #fff;                                      
+                                            li {
+                                                cursor: pointer;
+                                                position: relative;
+                                                span {
+                                                    font-size: 14px;
+                                                    display: block;
+                                                    line-height: 38px;
+                                                    text-align: left;
+                                                    padding-left: 13px;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                    letter-spacing: -1px;
+                                                    color: #707070;
+                                                }
+                                                span.on {
+                                                    color: #000;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+                                        }
+                                        .list-first {
+                                            position: absolute;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            border-top: none;
+                                            top: 37px;
+                                            left: 0;
+                                            max-height: 150px;
+                                            overflow-y: auto;
+                                            z-index: 10;
+                                            display: none;
+                                            > li {
+                                                font-size: 14px;
+                                                margin: 0 5px;
+                                                cursor: pointer;
+                                                font-family: 'Nanum-Barun-Gothic-normal';
+                                                color: #707070;
+                                                line-height: 35px;
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 5px;
+                                            } 
+
+                                        }
+                                        .list-first::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-first::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }                                        
+                                    }
+                                    .select-box.big {
+                                        position: relative;
+                                        margin-right: 10px;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-second {
+                                            background: #fff;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;
+                                            height: 40px;
+                                            li {
+                                                box-sizing: border-box;
+                                                line-height: 38px;
+                                                text-align: left;
+                                                padding-left: 13px;
+                                                span {
+                                                    font-size: 14px;
+                                                    color: #707070;
+                                                    padding-left: 0;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                }
+                                                span.on {
+                                                    color: #000;
+                                                }
+                                                
+                                                input {
+                                                    
+                                                    font-size: 14px;
+                                                    width: 100%;
+                                                    color: #000;
+                                                    
+                                                    
+                                                }
+                                                input::placeholder {
+                                                    color: #C1C1C1;
+                                                    font-size: 14px;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 9px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+
+                                        }
+                                        .list-second {
+                                            left: 0;
+                                            display: none;
+                                            position: absolute;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            box-sizing: border-box;
+                                            border-top: none;
+                                            height: auto;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            width: 100px;
+                                            z-index: 10;
+                                            top: 37px;
+                                            li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 10px 0 0;
+                                                cursor: pointer;
+                                                background: #fff;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+
+                                        }
+                                        .list-second::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-second::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }
+                                    }
+                                }
+                                .status-btn {
+                                    ul {                                        
+                                        float: left;
+                                        margin-top: 7px;
+                                        .status-add {
+                                           a {
+                                                display: block;
+                                                width: 25px;
+                                                height: 25px;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
+                                                color: #fff;
+                                                border-radius: 5px;
+                                                line-height: 25px;
+                                           }
+
+                                        }
+                                        .status-remove {
+                                            a {
+                                                display: block;
+                                                 width: 25px;
+                                                 height: 25px;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
+                                                 color: #fff;
+                                                 line-height: 25px;
+                                                 border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                         .m-pet {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
@@ -6533,7 +7212,7 @@ button:focus {
                                             text-align: center;
                                             font-size: 14px;
                                             cursor: pointer;
-                                            font-family: Nanum-Barun-Gothic-normal,
+                                            font-family: 'Nanum-Barun-Gothic-normal',
                                                 serif;
                                         }
 
@@ -6676,16 +7355,268 @@ button:focus {
                                 border: none;
                                 display: block;
                             }
+                            .status {
+                                text-align: center;
+                                margin: 30px 0 20px;
+                                display: inline-block;
+                                >li {
+                                    float: left;
+                                    margin-right: 50px;
+                                    a {
+                                        display: block;
+                                        em {
+                                            font-size: 16px;
+                                            height: 27px;
+                                            line-height: 27px;
+                                            color: #000;
+                                            font-family: 'Nanum-Barun-Gothic', 'serif';
+
+                                        }
+                                        span {
+                                            background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
+                                            width: 18px;
+                                            height: 18px;
+                                            display: block;
+                                            margin: 10px auto 0;
+                                        }
+                                    }
+                                    a.on {
+                                        span {                                            
+                                            background: url(~@/assets/img/checkbox_circle_color.png) no-repeat center;
+                                        }
+                                    }
+                                    
+                                }
+                                > li:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+                            .status-selectbox-wrap {
+                                padding: 10px 0 20px;
+                                border-bottom: 4px solid #E8E8E8;
+                                border-top: 4px solid #E8E8E8;
+                                max-width: 305px;
+                                display: block;
+                                margin: 0 auto;
+                                
+                                .status-selectbox {                                    
+                                    padding-top: 10px;
+                                    display: flex;
+                                    justify-content: center;
+                                    .select-box {
+                                        margin-right: 5px;
+                                        float: left;
+                                        position: relative;
+                                        
+                                        .select-first {
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            height: 40px;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;   
+                                            background: #fff;                                      
+                                            li {
+                                                cursor: pointer;
+                                                position: relative;
+                                                span {
+                                                    font-size: 14px;
+                                                    display: block;
+                                                    line-height: 38px;
+                                                    text-align: left;
+                                                    padding-left: 13px;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                    letter-spacing: -1px;
+                                                    color: #707070;
+                                                }
+                                                span.on {
+                                                    color: #000;
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+                                        }
+                                        .list-first {
+                                            position: absolute;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            border-top: none;
+                                            top: 37px;
+                                            left: 0;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            z-index: 10;
+                                            display: none;
+                                            > li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 10px 0 0;
+                                                cursor: pointer;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
+
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            } 
+
+                                        }
+                                        .list-first::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-first::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }                                        
+                                    }
+                                    .select-box.big {
+                                        position: relative;
+                                        margin-right: 10px;
+                                        float: left;
+                                        display: flex;
+                                        justify-content: center;
+                                        .select-second {
+                                            background: #fff;
+                                            width: 100px;
+                                            box-sizing: border-box;
+                                            border: 1px solid #BBBBBB;   
+                                            border-radius: 5px;
+                                            height: 40px;
+                                            li {
+                                                box-sizing: border-box;
+                                                line-height: 38px;
+                                                padding-right: 19px;
+                                                span {
+                                                    font-size: 14px;
+                                                    color: #707070;
+                                                    padding-left: 0;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                    
+                                                }
+                                                span.on {
+                                                    color: #000;
+                                                }
+                                                
+                                                input {
+                                                    
+                                                    font-size: 14px;
+                                                    width: 100%;
+                                                    color: #000;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                    
+                                                    
+                                                }
+                                                input::placeholder {
+                                                    color: #707070;
+                                                    font-size: 14px;
+                                                    font-family: 'Nanum-Barun-Gothic', 'serif';
+                                                }
+                                                i {
+                                                    position: absolute;
+                                                    right: 9px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    width: 18px;
+                                                    height: 18px;
+                                                }
+                                            }
+
+                                        }
+                                        .list-second {
+                                            left: 0;
+                                            display: none;
+                                            position: absolute;
+                                            background: #fff;
+                                            border-radius: 0 0 5px 5px;
+                                            border: 1px solid #BBBBBB;
+                                            box-sizing: border-box;
+                                            border-top: none;
+                                            height: auto;
+                                            max-height: 269px;
+                                            overflow-y: auto;
+                                            width: 100px;
+                                            z-index: 10;
+                                            top: 37px;
+                                            li {
+                                                font-size: 13px;
+                                                margin: 0 5px;
+                                                padding: 10px 0 0;
+                                                cursor: pointer;
+                                                background: #fff;
+                                                font-family: 'Nanum-Barun-Gothic', 'serif';
+                                            }
+                                            li:first-child {
+                                                border-top: 1px solid #E2E1E1;
+                                            }
+                                            li:last-child {
+                                                padding-bottom: 15px;
+                                            }
+                                            
+
+                                        }
+                                        .list-second::-webkit-scrollbar {
+                                            width: 5px;
+                                        }
+                                        .list-second::-webkit-scrollbar-thumb {
+                                            border-radius: 5px;
+                                            background: #eeeeee;
+                                        }
+                                    }
+                                }
+                                .status-btn {
+                                    ul {                                        
+                                        float: left;
+                                        margin-top: 7px;
+                                        .status-add {
+                                           a {
+                                                display: block;
+                                                width: 25px;
+                                                height: 25px;
+                                                background: url(~@/assets/img/add.png) no-repeat center;
+                                                color: #fff;
+                                                border-radius: 5px;
+                                                line-height: 25px;
+                                           }
+
+                                        }
+                                        .status-remove {
+                                            a {
+                                                display: block;
+                                                 width: 25px;
+                                                 height: 25px;
+                                                 background: url(~@/assets/img/remove.png) no-repeat center;
+                                                 color: #fff;
+                                                 line-height: 25px;
+                                                 border-radius: 5px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
                         }
                         .m-item {
+                            text-align: center;
                           .input-selectbox-wrap {
                             width: 205px - 2px;
                             height: auto;
                             border: 1px solid #BBBBBB;
                             border-radius: 5px;
-                            margin: 30px auto 15px;
+                            margin: 30px auto 60px;
                             background: #fff;
-                            .select3 {
+                            .select {
                               cursor: pointer;
                               width: 205px - 2px;
                               height: 40px - 2px;
@@ -6709,7 +7640,7 @@ button:focus {
                                 -moz-transform: rotate(180deg);
                                 -ms-transform: rotate(180deg);
                                 -o-transform: rotate(180deg);
-                              }
+                              }                              
                             }
                           }
                           .input-text-wrap {
@@ -6733,11 +7664,12 @@ button:focus {
                               margin: 0 auto;
                               line-height: 20px;
                               text-align: center;
+                              color: #000;
                               
                             }
             
                             input::placeholder {
-                              color:#E2E1E1;
+                              color:#707070;
                               font-size: 18px;
                               font-family: Nanum-Barun-Gothic-normal, sans-serif;
                               text-align: center;
@@ -6767,7 +7699,7 @@ button:focus {
                                 height: 33px;
                                 line-height: 33px;
                                 text-align: center;
-                                font-size: 14px;
+                                font-size: 13px;
                                 cursor: pointer;
                                 font-family: Nanum-Barun-Gothic-normal, serif;
                               }
@@ -6788,9 +7720,8 @@ button:focus {
                             }
                           }
                           .choice-list {
-                            width: 246px;
-                            overflow: hidden;
-                            display: block;
+                            max-width: 270px;
+                            display: inline-block;
                             margin: 15px auto 0;
                             > ul {
                               position: relative;
@@ -6799,19 +7730,17 @@ button:focus {
                               float: left;
                               cursor: pointer;
                               margin-bottom: 10px;
-                              margin-left: 3px;
-                              :nth-child(2n-1) {
-                                margin-left: 0!important;
-                                margin-right: 0!important;
-                              }
+                              margin-right: 25px;                              
                               li {
+                                background: #fff;
                                 border: 2px solid #4BD897;
                                 color: #4BD897;
                                 font-size: 16px;
-                                width: 116px;
-                                height: 36px;
+                                width: 120px;
+                                box-sizing: border-box;
+                                height: 40px;
                                 text-align: center;
-                                line-height: 38px;
+                                line-height: 40px;
                                 font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 border-radius: 15px;
                               }
@@ -6827,7 +7756,52 @@ button:focus {
                                 border:2px solid #DEF8EC;
                                 color: red;
                               }
+                              li.close {
+                                border: none;
+                                background: none;
+                                position: absolute;
+                                left: 0;
+                                top: 0;
+                                .closeImg {
+                                    position: absolute;
+                                    width: 20px;
+                                    height: 20px;
+                                    right: -5px;
+                                    top: -5px;
+                                    background: #E2E1E1;
+                                    line-height: 20px;
+                                    z-index: 0;
+                                    display: block;  
+                                    border-radius: 50%;                                   
+                                }
+                                .closeImg::after {
+                                    content: '';
+                                    position: absolute;
+                                    height: 16px;
+                                    width: 2px;
+                                    background: #fff;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%) rotate(-45deg);
+
+                                }
+                                .closeImg::before {
+                                    content: '';
+                                    position: absolute;
+                                    height: 16px;
+                                    width: 2px;
+                                    background: #fff;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%) rotate(45deg);
+
+                                }                               
+                              }                              
                             }
+                            > ul:nth-child(2n) {
+                                margin-left: 0!important;
+                                margin-right: 0!important;
+                              }
             
                           }
                           .alert-text {
@@ -6852,6 +7826,7 @@ button:focus {
                               font-size: 20px;
                               font-family: Nanum-Barun-Gothic-normal, serif;
                               position: relative;
+                              span.on {color:#000;}
                               input {
                                 text-align: center;
                                 font-size: 18px;
@@ -6936,8 +7911,7 @@ button:focus {
                             border-bottom: 4px solid #E8E8E8;
                             margin: 0 auto;
                             .text-wrap {
-            
-            
+                                text-align: center;                  
                               .title {
                                 font-size: 18px;
                                 margin-top: 0;
@@ -6976,7 +7950,7 @@ button:focus {
                                   cursor: pointer;
                                   background: #fff;
                                 }
-                                li.on {
+                                li.checked {
                                   background: #4BD897!important;
                                   -moz-background: #4BD897;
                                   -ms-background: #4BD897;
@@ -7031,106 +8005,7 @@ button:focus {
                             margin-top: 0;
                             margin-bottom: 40px;
                           }
-                          #m-bodySelectbox {
-                            width: 310px;
-                            padding-top: 20px;
-                            padding-bottom: 20px;
-                            border-top: 4px solid #E8E8E8;
-                            border-bottom: 4px solid #E8E8E8;
-                            margin: 0 auto;
-                            .input-selectbox-wrap {
-                              width: 203px;
-                              margin: 0 auto;
-                              .select2 {
-                                height: 38px;
-                                width: 100%;
-                                margin: 0 auto;
-                                line-height: 38px;
-                                text-align: center;
-                                font-size: 18px;
-                                input {
-                                  font-size: 18px;
-                                  text-align: center;
-                                  width: 100%;
-                                }
-                                input::placeholder{
-                                  font-size: 18px;
-                                }
-                                i {
-                                  display: block;
-                                  width: 14px;
-                                  height: 14px;
-                                  position: absolute;
-                                  right: 12px;
-                                  top: calc(50% - 7px);
-                                  cursor: pointer;
-                                  @include background("~@/assets/img/arrow_butt.png");
-            
-                                }
-                                i.rotate {
-                                  -webkit-transform: rotate(180deg);
-                                  -moz-transform: rotate(180deg);
-                                  -ms-transform: rotate(180deg);
-                                  -o-transform: rotate(180deg);
-                                }
-            
-                              }
-                              .listWrap2 {
-                                position: relative;
-                                z-index: 1;
-                                display: none;
-                                margin: 0 auto;
-                                width: 100%;
-                                max-height: 150px;
-                                border: 1px solid #BBBBBB;
-                                border-top: none;
-                                overflow: hidden;
-                                border-radius: 0 0 5px 5px;
-                                background: #fff;
-            
-                                ul.list {
-                                  border-top: 1px solid #e2e1e1;
-                                  margin: 0 auto;
-                                  padding: 9px 0;
-                                  width: 175px;
-                                  max-height: 112px;
-            
-                                  li {
-                                    cursor: pointer;
-                                    height: 29px;
-                                    line-height: 29px;
-                                    text-align: center;
-                                    font-size: 14px;
-                                    font-family: Nanum-Barun-Gothic-normal, serif;
-                                  }
-            
-                                  overflow-y: auto;
-                                  overflow-x: hidden;
-                                }
-            
-                              }
-            
-                              .listWrap.long {
-                                max-height: 280px;
-                                .list {
-                                  max-height: 274px;
-                                  li.on {
-                                    color: #4bd897;
-                                  }
-                                }
-                              }
-                              .list::-webkit-scrollbar {
-                                width: 5px;
-                              }
-                              .list::-webkit-scrollbar-thumb {
-                                border-radius: 5px;
-                                background: #EEEEEE;
-                              }
-                            }
-                            .input-selectbox-wrap:first-child{
-                              margin-bottom: 15px;
-                            }
-                          }
+                          
                         }
                     }
 
@@ -7144,13 +8019,22 @@ button:focus {
                         height: 600px;
                     }
                     #accordion-job.height {
-                        height: 500px;
+                        height: 388px;
                     }
                     #accordion-interests.height {
                         height: 420px;
                     }
                     #accordion-product.height {
-                        height: 408px;
+                        height: 385px;
+                    }
+                    #accordion-gender.height {
+                        height: 567px;
+                    }
+                    #accordion-pet.height {
+                        height: 328px;
+                    }
+                    #accordion-baby.height {
+                        height: 341px;
                     }
 
                     .SNS-btn {
@@ -7185,6 +8069,11 @@ button:focus {
                         text-align: center;
                         font-family: NotoSansKR-Regular, sans-serif;
                         border: 0;
+                        cursor: default;
+                    }
+                    button.SNSsave-btn.on {
+                        background: #4bd897;
+                        cursor: pointer;
                     }
                 }
                 #requiredInfo.tab {

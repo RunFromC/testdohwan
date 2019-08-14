@@ -268,11 +268,11 @@
             <div class="card" id="cardStep4" :class="!addJoinPage ? 'none': '' || !joinPage == false ? 'none': ''">
                 <div class="front">
                     <ul class="content">
-                        <li class="title">좀더 소개해주실 수 있으세요?</li>
-                        <li class="sub-text">마일리지 적립, 고객사 매칭 등에 도움이 될 거예요</li>
+                        <li class="title">좀 더 소개해주실 수 있으세요?</li>
+                        <li class="sub-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</li>
                         
                         <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
-                        <li class="skip-btn"><router-link to="/client" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요</router-link></li>
+                        <li class="skip-btn"><router-link to="/client" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 ></router-link></li>
                     </ul>
                 </div>
             </div>
