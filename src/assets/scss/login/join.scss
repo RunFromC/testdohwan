@@ -588,6 +588,9 @@ button:focus {
                                                     text-align: left;
                                                     padding-left: 15px;
                                                 }
+                                                span.on {
+                                                    color: #000;
+                                                }
                                                 i {
                                                     position: absolute;
                                                     right: 9px;
@@ -642,6 +645,7 @@ button:focus {
                                         float: left;
                                         display: flex;
                                         justify-content: center;
+                                        cursor: pointer;
                                         .select-second {
                                             width: 162px;
                                             box-sizing: border-box;
@@ -659,15 +663,15 @@ button:focus {
                                                 }
                                                 
                                                 input {
-                                                    
+
                                                     font-size: 14px;
                                                     width: 100%;
                                                     color: #000;
-                                                    
-                                                    
+
+
                                                 }
                                                 input::placeholder {
-                                                    color: #C1C1C1;
+                                                    color: #707070;
                                                     font-size: 14px;
                                                 }
                                                 i {
@@ -860,6 +864,9 @@ button:focus {
                                     -ms-transform: rotate(180deg);
                                     -o-transform: rotate(180deg);
                                 }
+                            }
+                            .select span.on {
+                                color: #000;
                             }
 
                             .listWrap {
@@ -1071,6 +1078,7 @@ button:focus {
                                     @include background(
                                         '~@/assets/img/instagram_gray.png'
                                     );
+                                    cursor: default;
                                 }
 
                                 a#youtube {
@@ -1102,6 +1110,7 @@ button:focus {
                                     @include background(
                                         '~@/assets/img/instagram_color.png'
                                     );
+                                    cursor: default;
                                 }
 
                                 a#youtube.on {
@@ -1129,25 +1138,30 @@ button:focus {
                                 width: 200px;
                                 height: 40px;
                                 border-radius: 5px;
-                                background: #8e8e8f;
+                                background: $mainColor;
                                 text-align: center;
                                 line-height: 40px;
                                 color: #fff;
                                 font-size: 14px;
                             }
 
-                            #deskSnsSaveBtn.on {
-                                background: $mainColor;
+                            #deskSnsSaveBtn.off {
+                                background: #8E8E8F;
+                                cursor: default;
                             }
                             .certification-text {
                                 text-align: center;
-                                span {
+                                .possible-text, .wrong-text {
                                     display: block;
                                     font-size: 14px;
                                     text-align: center;
                                     height: 16px;
                                     line-height: 16px;
                                     color: #000;
+                                    font-family: Nanum-Barun-Gothic-normal, serif;
+                                }
+                                .wrong-text {
+                                    color: #FF8173;
                                 }
                             }
                         }
@@ -1172,7 +1186,7 @@ button:focus {
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-
+                                    cursor: pointer;
                                     span {
                                         margin-right: 7px;
                                     }
@@ -1625,6 +1639,9 @@ button:focus {
                                     height: 68px;
                                     line-height: 68px;
                                 }
+                                .select span.on {
+                                    color: #000;
+                                }
                             }
                             .input-selectbox-wrap {
                                 margin: 0 auto 12px;
@@ -1705,8 +1722,7 @@ button:focus {
                                         .list-second {
                                             text-align: left;
                                             
-                                            li {
-                                                color: #000;                                                
+                                            li {                                              
                                                 padding: 15px 0 0 15px;
                                                 
                                             }
@@ -1929,8 +1945,11 @@ button:focus {
                                             width: 100px;
                                             li {
                                                 span {
-                                                    
+
                                                     padding-left: 24px;
+                                                }
+                                                span.on {
+                                                    color: #000;
                                                 }
                                             }
                                         }
@@ -1944,14 +1963,21 @@ button:focus {
                                         float: left;
                                         display: flex;
                                         justify-content: center;
+                                        cursor: pointer;
                                         .select-second {
                                             width: 100px;
                                             li {
                                                 padding: 0;
                                         
                                                 span {
+                                                    display: block;
+                                                    line-height: 40px;
+                                                    text-align: left;
+                                                    padding-left: 24px;
                                                     color: #707070;
-                                                    padding-left: 0;
+                                                }
+                                                span.on {
+                                                    color: #000;
                                                 }
                                             }
                                         }
@@ -1992,12 +2018,20 @@ button:focus {
                                     float: left;
                                     display: flex;
                                     justify-content: center;
+                                    cursor: pointer;
                                     .select-second {
                                         width: 100px;
                                         li {
                                             span {
                                                 color: #707070;
-                                                padding-left: 0;
+                                                font-size: 14px;
+                                                display: block;
+                                                line-height: 40px;
+                                                text-align: left;
+                                                padding: 0;
+                                            }
+                                            span.on {
+                                                color: #000;
                                             }
                                         }
                                     }
@@ -2034,10 +2068,12 @@ button:focus {
                                     height: 20px;
                                     line-height: 20px;   
                                     max-width: 170px;
+                                    color: #000;
                                 }
                                 input::placeholder {
                                     font-size: 18px;
-                                    
+                                    color: #707070;
+                                    font-family: Nanum-Barun-Gothic-normal, serif;
                                 }
                             }
                             .choice-list {
@@ -2353,6 +2389,9 @@ button:focus {
                                         font-family: Nanum-Barun-Gothic-normal,
                                             serif;
                                         position: relative;
+                                        span.on {
+                                            color: #000;
+                                        }
                                         input {
                                             text-align: center;
                                             font-size: 18px;
@@ -3373,6 +3412,7 @@ button:focus {
                                             float: left;
                                             display: flex;
                                             justify-content: center;
+                                            cursor: pointer;
                                             .select-second {
                                                 width: 162px;
                                                 box-sizing: border-box;
@@ -3390,11 +3430,10 @@ button:focus {
                                                     }
                                                     
                                                     input {
-                                                        
+
                                                         font-size: 14px;
                                                         width: 100%;
-                                                        color: #000;
-                                                        
+
                                                         
                                                     }
                                                     input::placeholder {
@@ -3501,16 +3540,24 @@ button:focus {
                                     width: 160px;
                                     height: 30px;
                                     line-height: 30px;
+                                    font-size: 12px;
                                 }
 
                                 #deskSnsSaveBtn.on {
                                     background: $mainColor;
                                 }
                                 .certification-text {
-                                    span {
+                                    .possible-text, .wrong-text {
+                                        display: block;
                                         font-size: 12px;
-                                        line-height: 14px;
-                                        height: 14px;
+                                        text-align: center;
+                                        height: 16px;
+                                        line-height: 16px;
+                                        color: #000;
+                                        font-family: Nanum-Barun-Gothic-normal, serif;
+                                    }
+                                    .wrong-text {
+                                        color: #FF8173;
                                     }
                                 }
                                 
@@ -3714,9 +3761,6 @@ button:focus {
                                     .select {
                                         height: 68px;
                                         line-height: 68px;
-                                        span {
-                                            font-size: 21px;
-                                        }
                                     }
                                 }
                                 .input-selectbox-wrap {
@@ -3724,6 +3768,9 @@ button:focus {
                                     .select {
                                         span {
                                             font-size: 15px;
+                                        }
+                                        span.on {
+                                            color: #000;
                                         }
                                     }
     
@@ -3806,7 +3853,7 @@ button:focus {
                                                     position: relative;
                                                     span {
                                                         font-size: 13px;
-                                                        line-height: 27px;
+                                                        line-height: 28px;
                                                         padding-left: 10px;
                                                         color: #000;
                                                     }
@@ -3816,7 +3863,7 @@ button:focus {
                                                         top: 50%;
                                                         transform: translateY(-50%);
                                                         background: url(~@/assets/img/arrow_butt.png) no-repeat center;
-                                                        width: 12px;
+                                                        width: 11px;
                                                         height: 10px;
                                                     }
                                                 }
@@ -3859,7 +3906,7 @@ button:focus {
                                                         
                                                     }
                                                     input::placeholder {
-                                                        color: #C1C1C1;
+                                                        color: #707070;
                                                         font-size: 13px;
                                                     }                                                    
                                                 }
@@ -4016,10 +4063,9 @@ button:focus {
                                                     padding: 0;
                                                     span {
                                                         font-size: 13px;
-                                                        color: #000;
                                                         display: block;
-                                                        text-align: left;
                                                         padding-left: 17px;
+                                                        line-height: 30px;
                                                     }
                                                     
                                                     input {
@@ -4192,10 +4238,9 @@ button:focus {
                                                     padding: 0;
                                                     span {
                                                         font-size: 13px;
-                                                        color: #000;
                                                         display: block;
-                                                        text-align: left;
-                                                        padding-left: 17px;
+                                                        padding-left: 12px;
+                                                        line-height: 30px;
                                                     }
                                                     
                                                     input {
@@ -4379,6 +4424,9 @@ button:focus {
                                 span {
                                     font-size: 15px!important;
                                 }
+                                span.on {
+                                    color: #000;
+                                }
                                 }
                             }
                             .choice-wrap {
@@ -4454,7 +4502,7 @@ button:focus {
                                     }
                                     input::placeholder {
                                         font-size: 14px;
-                                        color: #C1C1C1;
+                                        color: #707070;
                                     }
                                 }
                                 .choice-list {
@@ -5804,7 +5852,7 @@ button:focus {
                                     font-family: Nanum-Barun-Gothic-normal,
                                         serif;
                                     position: relative;
-
+                                    
                                     i {
                                         display: block;
                                         width: 14px;
@@ -5885,7 +5933,7 @@ button:focus {
                                     font-family: Nanum-Barun-Gothic-normal,
                                         serif;
                                     position: relative;
-
+    
                                     i {
                                         display: block;
                                         width: 14px;

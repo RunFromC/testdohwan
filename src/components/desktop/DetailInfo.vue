@@ -12,7 +12,7 @@
         <br />총
         <span>8000 포인트</span> 적립
       </div>
-      <button>프로필입력완료</button>
+      <button>프로필 입력완료</button>
     </div>
     <!-- sns -->
     <div class="article" id="sns" v-if="profileCard.sns.on">
@@ -54,7 +54,6 @@
           <a
             href="#"
             id="instagram"
-            @click="checkCertification(1)"
             :class="isCertificationOnOff[1] ? 'on' : ''"
           ></a>
         </div>
@@ -62,10 +61,18 @@
           href="#"
           id="deskSnsSaveBtn"
           @click="snsSaveBotton()"
-          :class="this.profileCard.sns.onSaveButton ? 'on' : '' "
+          v-if="snsCertBtn"
         >SNS인증하기</a>
-        <div class="certification-text" :class="!this.profileCard.sns.onSaveButton ? 'none' : ''">
-          <span>인증완료 되었습니다</span>
+        <a
+          href="#"
+          id="deskSnsSaveBtn"
+          :class="this.profileCard.sns.onSaveButton ? 'off' : ''"
+          v-if="snsCertSuccessBtn"
+        >SNS인증완료</a>
+        <div class="certification-text">
+          <span class="possible-text" v-if="instagramWaitText">인증 대기중 입니다</span>
+          <span class="possible-text" v-if="instagramPossibleText">인증완료 되었습니다</span>
+          <span class="wrong-text" v-if="instagramWrongText">인증실패 되었습니다</span>
         </div>
       </div>
       <div class="button-wrap">
@@ -73,13 +80,13 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn" :class="this.profileCard.sns.onSaveButton">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="this.profileCard.sns.onSaveButton ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck">프로필 입력완료</button>
       </div>
     </div>
     <!--  pay profileCard.pay -->
@@ -183,7 +190,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
       <div class="pay-text-wrap" id="Paytext1" v-if="tip.title">
         <div class="paytext">{{tip.title}}</div>
@@ -237,7 +244,7 @@
           </li>
         </ul>
 
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
     <!-- gender -->
@@ -306,7 +313,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
 
@@ -358,7 +365,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">프로필입력완료</button>
+        <button class="join-finish-btn">프로필 입력완료</button>
       </div>
     </div>-->
 
@@ -485,7 +492,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
 
@@ -530,7 +537,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">프로필입력완료</button>
+        <button class="join-finish-btn">프로필 입력완료</button>
       </div>
     </div>-->
     <!-- marriage -->
@@ -559,7 +566,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
 
@@ -671,7 +678,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
 
@@ -755,7 +762,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
 
@@ -810,7 +817,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
 
@@ -890,7 +897,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
     <!-- Skin -->
@@ -940,7 +947,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필 입력완료</button>
       </div>
     </div>
     <div class="article brand market" v-if="profileCard.finishBlock.on" id="finishBlock">
@@ -959,7 +966,7 @@
         to="/"
         @click.native="pageReset() "
         :class="this.$store.state.welcome = true"
-      >프로필입력완료</router-link>
+      >프로필 입력완료</router-link>
     </div>
   </div>
 </template>
@@ -1005,7 +1012,17 @@ export default {
             haveJob: false,
             haveChild: false,
             havePet: false,
-            selectText: false
+            selectText: false,
+            snsCertBtn: true,
+            snsCertSuccessBtn: false,
+            instagramWaitText: false,
+            instagramPossibleText: false,
+            instagramWrongText: false,
+            userInfo: {
+                socialInfo:{
+                  instagram: null
+                }
+            },
         };
     },
     computed: {
@@ -1016,7 +1033,6 @@ export default {
     template: {
         MapSvg
     },
-
     methods: {
         selectOnOff(event) {
             console.log(event.target);
@@ -1038,7 +1054,9 @@ export default {
             //     .onSaveButton
             //     ? 'on'
             //     : '';
-
+            if(this.instagramPossibleText) {
+              return;
+            }
             this.authInstagram();
         },
         authInstagram() {
@@ -1047,20 +1065,28 @@ export default {
 
             // get result from child
             window.authResultForInsta = async data => {
-                console.log(data);
-
                 try {
+                  this.instagramWaitText = true;
                     const res = await this.$axios(
                         'get',
                         `/auth/instagram?code=${data.code}&errorReason=${data.errorReason}&error=${data.error}`,
                         {}
                     );
-
-                    if (res === 'success') {
-                        alert('인증에 성공 하셨습니다.');
+                    if(res.data.result === 'success') {
+                      this.userInfo.socialInfo.instagram = res.data.userInfo;
+                      this.isCertificationOnOff[1] = true; //아이콘
+                      this.instagramPossibleText = true; //인증문구
+                      this.instagramWaitText = false;
+                      this.snsCertSuccessBtn = true; //인증버튼
+                      this.snsCertBtn = false;
+                      this.profileCard.sns.onSaveButton = true; //저장하기버튼
                     }
                 } catch (error) {
                     console.log(error);
+                    this.instagramWrongText = true;
+                    this.instagramWaitText = false;
+                    this.snsCertBtn = true;
+                    this.snsCertSuccessBtn = false;
                 }
             };
 

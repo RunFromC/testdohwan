@@ -732,7 +732,7 @@
     </div>
     <div class="m-finished">
       <a href="#">
-        <span>프로필입력완료</span>
+        <span>프로필 입력완료</span>
         <i></i>
       </a>
     </div>
@@ -947,7 +947,6 @@ export default {
             this.profileCard[currentCard].on = true;
         },
         saveBtn(event) {
-            console.log('click', event);
             if (event.target.className.includes('on')) {
                 if (this.currentCard === 'sns') {
                     this.profileCard.sns.save = true;

@@ -130,16 +130,19 @@
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">회사명</div>
-                                    <input type="text">
+                                    <input type="text" v-model="companyName">
+                                    <div class="wrong-text" v-if="companyName && companyNameValidityText">영문,숫자 포함 4~12자리</div>
+                                    <div class="possible-text" v-if="companyName && companyNamePossibleText">사용가능한 아이디입니다</div>
+                                    <div class="wrong-text" v-if="companyName && companyNameWrongText">사용중인 아이디입니다</div>
                                 </div>
                             </div>
 
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">연락처</div>
-                                    <input type="text" class="input-phone" maxlength="4" placeholder="010">
-                                    <input type="text" class="input-phone" maxlength="4">
-                                    <input type="text" class="input-phone" maxlength="4">
+                                    <input type="text" class="input-phone" maxlength="4" placeholder="010" v-model="companyPhoneNumber1">
+                                    <input type="text" class="input-phone" maxlength="4" v-model="companyPhoneNumber2">
+                                    <input type="text" class="input-phone" maxlength="4" v-model="companyPhoneNumber3">
                                 </div>
                             </div>
 
@@ -157,9 +160,9 @@
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label ceo">사업자<br>등록번호</div>
-                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3" v-model="businessRegistrationNumber1">
+                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2" v-model="businessRegistrationNumber2">
+                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5" v-model="businessRegistrationNumber3">
                                 </div>
                             </div>
                             <div class="input-wrapper pb31">
@@ -176,9 +179,9 @@
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label ceo">통신판매업<br>번호</div>
-                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3" v-model="mailOrderNumber1">
+                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2" v-model="mailOrderNumber2">
+                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5" v-model="mailOrderNumber3">
                                 </div>
                             </div>
 
@@ -208,7 +211,7 @@
                             <div class="input-wrapper">
                                 <div class="item col1">
                                     <div class="label">회사 URL</div>
-                                    <input type="text">
+                                    <input type="text" v-model="companyURL">
                                 </div>
                             </div>
                             <router-link  id="join-finished" to="/client" :class="this.$store.state.welcome = true">회사정보 입력완료</router-link>
@@ -494,6 +497,17 @@ import { mapState, mapGetters } from 'vuex';
 export default {
     data () {
         return {
+            // 정보입력-회사정보
+            companyName: '',
+            companyPhoneNumber: '',
+            companyPhoneNumber1: '', companyPhoneNumber2: '', companyPhoneNumber3: '',
+            businessRegistrationNumber: '',
+            businessRegistrationNumber1: '', businessRegistrationNumber2: '', businessRegistrationNumber3: '',
+            mailOrderNumber: '',
+            mailOrderNumber1: '', mailOrderNumber2: '', mailOrderNumber3: '',
+            companyClassify: '',
+            companyURL: '',
+
             isCardFlip: false,
             joinPage: false,
             addJoinPage: false
