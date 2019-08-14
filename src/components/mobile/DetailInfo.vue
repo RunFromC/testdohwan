@@ -951,7 +951,7 @@ export default {
             ],
             marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
 
-            isRecommendCheck: false,
+            isRecommendCheck: true,
             recommendType: null,
             gender: false,
             tip: {

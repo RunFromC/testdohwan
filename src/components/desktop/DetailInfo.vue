@@ -92,35 +92,26 @@
       <div class="inner-contents">
         <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
           <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-            <span>빅버드 추천을 받을게요</span>
+            <span>빅버드 천을 받을게요</span>
             <i></i>
           </div>
           <div class="checked" v-else @click.prevent="onClickRecommendCheck">
             <i></i>
             <span>빅버드 추천을 받을게요</span>
           </div>
-          <i class="icon-questions-mark" @click.prevent="showTips(1)"></i>
         </div>
 
         <div class="recommend-checkbox" v-else>
-          <div
-            class="uncheck"
-            v-if="!isRecommendCheck"
-            @click.prevent="onClickRecommendCheck"
-            style="width: 100%; box-sizing: border-box;"
-          >
+          <div class="checked" v-if="isRecommendCheck" @click.prevent="onClickRecommendCheck">
             <span>ICC 추천을 받을게요</span>
             <i></i>
           </div>
-          <div
-            class="checked"
-            v-else
-            @click.prevent="onClickRecommendCheck"
-            style="width: 100%;     "
-          >
-            <i></i>
+          <div class="uncheck" v-else @click.prevent="onClickRecommendCheck">
             <span>ICC 추천을 받을게요</span>
+            <i></i>
           </div>
+
+          <!-- <i class="icon-questions-mark" @click.prevent="showTips(1)"></i> -->
         </div>
 
         <div class="title" v-if="checkService('brands',true) && !this.$store.state.iccMode">기본 원고료</div>
@@ -398,7 +389,7 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-if="!selectText">현 직업</li>
+                <li v-if="selectText">현 직업</li>
                 <li v-else>전 직업</li>
               </ul>
             </li>
