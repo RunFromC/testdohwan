@@ -14,7 +14,7 @@
               <span v-else style="font-size: 30px; color: #4bd897">ICC</span>
             </div>
 
-            <div class="text" v-if="!this.$store.state.welcome">{{title}}</div>
+            <div class="text" v-if="this.$store.state.welcome = false">{{title}}</div>
             <div class="text" v-else>회원가입을 환영합니다</div>
           </div>
           <div class="loginBox" v-if="!this.$store.state.iccMode">
@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="loginBox" v-else>
-            <div class="tab2" style="bottom : 107px">
+            <div class="tab2">
               <div class="toggleBtnWrap">
                 <a href="#" @click.prevent="changeLoginType">로그인/회원가입</a>
               </div>
@@ -69,7 +69,7 @@
                 <input class="input-button" type="submit" value="로그인" />
                 <div class="box">
                   <div class="checkBoxWrap">
-                    <input type="checkbox" class="input-check-box" :class="checkOnOff" />
+                    <input type="checkbox" class="input-check-box" />
                     <i></i>
                     <span>로그인 유지</span>
                   </div>
@@ -111,7 +111,6 @@ export default {
     name: 'Home',
     data() {
         return {
-            welcome: false,
             onLoginForm: false,
             onQuestionTab: false
         };

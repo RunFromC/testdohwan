@@ -47,18 +47,28 @@
       :class="onProfileCard('pay')"
       v-if="checkService('brands',true) || checkService('influencer',true)"
     >
-      <div class="recommend-checkbox">
+      <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
         <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-          <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
-          <span v-else>ICC 추천 받을게요</span>
-          <i class="circle"></i>
+          <span>빅버드 천을 받을게요</span>
+          <i></i>
         </div>
         <div class="checked" v-else @click.prevent="onClickRecommendCheck">
-          <i class="check_box"></i>
-          <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
-          <span v-else>ICC 추천 받을게요</span>
+          <i></i>
+          <span>빅버드 추천을 받을게요</span>
         </div>
-        <i class="icon-questions-mark" @click.prevent="showTips(1)"></i>
+      </div>
+
+      <div class="recommend-checkbox" v-else>
+        <div class="checked" v-if="isRecommendCheck" @click.prevent="onClickRecommendCheck">
+          <span>ICC 추천을 받을게요</span>
+          <i></i>
+        </div>
+        <div class="uncheck" v-else @click.prevent="onClickRecommendCheck">
+          <span>ICC 추천을 받을게요</span>
+          <i></i>
+        </div>
+
+        <!-- <i class="icon-questions-mark" @click.prevent="showTips(1)"></i> -->
       </div>
       <div class="pay-title" v-if="!this.$store.state.iccMode">기본 원고료</div>
       <div class="pay-title" v-else>보장 개런티</div>
@@ -88,7 +98,7 @@
       </div>
       <div class="pay-title">협찬제품이 있을 경우</div>
       <div class="product-input-wrap">
-        <span>제품가</span>
+        <span>제품</span>
         <div class="product-wrap">
           <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
           <span>원 이상</span>
@@ -856,7 +866,7 @@
     </div>
     <div class="m-finished">
       <a href="#">
-        <span>프로필입력완료</span>
+        <span @click="joinCheck()">프로필입력완료</span>
         <i></i>
       </a>
     </div>
@@ -1116,10 +1126,35 @@ export default {
                     .querySelector('.list-first')
                     .classList.remove('selectOn');
             }
+
+            // 탑 처리 코드가 누락됨.
+            if (selectBtn.nextSibling.classList.contains('selectOn')) {
+                selectBtn.nextSibling.classList.remove('selectOn');
+                if (!accordion) return;
+                accordion.classList.remove('height');
+            } else {
+                selectBtn.nextSibling.classList.add('selectOn');
+                selectBtn.nextSibling.style.top =
+                    selectBtn.offsetHeight - 3 + 'px';
+
+                if (!accordion) return;
+                accordion.classList.add('height');
+            }
         },
         showSelectList(e) {
             const selectBtn = e.target.closest('div, ul');
             const accordion = selectBtn.closest('.accordion-contents');
+
+            console.warn({ selectBtn });
+
+            if (selectBtn == null) {
+                const Icon = selectBtn.closest('.select-first, .select-second');
+                console.warn(
+                    'accordion은 널이 아님!! 그래서 Icon 변수 뽑아옴... Icon:',
+                    Icon
+                );
+            }
+
             if (selectBtn.nextSibling.classList.contains('selectOn')) {
                 selectBtn.nextSibling.classList.remove('selectOn');
                 if (!accordion) return;
@@ -1209,6 +1244,15 @@ export default {
         clearCardList() {
             for (const key in this.profileCard) {
                 this.profileCard[key].on = false;
+            }
+        },
+        joinCheck() {
+            this.clearCardList();
+            if (!this.$store.state.iccMode) {
+                this.profileCard['finishBlock'].on = true;
+            } else {
+                this.$store.state.welcome = true;
+                location.href = '/';
             }
         }
     },

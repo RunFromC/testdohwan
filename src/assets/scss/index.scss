@@ -131,6 +131,7 @@
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
+                bottom: 107px;
                 .toggleBtnWrap {
                     margin-top: 42px;
                 }
@@ -399,12 +400,16 @@
         height: 540px !important;
         margin-left: -1px * (315px/2px);
         margin-top: -1px * (540px/2px);
+
         .contents.type1 {
             .top {
                 height: 480px !important;
                 .loginBox {
                     .tab1 {
                         margin-top: 165px !important;
+                    }
+                    .tab2 {
+                        bottom: 57px;
                     }
                 }
             }
@@ -472,6 +477,13 @@
                         margin-top: 40px !important;
                     }
                 }
+            }
+        }
+    }
+    #loginPage {
+        #loginTab {
+            .tab2 {
+                bottom: 57px !important;
             }
         }
     }

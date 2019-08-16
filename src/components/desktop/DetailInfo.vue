@@ -79,7 +79,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
     <!--  pay profileCard.pay -->
@@ -174,7 +174,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
       <div class="pay-text-wrap" id="Paytext1" v-if="tip.title">
         <div class="paytext">{{tip.title}}</div>
@@ -228,7 +228,7 @@
           </li>
         </ul>
 
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
     <!-- gender -->
@@ -297,7 +297,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -349,7 +349,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>-->
 
@@ -476,7 +476,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -521,7 +521,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>-->
     <!-- marriage -->
@@ -550,7 +550,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -662,7 +662,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -746,7 +746,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -833,7 +833,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -913,7 +913,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
     <!-- Skin -->
@@ -977,12 +977,7 @@
         <strong>추가 2000P 적립가능</strong>
         <a href="#">추가적립하기 &gt;</a>
       </div>
-      <router-link
-        class="finishbtn"
-        to="/"
-        @click.native="pageReset() "
-        :class="this.$store.state.welcome = true"
-      >프로필입력완료</router-link>
+      <router-link class="finishbtn" to="/" @click.native="pageReset() ">프로필입력완료</router-link>
     </div>
   </div>
 </template>
@@ -1048,15 +1043,6 @@ export default {
         pageReset() {
             this.clearCardList();
             this.profileCard['default'].on = true;
-        },
-        joinCheck() {
-            this.clearCardList();
-            if (!this.$store.state.iccMode) {
-                this.profileCard['finishBlock'].on = true;
-            } else {
-                this.$store.state.welcome = true;
-                location.href = '/';
-            }
         }
     }
 };
