@@ -35,6 +35,7 @@ button:focus {
         display: block !important; 
         position: absolute !important; 
         left: -1px;
+        
     }
     .rotate {
         transform: rotate(-90deg);
@@ -612,10 +613,10 @@ button:focus {
                                                     );
                                                 }
                                                 i.rotate {
-                                                    -webkit-transform: rotate(180deg);
-                                                    -moz-transform: rotate(180deg);
-                                                    -ms-transform: rotate(180deg);
-                                                    -o-transform: rotate(180deg);
+                                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                                    -o-transform:translateY(-50%) rotate(180deg);
                                                 }
                                             }
                                         }
@@ -709,10 +710,10 @@ button:focus {
                                                     );
                                                 }
                                                 i.rotate {
-                                                    -webkit-transform: rotate(180deg);
-                                                    -moz-transform: rotate(180deg);
-                                                    -ms-transform: rotate(180deg);
-                                                    -o-transform: rotate(180deg);
+                                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                                    -o-transform:translateY(-50%) rotate(180deg);
                                                 }
                                             }
 
@@ -893,10 +894,10 @@ button:focus {
                                     );
                                 }
                                 i.rotate {
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    -ms-transform: rotate(180deg);
-                                    -o-transform: rotate(180deg);
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
                                 }
                                 span.on {
                                     color: #000;
@@ -1061,10 +1062,10 @@ button:focus {
                                     transform: translateY(-50%);
                                 }
                                 i.rotate {
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    -ms-transform: rotate(180deg);
-                                    -o-transform: rotate(180deg);
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
                                 }
                             }
                         }
@@ -2323,16 +2324,17 @@ button:focus {
                                             height: 14px;
                                             position: absolute;
                                             right: 12px;
-                                            top: calc(50% - 7px);
+                                            top: 50%;
+                                            transform: translateY(-50%);
                                             @include background(
                                                 '~@/assets/img/arrow_butt.png'
                                             );
                                         }
                                         i.rotate {
-                                            -webkit-transform: rotate(180deg);
-                                            -moz-transform: rotate(180deg);
-                                            -ms-transform: rotate(180deg);
-                                            -o-transform: rotate(180deg);
+                                            -webkit-transform:translateY(-50%) rotate(180deg);
+                                            -moz-transform:translateY(-50%) rotate(180deg);
+                                            -ms-transform:translateY(-50%) rotate(180deg);
+                                            -o-transform:translateY(-50%) rotate(180deg);
                                         }
                                     }
 
@@ -2498,10 +2500,10 @@ button:focus {
                                             );
                                         }
                                         i.rotate {
-                                            -webkit-transform: rotate(180deg);
-                                            -moz-transform: rotate(180deg);
-                                            -ms-transform: rotate(180deg);
-                                            -o-transform: rotate(180deg);
+                                            -webkit-transform:translateY(-50%) rotate(180deg);
+                                            -moz-transform:translateY(-50%) rotate(180deg);
+                                            -ms-transform:translateY(-50%) rotate(180deg);
+                                            -o-transform:translateY(-50%) rotate(180deg);
                                         }
                                     }
 
@@ -5117,7 +5119,6 @@ button:focus {
                                     width: 25px;
                                 }
                                 img.arrow {
-                                    width: 16px;
                                     float: right;
                                     padding: 5px;
                                 }
@@ -5687,16 +5688,17 @@ button:focus {
                                     height: 14px;
                                     position: absolute;
                                     right: 12px;
-                                    top: calc(50% - 7px);
+                                    top: 50%;
+                                    transform: translateY(-50%);
                                     @include background(
                                         '~@/assets/img/arrow_butt.png'
                                     );
                                 }
                                 i.rotate {
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    -ms-transform: rotate(180deg);
-                                    -o-transform: rotate(180deg);
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
                                 }
                             }
 
@@ -6122,16 +6124,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
                             }
@@ -6211,16 +6214,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
                             }
@@ -6542,16 +6546,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
                             }
@@ -6794,16 +6799,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
 
@@ -7253,16 +7259,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
 
@@ -7716,15 +7723,16 @@ button:focus {
                                 height: 14px;
                                 position: absolute;
                                 right: 12px;
-                                top: calc(50% - 7px);
+                                top: 50%;
+                                transform: translateY(-50%);
                                 @include background("~@/assets/img/arrow_butt.png")
                               }
                               i.rotate {
-                                -webkit-transform: rotate(180deg);
-                                -moz-transform: rotate(180deg);
-                                -ms-transform: rotate(180deg);
-                                -o-transform: rotate(180deg);
-                              }                              
+                                -webkit-transform:translateY(-50%) rotate(180deg);
+                                -moz-transform:translateY(-50%) rotate(180deg);
+                                -ms-transform:translateY(-50%) rotate(180deg);
+                                -o-transform:translateY(-50%) rotate(180deg);
+                                }                             
                             }
                           }
                           .input-text-wrap {
@@ -7925,15 +7933,16 @@ button:focus {
                                 height: 14px;
                                 position: absolute;
                                 right: 12px;
-                                top: calc(50% - 7px);
+                                top: 50%;
+                                transform: translateY(-50%);
                                 @include background("~@/assets/img/arrow_butt.png")
                               }
                               i.rotate {
-                                -webkit-transform: rotate(180deg);
-                                -moz-transform: rotate(180deg);
-                                -ms-transform: rotate(180deg);
-                                -o-transform: rotate(180deg);
-                              }
+                                -webkit-transform:translateY(-50%) rotate(180deg);
+                                -moz-transform:translateY(-50%) rotate(180deg);
+                                -ms-transform:translateY(-50%) rotate(180deg);
+                                -o-transform:translateY(-50%) rotate(180deg);
+                            }
                             }
             
                             .listWrap2 {

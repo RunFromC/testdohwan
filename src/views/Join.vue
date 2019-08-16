@@ -386,7 +386,7 @@
                     </div>
 
                     <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="standardJoin" >
-                        <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
+                        <a href="#"  :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
                     </div>
                 </div>
                 <div class="tab" id="additionalInfo" v-else>

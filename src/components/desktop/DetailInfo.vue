@@ -197,7 +197,7 @@
         </div>
 
         <div class="input-selectbox-wrap">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>상세지역</span>
             <i></i>
           </div>
@@ -250,12 +250,12 @@
       <div class="header margin-bottom-0">연령</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="ageGeneration">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn select-first" @click.prevent="showGenderSelectList">
             <span>{{ageDefault}}</span>
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap">
+          <div class="listContents listWrap list-first">
             <ul class="list">
               <li @click="isText">10대</li>
               <li @click="isText">20대</li>
@@ -268,12 +268,12 @@
         </div>
 
         <div class="input-selectbox-wrap" id="ageGroup">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn select-second" @click.prevent="showGenderSelectList">
             <span>{{generationDefault}}</span>
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap">
+          <div class="listContents listWrap list-second">
             <ul class="list">
               <li @click="isText">초반</li>
               <li @click="isText">중반</li>
@@ -306,7 +306,7 @@
       <div class="header margin-bottom-0">연령</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="ageGeneration">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>10대</span>
             <i></i>
           </div>
@@ -324,7 +324,7 @@
         </div>
 
         <div class="input-selectbox-wrap" id="ageGroup">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>초반</span>
             <i></i>
           </div>
@@ -382,7 +382,7 @@
         <div class="status-selectbox-wrap clearfix" id="jobSelect" :class="!haveJob ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>현 직업</span>
                   <i></i>
@@ -394,7 +394,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <input type="text" placeholder="직업선택, 검색" />
                   <i></i>
@@ -425,7 +425,7 @@
           </ul>
           <!-- <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first" @click.prevent="showSelectList">
+              <ul class="select-first" @click.prevent="showSelectList2">
                 <li>
                   <span>현 직업</span>
                   <i></i>
@@ -437,7 +437,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second" @click.prevent="showSelectList">
+              <ul class="select-second" @click.prevent="showSelectList2">
                 <li>
                   <input type="text" placeholder="직업선택, 검색" />
                   <i></i>
@@ -485,7 +485,7 @@
       <div class="header margin-bottom-0">관심사</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="interestsSelect">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>관심사 선택</span>
             <i></i>
           </div>
@@ -560,7 +560,7 @@
       <div class="inner-contents">
         <!-- <div id="childrenSelectedContainer" class="selected-container none"></div>
         <div id="childrenSelectBox" class="input-selectbox-wrap">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>자녀 (0명)</span>
             <i></i>
           </div>
@@ -603,7 +603,7 @@
         >
           <ul class="status-selectbox">
             <li class="select-box clearfix" id="childAge">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{childAgeDefault}}</span>
                   <i></i>
@@ -623,7 +623,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix" id="childGender">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{childGenderDefault}}</span>
                   <i></i>
@@ -695,7 +695,7 @@
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix" id="petType">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{petTypeDefault}}</span>
                   <i></i>
@@ -709,7 +709,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix" id="petDigit">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{petDigitDefault}}</span>
                   <i></i>
@@ -847,7 +847,7 @@
         </div>
         <div id="bodySelectbox">
           <div class="input-selectbox-wrap">
-            <div class="select2 select-btn" @click.prevent="showSelectList">
+            <div class="select2 select-btn" @click.prevent="showSelectList2">
               <span>상의 사이즈</span>
               <input
                 type="text"
