@@ -137,7 +137,6 @@ export default {
         questionTab
     },
     methods: {
-        ...mapMutations(['setService']),
         changeLoginType() {
             if (!this.$store.state.iccMode) {
                 console.log('빅버드야~');
@@ -155,12 +154,9 @@ export default {
             this.onQuestionTab = !this.onQuestionTab;
         }
     },
-    mounted() {
-        this.setService({ path: this.$router.currentRoute.path });
-    }
 };
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/index.scss';
+@import '../assets/scss/index_client.scss';
 </style>

@@ -12,7 +12,7 @@
         <br />총
         <span>8000 포인트</span> 적립
       </div>
-      <button>프로필입력완료</button>
+      <button>프로필 입력완료</button>
     </div>
     <!-- sns -->
     <div class="article" id="sns" v-if="profileCard.sns.on">
@@ -54,7 +54,6 @@
           <a
             href="#"
             id="instagram"
-            @click="checkCertification(1)"
             :class="isCertificationOnOff[1] ? 'on' : ''"
           ></a>
         </div>
@@ -62,10 +61,18 @@
           href="#"
           id="deskSnsSaveBtn"
           @click="snsSaveBotton()"
-          :class="this.profileCard.sns.onSaveButton ? 'on' : '' "
+          v-if="snsCertBtn"
         >SNS인증하기</a>
-        <div class="certification-text" :class="!this.profileCard.sns.onSaveButton ? 'none' : ''">
-          <span>인증완료 되었습니다</span>
+        <a
+          href="#"
+          id="deskSnsSaveBtn"
+          :class="this.profileCard.sns.onSaveButton ? 'off' : ''"
+          v-if="snsCertSuccessBtn"
+        >SNS인증완료</a>
+        <div class="certification-text">
+          <span class="possible-text" v-if="instagramWaitText">인증 대기중 입니다</span>
+          <span class="possible-text" v-if="instagramPossibleText">인증완료 되었습니다</span>
+          <span class="wrong-text" v-if="instagramWrongText">인증실패 되었습니다</span>
         </div>
       </div>
       <div class="button-wrap">
@@ -73,7 +80,7 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn" :class="this.profileCard.sns.onSaveButton">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="this.profileCard.sns.onSaveButton ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -522,7 +529,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn">프로필 입력완료</button>
       </div>
     </div>-->
     <!-- marriage -->
@@ -964,7 +971,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필 입력완료</button>
       </div>
     </div>
     <div class="article brand market" v-if="profileCard.finishBlock.on" id="finishBlock">
@@ -978,7 +985,12 @@
         <strong>추가 2000P 적립가능</strong>
         <a href="#">추가적립하기 &gt;</a>
       </div>
-      <router-link class="finishbtn" to="/" @click.native="pageReset() ">프로필입력완료</router-link>
+      <router-link
+        class="finishbtn"
+        to="/"
+        @click.native="pageReset() "
+        :class="this.$store.state.welcome = true"
+      >프로필 입력완료</router-link>
     </div>
   </div>
 </template>
@@ -987,6 +999,7 @@
 import MapSvg from '../../components/MapSvg.vue';
 import mobileDetailInfo from '../mobile/DetailInfo.vue';
 import { log } from 'util';
+import { async } from 'q';
 
 export default {
     name: 'desktopDetailInfo',
@@ -996,7 +1009,26 @@ export default {
         return {
             snsOnSaveButton: false,
             payOnSaveButton: false,
-            itemOnSaveButton: false
+            itemOnSaveButton: false,
+            onStatusCheck: {
+                job: null,
+                child: null,
+                pet: null
+            },
+            haveJob: false,
+            haveChild: false,
+            havePet: false,
+            selectText: false,
+            snsCertBtn: true,
+            snsCertSuccessBtn: false,
+            instagramWaitText: false,
+            instagramPossibleText: false,
+            instagramWrongText: false,
+            userInfo: {
+                socialInfo:{
+                  instagram: null
+                }
+            },
         };
     },
     computed: {
@@ -1007,7 +1039,6 @@ export default {
     template: {
         MapSvg
     },
-
     methods: {
         selectOnOff(event) {
             console.log(event.target);
@@ -1025,10 +1056,52 @@ export default {
             if (el.includes(this.onStatusCheck[type])) return 'on';
         },
         snsSaveBotton() {
-            this.profileCard.sns.onSaveButton = !this.profileCard.sns
-                .onSaveButton
-                ? 'on'
-                : '';
+            // this.profileCard.sns.onSaveButton = !this.profileCard.sns
+            //     .onSaveButton
+            //     ? 'on'
+            //     : '';
+            if(this.instagramPossibleText) {
+              return;
+            }
+            this.authInstagram();
+        },
+        authInstagram() {
+            const redirectUri = 'http://member.concepters.co.kr/auth/instagram';
+            const clientId = 'cacd978cda8742149e4b7240e9481acb';
+
+            // get result from child
+            window.authResultForInsta = async data => {
+                try {
+                  this.instagramWaitText = true;
+                    const res = await this.$axios(
+                        'get',
+                        `/auth/instagram?code=${data.code}&errorReason=${data.errorReason}&error=${data.error}`,
+                        {}
+                    );
+                    if(res.data.result === 'success') {
+                      this.userInfo.socialInfo.instagram = res.data.userInfo;
+                      this.isCertificationOnOff[1] = true; //아이콘
+                      this.instagramPossibleText = true; //인증문구
+                      this.instagramWaitText = false;
+                      this.snsCertSuccessBtn = true; //인증버튼
+                      this.snsCertBtn = false;
+                      this.profileCard.sns.onSaveButton = true; //저장하기버튼
+                    }
+                } catch (error) {
+                    console.log(error);
+                    this.instagramWrongText = true;
+                    this.instagramWaitText = false;
+                    this.snsCertBtn = true;
+                    this.snsCertSuccessBtn = false;
+                }
+            };
+
+            // popup open
+            window.open(
+                `https://api.instagram.com/oauth/authorize/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`,
+                '_blank',
+                'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+            );
         },
         itemOnSave(event) {
             this.profileCard.expectProduct.onSaveButton = true;
@@ -1044,6 +1117,16 @@ export default {
         pageReset() {
             this.clearCardList();
             this.profileCard['default'].on = true;
+        },
+        joinCheck() {
+            this.clearCardList();
+
+            if (!this.$store.state.iccMode) {
+                this.profileCard['finishBlock'].on = true;
+            } else {
+                this.$store.state.welcome = true;
+                this.$router.push('/');
+            }
         }
     }
 };

@@ -214,7 +214,7 @@ button:focus {
                 > div.item {
                   position: relative;
                   float: left;
-                  margin: 0 0 15px;
+                  margin: 0 0 25px;
                   * {
                     float: left;
                   }
@@ -224,7 +224,7 @@ button:focus {
                     height: $height;
                     line-height: $height;
                     font-size: 13px;
-                    font-family: Nanum-Barun-Gothic-normal, sans-serif;
+                    font-family: 'NanumBarunGothic';
                   }
 
                   input {
@@ -233,6 +233,7 @@ button:focus {
                     height: $height - 2px;
                     border: 1px solid #AAAAAA;
                     border-radius: 5px 0px 0px 5px;
+                    font-family: 'NanumBarunGothic';
                   }
 
                   button {
@@ -246,13 +247,16 @@ button:focus {
                     font-size: 12px;
                     cursor: pointer;
                   }
+                  button.on {
+                    background: #68DDA7;
+                  }
                   .wrong-text {
                     position: absolute;
                     height: 25px;
                     left: 95px;
                     bottom: -25px;
                     font-size: 12px;
-                    color: #ff0000;
+                    color: #FF8173;
                   }
                   .possible-text {
                       position: absolute;
@@ -305,14 +309,13 @@ button:focus {
                       text-align: center;
                       line-height: 34px;
                       font-size: 20px;
-                      font-family: Nanum-Barun-Gothic-normal, serif;
+                      font-family: 'NanumBarunGothic';
                       position: relative;
                       padding-left: 10px;
                       box-sizing: border-box;
 
                       span {
                         font-size: 14px !important;
-                        color: #A1A1A1;
                       }
                       i.rotate {
                         display: block;
@@ -415,7 +418,7 @@ button:focus {
                   height: 20px;
                   line-height: 20px;
                   cursor: pointer;
-                  font-family: Nanum-Barun-Gothic-normal, sans-serif;
+                  font-family: 'NotoSansKR-Light';
                 }
 
                 i {
@@ -1315,14 +1318,14 @@ button:focus {
                 }
 
                 > div.item {
-                  margin-bottom: 10px;
+                  margin-bottom: 20px;
 
                   > div.label {
                     width: 61px;
                     height: 26px !important;
                     line-height: 26px !important;
                     font-size: 12px !important;
-                    font-family: Nanum-Barun-Gothic-normal, sans-serif;
+                    font-family: 'NanumBarunGothic';
                   }
 
                   > input {
@@ -1343,7 +1346,18 @@ button:focus {
                     font-size: 10px;
                     letter-spacing: -0.1px;
                   }
-                  
+                  .possible-text, .wrong-text {
+                    position: absolute;
+                    height: 25px;
+                    left: 75px;
+                    bottom: -25px;
+                    font-size: 11px;
+                    color: #FF8173;
+                  }
+                  .possible-text {
+                      color: #000;
+                  }
+
                 }
 
                 > div.item.text, div.item.password, div.item.email {
@@ -1397,12 +1411,6 @@ button:focus {
                 }
 
               }
-              .input-wrapper:nth-child(4) {
-                padding-bottom: 18px!important;
-              }
-              .input-wrapper:nth-child(6) {
-                padding-bottom: 18px!important;
-              }
               > a#join-finished {
                 width: 228px!important;
                 height: 38px!important;
@@ -1424,11 +1432,9 @@ button:focus {
                 .label {
                   height: 15px !important;
                   line-height: 15px !important;
-                  color: #000 !important;
+                  // color: #000 !important;
                   font-size: 13px !important;
                   margin-right: 5px !important;
-                  font-family: Nanum-Barun-Gothic-normal, sans-serif;
-
                 }
 
                 i {
@@ -1873,7 +1879,7 @@ button:focus {
             > div.item {
               position: relative;
               float: left;
-              margin: 0 0 15px;
+              margin: 0 0 25px;
               * {
                 float: left;
               }
@@ -1884,8 +1890,7 @@ button:focus {
                 line-height: 34px;
                 color: $defaultColor;
                 width: 80px;
-                font-family: Nanum-Barun-Gothic-normal, sans-serif !important;
-
+                font-family: 'NanumBarunGothic';
               }
               .label.ceo {
                 line-height: 17px!important;
@@ -1971,6 +1976,10 @@ button:focus {
                 color: #fff;
                 cursor: pointer;
               }
+              button.on {
+                background: #68DDA7;
+                border: none;
+              }
 
               .icon-eye {
                 $height: 12px;
@@ -2043,7 +2052,7 @@ button:focus {
             bottom: 0;
             width: 100%;
             height: 50px;
-            background: #4BD897;
+            background: #E2E1E1;
             margin-top: 15px;
             text-align: center;
             line-height: 50px;
@@ -2052,6 +2061,9 @@ button:focus {
             a {
               color: #fff;
               display: block;
+            }
+            a.on {
+              background: #4BD897;
             }
           }
           .checkbox-wrap {
@@ -2065,11 +2077,8 @@ button:focus {
               height: 20px;
               line-height: 20px;
               color: $defaultColor;
-              font-family: 'Noto Sans CJK KR', 'sans-serif';
-              font-weight: lighter;
+              font-family: 'NotoSansKR-Light';
               cursor: pointer;
-              text-decoration: underline;
-
             }
             i {
               cursor: pointer;
@@ -2158,12 +2167,12 @@ button:focus {
             }
           }
           .input-wrapper:first-child {
-            margin-top: 30px;
+            margin-top: 35px;
           }
 
         }
         #requiredInfo.tab {
-          padding-top: 35px !important;
+          padding-top: 0px !important;
           margin-top: 0 !important;
           height: calc(100% - 100px);
           overflow: auto;
