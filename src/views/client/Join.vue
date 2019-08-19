@@ -119,9 +119,7 @@
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">연락처</div>
-                                    <input type="text" class="input-phone" maxlength="4" placeholder="010">
-                                    <input type="text" class="input-phone" maxlength="4">
-                                    <input type="text" class="input-phone" maxlength="4">
+                                    <input type="text" class="input-phone" maxlength="10" placeholder="-없이 입력">                                    
                                 </div>
                             </div>
 
@@ -139,9 +137,8 @@
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label ceo">사업자<br>등록번호</div>
-                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                                    <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10">
+                                    
                                 </div>
                             </div>
                             <div class="input-wrapper pb31">
@@ -158,9 +155,7 @@
                             <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label ceo">통신판매업<br>번호</div>
-                                    <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                                    <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                                    <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                                    <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10">                                    
                                 </div>
                             </div>
 
@@ -278,34 +273,60 @@
                     </div>
                 </div>
 
+                <div class="input-wrapper">
+                    <div class="item">
+                        <div class="label">아이디 </div>
+                        <input type="text">
+                        <button>중복확인</button>
+                        
+                    </div>
+                </div>
+
                 <div class="input-wrapper ">
                     <div class="item password">
                         <div class="label">비밀번호 </div>
                         <input type="password" placeholder="영문,숫자 포함 6자리 이상">
-                        <i class="icon-eye" @click.prevent="changePwType"></i>
+                        <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                     </div>
 
                     <div class="item password">
                         <div class="label"> </div>
                         <input type="password" placeholder="비밀번호 확인">
-                        <i class="icon-eye" @click.prevent="changePwType"></i>
+                        <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
+                        
                     </div>
                 </div>
 
                 <div class="input-wrapper ">
-                    <div class="item">
+                    <div class="item password">
                         <div class="label">이름 </div>
                         <input type="text" placeholder="">
-                        <button>실명인증</button>
                     </div>
+
+                    <div class="item">
+                        <div class="label">휴대폰번호 </div>
+                        <input type="text" placeholder="- 없이 입력">
+                        <button>인증하기</button>
+                    </div>
+
+                    <div class="item">
+                        <div class="label"> </div>
+                        <input type="text" placeholder="인증번호">
+                        <button>확인</button>
+
+                    </div>
+
                 </div>
 
                 <div class="input-wrapper">
-                    <div class="item text">
+                    <div class="item">
                         <div class="label">이메일</div>
-                        <input type="text" placeholder="">
+                        <input type="text" placeholder="직접입력">
+                        <button>인증하기</button>
+                        
                     </div>
                 </div>
+
 
                 <div class="line"></div>
 
@@ -313,12 +334,12 @@
                     <div class="label" @click.prevent="openTermsMobile(1)">약관동의(필수)</div>
                     <i @click.prevent="changeTermCheck('termsOfUse')" :class="termsChecked('termsOfUse')"></i>
                 </div>
-                <div class="checkbox-wrap margin-bottom-58">
+                <div class="checkbox-wrap margin-bottom-58" v-if="!this.$store.state.iccMode">
                     <div class="label" @click.prevent="openTermsMobile(2)">통합회원가입하기(선택)</div>
                     <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                 </div>
 
-                <div class="m-finished" id="welcome-finished"><a href="#"><span>가입하기</span> <i></i></a></div>
+                <div class="m-finished" id="welcome-finished"><a href="#" @click="toggleMobileTab(2)"><span>가입하기</span> <i></i></a></div>
             </div>
             <div class="tab" id="additionalInfo" v-else>
                 <div class="add_wrap add_wrap_group"  v-if="!isAccodionOn">
@@ -338,9 +359,8 @@
                     <div class="input-wrapper mb30">
                         <div class="item col1">
                             <div class="label">연락처</div>
-                            <input type="text" class="input-phone" maxlength="4" placeholder="010">
-                            <input type="text" class="input-phone" maxlength="4">
-                            <input type="text" class="input-phone" maxlength="4">
+                            <input type="text" class="input-phone" maxlength="10" placeholder="-없이 입력">
+                            
                         </div>
                     </div>
 
@@ -358,9 +378,7 @@
                     <div class="input-wrapper mb15">
                         <div class="item col1">
                             <div class="label ceo">사업자<br>등록번호</div>
-                            <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                            <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                            <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                            <input type="text" class="ceo-num" maxlength="10" placeholder="-없이 입력">
                         </div>
                     </div>
                     <div class="input-wrapper mb31">
@@ -377,9 +395,8 @@
                     <div class="input-wrapper mb15">
                         <div class="item col1">
                             <div class="label ceo">통신판매업<br>번호</div>
-                            <input type="text" class="ceo-num" placeholder="123" maxlength="3">
-                            <input type="text" class="ceo-num" placeholder="45" maxlength="2">
-                            <input type="text" class="ceo-num" placeholder="67890" maxlength="5">
+                            <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10">
+                            
                         </div>
                     </div>
 
@@ -400,21 +417,7 @@
                                             <li>4</li>
                                         </ul>
                                     </div>
-                                </li>
-                                <li class="select-contents">
-                                    <div class="select">
-                                        <span>소분류</span>
-                                        <i class="rotate"></i>
-                                    </div>
-                                    <div class="listWrap">
-                                        <ul class="list">
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                            <li>4</li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                </li>                               
                             </ul>
                         </div>
                     </div>
@@ -426,8 +429,8 @@
                         </div>
                     </div>
 
-                    <div class="m-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</div>
-                    <div class="m-finished"><a href="#"><span>가입하기</span><i></i></a></div>
+                    <!-- <div class="m-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</div> -->
+                    <div class="m-finished"><a href="#"  @click.prevent="joinCheck()"><span>회사정보 입력완료</span><i></i></a></div>
                 </div>
             </div>
         </div>
@@ -465,6 +468,11 @@ export default {
         standardJoin() {
             this.addJoinPage = !this.addJoinPage
         },
+        joinCheck(){
+            console.log(this.$store.state.welcome)
+            this.$store.state.welcome = true;
+            location.href = '/client';
+        }
     }
     
 };

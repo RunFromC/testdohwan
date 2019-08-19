@@ -81,8 +81,11 @@
         </div>
         <select class="percentage-select">
           <option value="-10%">- 10 %</option>
+          <option value="-15%">- 15 %</option>
           <option value="-20%">- 20 %</option>
+          <option value="-25%">- 25 %</option>
           <option value="-30%">- 30 %</option>
+          <option value="-35%">- 35 %</option>
           <option value="-40%">- 40 %</option>
         </select>
         <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(2)"></i>
@@ -113,8 +116,11 @@
         </div>
         <select class="percentage-select">
           <option value="-10%">- 10 %</option>
+          <option value="-15%">- 15 %</option>
           <option value="-20%">- 20 %</option>
+          <option value="-25%">- 25 %</option>
           <option value="-30%">- 30 %</option>
+          <option value="-35%">- 35 %</option>
           <option value="-40%">- 40 %</option>
         </select>
         <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
@@ -1142,6 +1148,7 @@ export default {
             }
         },
         showSelectList2(e) {
+            
             const selectBtn = e.target.closest('ul');
             const accordion = selectBtn.closest('.accordion-contents');
             const selectBox = selectBtn.closest('.status-selectbox');
@@ -1159,6 +1166,7 @@ export default {
                     accordion
                         .querySelector('.list-second')
                         .classList.remove('selectOn');
+                    selectBtn.offsetHeight - 3 + 'px';
                 }
             } else {
                 if (!accordion) {
@@ -1172,8 +1180,7 @@ export default {
                 }
             }
 
-            // 탑 처리 코드가 누락됨.
-        },
+        },  
         showSelectList(e) {
             const selectBtn = e.target.closest('div, ul');
             const accordion = selectBtn.closest('.accordion-contents');
@@ -1182,15 +1189,13 @@ export default {
             if (selectBtn.nextSibling.classList.contains('selectOn')) {
                 selectBtn.nextSibling.classList.remove('selectOn');
                 icon.classList.remove('rotate');
-
+                
                 if (!accordion) return;
                 accordion.classList.remove('height');
             } else {
-                selectBtn.nextSibling.classList.add('selectOn');
+                selectBtn.nextSibling.classList.add('selectOn');                 
                 icon.classList.add('rotate');
-                selectBtn.nextSibling.style.top =
-                    selectBtn.offsetHeight - 3 + 'px';
-
+               
                 if (!accordion) return;
                 accordion.classList.add('height');
             }

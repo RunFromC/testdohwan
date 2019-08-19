@@ -37,7 +37,7 @@ button:focus {
 #join, #welcome {
   input::placeholder {
     font-size: 13px;
-    color:#707070;
+    color:#A1A1A1;
   }
 
   $headerHeight: 85px;
@@ -180,6 +180,7 @@ button:focus {
                 position: relative;
                 width: 272px;
                 height: auto;
+                
                 .ceo-btn {
                   float: right;
                   button {
@@ -275,40 +276,7 @@ button:focus {
                   -moz-border-radius: 5px;
                   border-radius: 5px!important;
                 }
-                input.input-phone {
-                  width: 60px - 20px !important;
-                  -webkit-border-radius: 5px!important;
-                  -moz-border-radius: 5px!important;
-                  border-radius: 5px!important;
-                  margin-right: 10.5px;
-                }
-                input.input-phone:last-child {
-                  margin-right: 0!important;
-                }
-                input.ceo-num {
-                  padding-left: 11px;
-                  -webkit-border-radius: 5px!important;
-                  -moz-border-radius: 5px!important;
-                  border-radius: 5px!important;
-                  margin-right: 9px;
-
-                }
-                input.ceo-num::placeholder {
-                  color: #A1A1A1!important;
-                }
-                input.input-phone::placeholder {
-                  color: #A1A1A1!important;
-                }
-                input.ceo-num:nth-child(2) {
-                   width: 52px - 13px !important;
-                 }
-                input.ceo-num:nth-child(3) {
-                  width: 44px - 12px !important;
-                }
-                input.ceo-num:nth-child(4) {
-                  width: 75px - 13px !important;
-                  margin-right: 0;
-                }
+                
                 textarea.companyinpor {
                   width: 166px!important;
                   padding: 5px 11px;
@@ -1399,32 +1367,6 @@ button:focus {
                   input::placeholder {
                     font-size: 10px;
                   }
-                  input.input-phone {
-                    width: 36.5px!important;
-                    margin-right: 6px;
-                    padding-left: 6px;
-                  }
-                  input.input-phone:last-child {
-                    margin-right: 0;
-                  }
-                  input.ceo-num {
-                    margin-right: 6px;
-                    padding-left: 8px;
-                    margin-top: 4px;
-                  }
-                  input.ceo-num::placeholder{
-                    color: #A1A1A1;
-                  }
-                  input.ceo-num:nth-child(2) {
-                    width: 40px - 10px!important;
-                  }
-                  input.ceo-num:nth-child(3) {
-                    width: 35px - 9px !important;
-                  }
-                  input.ceo-num:nth-child(4) {
-                    width: 57px - 10px !important;
-                    margin-right: 0;
-                  }
                   textarea.companyinpor {
                     width: 122px!important;
                     height: 120px!important;
@@ -1927,6 +1869,7 @@ button:focus {
             width: 272px;
             height: auto;
             margin: 0 auto 25px;
+            padding: 0;
             > div.item {
               position: relative;
               float: left;
@@ -1962,33 +1905,12 @@ button:focus {
                 color: $defaultColor;
                 font-size: 13px;
               }
-              input.input-phone:first-child {
-                width: 35px;
-              }
-              input.input-phone {
-                width: 45px;
-                margin-right: 4px;
-              }
-              input.input-phone:last-child {
-                margin-right: 0;
+              input::placeholder {
+                color: #A1A1A1;
+                font-size: 13px;
               }
 
-              input.ceo-num {
-                margin-right: 4px;
-              }
-              input::placeholder {
-                color: #A1A1A1!important;
-              }
-              input.ceo-num:nth-child(2) {
-                width: 45px;
-              }
-              input.ceo-num:nth-child(3) {
-                width: 35px;
-              }
-              input.ceo-num:nth-child(4) {
-                width: 56px;
-                margin-right: 0;
-              }
+              
               .select-wrap {
                 .select-contents {
                   height: auto;
@@ -1998,7 +1920,7 @@ button:focus {
                   margin-right: 10px;
                   .select {
                     cursor: pointer;
-                    width: 79px;
+                    width: 180px;
                     height: 34px;
                     text-align: center;
                     line-height: 34px;
@@ -2032,10 +1954,7 @@ button:focus {
               }
 
 
-              input::placeholder {
-                color: $defaultColor;
-                font-size: 13px;
-              }
+              
               button {
                 position: absolute;
                 top: 0;

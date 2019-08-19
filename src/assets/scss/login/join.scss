@@ -37,9 +37,7 @@ button:focus {
         left: -1px;
         
     }
-    .rotate {
-        transform: rotate(-90deg);
-    }
+    
 
     width: 100vw;
     height: 100vh;
@@ -1341,7 +1339,7 @@ button:focus {
                                     }
                                     .pay::placeholder {
                                         font-size: 18px;
-                                        color: #000;
+                                        color: #E2E1E1;
                                         text-align: right;
                                     }
                                 }
@@ -1383,6 +1381,9 @@ button:focus {
                                         border: none;
                                         margin-right: 5px;
                                         text-align: right;
+                                    }
+                                    .percentage::placeholder {
+                                        color: #E2E1E1;
                                     }
 
                                     .up-down-wrap {
@@ -1442,7 +1443,7 @@ button:focus {
                                     }
                                     .pay::placeholder {
                                         font-size: 18px;
-                                        color: #000;
+                                        color: #E2E1E1;
                                     }
                                 }
                             }
@@ -4993,7 +4994,6 @@ button:focus {
                         a {
                             color: #fff;
                             display: block;
-                            cursor: default;
                         }
                         a.on {
                             background: #4bd897;
@@ -5377,7 +5377,7 @@ button:focus {
                                 }
                                 .pay::placeholder {
                                     font-size: 14px;
-                                    color: #000;
+                                    color: #E2E1E1;
                                     font-family: 'Nanum-Barun-Gothic-Bold',
                                         serif;
                                 }
@@ -5552,7 +5552,7 @@ button:focus {
                             width: 246px;
 
                             > span {
-                                margin-right: 22px;
+                                margin-right: 33px;
                                 font-family: Nanum-Barun-Gothic-bold, sans-serif;
                             }
 
@@ -5575,7 +5575,7 @@ button:focus {
                                 }
                                 .pay::placeholder {
                                     font-size: 14px;
-                                    color: #000;
+                                    color: #E2E1E1;
                                     font-family: 'Nanum-Barun-Gothic-Bold',
                                         serif;
                                 }

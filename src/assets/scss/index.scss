@@ -281,6 +281,9 @@
                     .tab1 {
                         margin-top: 206px;
                     }
+                    .tab2 {
+                        bottom: 86px;
+                    }
                 }
 
                 .partition {
@@ -319,6 +322,9 @@
                         font-size: 14px !important;
                     }
                 }
+            }
+            .bottom {
+                line-height: 72px;
             }
         }
 
@@ -414,8 +420,9 @@
                 }
             }
             .bottom {
-                line-height: 65px !important;
+                line-height: 60px !important;
                 border-top: 2px solid #4bd897 !important;
+                height: 58px !important;
             }
         }
         .contents.type1.open {

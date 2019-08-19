@@ -125,7 +125,7 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" v-model="basicValue" />
+            <input class="percentage" type="text" maxlength="2"  v-model="basicValue" />
             <span>%</span>
             <div class="up-down-wrap">
               <i class="up" @click="payUpPersent('basicsUp')"></i>
@@ -140,6 +140,7 @@
         <div class="product-input-wrap">
           <span>제품가</span>
           <div class="product-wrap">
+            
             <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
             <span>원 이상</span>
           </div>
@@ -153,7 +154,7 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" v-model="comboValue" />
+            <input class="percentage" type="text" maxlength="2"  v-model="comboValue" />
             <span>%</span>
             <div class="up-down-wrap">
               <i @click="payUpPersent('comboUp')" class="up"></i>

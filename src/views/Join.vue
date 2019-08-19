@@ -385,7 +385,7 @@
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
 
-                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="standardJoin" >
+                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="toggleMobileTab(2)" >
                         <a href="#"  :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
                     </div>
                 </div>
