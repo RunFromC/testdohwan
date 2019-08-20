@@ -99,7 +99,7 @@
       <div class="inner-contents">
         <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
           <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-            <span>빅버드 추천을 받을게요</span>
+            <span>빅버드 천을 받을게요</span>
             <i></i>
           </div>
           <div class="checked" v-else @click.prevent="onClickRecommendCheck">
@@ -109,24 +109,16 @@
         </div>
 
         <div class="recommend-checkbox" v-else>
-          <div
-            class="uncheck"
-            v-if="!isRecommendCheck"
-            @click.prevent="onClickRecommendCheck"
-            style="width: 100%; box-sizing: border-box;"
-          >
+          <div class="checked" v-if="isRecommendCheck" @click.prevent="onClickRecommendCheck">
             <span>ICC 추천을 받을게요</span>
             <i></i>
           </div>
-          <div
-            class="checked"
-            v-else
-            @click.prevent="onClickRecommendCheck"
-            style="width: 100%;     "
-          >
-            <i></i>
+          <div class="uncheck" v-else @click.prevent="onClickRecommendCheck">
             <span>ICC 추천을 받을게요</span>
+            <i></i>
           </div>
+
+          <!-- <i class="icon-questions-mark" @click.prevent="showTips(1)"></i> -->
         </div>
 
         <div class="title" v-if="checkService('brands',true) && !this.$store.state.iccMode">기본 원고료</div>
@@ -140,7 +132,7 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" v-model="basicValue" />
+            <input class="percentage" type="text" maxlength="2"  v-model="basicValue" />
             <span>%</span>
             <div class="up-down-wrap">
               <i class="up" @click="payUpPersent('basicsUp')"></i>
@@ -155,6 +147,7 @@
         <div class="product-input-wrap">
           <span>제품가</span>
           <div class="product-wrap">
+            
             <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
             <span>원 이상</span>
           </div>
@@ -168,7 +161,7 @@
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2" v-model="comboValue" />
+            <input class="percentage" type="text" maxlength="2"  v-model="comboValue" />
             <span>%</span>
             <div class="up-down-wrap">
               <i @click="payUpPersent('comboUp')" class="up"></i>
@@ -189,7 +182,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
       <div class="pay-text-wrap" id="Paytext1" v-if="tip.title">
         <div class="paytext">{{tip.title}}</div>
@@ -212,7 +205,7 @@
         </div>
 
         <div class="input-selectbox-wrap">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>상세지역</span>
             <i></i>
           </div>
@@ -243,7 +236,7 @@
           </li>
         </ul>
 
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
     <!-- gender -->
@@ -265,12 +258,12 @@
       <div class="header margin-bottom-0">연령</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="ageGeneration">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn select-first" @click.prevent="showGenderSelectList">
             <span>{{ageDefault}}</span>
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap">
+          <div class="listContents listWrap list-first">
             <ul class="list">
               <li v-for="(item,index) in age" @click="isText" :key="index">{{item.age}}</li>
               <!-- <li @click="isText">10대</li>
@@ -284,12 +277,12 @@
         </div>
 
         <div class="input-selectbox-wrap" id="ageGroup">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn select-second" @click.prevent="showGenderSelectList">
             <span>{{generationDefault}}</span>
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap">
+          <div class="listContents listWrap list-second">
             <ul class="list">
               <li v-for="(item,index) in ageGroup" @click="isText" :key="index">{{item.ageGroup}}</li>
               <!-- <li @click="isText">초반</li>
@@ -314,7 +307,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -323,7 +316,7 @@
       <div class="header margin-bottom-0">연령</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="ageGeneration">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>10대</span>
             <i></i>
           </div>
@@ -341,7 +334,7 @@
         </div>
 
         <div class="input-selectbox-wrap" id="ageGroup">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>초반</span>
             <i></i>
           </div>
@@ -366,7 +359,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>-->
 
@@ -399,19 +392,19 @@
         <div class="status-selectbox-wrap clearfix" id="jobSelect" :class="!haveJob ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>현 직업</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-if="!selectText">현 직업</li>
+                <li v-if="selectText">현 직업</li>
                 <li v-else>전 직업</li>
               </ul>
             </li>
             <li class="select-box big clearfix">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <input type="text" placeholder="직업선택, 검색" />
                   <i></i>
@@ -445,7 +438,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -454,7 +447,7 @@
       <div class="header margin-bottom-0">관심사</div>
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="interestsSelect">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>관심사 선택</span>
             <i></i>
           </div>
@@ -519,7 +512,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -529,7 +522,7 @@
       <div class="inner-contents">
         <!-- <div id="childrenSelectedContainer" class="selected-container none"></div>
         <div id="childrenSelectBox" class="input-selectbox-wrap">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn" @click.prevent="showSelectList2">
             <span>자녀 (0명)</span>
             <i></i>
           </div>
@@ -572,7 +565,7 @@
         >
           <ul class="status-selectbox">
             <li class="select-box clearfix" id="childAge">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{childAgeDefault}}</span>
                   <i></i>
@@ -593,7 +586,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix" id="childGender">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{childGenderDefault}}</span>
                   <i></i>
@@ -632,7 +625,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -665,7 +658,7 @@
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
           <ul class="status-selectbox">
             <li class="select-box clearfix" id="petType">
-              <ul class="select-first select-btn" @click.prevent="showSelectList">
+              <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{petTypeDefault}}</span>
                   <i></i>
@@ -680,7 +673,7 @@
               </ul>
             </li>
             <li class="select-box big clearfix" id="petDigit">
-              <ul class="select-second select-btn" @click.prevent="showSelectList">
+              <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <span>{{petDigitDefault}}</span>
                   <i></i>
@@ -717,7 +710,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -763,7 +756,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
 
@@ -777,7 +770,7 @@
         </div>
         <div id="bodySelectbox">
           <div class="input-selectbox-wrap">
-            <div class="select2 select-btn" @click.prevent="showSelectList">
+            <div class="select2 select-btn" @click.prevent="showSelectList2">
               <span>상의 사이즈</span>
               <input
                 type="text"
@@ -843,7 +836,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
       </div>
     </div>
     <!-- Skin -->

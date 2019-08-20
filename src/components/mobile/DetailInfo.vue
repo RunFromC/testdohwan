@@ -8,7 +8,7 @@
         </li>
         <li>SNS연동</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -46,7 +46,7 @@
         <li v-if="!this.$store.state.iccMode">희망원고료</li>
         <li v-else>희망수수료</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -55,17 +55,28 @@
       :class="onProfileCard('pay')"
       v-if="checkService('brands',true) || checkService('influencer',true)"
     >
-      <div class="recommend-checkbox">
+      <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
         <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-          <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
-          <span v-else>ICC 추천 받을게요</span>
-          <i class="circle"></i>
+          <span>빅버드 천을 받을게요</span>
+          <i></i>
         </div>
         <div class="checked" v-else @click.prevent="onClickRecommendCheck">
-          <i class="check_box"></i>
-          <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
-          <span v-else>ICC 추천 받을게요</span>
+          <i></i>
+          <span>빅버드 추천을 받을게요</span>
         </div>
+      </div>
+
+      <div class="recommend-checkbox" v-else>
+        <div class="checked" v-if="isRecommendCheck" @click.prevent="onClickRecommendCheck">
+          <span>ICC 추천을 받을게요</span>
+          <i></i>
+        </div>
+        <div class="uncheck" v-else @click.prevent="onClickRecommendCheck">
+          <span>ICC 추천을 받을게요</span>
+          <i></i>
+        </div>
+
+        <!-- <i class="icon-questions-mark" @click.prevent="showTips(1)"></i> -->
       </div>
       <div class="pay-title" v-if="!this.$store.state.iccMode">기본 원고료</div>
       <div class="pay-title" v-else>보장 개런티</div>
@@ -78,8 +89,11 @@
         </div>
         <select class="percentage-select">
           <option value="-10%">- 10 %</option>
+          <option value="-15%">- 15 %</option>
           <option value="-20%">- 20 %</option>
+          <option value="-25%">- 25 %</option>
           <option value="-30%">- 30 %</option>
+          <option value="-35%">- 35 %</option>
           <option value="-40%">- 40 %</option>
         </select>
         <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(1)"></i>
@@ -95,7 +109,7 @@
       </div>
       <div class="pay-title">협찬제품이 있을 경우</div>
       <div class="product-input-wrap">
-        <span>제품가</span>
+        <span>제품</span>
         <div class="product-wrap">
           <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
           <span>원 이상</span>
@@ -110,8 +124,11 @@
         </div>
         <select class="percentage-select">
           <option value="-10%">- 10 %</option>
+          <option value="-15%">- 15 %</option>
           <option value="-20%">- 20 %</option>
+          <option value="-25%">- 25 %</option>
           <option value="-30%">- 30 %</option>
+          <option value="-35%">- 35 %</option>
           <option value="-40%">- 40 %</option>
         </select>
         <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(2)"></i>
@@ -134,7 +151,7 @@
         </li>
         <li>희망 공구 품목</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -188,7 +205,7 @@
         </li>
         <li>주 활동 지역</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -240,7 +257,7 @@
         </li>
         <li>성별/연령</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -270,12 +287,12 @@
           <i></i>
         </div>
         <div class="input-selectbox-wrap" id="m-ageGeneration">
-          <div class="select select-btn" @click.prevent="showSelectList">
+          <div class="select select-btn select-first" @click.prevent="showGenderSelectList">
             <span>{{ageDefault}}</span>
             <i></i>
           </div>
 
-          <div class="listContents listWrap">
+          <div class="listContents listWrap list-first">
             <ul class="list">
               <li @click="isText">10대</li>
               <li @click="isText">20대</li>
@@ -288,12 +305,12 @@
         </div>
 
         <div class="input-selectbox-wrap" id="m-ageGroup">
-          <div class="select2 select-btn" @click.prevent="showSelectList">
+          <div class="select2 select-btn select-second" @click.prevent="showGenderSelectList">
             <span>{{generationDefault}}</span>
             <i></i>
           </div>
 
-          <div class="listContents listWrap2">
+          <div class="listContents listWrap2 list-second">
             <ul class="list">
               <li @click="isText">초반</li>
               <li @click="isText">중반</li>
@@ -320,7 +337,7 @@
         </li>
         <li>직업</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -407,7 +424,7 @@
         </li>
         <li>관심사</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -466,7 +483,7 @@
         </li>
         <li>결혼 유무</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -504,7 +521,7 @@
         </li>
         <li>자녀 관계</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -605,7 +622,7 @@
         </li>
         <li>반려동물</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -699,7 +716,7 @@
         </li>
         <li>바디프로필</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -771,7 +788,7 @@
         </li>
         <li>피부</li>
         <li>
-          <img class="arrow" src="~@/assets/img/arrow_butt.png" alt="아래화살표아이콘" />
+          <img class="arrow" src="~@/assets/img/down_mobile.png" alt="아래화살표아이콘" />
         </li>
       </ul>
     </div>
@@ -813,7 +830,7 @@
     </div>
     <div class="m-finished">
       <a href="#">
-        <span>프로필 입력완료</span>
+        <span @click="joinCheck()">프로필입력완료</span>
         <i></i>
       </a>
     </div>
@@ -908,7 +925,7 @@ export default {
             ],
             marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
 
-            isRecommendCheck: false,
+            isRecommendCheck: true,
             recommendType: null,
             gender: false,
             tip: {
@@ -1199,42 +1216,97 @@ export default {
             this.tip.title = null;
             this.tip.text = null;
         },
-        showSelectList2(e) {
-            const selectBtn = e.target.closest('ul');
+        showGenderSelectList(e) {
+            const selectBtn = e.target.closest('div');
             const accordion = selectBtn.closest('.accordion-contents');
+            const selectBox = selectBtn.closest('.inner-contents');
+            const icon = selectBtn.querySelector('i');
 
             this.showSelectList(e);
             if (selectBtn.classList.contains('select-first')) {
-                accordion
-                    .querySelector('.list-second')
-                    .classList.remove('selectOn');
+                if (!accordion) {
+                    selectBox
+                        .querySelector('.list-second')
+                        .classList.remove('selectOn');
+                } else {
+                    accordion
+                        .querySelector('.list-second')
+                        .classList.remove('selectOn');
+                }
             } else {
-                accordion
-                    .querySelector('.list-first')
-                    .classList.remove('selectOn');
+                if (!accordion) {
+                    selectBox
+                        .querySelector('.list-first')
+                        .classList.remove('selectOn');
+                } else {
+                    accordion
+                        .querySelector('.list-first')
+                        .classList.remove('selectOn');
+                }
             }
         },
+        showSelectList2(e) {
+            
+            const selectBtn = e.target.closest('ul');
+            const accordion = selectBtn.closest('.accordion-contents');
+            const selectBox = selectBtn.closest('.status-selectbox');
+            const icon = selectBtn.querySelector('i');
+
+            this.showSelectList(e);
+            if (selectBtn.classList.contains('select-first')) {
+                console.log(selectBox);
+
+                if (!accordion) {
+                    selectBox
+                        .querySelector('.list-second')
+                        .classList.remove('selectOn');
+                } else {
+                    accordion
+                        .querySelector('.list-second')
+                        .classList.remove('selectOn');
+                    selectBtn.offsetHeight - 3 + 'px';
+                }
+            } else {
+                if (!accordion) {
+                    selectBox
+                        .querySelector('.list-first')
+                        .classList.remove('selectOn');
+                } else {
+                    accordion
+                        .querySelector('.list-first')
+                        .classList.remove('selectOn');
+                }
+            }
+
+        },  
         showSelectList(e) {
             const selectBtn = e.target.closest('div, ul');
             const accordion = selectBtn.closest('.accordion-contents');
+            const icon = selectBtn.querySelector('i');
+
             if (selectBtn.nextSibling.classList.contains('selectOn')) {
                 selectBtn.nextSibling.classList.remove('selectOn');
+                icon.classList.remove('rotate');
+                
                 if (!accordion) return;
                 accordion.classList.remove('height');
             } else {
-                selectBtn.nextSibling.classList.add('selectOn');
-                selectBtn.nextSibling.style.top =
-                    selectBtn.offsetHeight - 3 + 'px';
-
+                selectBtn.nextSibling.classList.add('selectOn');                 
+                icon.classList.add('rotate');
+               
                 if (!accordion) return;
                 accordion.classList.add('height');
             }
         },
+
         closeSelectList(e) {
             const parent = e.target.closest('#join');
             if (!e.target.closest('.select-btn') && parent) {
                 parent.querySelectorAll('.listContents').forEach(element => {
                     element.classList.remove('selectOn');
+                });
+                parent.querySelectorAll('i').forEach(con => {
+                    con.classList.remove('rotate');
                 });
 
                 parent.querySelectorAll('.accordion-contents').forEach(el => {
@@ -1312,6 +1384,15 @@ export default {
         clearCardList() {
             for (const key in this.profileCard) {
                 this.profileCard[key].on = false;
+            }
+        },
+        joinCheck() {
+            this.clearCardList();
+            if (!this.$store.state.iccMode) {
+                this.profileCard['finishBlock'].on = true;
+            } else {
+                this.$store.state.welcome = true;
+                location.href = '/';
             }
         }
     },
