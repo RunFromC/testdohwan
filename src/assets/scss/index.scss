@@ -131,6 +131,7 @@
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
+                bottom: 107px;
                 .toggleBtnWrap {
                     margin-top: 42px;
                 }
@@ -280,6 +281,9 @@
                     .tab1 {
                         margin-top: 206px;
                     }
+                    .tab2 {
+                        bottom: 86px;
+                    }
                 }
 
                 .partition {
@@ -318,6 +322,9 @@
                         font-size: 14px !important;
                     }
                 }
+            }
+            .bottom {
+                line-height: 72px;
             }
         }
 
@@ -399,6 +406,7 @@
         height: 540px !important;
         margin-left: -1px * (315px/2px);
         margin-top: -1px * (540px/2px);
+
         .contents.type1 {
             .top {
                 height: 480px !important;
@@ -406,11 +414,15 @@
                     .tab1 {
                         margin-top: 165px !important;
                     }
+                    .tab2 {
+                        bottom: 57px;
+                    }
                 }
             }
             .bottom {
-                line-height: 65px !important;
+                line-height: 60px !important;
                 border-top: 2px solid #4bd897 !important;
+                height: 58px !important;
             }
         }
         .contents.type1.open {
@@ -472,6 +484,13 @@
                         margin-top: 40px !important;
                     }
                 }
+            }
+        }
+    }
+    #loginPage {
+        #loginTab {
+            .tab2 {
+                bottom: 57px !important;
             }
         }
     }

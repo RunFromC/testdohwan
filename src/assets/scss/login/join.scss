@@ -35,10 +35,9 @@ button:focus {
         display: block !important; 
         position: absolute !important; 
         left: -1px;
+        
     }
-    .rotate {
-        transform: rotate(-90deg);
-    }
+    
 
     width: 100vw;
     height: 100vh;
@@ -540,6 +539,7 @@ button:focus {
                                             height: 27px;
                                             line-height: 27px;
                                             color: #000;
+                                            font-family: 'Nanum-Barun-Gothic-normal', serif;
                                         }
                                         span {
                                             background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
@@ -587,21 +587,35 @@ button:focus {
                                                 span {
                                                     font-size: 14px;
                                                     display: block;
-                                                    line-height: 40px;
+                                                    line-height: 38px;
                                                     text-align: left;
                                                     padding-left: 15px;
+                                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+
+                                                }
+                                                span.on {
+                                                    color: #000 !important;
                                                 }
                                                 span.on {
                                                     color: #000;
                                                 }
                                                 i {
-                                                    position: absolute;
-                                                    right: 9px;
-                                                    top: 50%;
-                                                    transform: translateY(-50%);
-                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    display: block;
                                                     width: 18px;
                                                     height: 18px;
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    @include background(
+                                                        '~@/assets/img/down_desktop.png'
+                                                    );
+                                                }
+                                                i.rotate {
+                                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                                    -o-transform:translateY(-50%) rotate(180deg);
                                                 }
                                             }
                                         }
@@ -624,7 +638,8 @@ button:focus {
                                                 margin: 0 5px;
                                                 padding: 15px 0 0;
                                                 cursor: pointer;
-
+                                                font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                                
                                             }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
@@ -657,12 +672,16 @@ button:focus {
                                             height: 40px;
                                             li {
                                                 box-sizing: border-box;
-                                                line-height: 40px;
+                                                line-height: 38px;
                                                 padding: 0 20px;
                                                 span {
                                                     font-size: 14px;
                                                     color: #000;
                                                     padding-left: 5px;
+                                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                                }
+                                                span.on {
+                                                    color: #000 !important;
                                                 }
                                                 
                                                 input {
@@ -670,21 +689,31 @@ button:focus {
                                                     font-size: 14px;
                                                     width: 100%;
                                                     color: #000;
-
-
+                                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                                    
                                                 }
                                                 input::placeholder {
                                                     color: #707070;
                                                     font-size: 14px;
+                                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
                                                 }
                                                 i {
-                                                    position: absolute;
-                                                    right: 9px;
-                                                    top: 50%;
-                                                    transform: translateY(-50%);
-                                                    background: url(~@/assets/img/arrow_butt.png) no-repeat center;
+                                                    display: block;
                                                     width: 18px;
                                                     height: 18px;
+                                                    position: absolute;
+                                                    right: 10px;
+                                                    top: 50%;
+                                                    transform: translateY(-50%);
+                                                    @include background(
+                                                        '~@/assets/img/down_desktop.png'
+                                                    );
+                                                }
+                                                i.rotate {
+                                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                                    -o-transform:translateY(-50%) rotate(180deg);
                                                 }
                                             }
 
@@ -710,6 +739,8 @@ button:focus {
                                                 padding: 15px 0 0;
                                                 cursor: pointer;
                                                 background: #fff;
+                                                font-family: 'Nanum-Barun-Gothic-normal', serif;
+
                                             }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
@@ -848,24 +879,28 @@ button:focus {
                                 text-align: center;
                                 line-height: 40px;
                                 font-size: 20px;
-                                font-family: Nanum-Barun-Gothic-normal, serif;
+                                font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 position: relative;
                                 i {
                                     display: block;
-                                    width: 14px;
-                                    height: 14px;
+                                    width: 18px;
+                                    height: 18px;
                                     position: absolute;
-                                    right: 12px;
-                                    top: calc(50% - 7px);
+                                    right: 10px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
                                     @include background(
-                                        '~@/assets/img/arrow_butt.png'
+                                        '~@/assets/img/down_desktop.png'
                                     );
                                 }
                                 i.rotate {
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    -ms-transform: rotate(180deg);
-                                    -o-transform: rotate(180deg);
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
+                                }
+                                span.on {
+                                    color: #000;
                                 }
                             }
                             .select span.on {
@@ -1030,10 +1065,10 @@ button:focus {
                                     transform: translateY(-50%);
                                 }
                                 i.rotate {
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    -ms-transform: rotate(180deg);
-                                    -o-transform: rotate(180deg);
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
                                 }
                             }
                         }
@@ -1181,50 +1216,58 @@ button:focus {
                                 margin: 40px 0 30px;
                                 position: relative;
                                 .uncheck {
-                                    width: calc(100% - 30px);
+                                    border: 3px solid #707070;
+                                    width: 100%;
                                     height: 85px - 6px;
-                                    border: 3px solid #68dda7;
                                     border-radius: 5px;
                                     font-size: 20px;
                                     color: #707070;
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-                                    cursor: pointer;
+                                    box-sizing: border-box;
                                     span {
                                         margin-right: 7px;
                                     }
-
                                     i {
                                         display: inline-block;
                                         width: 13px;
                                         height: 13px;
+                                        
                                         @include background(
                                             '~@/assets/img/checkbox_circle.png'
                                         );
                                     }
+
+                                    
                                 }
 
                                 .checked {
-                                    width: calc(100% - 26px);
-                                    height: 85px;
+                                    
+                                    width: 100%;
+                                    height: 85px - 6px;
+                                    border: 3px solid #68dda7;
                                     border-radius: 5px;
-                                    background: rgba(104, 221, 167, 0.15);
-                                    color: #68dda7;
                                     font-size: 20px;
+                                    color: #68dda7;
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-                                    flex-direction: column;
+                                    box-sizing: border-box;
 
+                                    span {
+                                        margin-right: 7px;
+                                    }
                                     i {
                                         display: inline-block;
                                         width: 13px;
                                         height: 13px;
+                                        background-size: 100%;
                                         @include background(
-                                            '~@/assets/img/checkbox_check.png'
+                                            '~@/assets/img/checkbox_circle_color.png'
                                         );
                                     }
+                                    
                                 }
                                 i.icon-questions-mark {
                                     position: absolute;
@@ -1249,7 +1292,7 @@ button:focus {
                                 font-size: 15px;
                                 color: #707070;
                                 margin-bottom: 23px;
-                                font-family: 'NotoSansKR-Medium';
+                                font-family: 'Nanum-Barun-Gothic-normal', serif;
                             }
 
                             .margin-top-58 {
@@ -1285,6 +1328,7 @@ button:focus {
                                     color: #707070;
                                     font-size: 13px;
                                     margin-right: 25px;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 }
 
                                 .pay-wrap {
@@ -1305,7 +1349,7 @@ button:focus {
                                     }
                                     .pay::placeholder {
                                         font-size: 18px;
-                                        color: #000;
+                                        color: #E2E1E1;
                                         text-align: right;
                                     }
                                 }
@@ -1348,6 +1392,9 @@ button:focus {
                                         margin-right: 5px;
                                         text-align: right;
                                     }
+                                    .percentage::placeholder {
+                                        color: #E2E1E1;
+                                    }
 
                                     .up-down-wrap {
                                         height: 24px;
@@ -1385,6 +1432,7 @@ button:focus {
 
                                 > span {
                                     margin-right: 26px;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 }
 
                                 .product-wrap {
@@ -1405,7 +1453,7 @@ button:focus {
                                     }
                                     .pay::placeholder {
                                         font-size: 18px;
-                                        color: #000;
+                                        color: #E2E1E1;
                                     }
                                 }
                             }
@@ -1574,6 +1622,7 @@ button:focus {
                                     margin-top: 8px;
                                     font-size: 18px;
                                     color: #000000;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
                                 }
 
                                 i {
@@ -1643,6 +1692,9 @@ button:focus {
                                 .select {
                                     height: 68px;
                                     line-height: 68px;
+                                    span.on {
+                                        color:#000;
+                                    }
                                 }
                                 .select span.on {
                                     color: #000;
@@ -1675,6 +1727,7 @@ button:focus {
                                             height: 27px;
                                             line-height: 27px;
                                             color: #000;
+                                            font-family: 'Nanum-Barun-Gothic-normal', serif;
                                         }
                                         span {
                                             background: url(~@/assets/img/checkbox_circle.png) no-repeat center;
@@ -1722,12 +1775,16 @@ button:focus {
                                         .select-second {
                                             li {
                                                 i {display: none;}
+                                                input::placeholder {
+                                                    color: #707070;
+                                                }
                                             }
                                         }
                                         .list-second {
                                             text-align: left;
                                             
-                                            li {                                              
+                                            li {
+                                                color: #707070;                                                
                                                 padding: 15px 0 0 15px;
                                                 
                                             }
@@ -1869,6 +1926,8 @@ button:focus {
                                 span {
                                     font-size: 18px;
                                     color: #000000;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                    margin: 13px 0;
                                 }
 
                                 i {
@@ -1950,9 +2009,12 @@ button:focus {
                                         .select-first {
                                             width: 100px;
                                             li {
-                                                span {
-
-                                                    padding-left: 24px;
+                                                span {                                                    
+                                                    padding-left: 15px;
+                                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                                }
+                                                span.on {
+                                                    color: #000;
                                                 }
                                                 span.on {
                                                     color: #000;
@@ -1960,7 +2022,8 @@ button:focus {
                                             }
                                         }
                                         .list-first {                                        
-                                            width: 100px; 
+                                            width: 100px;
+                                            
                                         }                                        
                                     }
                                     .select-box.big {
@@ -2012,6 +2075,11 @@ button:focus {
                                 .select-box {  
                                     .select-first {
                                         width: 100px;
+                                        li { 
+                                            span {
+                                                padding-left: 10px;
+                                            }
+                                        }
                                         
                                     }
                                     .list-first {                                        
@@ -2028,13 +2096,13 @@ button:focus {
                                     .select-second {
                                         width: 100px;
                                         li {
+                                            padding: 0;
                                             span {
                                                 color: #707070;
-                                                font-size: 14px;
+                                                padding-left: 0;
                                                 display: block;
-                                                line-height: 40px;
                                                 text-align: left;
-                                                padding: 0;
+                                                padding-left: 10px;
                                             }
                                             span.on {
                                                 color: #000;
@@ -2043,6 +2111,7 @@ button:focus {
                                     }
                                     .list-second {                                        
                                         width: 100px;
+                                        li {}
                                     }                                    
                                 }
                             }
@@ -2075,11 +2144,15 @@ button:focus {
                                     line-height: 20px;   
                                     max-width: 170px;
                                     color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+
                                 }
                                 input::placeholder {
                                     font-size: 18px;
                                     color: #707070;
-                                    font-family: Nanum-Barun-Gothic-normal, serif;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+
+                                    
                                 }
                             }
                             .choice-list {
@@ -2133,8 +2206,9 @@ button:focus {
                                     li.close {
                                         border: none;
                                         position: absolute;
-                                        left: 0;
-                                        top: 0;
+                                        left: 50%;
+                                        top: 50%;
+                                        transform: translate(-50%, -50%);
                                         .closeImg {
                                             position: absolute;
                                             width: 20px;
@@ -2276,16 +2350,17 @@ button:focus {
                                             height: 14px;
                                             position: absolute;
                                             right: 12px;
-                                            top: calc(50% - 7px);
+                                            top: 50%;
+                                            transform: translateY(-50%);
                                             @include background(
                                                 '~@/assets/img/arrow_butt.png'
                                             );
                                         }
                                         i.rotate {
-                                            -webkit-transform: rotate(180deg);
-                                            -moz-transform: rotate(180deg);
-                                            -ms-transform: rotate(180deg);
-                                            -o-transform: rotate(180deg);
+                                            -webkit-transform:translateY(-50%) rotate(180deg);
+                                            -moz-transform:translateY(-50%) rotate(180deg);
+                                            -ms-transform:translateY(-50%) rotate(180deg);
+                                            -o-transform:translateY(-50%) rotate(180deg);
                                         }
                                     }
 
@@ -2438,22 +2513,26 @@ button:focus {
                                             font-size: 18px;
                                             text-align: center;
                                         }
+                                        span.on {
+                                            color: #000;
+                                        }
                                         i {
                                             display: block;
-                                            width: 14px;
-                                            height: 14px;
+                                            width: 18px;
+                                            height: 18px;
                                             position: absolute;
-                                            right: 12px;
-                                            top: calc(50% - 7px);
+                                            right: 10px;
+                                            top: 50%;
+                                            transform: translateY(-50%);
                                             @include background(
-                                                '~@/assets/img/arrow_butt.png'
+                                                '~@/assets/img/down_desktop.png'
                                             );
                                         }
                                         i.rotate {
-                                            -webkit-transform: rotate(180deg);
-                                            -moz-transform: rotate(180deg);
-                                            -ms-transform: rotate(180deg);
-                                            -o-transform: rotate(180deg);
+                                            -webkit-transform:translateY(-50%) rotate(180deg);
+                                            -moz-transform:translateY(-50%) rotate(180deg);
+                                            -ms-transform:translateY(-50%) rotate(180deg);
+                                            -o-transform:translateY(-50%) rotate(180deg);
                                         }
                                     }
 
@@ -3210,6 +3289,18 @@ button:focus {
                                     width: 100%;
                                     height: 100%;
                                     line-height: 37px;
+                                    i {
+                                        display: block;
+                                        width: 16px;
+                                        height: 16px;
+                                        position: absolute;
+                                        right: 10px;
+                                        top: 50%;
+                                        transform: translateY(-50%);
+                                        @include background(
+                                            '~@/assets/img/down_Tablet.png'
+                                        );
+                                    }                                    
 
                                     span {
                                         font-size: 14px;
@@ -3894,18 +3985,22 @@ button:focus {
                                                     position: relative;
                                                     span {
                                                         font-size: 13px;
-                                                        line-height: 28px;
+                                                        height: 28px;
+                                                        line-height: 30px;
                                                         padding-left: 10px;
                                                         color: #000;
                                                     }
                                                     i {
+                                                        display: block;
+                                                        width: 16px;
+                                                        height: 16px;
                                                         position: absolute;
-                                                        right: 5px;
+                                                        right: 3px;                                                        
                                                         top: 50%;
                                                         transform: translateY(-50%);
-                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
-                                                        width: 11px;
-                                                        height: 10px;
+                                                        @include background(
+                                                            '~@/assets/img/down_Tablet.png'
+                                                        );
                                                     }
                                                 }
                                             }
@@ -3930,8 +4025,10 @@ button:focus {
                                                 height: 30px;
                                                 li {
                                                     box-sizing: border-box;
-                                                    line-height: 30px;
-                                                    padding: 0 10px;
+                                                    line-height: 28px;
+                                                    padding-left: 10px;
+                                                    padding-right: 0;
+                                                    text-align: center;
                                                     span {
                                                         font-size: 13px;
                                                         color: #000;
@@ -4050,24 +4147,28 @@ button:focus {
                                         .select-box {
                                             .select-first {
                                                 width: 80px;
-                                                height: 30px;                                                                                   
+                                                height: 30px;   
                                                 li {
                                                     cursor: pointer;
                                                     position: relative;
                                                     span {
                                                         font-size: 13px;
                                                         display: block;
+                                                        height: 28px;
                                                         line-height: 30px;
-                                                        padding-left: 17px;
+                                                        padding-left: 10px;
                                                     }
                                                     i {
+                                                        display: block;
+                                                        width: 16px;
+                                                        height: 16px;
                                                         position: absolute;
-                                                        right: 9px;
+                                                        right: 5px;
                                                         top: 50%;
                                                         transform: translateY(-50%);
-                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
-                                                        width: 18px;
-                                                        height: 18px;
+                                                        @include background(
+                                                            '~@/assets/img/down_Tablet.png'
+                                                        );
                                                     }
                                                 }
                                             }
@@ -4100,13 +4201,14 @@ button:focus {
                                                 height: 30px;
                                                 li {
                                                     box-sizing: border-box;
+                                                    height: 28px;
                                                     line-height: 30px;
                                                     padding: 0;
                                                     span {
                                                         font-size: 13px;
                                                         display: block;
-                                                        padding-left: 17px;
-                                                        line-height: 30px;
+                                                        text-align: left;
+                                                        padding-left: 10px;
                                                     }
                                                     
                                                     input {
@@ -4117,13 +4219,16 @@ button:focus {
                                                         font-size: 13px;
                                                     }
                                                     i {
+                                                        display: block;
+                                                        width: 16px;
+                                                        height: 16px;
                                                         position: absolute;
-                                                        right: 9px;
+                                                        right: 5px;
                                                         top: 50%;
                                                         transform: translateY(-50%);
-                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
-                                                        width: 18px;
-                                                        height: 18px;
+                                                        @include background(
+                                                            '~@/assets/img/down_Tablet.png'
+                                                        );
                                                     }
                                                 }
     
@@ -4232,17 +4337,21 @@ button:focus {
                                                     span {
                                                         font-size: 13px;
                                                         display: block;
+                                                        height: 28px;
                                                         line-height: 30px;
                                                         padding-left: 6px;
                                                     }
                                                     i {
+                                                        display: block;
+                                                        width: 16px;
+                                                        height: 16px;
                                                         position: absolute;
-                                                        right: 3px;
+                                                        right: 5px;
                                                         top: 50%;
                                                         transform: translateY(-50%);
-                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
-                                                        width: 18px;
-                                                        height: 18px;
+                                                        @include background(
+                                                            '~@/assets/img/down_Tablet.png'
+                                                        );
                                                     }
                                                 }
                                             }
@@ -4275,13 +4384,18 @@ button:focus {
                                                 height: 30px;
                                                 li {
                                                     box-sizing: border-box;
+                                                    height: 28px;
                                                     line-height: 30px;
                                                     padding: 0;
                                                     span {
+                                                        color: #707070;
                                                         font-size: 13px;
                                                         display: block;
-                                                        padding-left: 12px;
-                                                        line-height: 30px;
+                                                        text-align: left;
+                                                        padding-left: 6px;
+                                                        width: 45px;
+                                                        overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+
                                                     }
                                                     
                                                     input {
@@ -4292,13 +4406,16 @@ button:focus {
                                                         font-size: 13px;
                                                     }
                                                     i {
+                                                        display: block;
+                                                        width: 16px;
+                                                        height: 16px;
                                                         position: absolute;
-                                                        right: 3px;
+                                                        right: 5px;
                                                         top: 50%;
                                                         transform: translateY(-50%);
-                                                        background: url(~@/assets/img/arrow_butt.png) no-repeat center;
-                                                        width: 18px;
-                                                        height: 18px;
+                                                        @include background(
+                                                            '~@/assets/img/down_Tablet.png'
+                                                        );
                                                     }
                                                 }
     
@@ -4543,7 +4660,8 @@ button:focus {
                                     }
                                     input::placeholder {
                                         font-size: 14px;
-                                        color: #707070;
+                                        color: #C1C1C1;
+                                        
                                     }
                                 }
                                 .choice-list {
@@ -4909,7 +5027,7 @@ button:focus {
                         bottom: 0;
                         width: 100%;
                         height: 50px;
-                        background: #E2E1E1;
+                        background: #4BD897;
                         margin-top: 15px;
                         text-align: center;
                         line-height: 50px;
@@ -4918,7 +5036,6 @@ button:focus {
                         a {
                             color: #fff;
                             display: block;
-                            cursor: default;
                         }
                         a.on {
                             background: #4bd897;
@@ -5039,7 +5156,6 @@ button:focus {
                                     width: 25px;
                                 }
                                 img.arrow {
-                                    width: 16px;
                                     float: right;
                                     padding: 5px;
                                 }
@@ -5174,27 +5290,26 @@ button:focus {
                             .uncheck {
                                 background: #fff;
                                 position: relative;
-                                width: 244px;
-                                height: 81px;
+                                width: 240px;
+                                height: 76px;
                                 border: 2px solid #68dda7;
                                 border-radius: 5px;
-                                font-size: 14px;
-                                color: #707070;
+                                font-size: 18px;
+                                color: $mainColor;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
                                 font-family: NotoSansKR-Medium, sans-serif;
-                                margin: 0 auto;
                                 span {
                                     margin-right: 7px;
                                 }
 
-                                .circle {
+                                i {
                                     display: inline-block;
-                                    width: 13px;
-                                    height: 13px;
+                                    width: 18px;
+                                    height: 18px;
                                     @include background(
-                                        '~@/assets/img/checkbox_circle.png'
+                                        '~@/assets/img/checkbox_circle_color.png'
                                     );
                                 }
                             }
@@ -5203,27 +5318,30 @@ button:focus {
                             }
 
                             .checked {
-                                width: 246px;
-                                height: 85px;
+                                width: 240px;
+                                height: 76px;
                                 border-radius: 5px;
-                                background: rgba(104, 221, 167, 0.15);
-                                color: #68dda7;
-                                font-size: 20px;
+                                border: 2px solid #CCCCCC;
+                                background: #fff;
+                                color: #707070;
+                                font-size: 18px;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                flex-direction: column;
-                                margin: 0 auto;
                                 position: relative;
                                 font-family: NotoSansKR-Medium, sans-serif;
-                                .check_box {
+                                span {
+                                    margin-right: 7px;
+                                }
+                                i {
                                     display: inline-block;
-                                    width: 25px;
-                                    height: 25px;
+                                    width: 18px;
+                                    height: 18px;
                                     @include background(
-                                        '~@/assets/img/checkbox_check.png'
+                                        '~@/assets/img/checkbox_circle.png'
                                     );
                                 }
+                                
                                 .icon-questions-mark {
                                     position: absolute;
                                     width: 15.5px;
@@ -5245,7 +5363,7 @@ button:focus {
                         .pay-title {
                             font-size: 14px;
                             color: #707070;
-                            font-family: NotoSansKR-Medium, serif;
+                            font-family: 'Nanum-Barun-Gothic-normal', serif;
                             margin: 0 auto 23px;
                             width: 246px;
                         }
@@ -5274,7 +5392,7 @@ button:focus {
                                 color: #707070;
                                 font-size: 13px;
                                 margin-right: 20px;
-                                font-family: Nanum-Barun-Gothic-Bold, sans-serif;
+                                font-family: 'Nanum-Barun-Gothic-normal', serif;
                             }
 
                             .pay-wrap {
@@ -5296,7 +5414,7 @@ button:focus {
                                 }
                                 .pay::placeholder {
                                     font-size: 14px;
-                                    color: #000;
+                                    color: #E2E1E1;
                                     font-family: 'Nanum-Barun-Gothic-Bold',
                                         serif;
                                 }
@@ -5471,7 +5589,7 @@ button:focus {
                             width: 246px;
 
                             > span {
-                                margin-right: 22px;
+                                margin-right: 33px;
                                 font-family: Nanum-Barun-Gothic-bold, sans-serif;
                             }
 
@@ -5494,7 +5612,7 @@ button:focus {
                                 }
                                 .pay::placeholder {
                                     font-size: 14px;
-                                    color: #000;
+                                    color: #E2E1E1;
                                     font-family: 'Nanum-Barun-Gothic-Bold',
                                         serif;
                                 }
@@ -5607,16 +5725,17 @@ button:focus {
                                     height: 14px;
                                     position: absolute;
                                     right: 12px;
-                                    top: calc(50% - 7px);
+                                    top: 50%;
+                                    transform: translateY(-50%);
                                     @include background(
                                         '~@/assets/img/arrow_butt.png'
                                     );
                                 }
                                 i.rotate {
-                                    -webkit-transform: rotate(180deg);
-                                    -moz-transform: rotate(180deg);
-                                    -ms-transform: rotate(180deg);
-                                    -o-transform: rotate(180deg);
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
                                 }
                             }
 
@@ -6042,16 +6161,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
                             }
@@ -6088,7 +6208,7 @@ button:focus {
                                         line-height: 29px;
                                         text-align: center;
                                         font-size: 14px;
-                                        font-family: Nanum-Barun-Gothic-normal,
+                                        font-family: 'Nanum-Barun-Gothic-normal',
                                             serif;
                                     }
                                     overflow-y: auto;
@@ -6131,16 +6251,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
                             }
@@ -6462,16 +6583,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
                             }
@@ -6714,16 +6836,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
 
@@ -7064,7 +7187,7 @@ button:focus {
                                                 }
                                                 i {
                                                     position: absolute;
-                                                    right: 9px;
+                                                    right: 10px;
                                                     top: 50%;
                                                     transform: translateY(-50%);
                                                     background: url(~@/assets/img/arrow_butt.png) no-repeat center;
@@ -7173,16 +7296,17 @@ button:focus {
                                         height: 14px;
                                         position: absolute;
                                         right: 12px;
-                                        top: calc(50% - 7px);
+                                        top: 50%;
+                                        transform: translateY(-50%);
                                         @include background(
                                             '~@/assets/img/arrow_butt.png'
                                         );
                                     }
                                     i.rotate {
-                                        -webkit-transform: rotate(180deg);
-                                        -moz-transform: rotate(180deg);
-                                        -ms-transform: rotate(180deg);
-                                        -o-transform: rotate(180deg);
+                                        -webkit-transform:translateY(-50%) rotate(180deg);
+                                        -moz-transform:translateY(-50%) rotate(180deg);
+                                        -ms-transform:translateY(-50%) rotate(180deg);
+                                        -o-transform:translateY(-50%) rotate(180deg);
                                     }
                                 }
 
@@ -7423,7 +7547,7 @@ button:focus {
                                                     display: block;
                                                     line-height: 38px;
                                                     text-align: left;
-                                                    padding-left: 13px;
+                                                    padding-left: 10px;
                                                     font-family: 'Nanum-Barun-Gothic', 'serif';
                                                     letter-spacing: -1px;
                                                     color: #707070;
@@ -7496,13 +7620,17 @@ button:focus {
                                             li {
                                                 box-sizing: border-box;
                                                 line-height: 38px;
-                                                padding-right: 19px;
+                                                padding-left: 10px;
+                                                text-align: left;
+                                                width: 74px;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;
                                                 span {
                                                     font-size: 14px;
                                                     color: #707070;
                                                     padding-left: 0;
                                                     font-family: 'Nanum-Barun-Gothic', 'serif';
-                                                    
                                                 }
                                                 span.on {
                                                     color: #000;
@@ -7524,7 +7652,7 @@ button:focus {
                                                 }
                                                 i {
                                                     position: absolute;
-                                                    right: 9px;
+                                                    right: 10px;
                                                     top: 50%;
                                                     transform: translateY(-50%);
                                                     background: url(~@/assets/img/arrow_butt.png) no-repeat center;
@@ -7632,15 +7760,16 @@ button:focus {
                                 height: 14px;
                                 position: absolute;
                                 right: 12px;
-                                top: calc(50% - 7px);
+                                top: 50%;
+                                transform: translateY(-50%);
                                 @include background("~@/assets/img/arrow_butt.png")
                               }
                               i.rotate {
-                                -webkit-transform: rotate(180deg);
-                                -moz-transform: rotate(180deg);
-                                -ms-transform: rotate(180deg);
-                                -o-transform: rotate(180deg);
-                              }                              
+                                -webkit-transform:translateY(-50%) rotate(180deg);
+                                -moz-transform:translateY(-50%) rotate(180deg);
+                                -ms-transform:translateY(-50%) rotate(180deg);
+                                -o-transform:translateY(-50%) rotate(180deg);
+                                }                             
                             }
                           }
                           .input-text-wrap {
@@ -7841,15 +7970,16 @@ button:focus {
                                 height: 14px;
                                 position: absolute;
                                 right: 12px;
-                                top: calc(50% - 7px);
+                                top: 50%;
+                                transform: translateY(-50%);
                                 @include background("~@/assets/img/arrow_butt.png")
                               }
                               i.rotate {
-                                -webkit-transform: rotate(180deg);
-                                -moz-transform: rotate(180deg);
-                                -ms-transform: rotate(180deg);
-                                -o-transform: rotate(180deg);
-                              }
+                                -webkit-transform:translateY(-50%) rotate(180deg);
+                                -moz-transform:translateY(-50%) rotate(180deg);
+                                -ms-transform:translateY(-50%) rotate(180deg);
+                                -o-transform:translateY(-50%) rotate(180deg);
+                            }
                             }
             
                             .listWrap2 {
