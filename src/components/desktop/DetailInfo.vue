@@ -86,7 +86,7 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
       </div>
     </div>
     <!--  pay profileCard.pay -->
@@ -106,7 +106,6 @@
             <i></i>
             <span>빅버드 추천을 받을게요</span>
           </div>
-          <i class="icon-questions-mark" @click.prevent="showTips(1)"></i>
         </div>
 
         <div class="recommend-checkbox" v-else>
@@ -148,7 +147,7 @@
               <i class="down" @click="payDownPersent('basicsDown')"></i>
             </div>
           </div>
-          <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(2)"></i>
+          <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(1)"></i>
         </div>
 
         <div class="title margin-top-58">협찬제품이 있을 경우</div>
@@ -176,7 +175,7 @@
               <i @click="payDownPersent('comboDown')" class="down"></i>
             </div>
           </div>
-          <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
+          <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(2)"></i>
         </div>
       </div>
       <div class="button-wrap">
@@ -273,12 +272,13 @@
 
           <div class="listContents listWrap">
             <ul class="list">
-              <li @click="isText">10대</li>
+              <li v-for="(item,index) in age" @click="isText" :key="index">{{item.age}}</li>
+              <!-- <li @click="isText">10대</li>
               <li @click="isText">20대</li>
               <li @click="isText">30대</li>
               <li @click="isText">40대</li>
               <li @click="isText">50대</li>
-              <li @click="isText">60대 이상</li>
+              <li @click="isText">60대 이상</li> -->
             </ul>
           </div>
         </div>
@@ -291,9 +291,10 @@
 
           <div class="listContents listWrap">
             <ul class="list">
-              <li @click="isText">초반</li>
+              <li v-for="(item,index) in ageGroup" @click="isText" :key="index">{{item.ageGroup}}</li>
+              <!-- <li @click="isText">초반</li>
               <li @click="isText">중반</li>
-              <li @click="isText">후반</li>
+              <li @click="isText">후반</li> -->
             </ul>
           </div>
         </div>
@@ -378,7 +379,7 @@
             <a
               href="#"
               @click="[statusCheck('y','job'), haveJob = true]"
-              :class="checkStatus('y','job') "
+              :class="checkStatus('y','job')"
             >
               <em>있음</em>
               <span></span>
@@ -417,15 +418,7 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>모델</li>
-                <li>프리랜서</li>
-                <li>마케터</li>
-                <li>주부</li>
-                <li>유튜브 크리에이터</li>
-                <li>디자이너</li>
-                <li>포토그래퍼</li>
-                <li>여행작가</li>
-                <li>개발자</li>
+                <li v-for="(list,index) in jobList" :key="index">{{list.name}}</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -439,46 +432,6 @@
               </ul>
             </li>
           </ul>
-          <!-- <ul class="status-selectbox">
-            <li class="select-box clearfix">
-              <ul class="select-first" @click.prevent="showSelectList">
-                <li>
-                  <span>현 직업</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first">
-                <li v-if="!selectText">현 직업</li>
-                <li v-else>전 직업</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix">
-              <ul class="select-second" @click.prevent="showSelectList">
-                <li>
-                  <input type="text" placeholder="직업선택, 검색" />
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-second">
-                <li>모델</li>
-                <li>프리랜서</li>
-                <li>마케터</li>
-                <li>주부</li>
-                <li>유튜브 크리에이터</li>
-                <li>디자이너</li>
-                <li>포토그래퍼</li>
-                <li>여행작가</li>
-                <li>개발자</li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-remove">
-                  <a href="#">-</a>
-                </li>
-              </ul>
-            </li>
-          </ul>-->
         </div>
       </div>
       <div class="button-wrap">
@@ -560,7 +513,7 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="this.profileCard.married.onSaveButton == true ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -595,7 +548,7 @@
             <a
               href="#"
               @click="[statusCheck('y','child'), haveChild = true]"
-              :class="checkStatus('y','child') "
+              :class="checkStatus('y','child')"
             >
               <em>있음</em>
               <span></span>
@@ -626,7 +579,8 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li @click="isText">0~1세</li>
+                <li v-for="(item,index) in childrenAgeList" @click="isText" :key="index">{{item.age}}</li>
+                <!-- <li @click="isText">0~1세</li>
                 <li @click="isText">2~3세</li>
                 <li @click="isText">4~5세</li>
                 <li @click="isText">6~7세</li>
@@ -635,7 +589,7 @@
                 <li @click="isText">고등학생</li>
                 <li @click="isText">20대</li>
                 <li @click="isText">30대</li>
-                <li @click="isText">40대</li>
+                <li @click="isText">40대</li> -->
               </ul>
             </li>
             <li class="select-box big clearfix" id="childGender">
@@ -691,7 +645,7 @@
             <a
               href="#"
               @click="[statusCheck('y','pet'), havePet = true]"
-              :class="checkStatus('y','pet') "
+              :class="checkStatus('y','pet')"
             >
               <em>있음</em>
               <span></span>
@@ -718,10 +672,11 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li @click="isText">강아지</li>
+                <li v-for="(item,index) in petList" @click="isText" :key="index">{{item.typeName}}</li>
+                <!-- <li @click="isText">강아지</li>
                 <li @click="isText">고양이</li>
                 <li @click="isText">햄스터</li>
-                <li @click="isText">기타</li>
+                <li @click="isText">기타</li> -->
               </ul>
             </li>
             <li class="select-box big clearfix" id="petDigit">
@@ -772,60 +727,18 @@
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 입력" />
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
-              <li>패션</li>
-              <li>뷰티</li>
-              <li>취미</li>
-              <li>레저</li>
-              <li>책 / 출판</li>
-              <li>출산 / 육아</li>
-              <li>지역</li>
-              <li>일상 / 데일리</li>
+              <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
             </ul>
           </div>
           <!-- <v-select placeholder="선택해주세요" :options="item" @input="myAction"></v-select> -->
         </div>
-
+        <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
         <div class="choice-list">
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
+          <ul v-for="list in 6" :key="list">
             <li>뷰티</li>
             <li class="close">
               <a href="#" class="closeImg"></a>
@@ -833,6 +746,7 @@
             <li class="delete none">삭제</li>
           </ul>
         </div>
+        <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
       </div>
       <div class="button-wrap">
         <ul>
@@ -945,10 +859,11 @@
 
             <div class="listContents listWrap2 long">
               <ul class="list">
-                <li @click="isText">건성</li>
+                <li v-for="(item,index) in skinList" @click="isText" :key="index">{{item.type}}</li>
+                <!-- <li @click="isText">건성</li>
                 <li @click="isText">중성</li>
                 <li @click="isText">지성</li>
-                <li @click="isText">복합성</li>
+                <li @click="isText">복합성</li> -->
               </ul>
             </div>
           </div>
@@ -1027,16 +942,6 @@ export default {
             haveChild: false,
             havePet: false,
             selectText: false,
-            snsCertBtn: true,
-            snsCertSuccessBtn: false,
-            instagramWaitText: false,
-            instagramPossibleText: false,
-            instagramWrongText: false,
-            userInfo: {
-                socialInfo:{
-                  instagram: null
-                }
-            },
         };
     },
     computed: {
@@ -1058,58 +963,30 @@ export default {
         },
         statusCheck(value, type) {
             this.onStatusCheck[type] = value;
-            console.log(this.onStatusCheck[type]);
+            if(this.onStatusCheck[type] === 'y' && type === 'job') {
+              this.jobExists = true;
+              this.profileCard.job.onSaveButton = true;
+            } else if(this.onStatusCheck[type] === 'n' && type === 'job') {
+              this.jobExists = false;
+              this.profileCard.job.onSaveButton = true;
+            }
+            if(this.onStatusCheck[type] === 'y' && type === 'child') {
+              this.childrenExists = true;
+              this.profileCard.children.onSaveButton = true;
+            } else if(this.onStatusCheck[type] === 'n' && type === 'child') {
+              this.childrenExists = false;
+              this.profileCard.children.onSaveButton = true;
+            }
+            if(this.onStatusCheck[type] === 'y' && type === 'pet') {
+              this.petExists = true;
+              this.profileCard.pet.onSaveButton = true;
+            } else if(this.onStatusCheck[type] === 'n' && type === 'pet') {
+              this.petExists = false;
+              this.profileCard.pet.onSaveButton = true;
+            }
         },
         checkStatus(el, type) {
             if (el.includes(this.onStatusCheck[type])) return 'on';
-        },
-        snsSaveBotton() {
-            // this.profileCard.sns.onSaveButton = !this.profileCard.sns
-            //     .onSaveButton
-            //     ? 'on'
-            //     : '';
-            if(this.instagramPossibleText) {
-              return;
-            }
-            this.authInstagram();
-        },
-        authInstagram() {
-            const redirectUri = 'http://member.concepters.co.kr/auth/instagram';
-            const clientId = 'cacd978cda8742149e4b7240e9481acb';
-
-            // get result from child
-            window.authResultForInsta = async data => {
-                try {
-                  this.instagramWaitText = true;
-                    const res = await this.$axios(
-                        'get',
-                        `/auth/instagram?code=${data.code}&errorReason=${data.errorReason}&error=${data.error}`,
-                        {}
-                    );
-                    if(res.data.result === 'success') {
-                      this.userInfo.socialInfo.instagram = res.data.userInfo;
-                      this.isCertificationOnOff[1] = true; //아이콘
-                      this.instagramPossibleText = true; //인증문구
-                      this.instagramWaitText = false;
-                      this.snsCertSuccessBtn = true; //인증버튼
-                      this.snsCertBtn = false;
-                      this.profileCard.sns.onSaveButton = true; //저장하기버튼
-                    }
-                } catch (error) {
-                    console.log(error);
-                    this.instagramWrongText = true;
-                    this.instagramWaitText = false;
-                    this.snsCertBtn = true;
-                    this.snsCertSuccessBtn = false;
-                }
-            };
-
-            // popup open
-            window.open(
-                `https://api.instagram.com/oauth/authorize/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`,
-                '_blank',
-                'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
-            );
         },
         itemOnSave(event) {
             this.profileCard.expectProduct.onSaveButton = true;
@@ -1127,14 +1004,25 @@ export default {
             this.profileCard['default'].on = true;
         },
         joinCheck() {
-            this.clearCardList();
+            // this.clearCardList();
 
-            if (!this.$store.state.iccMode) {
-                this.profileCard['finishBlock'].on = true;
-            } else {
-                this.$store.state.welcome = true;
-                this.$router.push('/');
-            }
+            // if (!this.$store.state.iccMode) {
+            //     this.profileCard['finishBlock'].on = true;
+            // } else {
+            //     this.$store.state.welcome = true;
+            //     this.$router.push('/');
+            // }
+            this.$axios('post','/join/info/save', {
+              userInfo: this.userInfo,
+              expectFee: this.expectFee,
+              groupPurchaseList: this.groupPurchaseList,
+              ageAndGender: this.ageAndGender,
+              job: this.job,
+              married: this.married,
+              children: this.children,
+              pet: this.pet,
+              skin: this.skin
+            });
         }
     }
 };

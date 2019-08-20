@@ -26,7 +26,7 @@
                                         <div class="label">아이디 </div>
                                         <input type="text" v-model="id" @keyup="idvalidationReset">
                                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
                                         <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                                         <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                                         <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -38,7 +38,7 @@
                                         <div class="label">비밀번호 </div>
                                         <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
+                                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                                     </div>
 
                                     <div class="item password">
@@ -61,6 +61,7 @@
                                         <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
                                         <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                                         <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                                        <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                                     </div>
 
                                     <!-- <div class="item">
@@ -318,7 +319,7 @@
                             <div class="label">아이디 </div>
                             <input type="text" v-model="id" @keyup="idvalidationReset">
                             <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                            <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                            <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
                             <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                             <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                             <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -330,7 +331,7 @@
                             <div class="label">비밀번호 </div>
                             <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                             <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                            <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
+                            <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                         </div>
 
                         <div class="item password">
@@ -353,6 +354,7 @@
                             <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
                             <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                             <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                            <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                         </div>
 
                         <!-- <div class="item">
@@ -451,9 +453,10 @@ export default {
 
             name: '',
             phoneNumber: '',
-            certNumber: '',
+            certIdx: NaN,
             certPossibleText: false,
             certWrongText: false,
+            certExistsText: false,
             // 인증하기
             trCert: '',
             trUrl: '',
@@ -516,7 +519,7 @@ export default {
         idCheck() { // 아이디 중복확인
             this.idCheckText = false;
             if(this.id) {
-                let validity = /^[A-Za-z0-9]{4,12}$/i; // 영문,숫자 포함 4~12자리
+                let validity = /^[A-Za-z0-9-.]{6,20}$/i; // 영문,숫자,특수문자(-,.) 6~20자
                 if(validity.test(this.id)) {
                     this.$axios('post','/check/id', {
                         id: this.id
@@ -542,7 +545,7 @@ export default {
         },
         pwInput() { // 비밀번호 입력
             if(this.pw || this.pwAgain) {
-                let validity = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,14}$/i; // 영문,숫자,특수문자 포함 6~14자리
+                let validity = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{6,20}$/i; // 영문,숫자,특수문자 포함 6~20자
                 if(validity.test(this.pw)) {
                     this.pwValidityText = false;
                 } else {
@@ -560,14 +563,6 @@ export default {
             }
         },
         phoneCheck() { // 휴대폰 본인인증
-            // if(this.phoneNumber) {
-            //     let validity = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/i;
-            //     if(this.phoneNumber.match(validity) != null) {
-            //         console.log('유효성검사 성공');
-            //     } else {
-            //         console.log('유효성검사 실패');
-            //     }
-            // }
             var certWindow;
             
             function openCertification() {
@@ -622,7 +617,7 @@ export default {
         standardJoin() { // 가입완료
             // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
             //     if(this.idValidityText) {
-            //         alert("아이디는 영문,숫자 포함 4~12자로 입력해주세요");
+            //         alert("아이디는 영문,숫자,특수문자(-,.) 6~20자로 입력해주세요");
             //         return;
             //     }
             //     if(this.idWrongText) {
@@ -634,7 +629,7 @@ export default {
             //         return;
             //     }
             //     if(this.pwValidityText) {
-            //         alert("비밀번호는 영문,숫자,특수문자 포함 6~12자로 입력해주세요");
+            //         alert("비밀번호는 영문,숫자,특수문자 포함 6~20자로 입력해주세요");
             //         return;
             //     }
             //     if(this.pwWrongText) {
@@ -660,9 +655,9 @@ export default {
             //     this.$axios('post','/join', {
             //         id: this.id,
             //         pw: this.pw,
-            //         name: this.name,
-            //         phoneNumber: this.phoneNumber,
-            //         email: this.email
+            //         certIdx: this.certIdx,
+            //         email: this.email,
+            //         termsAgreed: true
             //     }).then((res) => {
             //         this.userIndex = res.data.userIdx;
             //     }).catch((err) => {
@@ -738,7 +733,6 @@ export default {
         // cert init 
         this.$axios('get','/cert/init', {
             }).then((res) => {
-                console.log(res);
                 this.trCert = res.data.trCert;
                 this.trUrl = res.data.trUrl;
                 this.trAdd = res.data.trAdd;
@@ -755,13 +749,16 @@ export default {
                     alert('오류가 발생했습니다.');
                     this.certWrongText = true;
                     this.certPossibleText = false;
+                    this.certExistsText = false;
                 } else if(res.data.result === 'exists') {
-                    // console.log('이미 인증 받은 핸드폰 번호입니다.')
-                    this.certWrongText = true;
+                    this.certExistsText = true;
                     this.certPossibleText = false;
+                    this.certWrongText = false;
                 } else {
                     this.certPossibleText = true;
                     this.certWrongText = false;
+                    this.certExistsText = false;
+                    this.certIdx = res.data.certIdx;
                     this.phoneNumber = res.data.phoneNumber;
                     this.name = res.data.name;
                 }

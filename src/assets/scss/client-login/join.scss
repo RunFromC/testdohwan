@@ -249,20 +249,15 @@ button:focus {
                   button.on {
                     background: #68DDA7;
                   }
-                  .wrong-text {
+                  .possible-text, .wrong-text {
                     position: absolute;
                     height: 25px;
-                    left: 95px;
+                    left: 90px;
                     bottom: -25px;
                     font-size: 12px;
                     color: #FF8173;
                   }
                   .possible-text {
-                      position: absolute;
-                      height: 25px;
-                      left: 95px;
-                      bottom: -25px;
-                      font-size: 12px;
                       color: #000;
                   }
                 }
@@ -1375,7 +1370,7 @@ button:focus {
                   .possible-text, .wrong-text {
                     position: absolute;
                     height: 25px;
-                    left: 75px;
+                    left: 70px;
                     bottom: -25px;
                     font-size: 11px;
                     color: #FF8173;

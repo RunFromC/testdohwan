@@ -27,7 +27,7 @@
                                     <div class="label">아이디 </div>
                                     <input type="text" v-model="id" @keyup="idvalidationReset">
                                     <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
                                     <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                                     <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                                     <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -39,7 +39,7 @@
                                     <div class="label">비밀번호 </div>
                                     <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                                    <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
+                                    <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                                 </div>
 
                                 <div class="item password">
@@ -62,6 +62,7 @@
                                     <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
                                     <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                                     <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                                    <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                                 </div>
 
                                 <!-- <div class="item">
@@ -131,9 +132,9 @@
                                 <div class="item col1">
                                     <div class="label">회사명</div>
                                     <input type="text" v-model="companyName">
-                                    <div class="wrong-text" v-if="companyName && companyNameValidityText">영문,숫자 포함 4~12자리</div>
-                                    <div class="possible-text" v-if="companyName && companyNamePossibleText">사용가능한 아이디입니다</div>
-                                    <div class="wrong-text" v-if="companyName && companyNameWrongText">사용중인 아이디입니다</div>
+                                    <div class="wrong-text" v-if="companyName && companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
+                                    <div class="possible-text" v-if="companyName && companyNamePossibleText">사용가능한 회사명입니다</div>
+                                    <div class="wrong-text" v-if="companyName && companyNameWrongText">사용중인 회사명입니다</div>
                                 </div>
                             </div>
 
@@ -296,7 +297,7 @@
                         <div class="label">아이디 </div>
                         <input type="text" v-model="id" @keyup="idvalidationReset">
                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
                         <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                         <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                         <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -308,7 +309,7 @@
                         <div class="label">비밀번호 </div>
                         <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
+                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                     </div>
 
                     <div class="item password">
@@ -331,6 +332,7 @@
                         <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
                         <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                         <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                        <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                     </div>
 
                     <!-- <div class="item">

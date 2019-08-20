@@ -23,10 +23,18 @@
       <div class="certification-list" v-else>
         <a href="#" id="m-instagram"></a>
       </div>
-      <div class="SNS-btn">
-        <a href="#">SNS인증하기</a>
+      <div class="SNS-btn-cert" v-if="snsCertBtn">
+        <a href="#" @click="snsSaveBotton()">SNS인증하기</a>
       </div>
-      <button class="SNSsave-btn on" @click="saveBtn">저장</button>
+      <div class="SNS-btn" v-if="snsCertSuccessBtn">
+        <a href="#">SNS인증완료</a>
+      </div>
+      <div class="certification-text">
+        <span class="possible-text" v-if="instagramWaitText">인증 대기중 입니다</span>
+        <span class="possible-text" v-if="instagramPossibleText">인증완료 되었습니다</span>
+        <span class="wrong-text" v-if="instagramWrongText">인증실패 되었습니다</span>
+      </div>
+      <button class="SNSsave-btn" :class="this.profileCard.sns.onSaveButton ? 'on':''" @click="saveBtn">저장</button>
     </div>
 
     <!-- 희망원고료 , 희망수수료  -->
@@ -58,7 +66,6 @@
           <span v-if="!this.$store.state.iccMode">빅버드 추천을 받을게요</span>
           <span v-else>ICC 추천 받을게요</span>
         </div>
-        <i class="icon-questions-mark" @click.prevent="showTips(1)"></i>
       </div>
       <div class="pay-title" v-if="!this.$store.state.iccMode">기본 원고료</div>
       <div class="pay-title" v-else>보장 개런티</div>
@@ -75,7 +82,7 @@
           <option value="-30%">- 30 %</option>
           <option value="-40%">- 40 %</option>
         </select>
-        <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(2)"></i>
+        <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(1)"></i>
       </div>
       <div class="pay-text-wrap" id="m-Paytext1" v-if="tip.title">
         <div class="paytext">{{tip.title}}</div>
@@ -107,7 +114,7 @@
           <option value="-30%">- 30 %</option>
           <option value="-40%">- 40 %</option>
         </select>
-        <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(3)"></i>
+        <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(2)"></i>
       </div>
       <div class="button-wrap">
         <button class="Paysave-btn on" @click="saveBtn">저장</button>
@@ -140,61 +147,19 @@
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 검색" />
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
           </div>
           <div class="listContents listWrap long">
             <ul class="list">
-              <li>패션</li>
-              <li>뷰티</li>
-              <li>취미</li>
-              <li>레저</li>
-              <li>책 / 출판</li>
-              <li>출산 / 육아</li>
-              <li>지역</li>
-              <li>일상 / 데일리</li>
+              <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
             </ul>
           </div>
         </div>
 
-        <div class="alert-text none">6글자 초과 입력할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
 
         <div class="choice-list">
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
-            <li>뷰티</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
-          </ul>
-          <ul>
+          <ul v-for="list in 6" :key="list">
             <li>뷰티</li>
             <li class="close">
               <a href="#" class="closeImg"></a>
@@ -409,15 +374,7 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li>모델</li>
-                <li>프리랜서</li>
-                <li>마케터</li>
-                <li>주부</li>
-                <li>유튜브 크리에이터</li>
-                <li>디자이너</li>
-                <li>포토그래퍼</li>
-                <li>여행작가</li>
-                <li>개발자</li>
+                <li v-for="(list,index) in job.jobList" :key="index">{{list.name}}</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -485,7 +442,7 @@
           <input type="text" placeholder="기타 관심사 입력" maxlength="6" />
         </div>
 
-        <div class="alert-text none">6글자 초과 입력할 수 없습니다</div>
+        <div class="alert-text none">공백 포함 8글자를 초과할 수 없습니다</div>
 
         <div class="choice-list"></div>
 
@@ -960,21 +917,85 @@ export default {
             },
             tips: [
                 {
-                    title: '원고료 산정방식',
+                    title: '원고료 산정방식1',
                     text:
                         '희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.희망원고료의 희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.'
                 },
                 {
-                    title: '원고료 산정방식 2',
+                    title: '원고료 산정방식2',
                     text:
                         '희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.희망원고료의 희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.'
                 },
-                {
-                    title: '원고료 산정방식 3',
-                    text:
-                        '희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.희망원고료의 희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.'
-                }
-            ]
+            ],
+            snsCertBtn: true,
+            snsCertSuccessBtn: false,
+            instagramWaitText: false,
+            instagramPossibleText: false,
+            instagramWrongText: false,
+            // 추가 프로필
+            totalInfo: {},
+            // sns
+            instagramCert: {
+              socialInfo: {
+                instagram: null
+              }
+            },
+            userInfo: { 
+              socialInfo: {
+                instagram: null
+              }
+            },
+            // 희망수수료
+            expectFee: { 
+              defaultFee: NaN, //100000
+              defaultFeePer: NaN, //-10
+              productPrice: NaN, //1000000
+              productFee: NaN, //100000
+              productFeePer: NaN //-10
+            },
+            // 희망공구품목
+            groupPurchaseList: [],
+            purchaseList:'',
+            purchaseInputText: false,
+            // 성별,연령
+            gender: null,
+            age: [],
+            ageGroup: [],
+            ageAndGender: { 
+              gender: null,
+              age: NaN,
+              ageGroup: NaN,
+            },
+            // 직업
+            jobList: [],
+            jobExists: null,
+            job: { 
+              exists: null,
+              jobList: []
+            },
+            // 결혼
+            marry: null,
+            married: null, 
+            // 자녀
+            childrenAgeList: [],
+            childrenExists: null,
+            children: { 
+              exists: null,
+              childrenList: []
+            },
+            // 반려동물
+            petList: [],
+            petExists: null,
+            pet: {
+              exists: null,
+              petList: []
+            },
+            // 피부
+            skinList:[],
+            skin: { 
+              type: NaN,
+              trouble: []
+            },
         };
     },
     components: {
@@ -986,7 +1007,74 @@ export default {
             currentIndex: 'getCurrentIndex'
         })
     },
+    mounted() {
+      this.$axios('get','/join/info/init', {
+        }).then((res) => {
+            console.log(res);
+            this.totalInfo = res.data;
+            this.groupPurchaseList = res.data.groupPurchaseList;
+            this.age = res.data.age;
+            this.ageGroup = res.data.ageGroup;
+            this.jobList = res.data.job;
+            this.childrenAgeList = res.data.childrenAge;
+            this.petList = res.data.pet;
+            this.skinList = res.data.skin.skinType;
+        }).catch((err) => {
+            console.log(err)
+        });
+    },
     methods: {
+        purchaseInput() {
+          if(this.purchaseList.length > 8) {
+            this.purchaseInputText = true;
+          } else {
+            this.purchaseInputText = false;
+          }
+        },
+        snsSaveBotton() {
+            if(this.instagramPossibleText) {
+              return;
+            }
+            this.authInstagram();
+        },
+        authInstagram() {
+            const redirectUri = 'http://member.concepters.co.kr/auth/instagram';
+            const clientId = 'cacd978cda8742149e4b7240e9481acb';
+
+            // get result from child
+            window.authResultForInsta = async data => {
+                try {
+                  this.instagramWaitText = true;
+                    const res = await this.$axios(
+                        'get',
+                        `/auth/instagram?code=${data.code}&errorReason=${data.errorReason}&error=${data.error}`,
+                        {}
+                    );
+                    if(res.data.result === 'success') {
+                      this.instagramCert.socialInfo.instagram = res.data.userInfo;
+                      this.isCertificationOnOff[1] = true; //아이콘
+                      this.instagramPossibleText = true; //인증문구
+                      this.instagramWaitText = false;
+                      this.snsCertSuccessBtn = true; //인증버튼
+                      this.snsCertBtn = false;
+                      this.profileCard.sns.onSaveButton = true; //저장하기버튼
+                    }
+                } catch (error) {
+                    console.log(error);
+                    this.instagramWrongText = true;
+                    this.instagramWaitText = false;
+                    this.snsCertBtn = true;
+                    this.snsCertSuccessBtn = false;
+                }
+            };
+
+            // popup open
+            window.open(
+                `https://api.instagram.com/oauth/authorize/?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`,
+                '_blank',
+                'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+            );
+        },
         //희망수수료 개런티 카운트
         payUpPersent(type) {
             console.log(type);
@@ -1010,7 +1098,7 @@ export default {
             if (e.target.closest('#skin, .m-skin')) {
                 this.skinDefault = text;
             } else if (e.target.closest('#ageGeneration, #m-ageGeneration')) {
-                this.ageDefault = text;
+                this.ageDefault = text; 
             } else if (e.target.closest('#childAge, #m-childAge')) {
                 this.childAgeDefault = text;
             } else if (e.target.closest('#childGender, #m-childGender')) {
@@ -1028,7 +1116,6 @@ export default {
         checkSelect(idx) {
             if (idx === 0) {
                 for (const keys in this.isSkinOnOff) {
-                    console.log(keys);
                     this.isSkinOnOff[keys] = false;
                 }
             } else {
@@ -1048,8 +1135,18 @@ export default {
         //성별,연령
         eitherSelect(value) {
             this.isCheck = value;
-            this.profileCard.gender.onSaveButton = true;
-            console.log(this.profileCard.gender.onSaveButton);
+            if(value === 'm') {
+              this.gender = true;
+            } else if(value === 'w') {
+              this.gender = false;
+            } else if(value === 'y') {
+              this.marry = true;
+              this.profileCard.married.onSaveButton = true;
+            } else if(value === 'n') {
+              this.marry = false;
+              this.profileCard.married.onSaveButton = true;
+            }
+            // this.profileCard.gender.onSaveButton = true;
         },
         checkEither(el) {
             if (el.includes(this.isCheck)) return 'checked';
@@ -1184,20 +1281,26 @@ export default {
         saveBtn(event) {
             if (event.target.className.includes('on')) {
                 if (this.currentCard === 'sns') {
+                    this.userInfo = this.instagramCert.socialInfo.instagram;
                     this.profileCard.sns.save = true;
                 } else if (this.currentCard === 'pay') {
                     this.profileCard.pay.save = true;
                 } else if (this.currentCard === 'expectProduct') {
                     this.profileCard.expectProduct.save = true;
                 } else if (this.currentCard === 'gender') {
+                    this.ageAndGender.gender = this.gender;
                     this.profileCard.gender.save = true;
                 } else if (this.currentCard === 'job') {
+                    this.job.exists = this.jobExists;
                     this.profileCard.job.save = true;
                 } else if (this.currentCard === 'married') {
+                    this.married = this.marry;
                     this.profileCard.married.save = true;
                 } else if (this.currentCard === 'children') {
+                    this.children.exists = this.childrenExists;
                     this.profileCard.children.save = true;
                 } else if (this.currentCard === 'pet') {
+                    this.pet.exists = this.petExists;
                     this.profileCard.pet.save = true;
                 } else if (this.currentCard === 'skinType') {
                     this.profileCard.skinType.save = true;
