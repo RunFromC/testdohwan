@@ -59,7 +59,7 @@
       </div>
 
       <div class="recommend-checkbox" v-else>
-        <div class="checked" v-if="isRecommendCheck" @click.prevent="onClickRecommendCheck">
+        <div class="checked" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
           <span>ICC 추천을 받을게요</span>
           <i></i>
         </div>

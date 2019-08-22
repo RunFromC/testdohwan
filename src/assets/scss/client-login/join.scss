@@ -1071,13 +1071,12 @@ button:focus {
                   color: #000;
               }
               .sub-text {
-                  max-width: none !important;
                   margin-top: 2px;
                   font-family: 'NotoSansKR-Light';
                   height: auto;
                   line-height: 24px;
                   font-size: 16px;
-                  color: #707070;
+                  color: #707070;                  
                   
               }
               .point-text {
@@ -1239,14 +1238,14 @@ button:focus {
         width: calc(100% - 100px);
         height: 55px;
         .logo {
-          margin-top: 13px;
-          img#tabletLogo {
-            display: block;
+          margin-top: 20px;
+          #tabletLogo {
+              display: block;
           }
-          img#desktopLogo {
-            display: none;
+          #desktopLogo {
+              display: none;
           }
-        }
+      }
       }
     }
 
@@ -2133,12 +2132,12 @@ button:focus {
             font-size: 18px;
             font-family: 'NotoSansKR-Regular', 'sans-serif';
             text-align: center;
-            color: #4bd897;
+            color: #000000;
           }
           .text {
             margin-top: 3px;
             text-align: center;
-            color: #000;
+            color: #707070 ;
             font-size: 13px;
             font-family: 'NotoSansKR-Regular', 'sans-serif';
             line-height: 17px;
