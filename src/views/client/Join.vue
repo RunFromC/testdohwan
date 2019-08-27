@@ -27,7 +27,7 @@
                                     <div class="label">아이디 </div>
                                     <input type="text" v-model="id" @keyup="idvalidationReset">
                                     <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
                                     <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                                     <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                                     <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -39,7 +39,7 @@
                                     <div class="label">비밀번호 </div>
                                     <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                                    <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
+                                    <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                                 </div>
 
                                 <div class="item password">
@@ -62,16 +62,8 @@
                                     <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
                                     <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                                     <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                                    <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                                 </div>
-
-                                <!-- <div class="item">
-                                    <div class="label"> </div>
-                                    <input type="text" v-model="certNumber">
-                                    <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
-                                    <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
-                                    <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
-                                </div> -->
-
                             </div>
 
                             <div class="input-wrapper">
@@ -127,76 +119,73 @@
                             <div class="header">
                             2. 회사정보(선택)
                             </div>
-                            <div class="input-wrapper pb15">
+                            <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label">회사명</div>
                                     <input type="text" v-model="companyName">
-                                    <div class="wrong-text" v-if="companyName && companyNameValidityText">영문,숫자 포함 4~12자리</div>
-                                    <div class="possible-text" v-if="companyName && companyNamePossibleText">사용가능한 아이디입니다</div>
-                                    <div class="wrong-text" v-if="companyName && companyNameWrongText">사용중인 아이디입니다</div>
+                                    <div class="wrong-text" v-if="companyName && companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
                                 </div>
                             </div>
 
-                            <div class="input-wrapper pb15">
+                            <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label">연락처</div>
-                                    <input type="text" class="input-phone" maxlength="10" placeholder="-없이 입력">                                    
+                                    <input type="text" class="input-phone" maxlength="11" placeholder="-없이 입력" v-model="companyContact">                                    
                                 </div>
                             </div>
 
-                            <div class="input-wrapper pb31">
+                            <div class="input-wrapper pb21">
                                 <div class="ceo-btn">
-                                    <button>사업자 등록증 업로드</button>
-                                    <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
-                                    <div class="uploadtexttrue none">
+                                    <label for="fileUpload">사업자등록증 업로드</label>
+                                    <input type="file" id="fileUpload">
+                                    <div class="uploadtextfaise" v-if="companyRegistrationFileSize">최대 업로드 파일 크기 : 5MB</div>
+                                    <div class="uploadtexttrue" v-if="companyRegistrationFileName">
                                         <span>파일명최대10글자.jpg</span>
                                         <span>5MB</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="input-wrapper pb15">
+                            <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label ceo">사업자<br>등록번호</div>
-                                    <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10">
+                                    <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10" v-model="companyRegistrationNumber">
                                     
                                 </div>
                             </div>
-                            <div class="input-wrapper pb31">
+                            <div class="input-wrapper pb21">
                                 <div class="ceo-btn">
-                                    <button>통신판매업증 업로드</button>
-                                    <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
-                                    <div class="uploadtexttrue none">
+                                    <label for="fileUpload">통신판매업증 업로드</label>
+                                    <input type="file" id="fileUpload">
+                                    <div class="uploadtextfaise" v-if="mailorderBusinessFileSize">최대 업로드 파일 크기 : 5MB</div>
+                                    <div class="uploadtexttrue" v-if="mailorderBusinessFileName">
                                         <span>파일명최대10글자.jpg</span>
                                         <span>5MB</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="input-wrapper pb15">
+                            <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label ceo">통신판매업<br>번호</div>
-                                    <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10">                                    
+                                    <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10" v-model="mailorderBusinessNumber">                                    
                                 </div>
                             </div>
 
-                            <div class="input-wrapper pb15">
+                            <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label">회사 분류</div>
                                     <ul class="select-wrap">
                                         <li class="select-contents">
-                                            <div class="select">
-                                                <span>대분류</span>
-                                                <i class="rotate"></i>
+                                            <div class="select" @click="showSelectList">
+                                                <span>{{companyClassifyDefault}}</span>
+                                                <i></i>
                                             </div>
-                                            <div class="listWrap">
+                                            <ul class="listWrap">
                                                 <ul class="list">
-                                                    <li>1</li>
-                                                    <li>2</li>
-                                                    <li>3</li>
-                                                    <li>4</li>
+                                                    <li v-for="(item,index) in companyClassifyList" @click="isText($event,index)" :key="index">{{item.name}}</li>
                                                 </ul>
-                                            </div>
+                                            </ul>
                                         </li>                                        
                                     </ul>
                                 </div>
@@ -291,19 +280,10 @@
                         <div class="label">아이디 </div>
                         <input type="text" v-model="id" @keyup="idvalidationReset">
                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자 포함 4~12자리</div>
+                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
                         <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                         <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                         <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
-                    </div>
-                </div>
-
-                <div class="input-wrapper">
-                    <div class="item">
-                        <div class="label">아이디 </div>
-                        <input type="text">
-                        <button>중복확인</button>
-                        
                     </div>
                 </div>
 
@@ -312,7 +292,7 @@
                         <div class="label">비밀번호 </div>
                         <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
-                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~14자리</div>
+                        <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                     </div>
 
                     <div class="item password">
@@ -335,15 +315,8 @@
                         <button @click="phoneCheck" :class="phoneNumber ? '':'on'">인증하기</button>
                         <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
                         <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
+                        <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                     </div>
-
-                    <!-- <div class="item">
-                        <div class="label"> </div>
-                        <input type="text" v-model="certNumber">
-                        <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
-                        <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
-                        <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
-                    </div> -->
                 </div>
 
                 <div class="input-wrapper">
@@ -382,58 +355,59 @@
                     <div class="skip"><a href="#">괜찮아요.이대로가입할게요 &gt;</a></div>
                 </div>
                 <div class="add_wrap2 add_wrap_group" v-else>
-                    <div class="input-wrapper mb15">
+                    <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">회사명</div>
-                            <input type="text">
+                            <input type="text" v-model="companyName">
+                            <div class="wrong-text" v-if="companyName && companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
                         </div>
                     </div>
 
-                    <div class="input-wrapper mb30">
+                    <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">연락처</div>
-                            <input type="text" class="input-phone" maxlength="10" placeholder="-없이 입력">
+                            <input type="text" class="input-phone" maxlength="11" placeholder="-없이 입력" v-model="companyContact">
                             
                         </div>
                     </div>
 
-                    <div class="input-wrapper mb30">
-                        <div class="ceo-btn">
+                    <div class="input-wrapper">
+                        <div class="ceo-btn clearfix">
                             <button>사업자 등록증 업로드</button>
-                            <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
-                            <div class="uploadtexttrue none">
+                            <div class="uploadtextfaise" v-if="companyRegistrationFileSize">최대 업로드 파일 크기 : 5MB</div>
+                            <div class="uploadtexttrue" v-if="companyRegistrationFileName">
                                 <span>파일명최대10글자.jpg</span>
                                 <span>5MB</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="input-wrapper mb15">
+                    <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label ceo">사업자<br>등록번호</div>
-                            <input type="text" class="ceo-num" maxlength="10" placeholder="-없이 입력">
+                            <input type="text" class="ceo-num" maxlength="10" placeholder="-없이 입력" v-model="companyRegistrationNumber">
                         </div>
                     </div>
-                    <div class="input-wrapper mb31">
-                        <div class="ceo-btn">
+                    <div class="input-wrapper">
+                        <div class="ceo-btn clearfix">
                             <button>통신판매업증 업로드</button>
-                            <div class="uploadtextfaise none">최대 업로드 파일 크기: 5MB</div>
-                            <div class="uploadtexttrue none">
+                            <div class="uploadtextfaise" v-if="mailorderBusinessFileSize">최대 업로드 파일 크기 : 5MB</div>
+                            <div class="uploadtexttrue" v-if="mailorderBusinessFileName">
                                 <span>파일명최대10글자.jpg</span>
                                 <span>5MB</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="input-wrapper mb15">
+                    <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label ceo">통신판매업<br>번호</div>
-                            <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10">
+                            <input type="text" class="ceo-num" placeholder="-없이 입력" maxlength="10" v-model="mailorderBusinessNumber">
                             
                         </div>
                     </div>
 
-                    <div class="input-wrapper mb15">
+                    <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">회사 분류</div>
                             <ul class="select-wrap">
@@ -458,7 +432,7 @@
                     <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">회사 URL</div>
-                            <input type="text">
+                            <input type="text" v-model="companyURL">
                         </div>
                     </div>
 
@@ -486,14 +460,18 @@ export default {
         return {
             // 정보입력-회사정보
             companyName: '',
-            companyPhoneNumber: '',
-            companyPhoneNumber1: '', companyPhoneNumber2: '', companyPhoneNumber3: '',
-            businessRegistrationNumber: '',
-            businessRegistrationNumber1: '', businessRegistrationNumber2: '', businessRegistrationNumber3: '',
-            mailOrderNumber: '',
-            mailOrderNumber1: '', mailOrderNumber2: '', mailOrderNumber3: '',
+            companyNameValidityText: false,
+            companyContact: '',
+            companyRegistrationNumber: '',
+            mailorderBusinessNumber: '',
+            companyClassifyList: [],
+            companyClassifyDefault: '대분류',
             companyClassify: '',
             companyURL: '',
+            companyRegistrationFileSize: false,
+            companyRegistrationFileName: false,
+            mailorderBusinessFileSize: false,
+            mailorderBusinessFileName: false,
 
             isCardFlip: false,
             joinPage: false,
@@ -504,8 +482,12 @@ export default {
     components: {
         Terms, TermsMobile
     },
-    methods: {
-       
+    mounted() {
+        this.$axios('get','/join/client/classificationList').then((res)=> {
+            this.companyClassifyList = res.data;
+        })
+    },
+    methods: {   
         addJoin() {
             this.joinPage = true;
         },
@@ -513,12 +495,60 @@ export default {
             this.addJoinPage = !this.addJoinPage
         },
         joinCheck(){
-            console.log(this.$store.state.welcome)
-            this.$store.state.welcome = true;
-            location.href = '/client';
-        }
+            // console.log(this.$store.state.welcome)
+            // this.$store.state.welcome = true;
+            // location.href = '/client';
+            this.$axios('post','/join/info/save', {
+                companyName: this.companyName,
+                contact: this.companyContact,
+                companyRegistrationNumber: this.companyRegistrationNumber,
+                mailorderBusinessNumber: this.mailorderBusinessNumber,
+                classification: this.companyClassify,
+                companyUrl: this.companyURL
+            })
+        },
+        showSelectList(e) {
+            const selectBtn = e.target.closest('div, ul');
+            const accordion = selectBtn.closest('.accordion-contents');
+            const icon = selectBtn.querySelector('i');
+
+            if (selectBtn.nextSibling.classList.contains('selectOn')) {
+                selectBtn.nextSibling.classList.remove('selectOn');
+                icon.classList.remove('rotate');
+                
+                if (!accordion) return;
+                accordion.classList.remove('height');
+            } else {
+                selectBtn.nextSibling.classList.add('selectOn');                 
+                icon.classList.add('rotate');
+               
+                if (!accordion) return;
+                accordion.classList.add('height');
+            }
+        },
+        onFileChange(e) {
+            console.log(e.target.files);
+            console.log(e.dataTransfer.files);
+
+            
+            // let files = e.target.files || e.dataTransfer.files;
+            // console.log(files);
+            
+            // if (!files.length)
+            //     return;
+            // this.createImage(files[0]);
+        },
+        // createImage(file) {
+        //     var image = new Image();
+        //     var reader = new FileReader();
+        //     var vm = this;
+
+        //     reader.onload = (e) => {
+        //         vm.image = e.target.result;
+        //     };
+        //     reader.readAsDataURL(file);
+        // }
     }
-    
 };
 </script>
 

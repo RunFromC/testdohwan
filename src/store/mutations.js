@@ -1,6 +1,5 @@
 const mutations = {
     setService(state, payload) {
-        console.log(payload);
         const path = payload.path;
         let service = 'brands';
 
@@ -28,7 +27,6 @@ const mutations = {
         state.join.formData[payload.key] = payload.isChecked;
     },
     setCurrentCard(state, payload) {
-        console.log(payload);
         state.currentCard = payload.currentCard;
     },
     setIccMode(state, bool) {
