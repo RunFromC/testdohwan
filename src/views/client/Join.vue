@@ -412,19 +412,16 @@
                             <div class="label">회사 분류</div>
                             <ul class="select-wrap">
                                 <li class="select-contents">
-                                    <div class="select">
-                                        <span>대분류</span>
-                                        <i class="rotate"></i>
+                                    <div class="select" @click="showSelectList">
+                                        <span>{{companyClassifyDefault}}</span>
+                                        <i></i>
                                     </div>
-                                    <div class="listWrap">
+                                    <ul class="listWrap">
                                         <ul class="list">
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                            <li>4</li>
+                                            <li v-for="(item,index) in companyClassifyList" @click="isText($event,index)" :key="index">{{item.name}}</li>
                                         </ul>
-                                    </div>
-                                </li>                               
+                                    </ul>
+                                </li>                                        
                             </ul>
                         </div>
                     </div>
