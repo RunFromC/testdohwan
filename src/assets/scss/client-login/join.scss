@@ -2306,6 +2306,12 @@ button:focus {
           height: calc(100% - 100px);
           overflow: auto;
           text-align: center;
+          > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+          }
         }
       }
       .m_agreebox {
