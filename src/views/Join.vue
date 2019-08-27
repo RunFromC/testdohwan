@@ -63,15 +63,6 @@
                                         <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                                         <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                                     </div>
-
-                                    <!-- <div class="item">
-                                        <div class="label"> </div>
-                                        <input type="text" v-model="certNumber">
-                                        <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
-                                        <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
-                                        <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
-                                    </div> -->
-
                                 </div>
 
                                 <div class="input-wrapper">
@@ -356,15 +347,6 @@
                             <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
                             <div class="wrong-text" v-if="certExistsText">이미 인증받은 사용자입니다</div>
                         </div>
-
-                        <!-- <div class="item">
-                            <div class="label"> </div>
-                            <input type="text" v-model="certNumber">
-                            <button :class="certNumber ? 'on':''" v-bind:disabled="certCheckDisable">확인</button>
-                            <div class="possible-text" v-if="certPossibleText">본인 인증에 성공하였습니다</div>
-                            <div class="wrong-text" v-if="certWrongText">본인 인증에 실패하였습니다</div>
-                        </div> -->
-
                     </div>
 
                     <div class="input-wrapper">

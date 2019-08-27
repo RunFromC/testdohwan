@@ -21,7 +21,7 @@ $colorAAA: #AAA;
 .pb10 {padding-bottom: 10px !important;}
 .pb15 {padding-bottom: 15px !important;}
 .pb35 {padding-bottom: 35px !important;}
-.pb31 {padding-bottom: 31px !important;}
+.pb21 {padding-bottom: 21px !important;}
 .pb30 {padding-bottom: 30px !important;}
 .pb38 {padding-bottom: 38px !important;}
 .pb50 {padding-bottom: 50px !important;}
@@ -176,13 +176,14 @@ button:focus {
               $height: 35px;
 
               .input-wrapper {
-                overflow: hidden;
                 position: relative;
+                display: inline-block;
                 width: 272px;
                 height: auto;
                 
                 .ceo-btn {
                   float: right;
+                  position: relative;
                   button {
                     cursor: pointer;
                     width: 190px;
@@ -198,17 +199,56 @@ button:focus {
                   button.on {
                     background: #4bd897;
                   }
+                  label {
+                    display: inline-block;
+                    width: 190px;
+                    height: 40px;
+                    font-size: 14px;
+                    color: #fff;
+                    background: #a1a1a1;
+                    text-align: center;
+                    line-height: 40px;
+                    border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    cursor: pointer;
+                  }
+                  label.on {
+                    background: #4bd897;
+                  }
+                  input[type="file"] {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    border: 0;
+                  }
                   > div {
                     position: absolute;
-                    bottom: -15px;
+                    bottom: -23px;
                     left: 50%;
                     -webkit-transform: translateX(-50%);
                     -moz-transform: translateX(-50%);
                     -ms-transform: translateX(-50%);
                     -o-transform: translateX(-50%);
                     transform: translateX(-50%);
-                    width: 100%;
-                    height: 40px;
+                    width: 190px;
+                  }
+                  .uploadtextfaise {
+                    color: #FF8173;
+                    font-family: 'NanumBarunGothic';
+                    float: left;
+                  }
+                  .uploadtexttrue {
+                    color: #000;
+                    font-family: 'NanumBarunGothic';
+                    float: left;
+                  }
+                  .uploadtexttrue span:last-child {
+                    float: right;
                   }
                 }
                 > div.item {
@@ -234,6 +274,9 @@ button:focus {
                     border: 1px solid #AAAAAA;
                     border-radius: 5px 0px 0px 5px;
                     font-family: 'NanumBarunGothic';
+                  }
+                  input::placeholder {
+                    color: #707070;
                   }
 
                   button {
@@ -290,6 +333,7 @@ button:focus {
 
                 .select-wrap {
                   .select-contents {
+                    position: relative;
                     height: auto;
                     border: 1px solid #BBBBBB;
                     border-radius: 5px;
@@ -312,7 +356,7 @@ button:focus {
                       span {
                         font-size: 14px !important;
                       }
-                      i.rotate {
+                      i {
                         display: block;
                         width: 14px;
                         height: 14px;
@@ -323,9 +367,50 @@ button:focus {
                         background-size: 100%;
                         background-position: center;
                       }
+                      .rotate {
+                        transform: rotate(-180deg);
+                      }
                     }
                     .listWrap {
+                      position: absolute;
+                      z-index: 1;
+                      top: 31px;
                       display: none;
+                      margin: 0 auto;
+                      width: 100%;
+                      max-height: 118px;
+                      border: 1px solid #BBBBBB;
+                      border-top: none;
+                      border-radius: 0 0 5px 5px;
+                      background: #fff;
+    
+                      .list {
+                        border-top: 1px solid #e2e1e1;
+                        margin: 0 auto;
+                        max-height: 112px;
+    
+                        li {
+                          cursor: pointer;
+                          height: 29px;
+                          line-height: 29px;
+                          text-align: center;
+                          font-size: 14px;
+                          font-family: Nanum-Barun-Gothic-normal, serif;
+                          width: 171px;
+                          display: block;
+                        }
+                        
+    
+                        overflow-y: auto;
+                      }
+                      .list::-webkit-scrollbar {
+                        width: 5px;
+                      }
+                      .list::-webkit-scrollbar-thumb {
+                          border-radius: 5px;
+                          background: #eeeeee;
+                      }  
+    
                     }
                   }
                   .select-contents:last-child {
@@ -692,6 +777,7 @@ button:focus {
                     padding: 9px 0;
                     width: 175px;
                     max-height: 112px;
+                    
 
                     li {
                       cursor: pointer;
@@ -705,6 +791,7 @@ button:focus {
                     overflow-y: auto;
                     overflow-x: hidden;
                   }
+                  
 
                 }
 
@@ -1234,7 +1321,7 @@ button:focus {
         width: calc(100% - 100px);
         height: 55px;
         .logo {
-          margin-top: 13px;
+          margin-top: 20px;
           img#tabletLogo {
             display: block;
           }
@@ -1304,11 +1391,43 @@ button:focus {
                 width: 100%;
                 margin-bottom: 0;
                 .ceo-btn {
+                  position: relative;
                   button {
                     width: 144px!important;
                     height: 34px;
                     font-size: 13px;
-
+                  }
+                  label {
+                    width: 144px!important;
+                    height: 34px;
+                    font-size: 13px;
+                    line-height: 34px;
+                  }
+                  > div {
+                    position: absolute;
+                    bottom: -21px;
+                    left: 50%;
+                    -webkit-transform: translateX(-50%);
+                    -moz-transform: translateX(-50%);
+                    -ms-transform: translateX(-50%);
+                    -o-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                    width: 144px;
+                  }
+                  .uploadtextfaise {
+                    color: #FF8173;
+                    font-family: 'NanumBarunGothic';
+                    font-size: 10px;
+                    float: left;
+                  }
+                  .uploadtexttrue {
+                    color: #000;
+                    font-family: 'NanumBarunGothic';
+                    font-size: 10px;
+                    float: left;
+                  }
+                  .uploadtexttrue span:last-child {
+                    float: right;
                   }
                 }
 
@@ -1866,11 +1985,10 @@ button:focus {
           margin-top: 35px;
 
           .input-wrapper {
-            overflow: hidden;
             width: 272px;
             height: auto;
-            margin: 0 auto 25px;
-            padding: 0;
+            margin: 0 auto;
+            padding-bottom: 25px;
             > div.item {
               position: relative;
               float: left;
@@ -1906,7 +2024,7 @@ button:focus {
                 font-size: 13px;
               }
               input::placeholder {
-                color: #A1A1A1;
+                color: #707070;
                 font-size: 13px;
               }
 
@@ -1997,7 +2115,8 @@ button:focus {
               margin-bottom: 0 !important;
             }
             .ceo-btn {
-              overflow: hidden;
+              position: relative;
+              float: right;
               button {
                 width: 192px;
                 float: right;
@@ -2014,24 +2133,34 @@ button:focus {
               button.on {
                 background: $mainColor;
               }
+              > div {
+                position: absolute;
+                bottom: -22px;
+                left: 50%;
+                -webkit-transform: translateX(-50%);
+                -moz-transform: translateX(-50%);
+                -ms-transform: translateX(-50%);
+                -o-transform: translateX(-50%);
+                transform: translateX(-50%);
+                width: 192px;
+              }
+              .uploadtextfaise {
+                color: #FF8173;
+                font-family: 'NanumBarunGothic';
+                float: left;
+              }
+              .uploadtexttrue {
+                color: #000;
+                font-family: 'NanumBarunGothic';
+                float: left;
+              }
+              .uploadtexttrue span:last-child {
+                float: right;
+              }
             }
 
           }
-          .input-wrapper.mb30{
-            margin-bottom: 10px!important;
-          }
-          .input-wrapper.mb30:nth-child(3) {
-            margin-bottom: 25px!important;
-          }
-          .input-wrapper.mb15{
-            margin-bottom: 10px!important;
-          }
-          .input-wrapper.mb31 {
-            margin-bottom: 25px!important;
-          }
-          .input-wrapper:last-child {
-            margin-bottom: 33px!important;
-          }
+          
           .line {
             border-bottom: 1px solid $defaultColor;
             margin: 0 auto 20px;
@@ -2169,7 +2298,7 @@ button:focus {
         #requiredInfo.tab {
           padding-top: 0px !important;
           margin-top: 0 !important;
-          height: calc(100% - 100px);
+          // height: calc(100% - 100px);
           overflow: auto;
         }
         #additionalInfo.tab {
@@ -2178,6 +2307,7 @@ button:focus {
           padding-bottom: 70px !important;
           height: calc(100% - 100px);
           overflow: auto;
+          text-align: center;
         }
       }
       .m_agreebox {

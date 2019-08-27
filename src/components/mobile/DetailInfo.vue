@@ -57,7 +57,7 @@
     >
       <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
         <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-          <span>빅버드 천을 받을게요</span>
+          <span>빅버드 추천을 받을게요</span>
           <i></i>
         </div>
         <div class="checked" v-else @click.prevent="onClickRecommendCheck">
@@ -67,7 +67,7 @@
       </div>
 
       <div class="recommend-checkbox" v-else>
-        <div class="checked" v-if="isRecommendCheck" @click.prevent="onClickRecommendCheck">
+        <div class="checked" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
           <span>ICC 추천을 받을게요</span>
           <i></i>
         </div>
@@ -88,13 +88,9 @@
           <span>만원</span>
         </div>
         <select class="percentage-select">
-          <option value="-10%">- 10 %</option>
-          <option value="-15%">- 15 %</option>
-          <option value="-20%">- 20 %</option>
-          <option value="-25%">- 25 %</option>
-          <option value="-30%">- 30 %</option>
-          <option value="-35%">- 35 %</option>
-          <option value="-40%">- 40 %</option>
+          <option value="-10">- 10 %</option>
+          <option value="-20">- 20 %</option>
+          <option value="-30">- 30 %</option>
         </select>
         <i class="icon-questions-mark" data-type="0" @click.prevent="showTips(1)"></i>
       </div>
@@ -123,13 +119,9 @@
           <span>만원</span>
         </div>
         <select class="percentage-select">
-          <option value="-10%">- 10 %</option>
-          <option value="-15%">- 15 %</option>
-          <option value="-20%">- 20 %</option>
-          <option value="-25%">- 25 %</option>
-          <option value="-30%">- 30 %</option>
-          <option value="-35%">- 35 %</option>
-          <option value="-40%">- 40 %</option>
+          <option value="-10">- 10 %</option>
+          <option value="-20">- 20 %</option>
+          <option value="-30">- 30 %</option>
         </select>
         <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(2)"></i>
       </div>
@@ -372,19 +364,19 @@
         </ul>
         <div class="status-selectbox-wrap clearfix" id="m-jobSelect" :class="!haveJob ? 'none': ''">
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="m-jobTense">
               <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>현 직업</span>
+                  <span>{{jobDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-if="selectText">현 직업</li>
-                <li v-else>전 직업</li>
+                <li @click="isText">현 직업</li>
+                <li @click="isText">전 직업</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="jobSearchSelect">
               <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
                   <input type="text" placeholder="직업선택, 검색" />
@@ -845,10 +837,6 @@ export default {
     name: 'mobileDetailInfo',
     data() {
         return {
-            //개런티 퍼센트
-            basicValue: '-10',
-            comboValue: '-10',
-
             isSkinOnOff: {
                 0: false,
                 1: false,
@@ -863,6 +851,9 @@ export default {
                 4: false,
                 5: false
             },
+            instagramImg: true,
+            youtubeImg: true,
+            naverImg: true,
             selectText: false,
             haveJob: false,
             haveChild: false,
@@ -874,6 +865,8 @@ export default {
             skinDefault: '피부타입',
             ageDefault: '10대',
             generationDefault: '초반',
+            jobDefault: '현 직업',
+            jobSearchDefault: '',
             onStatusCheck: {
                 job: null,
                 child: null,
@@ -944,26 +937,24 @@ export default {
                         '희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.희망원고료의 희망원고료의 최소 퍼센트 범위를 지정해주시면 고객사 매칭에 도움이 될 거에요.'
                 },
             ],
-            snsCertBtn: true,
+            snsDefaultCertBtn: true,
+            snsCertBtn: false,
             snsCertSuccessBtn: false,
             instagramWaitText: false,
             instagramPossibleText: false,
             instagramWrongText: false,
             // 추가 프로필
-            totalInfo: {},
             // sns
-            instagramCert: {
-              socialInfo: {
-                instagram: null
-              }
-            },
-            userInfo: { 
-              socialInfo: {
-                instagram: null
-              }
-            },
+            instagramCertIdx: NaN,
+            authIdx: NaN,
             // 희망수수료
+            defaultFeeInput: '',
+            basicValue: '-10', //개런티 퍼센트
+            productPriceInput: '',
+            productFeeInput: '',
+            comboValue: '-10', //개런티 퍼센트
             expectFee: { 
+              recommendFee: null,
               defaultFee: NaN, //100000
               defaultFeePer: NaN, //-10
               productPrice: NaN, //1000000
@@ -972,12 +963,14 @@ export default {
             },
             // 희망공구품목
             groupPurchaseList: [],
-            purchaseList:'',
+            purchaseList: '',
             purchaseInputText: false,
             // 성별,연령
-            gender: null,
-            age: [],
-            ageGroup: [],
+            genderExists: null,
+            ageList: [],
+            ageGroupList: [],
+            ageChoice: NaN,
+            ageGroupChoice: NaN,
             ageAndGender: { 
               gender: null,
               age: NaN,
@@ -986,9 +979,16 @@ export default {
             // 직업
             jobList: [],
             jobExists: null,
+            jobTenseChoice: true,
+            jobSearchChoice: NaN,
             job: { 
               exists: null,
-              jobList: []
+              jobList: [
+                {
+                  isCurrentJob: null,
+                  idx: NaN
+                }
+              ]
             },
             // 결혼
             marry: null,
@@ -996,23 +996,44 @@ export default {
             // 자녀
             childrenAgeList: [],
             childrenExists: null,
+            childrenAgeChoice: NaN,
+            childrenGenderChoice: null,
             children: { 
               exists: null,
-              childrenList: []
+              childrenList: [
+                {
+                  age: NaN,
+                  gender: null,
+                }
+              ]
             },
             // 반려동물
             petList: [],
             petExists: null,
+            petTypeChoice: NaN,
+            petNumChoice: NaN,
             pet: {
               exists: null,
-              petList: []
+              petList: [
+                {
+                  typeIdx: NaN,
+                  number: NaN,
+                }
+              ]
             },
             // 피부
-            skinList:[],
+            skinList: [],
+            troubleList: [],
+            skinChoice: NaN,
+            troubleChoice: [],
             skin: { 
               type: NaN,
-              trouble: []
+              trouble: {
+                troubleIdx: []
+              }
             },
+            joinDisableBtn: true,
+            joinFinishBtn: false,
         };
     },
     components: {
@@ -1027,26 +1048,118 @@ export default {
     mounted() {
       this.$axios('get','/join/info/init', {
         }).then((res) => {
-            console.log(res);
-            this.totalInfo = res.data;
+            console.log(res);      
             this.groupPurchaseList = res.data.groupPurchaseList;
-            this.age = res.data.age;
-            this.ageGroup = res.data.ageGroup;
+            this.ageList = res.data.age;
+            this.ageGroupList = res.data.ageGroup;
             this.jobList = res.data.job;
             this.childrenAgeList = res.data.childrenAge;
             this.petList = res.data.pet;
             this.skinList = res.data.skin.skinType;
+            this.troubleList = res.data.skin.trouble;
         }).catch((err) => {
             console.log(err)
         });
+      // this.$axios('get','/join/productList', {
+      //   }).then((res) => {
+      //       console.log(res);
+      //   }).catch((err) => {
+      //       console.log(err)
+      //   });
     },
     methods: {
+        jobSearch() {
+          this.$axios('post','/join/search/job', {
+            name: this.jobSearchDefault
+          }).then((res) => {
+            console.log(res);
+            for (let i = 0; i < res.data.length; i++) {
+              if(this.jobSearchDefault.includes(res.data[i].name)) {
+              console.log('a');
+              }
+            }
+          })
+        },
+        // 희망 수수료 input 입력 시
+        inNumberAndMakeNotSave() {
+          let regexp = /^[0-9]+$/;
+          if(!regexp.test(this.defaultFeeInput || this.productPriceInput || this.productFeeInput)) {
+            alert("숫자만 입력해주세요");
+          } else {
+            if(this.isRecommendCheck) {
+              this.profileCard.pay.onSaveButton = true;
+              if(this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
+                this.profileCard.pay.onSaveButton = false;
+              } else if(this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
+                this.profileCard.pay.onSaveButton = false;
+              } else if(!this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
+                this.profileCard.pay.onSaveButton = false;
+              } else if(!this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
+                this.profileCard.pay.onSaveButton = false;
+              }
+            } else {
+              this.profileCard.pay.onSaveButton = false;
+              if(this.defaultFeeInput&&this.productPriceInput&&this.productFeeInput) {
+                this.profileCard.pay.onSaveButton = true;
+              }
+            } 
+          }
+        },
+        // 희망 수수료 focus 
+        makeNotSave() {
+          if(this.isRecommendCheck) {
+            if(this.defaultFeeInput&&(!this.productPriceInput||!this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(!this.defaultFeeInput&&(!this.productPriceInput||!this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            }
+          }
+        },
+        // 희망 수수료 추천 클릭 시
+        onClickRecommendCheck() {
+          this.isRecommendCheck = !this.isRecommendCheck;
+          if(this.isRecommendCheck) {
+            this.profileCard.pay.onSaveButton = true;
+            if(this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(!this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(!this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            }
+          } else {
+            this.profileCard.pay.onSaveButton = false;
+            if(this.defaultFeeInput&&this.productPriceInput&&this.productFeeInput) {
+              this.profileCard.pay.onSaveButton = true;
+            }
+          } 
+        },
+        //공구품목 검색 자리 제한
         purchaseInput() {
           if(this.purchaseList.length > 8) {
             this.purchaseInputText = true;
           } else {
             this.purchaseInputText = false;
           }
+        },
+        //sns 연동 아이콘 온오프
+        checkCertification(idx) {
+            var keys = Object.keys(this.isCertificationOnOff);
+            keys.forEach((i, obj) => {
+              if(obj !== idx){
+                this.isCertificationOnOff[obj] = false;
+              }
+            })
+            this.isCertificationOnOff[idx] = !this.isCertificationOnOff[idx];
+            if(this.isCertificationOnOff[1] || this.isCertificationOnOff[2] || this.isCertificationOnOff[3]) {
+              this.snsCertBtn = true;
+              this.snsDefaultCertBtn = false;
+            } else {
+              this.snsCertBtn = false;
+              this.snsDefaultCertBtn = true;
+            }
         },
         snsSaveBotton() {
             if(this.instagramPossibleText) {
@@ -1068,8 +1181,8 @@ export default {
                         {}
                     );
                     if(res.data.result === 'success') {
-                      this.instagramCert.socialInfo.instagram = res.data.userInfo;
-                      this.isCertificationOnOff[1] = true; //아이콘
+                      this.instagramCertIdx = res.data.authIdx;
+                      this.instagramImg = false; //아이콘
                       this.instagramPossibleText = true; //인증문구
                       this.instagramWaitText = false;
                       this.snsCertSuccessBtn = true; //인증버튼
@@ -1094,19 +1207,17 @@ export default {
         },
         //희망수수료 개런티 카운트
         payUpPersent(type) {
-            console.log(type);
-            if (type === 'basicsUp' && this.basicValue > -40) {
-                this.basicValue = this.basicValue - 5;
-            } else if (type === 'comboUp' && this.comboValue > -40) {
-                this.comboValue = this.comboValue - 5;
+            if (type === 'basicsUp' && this.basicValue > -30) {
+                this.basicValue = this.basicValue - 10;
+            } else if (type === 'comboUp' && this.comboValue > -30) {
+                this.comboValue = this.comboValue - 10;
             }
         },
         payDownPersent(type) {
-            console.log(type);
             if (type === 'basicsDown' && this.basicValue < -10) {
-                this.basicValue = this.basicValue + 5;
+                this.basicValue = this.basicValue + 10;
             } else if (type === 'comboDown' && this.comboValue < -10) {
-                this.comboValue = this.comboValue + 5;
+                this.comboValue = this.comboValue + 10;
             }
         },
         //셀렉트 선택 피부,연령
@@ -1114,18 +1225,48 @@ export default {
             let text = e.target.innerText;
             if (e.target.closest('#skin, .m-skin')) {
                 this.skinDefault = text;
+                this.skinChoice = this.skinList[idx].idx;
             } else if (e.target.closest('#ageGeneration, #m-ageGeneration')) {
                 this.ageDefault = text; 
+                this.ageChoice = this.ageList[idx].ageIdx;
             } else if (e.target.closest('#childAge, #m-childAge')) {
                 this.childAgeDefault = text;
+                this.childrenAgeChoice = this.childrenAgeList[idx].idx;
             } else if (e.target.closest('#childGender, #m-childGender')) {
                 this.childGenderDefault = text;
+                if(text == '남자') {
+                  this.childrenGenderChoice = true;
+                } else {
+
+                  this.childrenGenderChoice = false;
+                }
             } else if (e.target.closest('#petType, #m-petType')) {
                 this.petTypeDefault = text;
+                this.petTypeChoice = this.petList[idx].ptNum;
             } else if (e.target.closest('#petDigit, #m-petDigit')) {
                 this.petDigitDefault = text;
+                if(text == '1마리') {
+                  this.petNumChoice = 1;
+                } else if(text == '2마리') {
+                  this.petNumChoice = 2;
+                } else if(text == '3마리') {
+                  this.petNumChoice = 3;
+                } else {  
+                  this.petNumChoice = 4;
+                }
+            } else if(e.target.closest('#jobTense, #m-jobTense')) {
+                this.jobDefault = text;
+                if(text == '현 직업') {
+                  this.jobTenseChoice = true;
+                } else {
+                  this.jobTenseChoice = false;
+                }
+            } else if(e.target.closest('#jobSearchSelect', '#m-jobSearchSelect')) {
+                this.jobSearchDefault = text;
+                this.jobSearchChoice = this.jobList[idx].idx;
             } else {
                 this.generationDefault = text;
+                this.ageGroupChoice = this.ageGroupList[idx].idx;
             }
         },
 
@@ -1135,10 +1276,16 @@ export default {
                 for (const keys in this.isSkinOnOff) {
                     this.isSkinOnOff[keys] = false;
                 }
+                this.troubleChoice.splice(0, this.troubleChoice.length);
             } else {
                 this.isSkinOnOff[0] = false;
+                if (!this.troubleChoice.includes(this.troubleList[idx-1].idx)) {
+                  this.troubleChoice.push(this.troubleList[idx-1].idx);
+                } else {
+                  const delIdx = this.troubleChoice.indexOf(this.troubleList[idx-1].idx);
+                  this.troubleChoice.splice(delIdx, 1);
+                }
             }
-
             this.isSkinOnOff[idx] = !this.isSkinOnOff[idx];
         },
         //직업
@@ -1153,17 +1300,14 @@ export default {
         eitherSelect(value) {
             this.isCheck = value;
             if(value === 'm') {
-              this.gender = true;
+              this.genderExists = true;
             } else if(value === 'w') {
-              this.gender = false;
+              this.genderExists = false;
             } else if(value === 'y') {
               this.marry = true;
-              this.profileCard.married.onSaveButton = true;
             } else if(value === 'n') {
               this.marry = false;
-              this.profileCard.married.onSaveButton = true;
             }
-            // this.profileCard.gender.onSaveButton = true;
         },
         checkEither(el) {
             if (el.includes(this.isCheck)) return 'checked';
@@ -1176,7 +1320,12 @@ export default {
         },
         onClickProfileCard(value, event) {
             for (const key in this.profileCard) {
-                if (key !== value) this.profileCard[key].on = false;
+              if(key !== value) {
+                this.profileCard[key].on = false
+              }
+              if(key == 'pay' && this.isRecommendCheck) {
+                this.profileCard.pay.onSaveButton = true;
+              }
             }
 
             this.$store.commit('setCurrentCard', { currentCard: value });
@@ -1200,9 +1349,6 @@ export default {
                 wrap.style.marginBottom = 35 * index + 'px';
                 parent.scrollTop = index * 58;
             }
-        },
-        onClickRecommendCheck() {
-            this.isRecommendCheck = !this.isRecommendCheck;
         },
         showTips(index) {
             if (!this.tip.title) {
@@ -1254,8 +1400,6 @@ export default {
 
             this.showSelectList(e);
             if (selectBtn.classList.contains('select-first')) {
-                console.log(selectBox);
-
                 if (!accordion) {
                     selectBox
                         .querySelector('.list-second')
@@ -1353,30 +1497,70 @@ export default {
         saveBtn(event) {
             if (event.target.className.includes('on')) {
                 if (this.currentCard === 'sns') {
-                    this.userInfo = this.instagramCert.socialInfo.instagram;
-                    this.profileCard.sns.save = true;
+                    this.authIdx = this.instagramCertIdx;
+                    console.log(this.authIdx);
                 } else if (this.currentCard === 'pay') {
-                    this.profileCard.pay.save = true;
+                    if(this.isRecommendCheck) {
+                      this.expectFee.recommendFee = true;
+                    } else {
+                      this.expectFee.recommendFee = false;
+                    }
+                    if(!this.defaultFeeInput&&!this.productPriceInput&&!this.productFeeInput) {
+                      this.expectFee.defaultFee = null;
+                      this.expectFee.defaultFeePer = null;
+                      this.expectFee.productPrice = null;
+                      this.expectFee.productFee = null;
+                      this.expectFee.productFeePer =null;
+                    } else if(this.defaultFeeInput&&!this.productPriceInput&&!this.productFeeInput) {
+                      this.expectFee.defaultFee = Number(this.defaultFeeInput+'0000');
+                      this.expectFee.defaultFeePer = Number(this.basicValue);
+                      this.expectFee.productPrice = null;
+                      this.expectFee.productFee = null;
+                      this.expectFee.productFeePer = null;
+                    } else if(!this.defaultFeeInput&&this.productPriceInput&&this.productFeeInput) {
+                      this.expectFee.defaultFee = null;
+                      this.expectFee.defaultFeePer = null;
+                      this.expectFee.productPrice = Number(this.productPriceInput);
+                      this.expectFee.productFee = Number(this.productFeeInput+'0000');
+                      this.expectFee.productFeePer = Number(this.comboValue);
+                    } else {
+                      this.expectFee.defaultFee = Number(this.defaultFeeInput+'0000');
+                      this.expectFee.defaultFeePer = Number(this.basicValue);
+                      this.expectFee.productPrice = Number(this.productPriceInput);
+                      this.expectFee.productFee = Number(this.productFeeInput+'0000');
+                      this.expectFee.productFeePer = Number(this.comboValue);
+                    }
+                    console.log(this.expectFee);
                 } else if (this.currentCard === 'expectProduct') {
-                    this.profileCard.expectProduct.save = true;
                 } else if (this.currentCard === 'gender') {
-                    this.ageAndGender.gender = this.gender;
-                    this.profileCard.gender.save = true;
+                    this.ageAndGender.gender = this.genderExists;
+                    this.ageAndGender.age = this.ageChoice;
+                    this.ageAndGender.ageGroup = this.ageGroupChoice;
+                    console.log(this.ageAndGender);
                 } else if (this.currentCard === 'job') {
                     this.job.exists = this.jobExists;
-                    this.profileCard.job.save = true;
+                    this.job.jobList[0].isCurrentJob = this.jobTenseChoice;
+                    console.log(this.job);
                 } else if (this.currentCard === 'married') {
                     this.married = this.marry;
-                    this.profileCard.married.save = true;
+                    console.log(this.married);
                 } else if (this.currentCard === 'children') {
                     this.children.exists = this.childrenExists;
-                    this.profileCard.children.save = true;
+                    this.children.childrenList[0].age = this.childrenAgeChoice;
+                    this.children.childrenList[0].gender = this.childrenGenderChoice;
+                    console.log(this.children);
                 } else if (this.currentCard === 'pet') {
                     this.pet.exists = this.petExists;
-                    this.profileCard.pet.save = true;
+                    this.pet.petList[0].typeIdx = this.petTypeChoice;
+                    this.pet.petList[0].number = this.petNumChoice;
+                    console.log(this.pet);
                 } else if (this.currentCard === 'skinType') {
-                    this.profileCard.skinType.save = true;
+                    this.skin.type = this.skinChoice;
+                    this.skin.trouble.troubleIdx = this.troubleChoice;
+                    console.log(this.skin);
                 }
+                this.joinDisableBtn = false;
+                this.joinFinishBtn = true;
                 this.nextDetailInfo(event);
             }
             return;

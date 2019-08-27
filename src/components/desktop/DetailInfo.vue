@@ -54,19 +54,61 @@
           <a
             href="#"
             id="instagram"
+            @click="checkCertification(1)"
             :class="isCertificationOnOff[1] ? 'on' : ''"
+            v-if="instagramImg"
+          ></a>
+          <a
+            href="#"
+            id="instagram"
+            :class="isCertificationOnOff[1] ? 'on' : ''"
+            v-else
+            style="cursor: default;"
+          ></a>
+          <a
+            href="#"
+            id="youtube"
+            @click="checkCertification(2)"
+            :class="isCertificationOnOff[2] ? 'on' : ''"
+            v-if="youtubeImg"
+          ></a>
+          <a
+            href="#"
+            id="youtube"
+            :class="isCertificationOnOff[2] ? 'on' : ''"
+            v-else
+            style="cursor: default;"
+          ></a>
+          <a
+            href="#"
+            id="naver"
+            @click="checkCertification(3)"
+            :class="isCertificationOnOff[3] ? 'on' : ''"
+            v-if="naverImg"
+          ></a>
+          <a
+            href="#"
+            id="naver"
+            :class="isCertificationOnOff[3] ? 'on' : ''"
+            v-else
+            style="cursor: default;"
           ></a>
         </div>
         <a
           href="#"
           id="deskSnsSaveBtn"
+          v-if="snsDefaultCertBtn"
+        >SNS인증하기</a>
+        <a
+          href="#"
+          id="deskSnsSaveBtn"
+          :class="isCertificationOnOff[1] || isCertificationOnOff[2] || isCertificationOnOff[3] ? 'on' : ''"
           @click="snsSaveBotton()"
           v-if="snsCertBtn"
         >SNS인증하기</a>
         <a
           href="#"
           id="deskSnsSaveBtn"
-          :class="this.profileCard.sns.onSaveButton ? 'off' : ''"
           v-if="snsCertSuccessBtn"
         >SNS인증완료</a>
         <div class="certification-text">
@@ -86,7 +128,8 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click.native="joinCheck">프로필 입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
     <!--  pay profileCard.pay -->
@@ -99,7 +142,7 @@
       <div class="inner-contents">
         <div class="recommend-checkbox" v-if="!this.$store.state.iccMode">
           <div class="uncheck" v-if="!isRecommendCheck" @click.prevent="onClickRecommendCheck">
-            <span>빅버드 천을 받을게요</span>
+            <span>빅버드 추천을 받을게요</span>
             <i></i>
           </div>
           <div class="checked" v-else @click.prevent="onClickRecommendCheck">
@@ -128,11 +171,11 @@
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
           <span v-else>개런티</span>
           <div class="pay-wrap">
-            <input class="pay" type="text" maxlength="4" placeholder="1000" />
+            <input class="pay" type="text" maxlength="4" placeholder="0" v-model="defaultFeeInput" @keyup="inNumberAndMakeNotSave" />
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2"  v-model="basicValue" />
+            <input class="percentage" type="text" v-model="basicValue" disabled />
             <span>%</span>
             <div class="up-down-wrap">
               <i class="up" @click="payUpPersent('basicsUp')"></i>
@@ -147,8 +190,7 @@
         <div class="product-input-wrap">
           <span>제품가</span>
           <div class="product-wrap">
-            
-            <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
+            <input type="text" class="pay" maxlength="7" placeholder="0" v-model="productPriceInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" />
             <span>원 이상</span>
           </div>
         </div>
@@ -157,15 +199,15 @@
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
           <span v-else>개런티</span>
           <div class="pay-wrap">
-            <input class="pay" type="text" maxlength="4" placeholder="1000" />
+            <input class="pay" type="text" maxlength="4" placeholder="0" v-model="productFeeInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" />
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
-            <input class="percentage" type="text" maxlength="2"  v-model="comboValue" />
+            <input class="percentage" type="text" v-model="comboValue" disabled />
             <span>%</span>
             <div class="up-down-wrap">
-              <i @click="payUpPersent('comboUp')" class="up"></i>
-              <i @click="payDownPersent('comboDown')" class="down"></i>
+              <i class="up" @click="payUpPersent('comboUp')"></i>
+              <i class="down" @click="payDownPersent('comboDown')"></i>
             </div>
           </div>
           <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(2)"></i>
@@ -176,13 +218,15 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn" :class="isRecommendCheck ? 'on' : ''">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="this.profileCard.pay.onSaveButton ? 'on' : ''"
+          >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
       <div class="pay-text-wrap" id="Paytext1" v-if="tip.title">
         <div class="paytext">{{tip.title}}</div>
@@ -236,7 +280,8 @@
           </li>
         </ul>
 
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
     <!-- gender -->
@@ -265,13 +310,7 @@
 
           <div class="listContents listWrap list-first">
             <ul class="list">
-              <li v-for="(item,index) in age" @click="isText" :key="index">{{item.age}}</li>
-              <!-- <li @click="isText">10대</li>
-              <li @click="isText">20대</li>
-              <li @click="isText">30대</li>
-              <li @click="isText">40대</li>
-              <li @click="isText">50대</li>
-              <li @click="isText">60대 이상</li> -->
+              <li v-for="(item,index) in ageList" @click="isText($event,index)" :key="index">{{item.age}}</li>
             </ul>
           </div>
         </div>
@@ -284,10 +323,7 @@
 
           <div class="listContents listWrap list-second">
             <ul class="list">
-              <li v-for="(item,index) in ageGroup" @click="isText" :key="index">{{item.ageGroup}}</li>
-              <!-- <li @click="isText">초반</li>
-              <li @click="isText">중반</li>
-              <li @click="isText">후반</li> -->
+              <li v-for="(item,index) in ageGroupList" @click="isText($event,index)" :key="index">{{item.ageGroup}}</li>
             </ul>
           </div>
         </div>
@@ -300,14 +336,15 @@
           <li
             class="save-btn"
             @click="saveBtn"
-            :class="this.profileCard.gender.onSaveButton == true ? 'on':''"
+            :class="(checkEither('m') || checkEither('w')) && ageChoice && ageGroupChoice ? 'on':''"
           >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
 
@@ -359,7 +396,8 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>-->
 
@@ -391,27 +429,27 @@
         </ul>
         <div class="status-selectbox-wrap clearfix" id="jobSelect" :class="!haveJob ? 'none': ''">
           <ul class="status-selectbox">
-            <li class="select-box clearfix">
+            <li class="select-box clearfix" id="jobTense">
               <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <span>현 직업</span>
+                  <span>{{jobDefault}}</span>
                   <i></i>
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-if="selectText">현 직업</li>
-                <li v-else>전 직업</li>
+                <li @click="isText($event)" v-if="jobDefault == '전 직업'">현 직업</li>
+                <li @click="isText($event)" v-if="jobDefault == '현 직업'">전 직업</li>
               </ul>
             </li>
-            <li class="select-box big clearfix">
+            <li class="select-box big clearfix" id="jobSearchSelect">
               <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <input type="text" placeholder="직업선택, 검색" />
+                  <input type="text" placeholder="직업선택, 검색" v-model="jobSearchDefault" @keyup="jobSearch" />
                   <i></i>
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li v-for="(list,index) in jobList" :key="index">{{list.name}}</li>
+                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)">{{list.name}}</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -432,13 +470,15 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="save-btn" @click="saveBtn" 
+          :class="checkStatus('n','job') || (checkStatus('y','job') && jobTenseChoice && jobSearchChoice) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
 
@@ -506,13 +546,14 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn" :class="this.profileCard.married.onSaveButton == true ? 'on':''">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="checkEither('y') || checkEither('n') ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
 
@@ -572,17 +613,7 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-for="(item,index) in childrenAgeList" @click="isText" :key="index">{{item.age}}</li>
-                <!-- <li @click="isText">0~1세</li>
-                <li @click="isText">2~3세</li>
-                <li @click="isText">4~5세</li>
-                <li @click="isText">6~7세</li>
-                <li @click="isText">초등학생</li>
-                <li @click="isText">중학생</li>
-                <li @click="isText">고등학생</li>
-                <li @click="isText">20대</li>
-                <li @click="isText">30대</li>
-                <li @click="isText">40대</li> -->
+                <li v-for="(item,index) in childrenAgeList" @click="isText($event,index)" :key="index">{{item.age}}</li>
               </ul>
             </li>
             <li class="select-box big clearfix" id="childGender">
@@ -593,8 +624,8 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li @click="isText">남자</li>
-                <li @click="isText">여자</li>
+                <li @click="isText($event)">남자</li>
+                <li @click="isText($event)">여자</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -619,13 +650,15 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="save-btn" @click="saveBtn" 
+          :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
 
@@ -665,11 +698,7 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li v-for="(item,index) in petList" @click="isText" :key="index">{{item.typeName}}</li>
-                <!-- <li @click="isText">강아지</li>
-                <li @click="isText">고양이</li>
-                <li @click="isText">햄스터</li>
-                <li @click="isText">기타</li> -->
+                <li v-for="(item,index) in petList" @click="isText($event,index)" :key="index">{{item.typeName}}</li>
               </ul>
             </li>
             <li class="select-box big clearfix" id="petDigit">
@@ -680,10 +709,10 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li @click="isText">1마리</li>
-                <li @click="isText">2마리</li>
-                <li @click="isText">3마리</li>
-                <li @click="isText">4마리 이상</li>
+                <li @click="isText($event)">1마리</li>
+                <li @click="isText($event)">2마리</li>
+                <li @click="isText($event)">3마리</li>
+                <li @click="isText($event)">4마리 이상</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -704,13 +733,15 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="save-btn" @click="saveBtn" 
+          :class="checkStatus('n','pet') || (checkStatus('y','pet') && petTypeChoice && petNumChoice) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
 
@@ -722,7 +753,7 @@
           <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
           </div>
-          <div class="listContents listWrap long">
+          <div class="listContents listWrap long item-top">
             <ul class="list">
               <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
             </ul>
@@ -756,7 +787,8 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
 
@@ -836,7 +868,8 @@
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
     <!-- Skin -->
@@ -852,11 +885,7 @@
 
             <div class="listContents listWrap2 long">
               <ul class="list">
-                <li v-for="(item,index) in skinList" @click="isText" :key="index">{{item.type}}</li>
-                <!-- <li @click="isText">건성</li>
-                <li @click="isText">중성</li>
-                <li @click="isText">지성</li>
-                <li @click="isText">복합성</li> -->
+                <li v-for="(item,index) in skinList" @click="isText($event,index)" :key="index">{{item.type}}</li>
               </ul>
             </div>
           </div>
@@ -881,13 +910,14 @@
           <li class="back-btn" @click="prevDetailInfo">
             <i></i>뒤로가기
           </li>
-          <li class="save-btn" @click="saveBtn">저장하기</li>
+          <li class="save-btn" @click="saveBtn" :class="skinChoice && (isSkinOnOff[0]||isSkinOnOff[1]||isSkinOnOff[2]||isSkinOnOff[3]) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
           </li>
         </ul>
-        <button class="join-finish-btn" @click="joinCheck()">프로필 입력완료</button>
+        <button class="join-finish-btn" v-if="joinDisableBtn">프로필 입력완료</button>
+        <button class="join-finish-btn finish-button" @click="joinCheck()" v-if="joinFinishBtn">프로필 입력완료</button>
       </div>
     </div>
     <div class="article brand market" v-if="profileCard.finishBlock.on" id="finishBlock">
@@ -934,7 +964,6 @@ export default {
             haveJob: false,
             haveChild: false,
             havePet: false,
-            selectText: false,
         };
     },
     computed: {
@@ -946,10 +975,6 @@ export default {
         MapSvg
     },
     methods: {
-        selectOnOff(event) {
-            console.log(event.target);
-            this.selectText = true;
-        },
         myAction(selectKey) {
             console.log(selectKey);
             this.keyPush = selectKey;
@@ -958,21 +983,18 @@ export default {
             this.onStatusCheck[type] = value;
             if(this.onStatusCheck[type] === 'y' && type === 'job') {
               this.jobExists = true;
-              this.profileCard.job.onSaveButton = true;
             } else if(this.onStatusCheck[type] === 'n' && type === 'job') {
               this.jobExists = false;
               this.profileCard.job.onSaveButton = true;
             }
             if(this.onStatusCheck[type] === 'y' && type === 'child') {
               this.childrenExists = true;
-              this.profileCard.children.onSaveButton = true;
             } else if(this.onStatusCheck[type] === 'n' && type === 'child') {
               this.childrenExists = false;
               this.profileCard.children.onSaveButton = true;
             }
             if(this.onStatusCheck[type] === 'y' && type === 'pet') {
               this.petExists = true;
-              this.profileCard.pet.onSaveButton = true;
             } else if(this.onStatusCheck[type] === 'n' && type === 'pet') {
               this.petExists = false;
               this.profileCard.pet.onSaveButton = true;
@@ -984,13 +1006,6 @@ export default {
         itemOnSave(event) {
             this.profileCard.expectProduct.onSaveButton = true;
             console.log(event.target);
-        },
-
-        genderAgeOnSave() {},
-
-        //sns 연동 아이콘 온오프
-        checkCertification(idx) {
-            this.isCertificationOnOff[idx] = !this.isCertificationOnOff[idx];
         },
         pageReset() {
             this.clearCardList();
@@ -1005,17 +1020,18 @@ export default {
             //     this.$store.state.welcome = true;
             //     this.$router.push('/');
             // }
-            this.$axios('post','/join/info/save', {
-              userInfo: this.userInfo,
-              expectFee: this.expectFee,
-              groupPurchaseList: this.groupPurchaseList,
-              ageAndGender: this.ageAndGender,
-              job: this.job,
-              married: this.married,
-              children: this.children,
-              pet: this.pet,
-              skin: this.skin
-            });
+            // this.$axios('post','/join/info/save', {
+            //   authIdx: this.authIdx,
+            //   expectFee: this.expectFee,
+            //   groupPurchaseList: this.groupPurchaseList,
+            //   ageAndGender: this.ageAndGender,
+            //   job: this.job,
+            //   married: this.married,
+            //   children: this.children,
+            //   pet: this.pet,
+            //   skin: this.skin
+            // });
+            alert('end')
         }
     }
 };
