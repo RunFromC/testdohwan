@@ -308,7 +308,7 @@
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap list-first">
+          <div class="listContents listWrap list-first age-top">
             <ul class="list">
               <li v-for="(item,index) in ageList" @click="isText($event,index)" :key="index">{{item.age}}</li>
             </ul>
@@ -321,7 +321,7 @@
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap list-second">
+          <div class="listContents listWrap list-second age-top2">
             <ul class="list">
               <li v-for="(item,index) in ageGroupList" @click="isText($event,index)" :key="index">{{item.ageGroup}}</li>
             </ul>
@@ -883,7 +883,7 @@
               <i></i>
             </div>
 
-            <div class="listContents listWrap2 long">
+            <div class="listContents listWrap2 long skin-top">
               <ul class="list">
                 <li v-for="(item,index) in skinList" @click="isText($event,index)" :key="index">{{item.type}}</li>
               </ul>

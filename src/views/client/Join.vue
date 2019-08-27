@@ -253,7 +253,7 @@
                 <div class="front">
                     <ul class="content">
                         <li class="title">좀 더 소개해주실 수 있으세요?</li>
-                        <li class="sub-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</li>
+                        <li class="sub-text">담당자 지정에 도움이 됩니다</li>
                         
                         <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
                         <li class="skip-btn"><router-link to="/client" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 ></router-link></li>
@@ -350,7 +350,7 @@
             <div class="tab" id="additionalInfo" v-else>
                 <div class="add_wrap add_wrap_group"  v-if="!isAccodionOn">
                     <div class="title">좀 더 소개해주실 수 있으세요?</div>
-                    <div class="text">보다 빠른 가입 승인 및<br>담당자 지정에 도움이 됩니다.</div>
+                    <div class="text">담당자 지정에 도움이 됩니다.</div>
                     <button class="add_btn" id="addinfoPageBtn" @click.prevent="accodionOpen">회사정보 입력</button>
                     <div class="skip"><a href="#">괜찮아요.이대로가입할게요 &gt;</a></div>
                 </div>

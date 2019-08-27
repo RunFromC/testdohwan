@@ -158,7 +158,7 @@
           <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
           </div>
-          <div class="listContents listWrap long">
+          <div class="listContents listWrap long item-top">
             <ul class="list">
               <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
             </ul>
@@ -284,7 +284,7 @@
             <i></i>
           </div>
 
-          <div class="listContents listWrap list-first">
+          <div class="listContents listWrap list-first age-top">
             <ul class="list">
               <li @click="isText">10대</li>
               <li @click="isText">20대</li>
@@ -302,7 +302,7 @@
             <i></i>
           </div>
 
-          <div class="listContents listWrap2 list-second">
+          <div class="listContents listWrap2 list-second age-top2">
             <ul class="list">
               <li @click="isText">초반</li>
               <li @click="isText">중반</li>
@@ -792,7 +792,7 @@
             <i></i>
           </div>
 
-          <div class="listContents listWrap2 long">
+          <div class="listContents listWrap2 long skin-top">
             <ul class="list">
               <li @click="isText">건성</li>
               <li @click="isText">중성</li>

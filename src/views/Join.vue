@@ -282,7 +282,7 @@
                         </ul>
                         <ul class="content" v-else>
                             <li class="title">좀 더 소개해주실 수 있으세요?</li>
-                            <li class="sub-text" style="margin-bottom: 88px;">포인트 적립, 고객사 매칭 등에 도움이 될 거예요</li>                            
+                            <li class="sub-text" >고객사 매칭 등에 도움이 될 거예요</li>                            
                             <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
                             <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 &gt;</router-link></li>
                         </ul>
@@ -380,7 +380,7 @@
                 <div class="tab" id="additionalInfo" v-else>
                     <div class="add_wrap add_wrap_group" v-if="!isAccodionOn">
                         <div class="title">좀 더 소개해주실 수 있으세요?</div>
-                        <div class="text">보다 빠른 가입 승인 및<br>담당자 지정에 도움이 됩니다.</div>
+                        <div class="text">고객사 매칭 등에 도움이 될 거예요</div>
                         <img  v-if="!this.$store.state.iccMode" class="top" src="~@/assets/img/coin.png" alt="동전탑이미지">
                         <!-- <div class="text2">
                             추가정보 작성시 <br>

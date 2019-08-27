@@ -791,6 +791,17 @@ button:focus {
                                     }
                                 }
                             }
+                            .input-selectbox-wrap {
+                                .listWrap.age-top {
+                                    top: 65px;
+                                }
+                                .listWrap.age-top2 {
+                                    top: 35px;
+                                }
+                                .listWrap2.skin-top {
+                                    top: 35px;
+                                }
+                            }
                         }
 
                         .button-wrap {
@@ -2861,13 +2872,14 @@ button:focus {
                     }
                     .sub-text {
                         margin-top: 2px;
-                        max-width: 195px;
+                        
                         font-family: 'NotoSansKR-Light';
                         height: auto;
                         line-height: 24px;
                         font-size: 16px;
                         margin:2px auto 61px;
                         color: #707070;
+                        margin-bottom: 113px;
                         
                     }
                     .point-text {
@@ -2883,7 +2895,7 @@ button:focus {
                         }
                     }
                     .button {
-                        margin-top: 50px;
+                        margin-top: 50px !important;
                         margin-bottom: 11px;
                         a {
                             display: block;
@@ -4802,8 +4814,7 @@ button:focus {
                             height: 28px;
                             line-height: 28px;
                         }
-                        .sub-text {
-                            max-width: 235px;
+                        .sub-text {                            
                             height: auto;
                             line-height: 17px;
                             font-size: 11px;
@@ -5797,6 +5808,18 @@ button:focus {
                                     }
                                    
                                 }
+                            }
+                            .listWrap.age-top {
+                                top: 65px;
+                            }
+                            .listWrap.age-top2 {
+                                top: 35px;
+                            }
+                            .listWrap2.skin-top {
+                                top: 35px;
+                            }
+                            .listWrap.item-top {
+                                top: 35px;
                             }
                             .list::-webkit-scrollbar {
                                 width: 5px;
