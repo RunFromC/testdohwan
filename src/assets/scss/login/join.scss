@@ -790,6 +790,17 @@ button:focus {
                                     }
                                 }
                             }
+                            .input-selectbox-wrap {
+                                .listWrap.age-top {
+                                    top: 65px;
+                                }
+                                .listWrap.age-top2 {
+                                    top: 35px;
+                                }
+                                .listWrap2.skin-top {
+                                    top: 35px;
+                                }
+                            }
                         }
 
                         .button-wrap {
@@ -5770,6 +5781,18 @@ button:focus {
                                     }
                                    
                                 }
+                            }
+                            .listWrap.age-top {
+                                top: 65px;
+                            }
+                            .listWrap.age-top2 {
+                                top: 35px;
+                            }
+                            .listWrap2.skin-top {
+                                top: 35px;
+                            }
+                            .listWrap.item-top {
+                                top: 35px;
                             }
                             .list::-webkit-scrollbar {
                                 width: 5px;

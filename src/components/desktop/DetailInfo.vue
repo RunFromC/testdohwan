@@ -263,7 +263,7 @@
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap list-first">
+          <div class="listContents listWrap list-first age-top">
             <ul class="list">
               <li @click="isText">10대</li>
               <li @click="isText">20대</li>
@@ -281,7 +281,7 @@
             <i class="icon"></i>
           </div>
 
-          <div class="listContents listWrap list-second">
+          <div class="listContents listWrap list-second age-top2">
             <ul class="list">
               <li @click="isText">초반</li>
               <li @click="isText">중반</li>
@@ -935,7 +935,7 @@
               <i></i>
             </div>
 
-            <div class="listContents listWrap2 long">
+            <div class="listContents listWrap2 long skin-top">
               <ul class="list">
                 <li @click="isText">건성</li>
                 <li @click="isText">중성</li>
