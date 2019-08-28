@@ -27,7 +27,7 @@
                                     <div class="label">아이디 </div>
                                     <input type="text" v-model="id" @keyup="idvalidationReset">
                                     <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
+                                    <div class="wrong-text" v-if="id && idValidityText">영문,숫자,밑줄,점 6~20자</div>
                                     <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                                     <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                                     <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -114,16 +114,16 @@
 <!--        <div class="scene">-->
             <div :class="joinPage == false ? 'none': ''" class="card" id="cardStep2">
                 <div class="front">
-                    <div class="contents">
+                    <div class="contents" @click="closeSelectList">
                         <div class="article">
                             <div class="header">
                             2. 회사정보(선택)
                             </div>
-                            <div class="input-wrapper pb10">
+                            <div class="input-wrapper pb15">
                                 <div class="item col1">
                                     <div class="label">회사명</div>
-                                    <input type="text" v-model="companyName">
-                                    <div class="wrong-text" v-if="companyName && companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
+                                    <input type="text" v-model="companyName" @keyup="companyNameInput">
+                                    <div class="wrong-text" v-if="companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
                                 </div>
                             </div>
 
@@ -136,12 +136,12 @@
 
                             <div class="input-wrapper pb21">
                                 <div class="ceo-btn">
-                                    <label for="fileUpload">사업자등록증 업로드</label>
-                                    <input type="file" id="fileUpload">
+                                    <label for="fileUpload" :class="companyRegistrationfileUploadName && companyRegistrationfileUploadSize ? 'on':''">사업자등록증 업로드</label>
+                                    <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept=".gif, .jpg, .png">
                                     <div class="uploadtextfaise" v-if="companyRegistrationFileSize">최대 업로드 파일 크기 : 5MB</div>
                                     <div class="uploadtexttrue" v-if="companyRegistrationFileName">
-                                        <span>파일명최대10글자.jpg</span>
-                                        <span>5MB</span>
+                                        <span>{{companyRegistrationfileUploadName}}</span>
+                                        <span>{{companyRegistrationfileUploadSize}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -155,12 +155,12 @@
                             </div>
                             <div class="input-wrapper pb21">
                                 <div class="ceo-btn">
-                                    <label for="fileUpload">통신판매업증 업로드</label>
-                                    <input type="file" id="fileUpload">
+                                    <label for="fileUpload-second" :class="mailorderBusinessfileUploadName && mailorderBusinessfileUploadSize ? 'on':''">통신판매업증 업로드</label>
+                                    <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept=".gif, .jpg, .png">
                                     <div class="uploadtextfaise" v-if="mailorderBusinessFileSize">최대 업로드 파일 크기 : 5MB</div>
                                     <div class="uploadtexttrue" v-if="mailorderBusinessFileName">
-                                        <span>파일명최대10글자.jpg</span>
-                                        <span>5MB</span>
+                                        <span>{{mailorderBusinessfileUploadName}}</span>
+                                        <span>{{mailorderBusinessfileUploadSize}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -175,13 +175,13 @@
                             <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label">회사 분류</div>
-                                    <ul class="select-wrap">
+                                    <ul class="select-wrap" id="companyClassify">
                                         <li class="select-contents">
-                                            <div class="select" @click="showSelectList">
+                                            <div class="select select-btn" @click.prevent="showSelectList">
                                                 <span>{{companyClassifyDefault}}</span>
                                                 <i></i>
                                             </div>
-                                            <ul class="listWrap">
+                                            <ul class="listWrap listContents">
                                                 <ul class="list">
                                                     <li v-for="(item,index) in companyClassifyList" @click="isText($event,index)" :key="index">{{item.name}}</li>
                                                 </ul>
@@ -198,7 +198,10 @@
                                     <input type="text" v-model="companyURL">
                                 </div>
                             </div>
-                            <router-link  id="join-finished" to="/client" :class="this.$store.state.welcome = true">회사정보 입력완료</router-link>
+                            <div id="join-finished" @click="joinCheck" 
+                                :class="companyName||companyContact||companyRegistrationFileName == true||companyRegistrationNumber||mailorderBusinessFileName == true||mailorderBusinessNumber||companyClassifyChoice||companyURL ? 'on':''">회사정보 입력완료
+                            </div>
+                            <!-- <router-link  id="join-finished" to="/client" :class="this.$store.state.welcome = true">회사정보 입력완료</router-link> -->
                         </div>
                     </div>
                 </div>
@@ -280,7 +283,7 @@
                         <div class="label">아이디 </div>
                         <input type="text" v-model="id" @keyup="idvalidationReset">
                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
+                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,밑줄,점 6~20자</div>
                         <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                         <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                         <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -358,8 +361,8 @@
                     <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">회사명</div>
-                            <input type="text" v-model="companyName">
-                            <div class="wrong-text" v-if="companyName && companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
+                            <input type="text" v-model="companyName" @keyup="companyNameInput">
+                            <div class="wrong-text" v-if="companyNameValidityText">한글,영문,숫자,특수문자 2자이상</div>
                         </div>
                     </div>
 
@@ -373,11 +376,12 @@
 
                     <div class="input-wrapper">
                         <div class="ceo-btn clearfix">
-                            <button>사업자 등록증 업로드</button>
+                            <label for="fileUpload" :class="companyRegistrationfileUploadName && companyRegistrationfileUploadSize ? 'on':''">사업자등록증 업로드</label>
+                            <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept=".gif, .jpg, .png">
                             <div class="uploadtextfaise" v-if="companyRegistrationFileSize">최대 업로드 파일 크기 : 5MB</div>
                             <div class="uploadtexttrue" v-if="companyRegistrationFileName">
-                                <span>파일명최대10글자.jpg</span>
-                                <span>5MB</span>
+                                <span>{{companyRegistrationfileUploadName}}</span>
+                                <span>{{companyRegistrationfileUploadSize}}</span>
                             </div>
                         </div>
                     </div>
@@ -390,11 +394,12 @@
                     </div>
                     <div class="input-wrapper">
                         <div class="ceo-btn clearfix">
-                            <button>통신판매업증 업로드</button>
+                            <label for="fileUpload-second" :class="mailorderBusinessfileUploadName && mailorderBusinessfileUploadSize ? 'on':''">통신판매업증 업로드</label>
+                            <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept=".gif, .jpg, .png">
                             <div class="uploadtextfaise" v-if="mailorderBusinessFileSize">최대 업로드 파일 크기 : 5MB</div>
                             <div class="uploadtexttrue" v-if="mailorderBusinessFileName">
-                                <span>파일명최대10글자.jpg</span>
-                                <span>5MB</span>
+                                <span>{{mailorderBusinessfileUploadName}}</span>
+                                <span>{{mailorderBusinessfileUploadSize}}</span>
                             </div>
                         </div>
                     </div>
@@ -410,21 +415,18 @@
                     <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">회사 분류</div>
-                            <ul class="select-wrap">
+                            <ul class="select-wrap" id="companyClassify">
                                 <li class="select-contents">
-                                    <div class="select">
-                                        <span>대분류</span>
-                                        <i class="rotate"></i>
+                                    <div class="select select-btn" @click.prevent="showSelectList">
+                                        <span>{{companyClassifyDefault}}</span>
+                                        <i></i>
                                     </div>
-                                    <div class="listWrap">
+                                    <ul class="listWrap listContents">
                                         <ul class="list">
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                            <li>4</li>
+                                            <li v-for="(item,index) in companyClassifyList" @click="isText($event,index)" :key="index">{{item.name}}</li>
                                         </ul>
-                                    </div>
-                                </li>                               
+                                    </ul>
+                                </li>                                        
                             </ul>
                         </div>
                     </div>
@@ -466,12 +468,18 @@ export default {
             mailorderBusinessNumber: '',
             companyClassifyList: [],
             companyClassifyDefault: '대분류',
-            companyClassify: '',
+            companyClassifyChoice: NaN,
             companyURL: '',
             companyRegistrationFileSize: false,
             companyRegistrationFileName: false,
             mailorderBusinessFileSize: false,
             mailorderBusinessFileName: false,
+            companyRegistrationfileUploadName: '',
+            companyRegistrationfileUploadSize: '',
+            mailorderBusinessfileUploadName: '',
+            mailorderBusinessfileUploadSize: '',
+            companyRegistrationFileData: {},
+            mailorderBusinessFileData: {},
 
             isCardFlip: false,
             joinPage: false,
@@ -503,7 +511,7 @@ export default {
                 contact: this.companyContact,
                 companyRegistrationNumber: this.companyRegistrationNumber,
                 mailorderBusinessNumber: this.mailorderBusinessNumber,
-                classification: this.companyClassify,
+                classification: this.companyClassifyChoice,
                 companyUrl: this.companyURL
             })
         },
@@ -526,28 +534,114 @@ export default {
                 accordion.classList.add('height');
             }
         },
-        onFileChange(e) {
-            console.log(e.target.files);
-            console.log(e.dataTransfer.files);
+        closeSelectList(e) {
+            const parent = e.target.closest('#join');
+            if (!e.target.closest('.select-btn') && parent) {
+                parent.querySelectorAll('.listContents').forEach(element => {
+                    element.classList.remove('selectOn');
+                });
+                parent.querySelectorAll('i').forEach(con => {
+                    con.classList.remove('rotate');
+                });
 
-            
-            // let files = e.target.files || e.dataTransfer.files;
-            // console.log(files);
-            
-            // if (!files.length)
-            //     return;
-            // this.createImage(files[0]);
+                parent.querySelectorAll('.accordion-contents').forEach(el => {
+                    el.classList.remove('height');
+                });
+            }
         },
-        // createImage(file) {
-        //     var image = new Image();
-        //     var reader = new FileReader();
-        //     var vm = this;
-
-        //     reader.onload = (e) => {
-        //         vm.image = e.target.result;
-        //     };
-        //     reader.readAsDataURL(file);
-        // }
+        isText(e, idx) {
+            let text = e.target.innerText;
+            if (e.target.closest('#companyClassify, #m-companyClassify')) {
+                this.companyClassifyDefault = text;
+                this.companyClassifyChoice = this.companyClassifyList[idx].id;
+            }
+        },
+        companyNameInput() {
+            // if(this.companyName) {
+            //     let validity = /^[가-힣A-Za-z0-9!@#$%^&*()]{2,}$/i;
+            //     if(validity.test(this.companyName)) {
+            //         this.companyNameValidityText = false;
+            //     } else {
+            //         this.companyNameValidityText = true;
+            //     }
+            // }
+        },
+        companyRegistrationFileChange(e) {
+            this.companyRegistrationFileData = e.target.files[0]
+            let formData = new FormData();
+            formData.append('multipartFile', this.companyRegistrationFileData);
+            if(this.companyRegistrationFileData.name.length > 14) {
+                alert('파일명최대 10글자입니다.');
+            } else {
+                this.$axios('post','/file/upload/companyRegistration', formData).then((res) => {
+                    if(res.status !== 200 && (res.data.size !== this.companyRegistrationFileData.size)) {
+                        alert('파일업로드 오류가 발생하였습니다.');
+                    } else {
+                        this.companyRegistrationfileUploadName = this.companyRegistrationFileData.name;
+                        this.companyRegistrationFileName = true;
+                        if(this.companyRegistrationFileData.size < 1024) {
+                            let bytesSize = this.companyRegistrationFileData.size;
+                            this.companyRegistrationfileUploadSize = bytesSize + 'Bytes';
+                            this.companyRegistrationFileName = true;
+                            this.companyRegistrationFileSize = false;
+                        } else if(this.companyRegistrationFileData.size >= 1024 && this.companyRegistrationFileData.size < 1048576) {
+                            let kbSize = Math.round(this.companyRegistrationFileData.size / 1024);
+                            this.companyRegistrationfileUploadSize = kbSize + 'KB';
+                            this.companyRegistrationFileName = true;
+                            this.companyRegistrationFileSize = false;
+                        } else if(this.companyRegistrationFileData.size >= 1048576) {
+                            let mbSize = Math.round(this.companyRegistrationFileData.size / 1048576);
+                            if(mbSize >= 5) {
+                                this.companyRegistrationFileSize = true;
+                                this.companyRegistrationFileName = false;
+                            } else {
+                                this.companyRegistrationfileUploadSize = mbSize + 'MB';
+                                this.companyRegistrationFileName = true;
+                                this.companyRegistrationFileSize = false;
+                            }
+                        }
+                    }
+                })
+            }
+        },
+        mailorderBusinessFileChange(e) {
+            this.mailorderBusinessFileData = e.target.files[0]
+            let formData = new FormData();
+            formData.append('multipartFile', this.mailorderBusinessFileData);
+            if(this.mailorderBusinessFileData.name.length > 14) {
+                alert('파일명최대 10글자입니다.');
+            } else {
+                this.$axios('post','/file/upload/mailorderBusiness', formData).then((res) => {
+                    if(res.status !== 200 && (res.data.size !== this.mailorderBusinessFileData.size)) {
+                        alert('파일업로드 오류가 발생하였습니다.');
+                    } else {
+                        this.mailorderBusinessfileUploadName = this.mailorderBusinessFileData.name;
+                        this.mailorderBusinessFileName = true;
+                        if(this.mailorderBusinessFileData.size < 1024) {
+                            let bytesSize = this.mailorderBusinessFileData.size;
+                            this.mailorderBusinessfileUploadSize = bytesSize + 'Bytes';
+                            this.mailorderBusinessFileName = true;
+                            this.mailorderBusinessFileSize = false;
+                        } else if(this.mailorderBusinessFileData.size >= 1024 && this.mailorderBusinessFileData.size < 1048576) {
+                            let kbSize = Math.round(this.mailorderBusinessFileData.size / 1024);
+                            this.mailorderBusinessfileUploadSize = kbSize + 'KB';
+                            this.mailorderBusinessFileName = true;
+                            this.mailorderBusinessFileSize = false;
+                        } else if(this.mailorderBusinessFileData.size >= 1048576) {
+                            let mbSize = Math.round(this.mailorderBusinessFileData.size / 1048576);
+                            if(mbSize >= 5) {
+                                this.mailorderBusinessFileSize = true;
+                                this.mailorderBusinessFileName = false;
+                            } else {
+                                this.mailorderBusinessfileUploadSize = mbSize + 'MB';
+                                this.mailorderBusinessFileName = true;
+                                this.mailorderBusinessFileSize = false;
+                            }
+                        }
+                    }
+                })
+            }
+        }
     }
 };
 </script>

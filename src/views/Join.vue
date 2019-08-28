@@ -26,7 +26,7 @@
                                         <div class="label">아이디 </div>
                                         <input type="text" v-model="id" @keyup="idvalidationReset">
                                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
+                                        <div class="wrong-text" v-if="id && idValidityText">영문,숫자,밑줄,점 6~20자</div>
                                         <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                                         <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                                         <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -310,7 +310,7 @@
                             <div class="label">아이디 </div>
                             <input type="text" v-model="id" @keyup="idvalidationReset">
                             <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
-                            <div class="wrong-text" v-if="id && idValidityText">영문,숫자,특수문자(-,.) 6~20자</div>
+                            <div class="wrong-text" v-if="id && idValidityText">영문,숫자,밑줄,점 6~20자</div>
                             <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
                             <div class="wrong-text" v-if="id && idWrongText">사용중인 아이디입니다</div>
                             <div class="wrong-text" v-if="id && idCheckText">중복확인이 필요합니다</div>
@@ -501,7 +501,7 @@ export default {
         idCheck() { // 아이디 중복확인
             this.idCheckText = false;
             if(this.id) {
-                let validity = /^[A-Za-z0-9-.]{6,20}$/i; // 영문,숫자,특수문자(-,.) 6~20자
+                let validity = /^[A-Za-z0-9_.]{6,20}$/i; // 영문,숫자,특수문자(_,.) 6~20자
                 if(validity.test(this.id)) {
                     this.$axios('post','/check/id', {
                         id: this.id
@@ -599,7 +599,7 @@ export default {
         standardJoin() { // 가입완료
             // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
             //     if(this.idValidityText) {
-            //         alert("아이디는 영문,숫자,특수문자(-,.) 6~20자로 입력해주세요");
+            //         alert("아이디는 영문,숫자,특수문자(_,.) 6~20자로 입력해주세요");
             //         return;
             //     }
             //     if(this.idWrongText) {
