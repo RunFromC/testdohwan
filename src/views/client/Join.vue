@@ -119,7 +119,7 @@
                             <div class="header">
                             2. 회사정보(선택)
                             </div>
-                            <div class="input-wrapper pb15">
+                            <div class="input-wrapper pb15 companyValidityText">
                                 <div class="item col1">
                                     <div class="label">회사명</div>
                                     <input type="text" v-model="companyName" @keyup="companyNameInput">
@@ -374,7 +374,7 @@
                         </div>
                     </div>
 
-                    <div class="input-wrapper">
+                    <div class="input-wrapper mb5">
                         <div class="ceo-btn clearfix">
                             <label for="fileUpload" :class="companyRegistrationfileUploadName && companyRegistrationfileUploadSize ? 'on':''">사업자등록증 업로드</label>
                             <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept=".gif, .jpg, .png">
@@ -392,7 +392,7 @@
                             <input type="text" class="ceo-num" maxlength="10" placeholder="-없이 입력" v-model="companyRegistrationNumber">
                         </div>
                     </div>
-                    <div class="input-wrapper">
+                    <div class="input-wrapper mb5">
                         <div class="ceo-btn clearfix">
                             <label for="fileUpload-second" :class="mailorderBusinessfileUploadName && mailorderBusinessfileUploadSize ? 'on':''">통신판매업증 업로드</label>
                             <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept=".gif, .jpg, .png">
@@ -439,7 +439,9 @@
                     </div>
 
                     <!-- <div class="m-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</div> -->
-                    <div class="m-finished"><a href="#"  @click.prevent="joinCheck()"><span>회사정보 입력완료</span><i></i></a></div>
+                    <div class="m-finished" @click="joinCheck" 
+                        :class="companyName||companyContact||companyRegistrationFileName == true||companyRegistrationNumber||mailorderBusinessFileName == true||mailorderBusinessNumber||companyClassifyChoice||companyURL ? 'on':''">회사정보 입력완료
+                    </div>
                 </div>
             </div>
         </div>
@@ -499,13 +501,7 @@ export default {
         addJoin() {
             this.joinPage = true;
         },
-        standardJoin() {
-            this.addJoinPage = !this.addJoinPage
-        },
         joinCheck(){
-            // console.log(this.$store.state.welcome)
-            // this.$store.state.welcome = true;
-            // location.href = '/client';
             this.$axios('post','/join/info/save', {
                 companyName: this.companyName,
                 contact: this.companyContact,
@@ -514,6 +510,8 @@ export default {
                 classification: this.companyClassifyChoice,
                 companyUrl: this.companyURL
             })
+            this.$store.state.welcome = true;
+            location.href = '/client';
         },
         showSelectList(e) {
             const selectBtn = e.target.closest('div, ul');
@@ -579,6 +577,7 @@ export default {
                     } else {
                         this.companyRegistrationfileUploadName = this.companyRegistrationFileData.name;
                         this.companyRegistrationFileName = true;
+                        this.companyRegistrationFileSize = false;
                         if(this.companyRegistrationFileData.size < 1024) {
                             let bytesSize = this.companyRegistrationFileData.size;
                             this.companyRegistrationfileUploadSize = bytesSize + 'Bytes';
@@ -617,6 +616,7 @@ export default {
                     } else {
                         this.mailorderBusinessfileUploadName = this.mailorderBusinessFileData.name;
                         this.mailorderBusinessFileName = true;
+                        this.mailorderBusinessFileSize = false;
                         if(this.mailorderBusinessFileData.size < 1024) {
                             let bytesSize = this.mailorderBusinessFileData.size;
                             this.mailorderBusinessfileUploadSize = bytesSize + 'Bytes';

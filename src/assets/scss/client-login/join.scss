@@ -10,6 +10,9 @@ $defaultColor: #707070;
 $colorAAA: #aaa;
 // color ---------------------------
 
+.mb5 {
+    margin-bottom: 5px !important;
+}
 .mb10 {
     margin-bottom: 10px !important;
 }
@@ -211,7 +214,7 @@ button:focus {
                             display: inline-block;
                             width: 272px;
                             height: auto;
-
+                            
                             .ceo-btn {
                                 float: right;
                                 position: relative;
@@ -329,7 +332,7 @@ button:focus {
                                     position: absolute;
                                     height: 25px;
                                     left: 90px;
-                                    bottom: -25px;
+                                    bottom: -28px;
                                     font-size: 12px;
                                     color: #ff8173;
                                 }
@@ -462,28 +465,32 @@ button:focus {
                                 line-height: 152px;
                             }
                         }
-                        > a#join-finished {
-                            border: none;
-                            -webkit-border-radius: 10px;
-                            -moz-border-radius: 10px;
-                            border-radius: 10px;
-                            background: $mainColor;
-                            width: 272px;
-                            height: 50px;
-                            line-height: 50px;
-                            text-align: center;
-                            color: #fff;
-                            font-size: 20px;
-                            display: block;
-                            position: absolute;
-                            bottom: 35px;
-                            left: 50%;
-                            -webkit-transform: translateX(-50%);
-                            -moz-transform: translateX(-50%);
-                            -ms-transform: translateX(-50%);
-                            -o-transform: translateX(-50%);
-                            transform: translateX(-50%);
-                            cursor: pointer;
+                        > #join-finished {
+                          border: none;
+                          -webkit-border-radius: 10px;
+                          -moz-border-radius: 10px;
+                          border-radius: 10px;
+                          background: #E2E1E1;
+                          width: 272px;
+                          height: 50px;
+                          line-height: 50px;
+                          text-align: center;
+                          color: #fff;
+                          font-size: 20px;
+                          display: block;
+                          position: absolute;
+                          bottom: 35px;
+                          left: 50%;
+                          -webkit-transform: translateX(-50%);
+                          -moz-transform: translateX(-50%);
+                          -ms-transform: translateX(-50%);
+                          -o-transform: translateX(-50%);
+                          transform: translateX(-50%);
+                          cursor: default;
+                        }
+                        #join-finished.on {
+                          background: $mainColor;
+                          cursor: pointer;
                         }
 
                         .item.password,
@@ -1450,13 +1457,13 @@ button:focus {
                                     .uploadtextfaise {
                                         color: #ff8173;
                                         font-family: 'NanumBarunGothic';
-                                        font-size: 10px;
+                                        font-size: 11px;
                                         float: left;
                                     }
                                     .uploadtexttrue {
                                         color: #000;
                                         font-family: 'NanumBarunGothic';
-                                        font-size: 10px;
+                                        font-size: 11px;
                                         float: left;
                                     }
                                     .uploadtexttrue span:last-child {
@@ -1497,9 +1504,9 @@ button:focus {
                                     .wrong-text {
                                         position: absolute;
                                         height: 25px;
-                                        left: 70px;
-                                        bottom: -25px;
-                                        font-size: 11px;
+                                        left: 65px;
+                                        bottom: -28px;
+                                        font-size: 10px;
                                         color: #ff8173;
                                     }
                                     .possible-text {
@@ -1525,6 +1532,14 @@ button:focus {
                                     }
                                     input {
                                         width: 130px !important;
+                                    }
+                                    .wrong-text {
+                                        position: absolute;
+                                        height: 25px;
+                                        left: 82px;
+                                        bottom: -27px;
+                                        font-size: 10px;
+                                        color: #ff8173;
                                     }
                                     input::placeholder {
                                         font-size: 10px;
@@ -1564,14 +1579,18 @@ button:focus {
                                     }
                                 }
                             }
-                            > a#join-finished {
-                                width: 228px !important;
-                                height: 38px !important;
-                                -webkit-border-radius: 10px;
-                                -moz-border-radius: 10px;
-                                border-radius: 10px;
-                                font-size: 14px !important;
-                                line-height: 38px;
+                            > #join-finished {
+                              width: 228px!important;
+                              height: 38px!important;
+                              -webkit-border-radius: 10px;
+                              -moz-border-radius: 10px;
+                              border-radius: 10px;
+                              font-size: 14px!important;
+                              line-height: 38px;
+                            }
+                            #join-finished.on {
+                              background: #4BD897;
+                              cursor: pointer;
                             }
 
                             .line {
@@ -2218,21 +2237,32 @@ button:focus {
                         .ceo-btn {
                             position: relative;
                             float: right;
-                            button {
-                                width: 192px;
-                                float: right;
-                                -webkit-border-radius: 5px;
-                                -moz-border-radius: 5px;
-                                border-radius: 5px;
-                                background: #a1a1a1;
-                                color: #fff;
-                                border: none;
-                                height: 34px;
-                                font-size: 14px;
-                                cursor: pointer;
+                            label {
+                              display: inline-block;
+                              width: 190px;
+                              height: 40px;
+                              font-size: 14px;
+                              color: #fff;
+                              background: #a1a1a1;
+                              text-align: center;
+                              line-height: 40px;
+                              border-radius: 5px;
+                              -webkit-border-radius: 5px;
+                              -moz-border-radius: 5px;
+                              cursor: pointer;
                             }
-                            button.on {
-                                background: $mainColor;
+                            label.on {
+                                background: #4bd897;
+                            }
+                            input[type='file'] {
+                                position: absolute;
+                                width: 1px;
+                                height: 1px;
+                                padding: 0;
+                                margin: -1px;
+                                overflow: hidden;
+                                clip: rect(0, 0, 0, 0);
+                                border: 0;
                             }
                             > div {
                                 position: absolute;
@@ -2248,12 +2278,12 @@ button:focus {
                             .uploadtextfaise {
                                 color: #ff8173;
                                 font-family: 'NanumBarunGothic';
-                                float: left;
+                                text-align: left;
                             }
                             .uploadtexttrue {
                                 color: #000;
                                 font-family: 'NanumBarunGothic';
-                                float: left;
+                                text-align: left;
                             }
                             .uploadtexttrue span:last-child {
                                 float: right;
@@ -2282,13 +2312,12 @@ button:focus {
                         line-height: 50px;
                         font-size: 16px;
                         z-index: 998;
-                        a {
-                            color: #fff;
-                            display: block;
-                        }
-                        a.on {
-                            background: #4bd897;
-                        }
+                        color: #FFF;
+                        cursor: default;
+                    }
+                    .m-finished.on {
+                      background: #4bd897;
+                      cursor: pointer;
                     }
                     .checkbox-wrap {
                         width: 280px;
