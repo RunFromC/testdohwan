@@ -11,7 +11,6 @@ $errColor: #FF7364;
     @include input($width, 34px, 1px, $border-color, 12px, 19px);
     display: block;
     margin: 0 auto;
-    height: 30px!important;
     padding: 0 19px!important;
   }
 
@@ -164,8 +163,8 @@ $errColor: #FF7364;
               #countDown {
                 float: left;
                 color: $defaultColor;
-                height: 32px;
-                line-height: 32px;
+                height: 34px;
+                line-height: 34px;
                 font-size: 13px;
                 text-align: center;
                 width: 34px;
@@ -176,10 +175,10 @@ $errColor: #FF7364;
               #certNumberBtn {
                 float: left;
                 width: 53px;
-                height: 32px;
+                height: 34px;
                 background-color: $defaultColor;
                 color: #fff;
-                line-height: 32px;
+                line-height: 34px;
                 text-align: center;
                 border:none;
               }
@@ -343,11 +342,7 @@ $errColor: #FF7364;
           margin-top: 35px;
         }
 
-        .input-text {
-          padding: 9px ;
-          width: 200px - 20px ;
-          height: 34px - 20px ;
-        }
+        
 
         .input-button {
           width: 200px !important;
