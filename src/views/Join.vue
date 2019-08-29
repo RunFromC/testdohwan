@@ -278,7 +278,7 @@
                             <li><img src="../assets/img/coin.png" alt="동전탑 이미지"></li>
                             <li class="point-text">인플루언서 프로필 작성시 총 <strong>8000 포인트</strong> 적립</li>
                             <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
-                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요</router-link></li>
+                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 &gt;</router-link></li>
                         </ul>
                         <ul class="content" v-else>
                             <li class="title">좀 더 소개해주실 수 있으세요?</li>
@@ -373,8 +373,8 @@
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
 
-                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="toggleMobileTab(2)" >
-                        <a href="#"  :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
+                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="standardJoin" >
+                        <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
                     </div>
                 </div>
                 <div class="tab" id="additionalInfo" v-else>
@@ -387,7 +387,7 @@
                             총 <span>8000 포인트</span> 적립
                         </div> -->
                         <button class="add_btn" id="addinfoPageBtn" @click.prevent="accodionOpen">추가정보 입력</button>
-                        <div class="skip"><a href="#">괜찮아요.이대로가입할게요 &gt;</a></div>
+                        <div class="skip"><router-link to="/client" :class="this.$store.state.welcome = true">괜찮아요.이대로가입할게요 &gt;</router-link></div>
                     </div>
                     <MobileDetailInfo v-if="isAccodionOn"/>
                 </div>
@@ -650,6 +650,7 @@ export default {
             //     alert('정보를 모두 입력해주세요');
             // }
             this.addJoinPage = !this.addJoinPage;
+            this.toggleMobileTab(2);
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;

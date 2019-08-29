@@ -219,7 +219,7 @@ button:focus {
                                     width: 135px - 14px;
                                     padding-left: 14px;
                                     height: $height - 2px;
-                                    border: 1px solid #aaaaaa;
+                                    border: 1px solid #bbbbbb;
                                     border-radius: 5px 0px 0px 5px;
                                     font-family: 'NanumBarunGothic';
                                 }
@@ -1379,6 +1379,11 @@ button:focus {
                                         color: #E2E1E1;
                                         text-align: right;
                                     }
+                                    input[type="number"]::-webkit-outer-spin-button,
+                                    input[type="number"]::-webkit-inner-spin-button {
+                                        -webkit-appearance: none;
+                                        margin: 0;
+                                    }
                                 }
 
                                 .percentage-wrap {
@@ -1461,8 +1466,9 @@ button:focus {
                                 position: relative;
 
                                 > span {
-                                    margin-right: 26px;
+                                    margin-right: 25px;
                                     font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                    font-size: 13px;
                                 }
 
                                 .product-wrap {
@@ -1484,6 +1490,11 @@ button:focus {
                                     .pay::placeholder {
                                         font-size: 18px;
                                         color: #E2E1E1;
+                                    }
+                                    input[type="number"]::-webkit-outer-spin-button,
+                                    input[type="number"]::-webkit-inner-spin-button {
+                                        -webkit-appearance: none;
+                                        margin: 0;
                                     }
                                 }
                             }
@@ -4249,6 +4260,7 @@ button:focus {
                                                         display: block;
                                                         text-align: left;
                                                         padding-left: 10px;
+                                                        line-height: 30px;
                                                     }
                                                     
                                                     input {
@@ -5471,6 +5483,11 @@ button:focus {
                                     font-family: 'Nanum-Barun-Gothic-Bold',
                                         sans-serif;
                                 }
+                                input[type="number"]::-webkit-outer-spin-button,
+                                input[type="number"]::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin: 0;
+                                }
                             }
                             select {
                                 position: relative;
@@ -5637,8 +5654,9 @@ button:focus {
                             width: 246px;
 
                             > span {
-                                margin-right: 33px;
-                                font-family: Nanum-Barun-Gothic-bold, sans-serif;
+                                margin-right: 20px;
+                                font-family: Nanum-Barun-Gothic-normal, sans-serif;
+                                font-size: 13px;
                             }
 
                             .product-wrap {
@@ -5666,6 +5684,11 @@ button:focus {
                                 }
                                 span {
                                     font-size: 14px;
+                                }
+                                input[type="number"]::-webkit-outer-spin-button,
+                                input[type="number"]::-webkit-inner-spin-button {
+                                    -webkit-appearance: none;
+                                    margin: 0;
                                 }
                             }
                         }
@@ -6510,6 +6533,7 @@ button:focus {
                                             border: 1px solid #BBBBBB;   
                                             border-radius: 5px;
                                             height: 40px;
+                                            cursor: pointer;
                                             li {
                                                 box-sizing: border-box;
                                                 line-height: 40px;
@@ -7218,6 +7242,7 @@ button:focus {
                                             border: 1px solid #BBBBBB;   
                                             border-radius: 5px;
                                             height: 40px;
+                                            cursor: pointer;
                                             li {
                                                 box-sizing: border-box;
                                                 line-height: 38px;
@@ -7677,6 +7702,7 @@ button:focus {
                                             border: 1px solid #BBBBBB;   
                                             border-radius: 5px;
                                             height: 40px;
+                                            cursor: pointer;
                                             li {
                                                 box-sizing: border-box;
                                                 line-height: 38px;
@@ -8227,7 +8253,7 @@ button:focus {
                         height: 341px;
                     }
 
-                    .SNS-btn-cert {
+                    .SNS-btn {
                         margin: 25px auto;
                         width: 201px;
                         height: 35px;
@@ -8245,7 +8271,7 @@ button:focus {
                             line-height: 35px;
                         }
                     }
-                    .SNS-btn {
+                    .SNS-btn-default {
                         margin: 25px auto;
                         width: 201px;
                         height: 35px;
