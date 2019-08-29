@@ -1,3 +1,6 @@
 module.exports = {
-    chainWebpack: config => {}
+    chainWebpack: config => {},
+    configureWebpack: {
+        entry: ['babel-polyfill', './src/main.js']
+    }
 };
