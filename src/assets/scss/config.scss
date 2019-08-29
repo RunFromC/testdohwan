@@ -27,6 +27,9 @@ input {
     appearance: none;
     border: none;
 }
+input:disabled {
+    background: #fff;
+}
 
 input::placeholder {
     color: $colorAAA;

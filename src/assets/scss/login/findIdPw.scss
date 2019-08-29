@@ -10,9 +10,14 @@ $errColor: #FF7364;
   .input-text {
     @include input($width, 34px, 1px, $border-color, 12px, 19px);
     display: block;
+    width: 232px;
     margin: 0 auto;
-    height: 30px!important;
-    padding: 0 19px!important;
+    height: 34px!important;
+    padding: 0 9px!important;
+    box-sizing: border-box;
+    font-family: 'Nanum-Barun-Gothic-normal';
+    color: #000;
+    font-size: 13px;
   }
 
   .input-button {
@@ -22,6 +27,7 @@ $errColor: #FF7364;
     margin: 0 auto 11px;
     border:none;
     cursor: pointer;
+    box-sizing: border-box;
   }
 
   .input-button:hover {
@@ -137,20 +143,25 @@ $errColor: #FF7364;
           overflow: hidden;
 
           .certification {
+            
             .input-text {
               margin-bottom: 13px;
             }
 
             #certNumberWrap {
-              width: 230px;
-              height:32px;
+              width: 232px;
+              height:34px;
               border: 1px solid $defaultColor;
               display: block;
               margin:31px auto 7px;
               border-radius: 5px;
               overflow: hidden;
+              box-sizing: border-box;
+              margin: 16px auto 7px !important;
 
               input#certNumberInput {
+                
+                font-family: 'Nanum-Barun-Gothic-normal';
                 float: left;
                 width: 104px;
                 height: 20px;
@@ -159,13 +170,15 @@ $errColor: #FF7364;
                 margin-left: 10px;
                 padding-right: 10px;
                 border-right:1px solid $defaultColor;
+                font-size: 13px;
               }
 
               #countDown {
+                font-family: 'Nanum-Barun-Gothic-normal';
                 float: left;
                 color: $defaultColor;
-                height: 32px;
-                line-height: 32px;
+                height: 34px;
+                line-height: 34px;
                 font-size: 13px;
                 text-align: center;
                 width: 34px;
@@ -176,10 +189,10 @@ $errColor: #FF7364;
               #certNumberBtn {
                 float: left;
                 width: 53px;
-                height: 32px;
+                height: 34px;
                 background-color: $defaultColor;
                 color: #fff;
-                line-height: 32px;
+                line-height: 34px;
                 text-align: center;
                 border:none;
               }
@@ -254,13 +267,19 @@ $errColor: #FF7364;
             color: $mainColor;
             font-size: 16px;
             display: inline-block;
-            @include input($width, $height, 1px, $mainColor,0, 0);
+            @include input($width + 4px, $height + 4px, 2px, $mainColor,0, 0);
             line-height: $height;
             position: absolute;
             bottom:24px;
             left: 50%;
+            box-sizing: border-box;
             margin-left: division_mid($width);
             background: #fff;
+            border-radius: 10px;
+          }
+          #goBack:hover {
+            background: $mainColor;
+            color: #fff;
           }
 
           #cert_email {
@@ -288,17 +307,14 @@ $errColor: #FF7364;
               margin: 0 auto 13px;
               .input-phone {
                 float: left;
-                margin-left: 5.5px;
-                @include input(82px, 34px, 1px, $border-color, 0px, 10px);
-                height: 32px;
-                width: 58px;
-              }
-
-              .input-phone:first-child {
                 margin-left: 0;
-                @include input(57px, 34px, 1px, $border-color, 0px, 10px);
-                height: 32px;
-                width: 39px;
+                @include input(232px, 34px, 1px, $border-color, 0px, 10px);
+                font-size: 13px;
+              
+              }
+              .input-phone::placeholder {
+                font-size: 13px;
+                color: #AAAAAA;
               }
             }
 
@@ -363,13 +379,13 @@ $errColor: #FF7364;
         }
 
         .input-text {
-          padding: 9px ;
-          width: 200px - 20px ;
-          height: 34px - 20px ;
+          width: 200px ;
+          font-size: 12px;
         }
 
         .input-button {
           width: 200px !important;
+          font-size: 13px;
         }
 
         .tab {
@@ -414,6 +430,21 @@ $errColor: #FF7364;
 
             }
           }
+          .certificationTabs {
+            .certification {
+              #certNumberWrap {
+                width: 200px;
+                margin: 0 auto 7px;
+                input#certNumberInput {
+                  width: 72px;
+                  font-size: 12px;
+                }
+                #countDown {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
         }
 
         #goBack {
@@ -424,18 +455,15 @@ $errColor: #FF7364;
           .phoneNumberWrap {
             width: 200px !important;
             .input-phone {
-              width: 58px !important;
-              margin-left: 5px !important;
+              width: 200px !important;
+              height: 34px !important;
               font-size: 12px !important;
               padding:0px 5px !important;
               height: 30px!important;
+              box-sizing: border-box;
             }
 
-            .input-phone:first-child {
-              width: 38px !important;
-              margin-left: 0 !important;
-              height: 29px!important;
-            }
+            
           }
 
 
@@ -448,7 +476,7 @@ $errColor: #FF7364;
           }
 
           #certNumberWrap {
-            width: 198px;
+            width: 200px;
             #certNumberInput {
               width: 87px !important;
               font-size: 12px !important;
@@ -529,6 +557,7 @@ $errColor: #FF7364;
                   margin-bottom: 0;
                 }
                 #certNumberWrap {
+                  width: 200px !important;
                   margin: 16px auto 7px;
                   #certNumberBtn {
                     font-size: 13px !important;
@@ -545,8 +574,7 @@ $errColor: #FF7364;
               #goBack {
                 border: 2px solid #4bd897 !important;
                 border-radius: 10px !important;
-                height: 31px !important;
-                line-height: 31px !important;
+                
                 margin-left: 0;
                 -webkit-transform: translateX(-50%);
                 -moz-transform: translateX(-50%);
