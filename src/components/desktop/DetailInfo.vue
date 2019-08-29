@@ -171,7 +171,7 @@
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
           <span v-else>개런티</span>
           <div class="pay-wrap">
-            <input class="pay" type="text" maxlength="4" placeholder="0" v-model="defaultFeeInput" @keyup="inNumberAndMakeNotSave" />
+            <input class="pay" type="number" placeholder="0" v-model="defaultFeeInput" @keyup="inNumberAndMakeNotSave" @input="maxLengthCheckDefaultFee" />
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
@@ -190,7 +190,7 @@
         <div class="product-input-wrap">
           <span>제품가</span>
           <div class="product-wrap">
-            <input type="text" class="pay" maxlength="7" placeholder="0" v-model="productPriceInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" />
+            <input type="number" class="pay" placeholder="0" v-model="productPriceInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" @input="maxLengthCheckProductPrice" />
             <span>원 이상</span>
           </div>
         </div>
@@ -199,7 +199,7 @@
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
           <span v-else>개런티</span>
           <div class="pay-wrap">
-            <input class="pay" type="text" maxlength="4" placeholder="0" v-model="productFeeInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" />
+            <input class="pay" type="number" placeholder="0" v-model="productFeeInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" @input="maxLengthCheckProductFee" />
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
@@ -651,7 +651,7 @@
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn" 
-          :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice) ? 'on':''">저장하기</li>
+          :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice !== null) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -978,27 +978,6 @@ export default {
         myAction(selectKey) {
             console.log(selectKey);
             this.keyPush = selectKey;
-        },
-        statusCheck(value, type) {
-            this.onStatusCheck[type] = value;
-            if(this.onStatusCheck[type] === 'y' && type === 'job') {
-              this.jobExists = true;
-            } else if(this.onStatusCheck[type] === 'n' && type === 'job') {
-              this.jobExists = false;
-              this.profileCard.job.onSaveButton = true;
-            }
-            if(this.onStatusCheck[type] === 'y' && type === 'child') {
-              this.childrenExists = true;
-            } else if(this.onStatusCheck[type] === 'n' && type === 'child') {
-              this.childrenExists = false;
-              this.profileCard.children.onSaveButton = true;
-            }
-            if(this.onStatusCheck[type] === 'y' && type === 'pet') {
-              this.petExists = true;
-            } else if(this.onStatusCheck[type] === 'n' && type === 'pet') {
-              this.petExists = false;
-              this.profileCard.pet.onSaveButton = true;
-            }
         },
         checkStatus(el, type) {
             if (el.includes(this.onStatusCheck[type])) return 'on';
