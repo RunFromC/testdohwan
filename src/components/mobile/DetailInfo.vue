@@ -844,12 +844,12 @@ export default {
                 3: false
             },
             isCertificationOnOff: {
-                0: false,
-                1: false,
-                2: false,
-                3: false,
-                4: false,
-                5: false
+                0: false, // 페이스북
+                1: false, // 인스타그램
+                2: false, // 유투브
+                3: false, // 네이버
+                4: false, // 트위터
+                5: false 
             },
             instagramImg: true,
             youtubeImg: true,
@@ -1165,7 +1165,30 @@ export default {
             if(this.instagramPossibleText) {
               return;
             }
-            this.authInstagram();
+
+            if(this.isCertificationOnOff[1]){
+              this.authInstagram();
+            } else if (this.isCertificationOnOff[3]) {
+              this.authNaver();
+            }
+            
+        },
+        async authNaver() {
+          const naverUrl = "/auth/naver";
+        
+          const res = await this.$axios('get', `/auth/naver` );
+          
+          console.log(res.headers["set-cookie"]);
+
+        window.authResultForInsta = async data => {
+          console.log(data);
+        }
+          // popup open
+          window.open(
+              res.data,
+              '_blank',
+              'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+          );
         },
         authInstagram() {
             const redirectUri = 'http://member.concepters.co.kr/auth/instagram';

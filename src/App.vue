@@ -1,15 +1,15 @@
 <template>
-  <div id="app">
-    <router-view :key="$route.path" />
-  </div>
+    <div id="app">
+        <router-view :key="$route.path" />
+    </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
     methods: {
-        ...mapMutations(['setService']),
+        ...mapMutations(['setService'])
     },
     mounted() {
         this.$store.commit(
