@@ -1097,7 +1097,6 @@ export default {
             console.log(res);
             for (let i = 0; i < res.data.length; i++) {
               if(this.jobSearchDefault.includes(res.data[i].name)) {
-              console.log('a');
               }
             }
           })
