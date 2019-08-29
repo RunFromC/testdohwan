@@ -9,7 +9,6 @@ import './assets/scss/common.scss';
 import './assets/scss/config.scss';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
-import elementClosest from 'element-closest';
 import 'nodelist-foreach-polyfill';
 
 elementClosest(window);
