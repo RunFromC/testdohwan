@@ -546,11 +546,11 @@ export default {
             }
         },
         phoneCheck() { // 휴대폰 본인인증
-            var certWindow;
+            let certWindow;
             
             function openCertification() {
                 window.name = "Bigbird - i";
-                var UserAgent = navigator.userAgent;
+                let UserAgent = navigator.userAgent;
                 if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null) {
                     document.requestCert.target = '';
                 }
@@ -714,14 +714,16 @@ export default {
             }
         }
         // cert init 
-        this.$axios('get','/cert/init', {
+        this.$axios('get',`/cert/init/${this.service}`, {
             }).then((res) => {
+                console.log(res);
                 this.trCert = res.data.trCert;
                 this.trUrl = res.data.trUrl;
                 this.trAdd = res.data.trAdd;
             }).catch((err) => {
                 console.log(err)
             });
+
         // service 나누기
         if(this.service === 'client') {
             this.userService = 1;

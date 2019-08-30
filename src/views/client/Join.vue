@@ -449,6 +449,11 @@
     </div>
     <div id="backBlock"></div>
     
+    <form name="requestCert" method="post" action="#">
+        <input type="hidden" name="tr_cert" v-model="trCert">
+        <input type="hidden" name="tr_url" v-model="trUrl">
+        <input type="hidden" name="tr_add" v-model="trAdd">
+    </form>
   </div>
 </template>
 
