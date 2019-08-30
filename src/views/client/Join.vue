@@ -198,7 +198,7 @@
                                     <input type="text" v-model="companyURL">
                                 </div>
                             </div>
-                            <div id="join-finished" @click="joinCheck"
+                            <div id="join-finished" @click="companyJoin"
                                 :class="companyName||companyContact||companyRegistrationFileName == true||companyRegistrationNumber||mailorderBusinessFileName == true||mailorderBusinessNumber||companyClassifyChoice||companyURL ? 'on':''">회사정보 입력완료
                             </div>
                         </div>
@@ -221,9 +221,9 @@
                                     평일:10:00 ~ 18:30 <br> off-time: 12:30 ~ 13:30 <br> (공휴일 휴무)
                                 </div>
                             </div>
-                            <div class="bottom">
+                            <!-- <div class="bottom">
                                 <a href="#" class="email">bigbird-pick@concepters.co.kr</a>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="article" style="display: none;" id="welcome">
                             <div class="img-warp">
@@ -438,7 +438,7 @@
                     </div>
 
                     <!-- <div class="m-text">보다 빠른 가입 승인 및 담당자 지정에 도움이 됩니다</div> -->
-                    <div class="m-finished" @click="joinCheck" 
+                    <div class="m-finished" @click="companyJoin" 
                         :class="companyName||companyContact||companyRegistrationFileName == true||companyRegistrationNumber||mailorderBusinessFileName == true||mailorderBusinessNumber||companyClassifyChoice||companyURL ? 'on':''">회사정보 입력완료
                     </div>
                 </div>
@@ -500,17 +500,22 @@ export default {
         addJoin() {
             this.joinPage = true;
         },
-        joinCheck(){
-            this.$axios('post','/join/info/save', {
-                companyName: this.companyName,
-                contact: this.companyContact,
-                companyRegistrationNumber: this.companyRegistrationNumber,
-                mailorderBusinessNumber: this.mailorderBusinessNumber,
-                classification: this.companyClassifyChoice,
-                companyUrl: this.companyURL
-            })
-            this.$store.state.welcome = true;
-            location.href = '/client';
+        companyJoin(){
+            if(this.companyName || this.companyContact || this.companyRegistrationNumber || this.companyRegistrationFileName == true ||
+                this.mailorderBusinessFileName == true || this.mailorderBusinessNumber || this.companyClassifyChoice || this.companyURL) {
+                this.$axios('post','/join/info/save', {
+                    companyName: this.companyName,
+                    contact: this.companyContact,
+                    companyRegistrationNumber: this.companyRegistrationNumber,
+                    mailorderBusinessNumber: this.mailorderBusinessNumber,
+                    classification: this.companyClassifyChoice,
+                    companyUrl: this.companyURL
+                })
+                this.$store.state.welcome = true;
+                this.$router.push({path: '/client'})
+            } else {
+                alert('회사정보 중 한개라도 입력해야 합니다');
+            }
         },
         showSelectList(e) {
             const selectBtn = e.target.closest('div, ul');

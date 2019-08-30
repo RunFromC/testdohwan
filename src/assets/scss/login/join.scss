@@ -2760,6 +2760,50 @@ button:focus {
                             font-size: 20px;
                         }
                     }
+                    .callkakao {
+                        .top {
+                            .title {
+                                margin-top: 113px;
+                                font-size: 25px;
+                                display: inline-block;
+                                height: 34px;
+                                color: #4BD897;
+                            }
+                            img {
+                                display: block;
+                                margin: 50px auto 0;
+                            }
+                            input.input-button {
+                                display: block;
+                                margin: 11px auto 40px;
+                                border: none;
+                                width: 150px;
+                                height: 30px;
+                                background: $mainColor;
+                                -webkit-border-radius: 7px;
+                                -moz-border-radius: 7px;
+                                border-radius: 7px;
+                                color: #fff;
+                                font-size: 14px;
+                                cursor: pointer;
+                            }
+                        }
+                        .middle {
+                            border-top: 1px solid #c6c6c6;
+                            a.tel {
+                                font-size: 20px;
+                                text-align: center;
+                                display: block;
+                                margin-top: 40px;
+                                margin-bottom: 13px;
+                                color: #4bd897;
+                            }
+                            .text {
+                                margin-bottom: 40px;
+                                font-size: 13px;
+                            }
+                        }
+                    }
 
                     #finishBlock {
                         .finishbtn {
@@ -4569,6 +4613,22 @@ button:focus {
                                 font-size: 15px;
                                 line-height: 38px;
                                 bottom: 0;
+                            }
+                        }
+                        .callkakao {
+                            .top {
+                                .title {
+                                    margin-top: 50px !important;
+                                }
+                                input.input-button {
+                                    width: 150px;
+                                    height: 35px;
+                                }
+                            }
+                            .middle {
+                                .text {
+                                    line-height: 20px;
+                                }
                             }
                         }
                         #body.article {
