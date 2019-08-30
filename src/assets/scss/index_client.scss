@@ -114,15 +114,14 @@
         }
 
 
-      }
-
+      }      
       .tab2 {
-        margin-top: 180px;
+        margin-top: 0;
         .toggleBtnWrap {
           margin-top: 42px;
         }
-
       }
+      
       .partition {
         $height : 20px;
         width: calc(100% - 40px);
@@ -173,7 +172,7 @@
     .partition {
       margin-top: 20px;
     }
-
+    
     .tab2 {
       margin-top: 180px;
       .toggleBtnWrap {

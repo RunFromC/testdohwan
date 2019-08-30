@@ -20,7 +20,7 @@
                         </div>
 
                         <div class="text" v-if="this.$store.state.welcome = false">{{title}}</div>
-                        <div class="text" v-eles>회원가입을 환영합니다</div>
+                        <div class="text" v-else>회원가입을 환영합니다</div>
                     </div>
                     <div class="loginBox" v-if="!this.$store.state.iccMode">
                         <div class="tab1">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="loginBox" v-else>
-                        <div class="tab2">
+                        <div class="tab2 change">
                             <div class="toggleBtnWrap">
                                 <a href="#" @click.prevent="changeLoginType">로그인/회원가입</a>
                             </div>
@@ -141,7 +141,7 @@ export default {
                 ? 'open'
                 : '';
         },
-        ...mapState(['service', 'isQuestionTab']),
+        ...mapState(['service', 'isQuestionTab', 'iccMode']),
         title() {
             return this.service === 'brands'
                 ? '가능성은 당신에게 있어요'
