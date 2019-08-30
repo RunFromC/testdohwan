@@ -1,18 +1,17 @@
 <template>
   <div class="contents">
-    <div class="article" v-if="profileCard.default.on" id="defaultBlock">
-      <div class="title">좀 더 소개해주실 수 있으세요?</div>
-      <div class="text">
-        포인트 적립, 고객사 매칭등에
-        <br />도움이 될 거에요.
+    <div class="article callkakao" v-if="profileCard.default.on" id="defaultBlock">
+      <div class="top">
+        <div class="title">문의</div>
+        <img src="~@/assets/img/login_ask_kakao icon.png" alt="카카오 문의">
+        <input type="button" class="input-button" value="카카오톡 상담하기" @click="kakaoCounseling">
       </div>
-      <img src="~@/assets/img/coin.png" alt />
-      <div class="text2">
-        인플루언서 프로필 작성시
-        <br />총
-        <span>8000 포인트</span> 적립
+      <div class="middle">
+        <a href="#" class="tel">Tel. 1661 - 6213</a>
+        <div class="text">
+            평일:10:00 ~ 18:30 <br> off-time: 12:30 ~ 13:30 <br> (공휴일 휴무)
+        </div>
       </div>
-      <button>프로필 입력완료</button>
     </div>
     <!-- sns -->
     <div class="article" id="sns" v-if="profileCard.sns.on">
@@ -990,28 +989,6 @@ export default {
             this.clearCardList();
             this.profileCard['default'].on = true;
         },
-        joinCheck() {
-            // this.clearCardList();
-
-            // if (!this.$store.state.iccMode) {
-            //     this.profileCard['finishBlock'].on = true;
-            // } else {
-            //     this.$store.state.welcome = true;
-            //     this.$router.push('/');
-            // }
-            // this.$axios('post','/join/info/save', {
-            //   authIdx: this.authIdx,
-            //   expectFee: this.expectFee,
-            //   groupPurchaseList: this.groupPurchaseList,
-            //   ageAndGender: this.ageAndGender,
-            //   job: this.job,
-            //   married: this.married,
-            //   children: this.children,
-            //   pet: this.pet,
-            //   skin: this.skin
-            // });
-            alert('end')
-        }
     }
 };
 </script>

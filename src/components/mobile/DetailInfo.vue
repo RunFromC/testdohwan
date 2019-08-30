@@ -1659,13 +1659,26 @@ export default {
             }
         },
         joinCheck() {
-            this.clearCardList();
-            if (!this.$store.state.iccMode) {
-                this.profileCard['finishBlock'].on = true;
-            } else {
-                this.$store.state.welcome = true;
-                location.href = '/';
-            }
+            // this.clearCardList();
+
+            // if (!this.$store.state.iccMode) {
+            //     this.profileCard['finishBlock'].on = true;
+            // } else {
+            //     this.$store.state.welcome = true;
+            //     this.$router.push('/');
+            // }
+            // this.$axios('post','/join/info/save', {
+            //   authIdx: this.authIdx,
+            //   expectFee: this.expectFee,
+            //   groupPurchaseList: this.groupPurchaseList,
+            //   ageAndGender: this.ageAndGender,
+            //   job: this.job,
+            //   married: this.married,
+            //   children: this.children,
+            //   pet: this.pet,
+            //   skin: this.skin
+            // });
+            alert('end')
         }
     },
     watch: {
