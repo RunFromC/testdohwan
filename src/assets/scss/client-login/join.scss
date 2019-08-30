@@ -305,7 +305,7 @@ button:focus {
                                     width: 135px - 14px;
                                     padding-left: 14px;
                                     height: $height - 2px;
-                                    border: 1px solid #aaaaaa;
+                                    border: 1px solid #bbbbbb;
                                     border-radius: 5px 0px 0px 5px;
                                     font-family: 'NanumBarunGothic';
                                 }
@@ -343,6 +343,11 @@ button:focus {
 
                             > div.item:last-child {
                                 margin-bottom: 0 !important;
+                            }
+                            input[type="number"]::-webkit-outer-spin-button,
+                            input[type="number"]::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                margin: 0;
                             }
                         }
                         .item.col1 {
@@ -990,7 +995,6 @@ button:focus {
                         }
                         .middle {
                             border-top: 1px solid #c6c6c6;
-                            border-bottom: 1px solid #c6c6c6;
                             a.tel {
                                 font-size: 20px;
                                 text-align: center;
@@ -1558,9 +1562,6 @@ button:focus {
                                                     font-size: 10px !important;
                                                     line-height: 26px;
                                                 }
-                                                i.rotate {
-                                                    width: 10px;
-                                                }
                                             }
                                             .listWrap {
                                                 top: 24px;
@@ -1877,7 +1878,7 @@ button:focus {
                         #callkakao.article {
                             .top {
                                 .title {
-                                    margin-top: 10px !important;
+                                    margin-top: 50px !important;
                                 }
                                 input.input-button {
                                     width: 150px;
@@ -2123,12 +2124,12 @@ button:focus {
 
                                         span {
                                             font-size: 14px !important;
-                                            color: #a1a1a1;
+                                            color: #707070;
                                         }
                                         i {
                                             display: block;
-                                            width: 10px;
-                                            height: 10px;
+                                            width: 14px;
+                                            height: 14px;
                                             position: absolute;
                                             right: 12px;
                                             top: calc(50% - 5px);

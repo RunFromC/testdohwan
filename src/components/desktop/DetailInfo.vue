@@ -1,18 +1,17 @@
 <template>
   <div class="contents">
-    <div class="article" v-if="profileCard.default.on" id="defaultBlock">
-      <div class="title">좀 더 소개해주실 수 있으세요?</div>
-      <div class="text">
-        포인트 적립, 고객사 매칭등에
-        <br />도움이 될 거에요.
+    <div class="article callkakao" v-if="profileCard.default.on" id="defaultBlock">
+      <div class="top">
+        <div class="title">문의</div>
+        <img src="~@/assets/img/login_ask_kakao icon.png" alt="카카오 문의">
+        <input type="button" class="input-button" value="카카오톡 상담하기" @click="kakaoCounseling">
       </div>
-      <img src="~@/assets/img/coin.png" alt />
-      <div class="text2">
-        인플루언서 프로필 작성시
-        <br />총
-        <span>8000 포인트</span> 적립
+      <div class="middle">
+        <a href="#" class="tel">Tel. 1661 - 6213</a>
+        <div class="text">
+            평일:10:00 ~ 18:30 <br> off-time: 12:30 ~ 13:30 <br> (공휴일 휴무)
+        </div>
       </div>
-      <button>프로필 입력완료</button>
     </div>
     <!-- sns -->
     <div class="article" id="sns" v-if="profileCard.sns.on">
@@ -171,7 +170,7 @@
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
           <span v-else>개런티</span>
           <div class="pay-wrap">
-            <input class="pay" type="text" maxlength="4" placeholder="0" v-model="defaultFeeInput" @keyup="inNumberAndMakeNotSave" />
+            <input class="pay" type="number" placeholder="0" v-model="defaultFeeInput" @keyup="inNumberAndMakeNotSave" @input="maxLengthCheckDefaultFee" />
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
@@ -190,7 +189,7 @@
         <div class="product-input-wrap">
           <span>제품가</span>
           <div class="product-wrap">
-            <input type="text" class="pay" maxlength="7" placeholder="0" v-model="productPriceInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" />
+            <input type="number" class="pay" placeholder="0" v-model="productPriceInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" @input="maxLengthCheckProductPrice" />
             <span>원 이상</span>
           </div>
         </div>
@@ -199,7 +198,7 @@
           <span v-if="checkService('brands',true) && !this.$store.state.iccMode">원고료</span>
           <span v-else>개런티</span>
           <div class="pay-wrap">
-            <input class="pay" type="text" maxlength="4" placeholder="0" v-model="productFeeInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" />
+            <input class="pay" type="number" placeholder="0" v-model="productFeeInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" @input="maxLengthCheckProductFee" />
             <span>만원</span>
           </div>
           <div class="percentage-wrap">
@@ -651,7 +650,7 @@
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn" 
-          :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice) ? 'on':''">저장하기</li>
+          :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice !== null) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -979,27 +978,6 @@ export default {
             console.log(selectKey);
             this.keyPush = selectKey;
         },
-        statusCheck(value, type) {
-            this.onStatusCheck[type] = value;
-            if(this.onStatusCheck[type] === 'y' && type === 'job') {
-              this.jobExists = true;
-            } else if(this.onStatusCheck[type] === 'n' && type === 'job') {
-              this.jobExists = false;
-              this.profileCard.job.onSaveButton = true;
-            }
-            if(this.onStatusCheck[type] === 'y' && type === 'child') {
-              this.childrenExists = true;
-            } else if(this.onStatusCheck[type] === 'n' && type === 'child') {
-              this.childrenExists = false;
-              this.profileCard.children.onSaveButton = true;
-            }
-            if(this.onStatusCheck[type] === 'y' && type === 'pet') {
-              this.petExists = true;
-            } else if(this.onStatusCheck[type] === 'n' && type === 'pet') {
-              this.petExists = false;
-              this.profileCard.pet.onSaveButton = true;
-            }
-        },
         checkStatus(el, type) {
             if (el.includes(this.onStatusCheck[type])) return 'on';
         },
@@ -1011,28 +989,6 @@ export default {
             this.clearCardList();
             this.profileCard['default'].on = true;
         },
-        joinCheck() {
-            // this.clearCardList();
-
-            // if (!this.$store.state.iccMode) {
-            //     this.profileCard['finishBlock'].on = true;
-            // } else {
-            //     this.$store.state.welcome = true;
-            //     this.$router.push('/');
-            // }
-            // this.$axios('post','/join/info/save', {
-            //   authIdx: this.authIdx,
-            //   expectFee: this.expectFee,
-            //   groupPurchaseList: this.groupPurchaseList,
-            //   ageAndGender: this.ageAndGender,
-            //   job: this.job,
-            //   married: this.married,
-            //   children: this.children,
-            //   pet: this.pet,
-            //   skin: this.skin
-            // });
-            alert('end')
-        }
     }
 };
 </script>

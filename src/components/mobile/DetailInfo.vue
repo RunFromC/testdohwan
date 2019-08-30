@@ -21,12 +21,56 @@
         <a href="#" id="m-twitter"></a>
       </div>
       <div class="certification-list" v-else>
-        <a href="#" id="m-instagram"></a>
+        <a
+            href="#"
+            id="m-instagram"
+            @click="checkCertification(1)"
+            :class="isCertificationOnOff[1] ? 'on' : ''"
+            v-if="instagramImg"
+          ></a>
+          <a
+            href="#"
+            id="m-instagram"
+            :class="isCertificationOnOff[1] ? 'on' : ''"
+            v-else
+            style="cursor: default;"
+          ></a>
+          <a
+            href="#"
+            id="m-youtube"
+            @click="checkCertification(2)"
+            :class="isCertificationOnOff[2] ? 'on' : ''"
+            v-if="youtubeImg"
+          ></a>
+          <a
+            href="#"
+            id="m-youtube"
+            :class="isCertificationOnOff[2] ? 'on' : ''"
+            v-else
+            style="cursor: default;"
+          ></a>
+          <a
+            href="#"
+            id="m-naver"
+            @click="checkCertification(3)"
+            :class="isCertificationOnOff[3] ? 'on' : ''"
+            v-if="naverImg"
+          ></a>
+          <a
+            href="#"
+            id="m-naver"
+            :class="isCertificationOnOff[3] ? 'on' : ''"
+            v-else
+            style="cursor: default;"
+          ></a>
       </div>
-      <div class="SNS-btn-cert" v-if="snsCertBtn">
+      <div class="SNS-btn-default" v-if="snsDefaultCertBtn">
+        <a href="#">SNS인증하기</a>
+      </div>
+      <div class="SNS-btn" v-if="snsCertBtn" :class="isCertificationOnOff[1] || isCertificationOnOff[2] || isCertificationOnOff[3] ? 'on' : ''">
         <a href="#" @click="snsSaveBotton()">SNS인증하기</a>
       </div>
-      <div class="SNS-btn" v-if="snsCertSuccessBtn">
+      <div class="SNS-btn-default" v-if="snsCertSuccessBtn">
         <a href="#">SNS인증완료</a>
       </div>
       <div class="certification-text">
@@ -84,10 +128,10 @@
         <span v-if="!this.$store.state.iccMode">원고료</span>
         <span v-else>개런티</span>
         <div class="pay-wrap">
-          <input class="pay" type="text" maxlength="4" placeholder="1000" />
+          <input class="pay" type="number" placeholder="0" v-model="defaultFeeInput" @keyup="inNumberAndMakeNotSave" @input="maxLengthCheckDefaultFee" />
           <span>만원</span>
         </div>
-        <select class="percentage-select">
+        <select class="percentage-select" id="defaultFee-selectBox">
           <option value="-10">- 10 %</option>
           <option value="-20">- 20 %</option>
           <option value="-30">- 30 %</option>
@@ -105,9 +149,9 @@
       </div>
       <div class="pay-title">협찬제품이 있을 경우</div>
       <div class="product-input-wrap">
-        <span>제품</span>
+        <span>제품가</span>
         <div class="product-wrap">
-          <input type="text" class="pay" maxlength="9" placeholder="0,000,000" />
+          <input type="number" class="pay" placeholder="0" v-model="productPriceInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" @input="maxLengthCheckProductPrice" />
           <span>원 이상</span>
         </div>
       </div>
@@ -115,10 +159,10 @@
         <span v-if="!this.$store.state.iccMode">원고료</span>
         <span v-else>개런티</span>
         <div class="pay-wrap">
-          <input class="pay" type="text" maxlength="4" placeholder="1000" />
+          <input class="pay" type="number" placeholder="0" v-model="productFeeInput" @keyup="inNumberAndMakeNotSave" @focus="makeNotSave" @input="maxLengthCheckProductFee" />
           <span>만원</span>
         </div>
-        <select class="percentage-select">
+        <select class="percentage-select" id="productFee-selectBox">
           <option value="-10">- 10 %</option>
           <option value="-20">- 20 %</option>
           <option value="-30">- 30 %</option>
@@ -126,7 +170,7 @@
         <i class="icon-questions-mark" data-type="1" @click.prevent="showTips(2)"></i>
       </div>
       <div class="button-wrap">
-        <button class="Paysave-btn on" @click="saveBtn">저장</button>
+        <button class="Paysave-btn" @click="saveBtn" :class="this.profileCard.pay.onSaveButton ? 'on' : ''">저장</button>
       </div>
     </div>
 
@@ -286,12 +330,7 @@
 
           <div class="listContents listWrap list-first age-top">
             <ul class="list">
-              <li @click="isText">10대</li>
-              <li @click="isText">20대</li>
-              <li @click="isText">30대</li>
-              <li @click="isText">40대</li>
-              <li @click="isText">50대</li>
-              <li @click="isText">60대 이상</li>
+              <li v-for="(item,index) in ageList" @click="isText($event,index)" :key="index">{{item.age}}</li>
             </ul>
           </div>
         </div>
@@ -302,16 +341,14 @@
             <i></i>
           </div>
 
-          <div class="listContents listWrap2 list-second age-top2">
+          <div class="listContents listWrap list-second age-top2">
             <ul class="list">
-              <li @click="isText">초반</li>
-              <li @click="isText">중반</li>
-              <li @click="isText">후반</li>
+              <li v-for="(item,index) in ageGroupList" @click="isText($event,index)" :key="index">{{item.ageGroup}}</li>
             </ul>
           </div>
         </div>
         <div class="button-wrap">
-          <button class="gendersave-btn on" @click="saveBtn">저장</button>
+          <button class="gendersave-btn" @click="saveBtn" :class="(checkEither('m') || checkEither('w')) && ageChoice && ageGroupChoice ? 'on':''">저장</button>
         </div>
       </div>
     </div>
@@ -372,18 +409,18 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li @click="isText">현 직업</li>
-                <li @click="isText">전 직업</li>
+                <li @click="isText($event)" v-if="jobDefault == '전 직업'">현 직업</li>
+                <li @click="isText($event)" v-if="jobDefault == '현 직업'">전 직업</li>
               </ul>
             </li>
             <li class="select-box big clearfix" id="jobSearchSelect">
               <ul class="select-second select-btn" @click.prevent="showSelectList2">
                 <li>
-                  <input type="text" placeholder="직업선택, 검색" />
+                  <input type="text" placeholder="직업선택, 검색" v-model="jobSearchDefault" @keyup="jobSearch" />
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li v-for="(list,index) in job.jobList" :key="index">{{list.name}}</li>
+                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)">{{list.name}}</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -400,7 +437,7 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button class="jobsave-btn on" @click="saveBtn">저장</button>
+        <button class="jobsave-btn" @click="saveBtn" :class="checkStatus('n','job') || (checkStatus('y','job') && jobTenseChoice && jobSearchChoice) ? 'on':''">저장</button>
       </div>
     </div>
     <!-- 관심사 -->
@@ -496,7 +533,7 @@
           <i></i>
         </div>
         <div class="button-wrap">
-          <button class="marrysave-btn on" @click="saveBtn">저장</button>
+          <button class="marrysave-btn" @click="saveBtn" :class="checkEither('y') || checkEither('n') ? 'on':''">저장</button>
         </div>
       </div>
     </div>
@@ -560,16 +597,7 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li @click="isText">0~1세</li>
-                <li @click="isText">2~3세</li>
-                <li @click="isText">4~5세</li>
-                <li @click="isText">6~7세</li>
-                <li @click="isText">초등학생</li>
-                <li @click="isText">중학생</li>
-                <li @click="isText">고등학생</li>
-                <li @click="isText">20대</li>
-                <li @click="isText">30대</li>
-                <li @click="isText">40대</li>
+                <li v-for="(item,index) in childrenAgeList" @click="isText($event,index)" :key="index">{{item.age}}</li>
               </ul>
             </li>
             <li class="select-box big clearfix" id="m-childGender">
@@ -580,8 +608,8 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li @click="isText">남자</li>
-                <li @click="isText">여자</li>
+                <li @click="isText($event)">남자</li>
+                <li @click="isText($event)">여자</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -598,7 +626,7 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button class="babysave-btn on" @click="saveBtn">저장</button>
+        <button class="babysave-btn" @click="saveBtn" :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice !== null) ? 'on':''">저장</button>
       </div>
     </div>
     <!-- 반려동물 -->
@@ -657,10 +685,7 @@
                 </li>
               </ul>
               <ul class="list-first listContents">
-                <li @click="isText">강아지</li>
-                <li @click="isText">고양이</li>
-                <li @click="isText">햄스터</li>
-                <li @click="isText">기타</li>
+                <li v-for="(item,index) in petList" @click="isText($event,index)" :key="index">{{item.typeName}}</li>
               </ul>
             </li>
             <li class="select-box big clearfix" id="m-petDigit">
@@ -671,10 +696,10 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li @click="isText">1마리</li>
-                <li @click="isText">2마리</li>
-                <li @click="isText">3마리</li>
-                <li @click="isText">4마리 이상</li>
+                <li @click="isText($event)">1마리</li>
+                <li @click="isText($event)">2마리</li>
+                <li @click="isText($event)">3마리</li>
+                <li @click="isText($event)">4마리 이상</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -691,7 +716,7 @@
         </div>
       </div>
       <div class="button-wrap">
-        <button class="petsave-btn on" @click="saveBtn">저장</button>
+        <button class="petsave-btn" @click="saveBtn" :class="checkStatus('n','pet') || (checkStatus('y','pet') && petTypeChoice && petNumChoice) ? 'on':''">저장</button>
       </div>
     </div>
 
@@ -794,10 +819,7 @@
 
           <div class="listContents listWrap2 long skin-top">
             <ul class="list">
-              <li @click="isText">건성</li>
-              <li @click="isText">중성</li>
-              <li @click="isText">지성</li>
-              <li @click="isText">복합성</li>
+              <li v-for="(item,index) in skinList" @click="isText($event,index)" :key="index">{{item.type}}</li>
             </ul>
           </div>
         </div>
@@ -816,7 +838,7 @@
           </div>
         </div>
         <div class="button-wrap">
-          <button class="skinsave-btn on" @click="saveBtn">저장</button>
+          <button class="skinsave-btn" @click="saveBtn" :class="skinChoice && (isSkinOnOff[0]||isSkinOnOff[1]||isSkinOnOff[2]||isSkinOnOff[3]) ? 'on':''">저장</button>
         </div>
       </div>
     </div>
@@ -844,12 +866,12 @@ export default {
                 3: false
             },
             isCertificationOnOff: {
-                0: false,
-                1: false,
-                2: false,
-                3: false,
-                4: false,
-                5: false
+                0: false, // 페이스북
+                1: false, // 인스타그램
+                2: false, // 유투브
+                3: false, // 네이버
+                4: false, // 트위터
+                5: false 
             },
             instagramImg: true,
             youtubeImg: true,
@@ -1075,35 +1097,43 @@ export default {
             console.log(res);
             for (let i = 0; i < res.data.length; i++) {
               if(this.jobSearchDefault.includes(res.data[i].name)) {
-              console.log('a');
               }
             }
           })
         },
+        // 희망 수수료 maxLength 제한
+        maxLengthCheckDefaultFee() {
+          if(this.defaultFeeInput > 4) this.defaultFeeInput = this.defaultFeeInput.slice(0, 4);
+        },
+        maxLengthCheckProductPrice() {
+          if(this.productPriceInput > 7) this.productPriceInput = this.productPriceInput.slice(0, 7);
+        },
+        maxLengthCheckProductFee() {
+          if(this.productFeeInput > 4) this.productFeeInput = this.productFeeInput.slice(0, 4);
+        },
         // 희망 수수료 input 입력 시
         inNumberAndMakeNotSave() {
-          let regexp = /^[0-9]+$/;
-          if(!regexp.test(this.defaultFeeInput || this.productPriceInput || this.productFeeInput)) {
-            alert("숫자만 입력해주세요");
-          } else {
-            if(this.isRecommendCheck) {
-              this.profileCard.pay.onSaveButton = true;
-              if(this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
-                this.profileCard.pay.onSaveButton = false;
-              } else if(this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
-                this.profileCard.pay.onSaveButton = false;
-              } else if(!this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
-                this.profileCard.pay.onSaveButton = false;
-              } else if(!this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
-                this.profileCard.pay.onSaveButton = false;
-              }
-            } else {
-              this.profileCard.pay.onSaveButton = false;
-              if(this.defaultFeeInput&&this.productPriceInput&&this.productFeeInput) {
-                this.profileCard.pay.onSaveButton = true;
-              }
-            } 
+          if(this.productPriceInput > 1000000) {
+            alert("제품가는 1,000,000원(100만원) 이상 적을 수 없습니다");
+            this.productPriceInput = '';
           }
+          if(this.isRecommendCheck) {
+            this.profileCard.pay.onSaveButton = true;
+            if(this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(!this.defaultFeeInput&&(!this.productPriceInput&&this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            } else if(!this.defaultFeeInput&&(this.productPriceInput&&!this.productFeeInput)) {
+              this.profileCard.pay.onSaveButton = false;
+            }
+          } else {
+            this.profileCard.pay.onSaveButton = false;
+            if(this.defaultFeeInput&&this.productPriceInput&&this.productFeeInput) {
+              this.profileCard.pay.onSaveButton = true;
+            }
+          } 
         },
         // 희망 수수료 focus 
         makeNotSave() {
@@ -1165,7 +1195,30 @@ export default {
             if(this.instagramPossibleText) {
               return;
             }
-            this.authInstagram();
+
+            if(this.isCertificationOnOff[1]){
+              this.authInstagram();
+            } else if (this.isCertificationOnOff[3]) {
+              this.authNaver();
+            }
+            
+        },
+        async authNaver() {
+          const naverUrl = "/auth/naver";
+        
+          const res = await this.$axios('get', `/auth/naver` );
+          
+          console.log(res.headers["set-cookie"]);
+
+        window.authResultForInsta = async data => {
+          console.log(data);
+        }
+          // popup open
+          window.open(
+              res.data,
+              '_blank',
+              'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+          );
         },
         authInstagram() {
             const redirectUri = 'http://member.concepters.co.kr/auth/instagram';
@@ -1237,7 +1290,6 @@ export default {
                 if(text == '남자') {
                   this.childrenGenderChoice = true;
                 } else {
-
                   this.childrenGenderChoice = false;
                 }
             } else if (e.target.closest('#petType, #m-petType')) {
@@ -1288,10 +1340,26 @@ export default {
             }
             this.isSkinOnOff[idx] = !this.isSkinOnOff[idx];
         },
-        //직업
         statusCheck(value, type) {
             this.onStatusCheck[type] = value;
-            console.log(this.onStatusCheck[type]);
+            if(this.onStatusCheck[type] === 'y' && type === 'job') {
+              this.jobExists = true;
+            } else if(this.onStatusCheck[type] === 'n' && type === 'job') {
+              this.jobExists = false;
+              this.profileCard.job.onSaveButton = true;
+            }
+            if(this.onStatusCheck[type] === 'y' && type === 'child') {
+              this.childrenExists = true;
+            } else if(this.onStatusCheck[type] === 'n' && type === 'child') {
+              this.childrenExists = false;
+              this.profileCard.children.onSaveButton = true;
+            }
+            if(this.onStatusCheck[type] === 'y' && type === 'pet') {
+              this.petExists = true;
+            } else if(this.onStatusCheck[type] === 'n' && type === 'pet') {
+              this.petExists = false;
+              this.profileCard.pet.onSaveButton = true;
+            }
         },
         checkStatus(el, type) {
             if (el.includes(this.onStatusCheck[type])) return 'on';
@@ -1510,10 +1578,15 @@ export default {
                       this.expectFee.defaultFeePer = null;
                       this.expectFee.productPrice = null;
                       this.expectFee.productFee = null;
-                      this.expectFee.productFeePer =null;
+                      this.expectFee.productFeePer = null;
                     } else if(this.defaultFeeInput&&!this.productPriceInput&&!this.productFeeInput) {
                       this.expectFee.defaultFee = Number(this.defaultFeeInput+'0000');
-                      this.expectFee.defaultFeePer = Number(this.basicValue);
+                      let basicvalue = document.getElementById("defaultFee-selectBox");
+                      if(basicvalue) {
+                        this.expectFee.defaultFeePer = Number(basicvalue.options[basicvalue.selectedIndex].value);
+                      } else {
+                        this.expectFee.defaultFeePer = Number(this.basicValue);
+                      }
                       this.expectFee.productPrice = null;
                       this.expectFee.productFee = null;
                       this.expectFee.productFeePer = null;
@@ -1522,13 +1595,28 @@ export default {
                       this.expectFee.defaultFeePer = null;
                       this.expectFee.productPrice = Number(this.productPriceInput);
                       this.expectFee.productFee = Number(this.productFeeInput+'0000');
-                      this.expectFee.productFeePer = Number(this.comboValue);
+                      let combovalue = document.getElementById("productFee-selectBox");
+                      if(combovalue) {
+                        this.expectFee.productFeePer = Number(combovalue.options[combovalue.selectedIndex].value);
+                      } else {
+                        this.expectFee.productFeePer = Number(this.comboValue)
+                      }
                     } else {
                       this.expectFee.defaultFee = Number(this.defaultFeeInput+'0000');
-                      this.expectFee.defaultFeePer = Number(this.basicValue);
+                      let basicvalue = document.getElementById("defaultFee-selectBox");
+                      if(basicvalue) {
+                        this.expectFee.defaultFeePer = Number(basicvalue.options[basicvalue.selectedIndex].value);
+                      } else {
+                        this.expectFee.defaultFeePer = Number(this.basicValue);
+                      }
                       this.expectFee.productPrice = Number(this.productPriceInput);
                       this.expectFee.productFee = Number(this.productFeeInput+'0000');
-                      this.expectFee.productFeePer = Number(this.comboValue);
+                      let combovalue = document.getElementById("productFee-selectBox");
+                      if(combovalue) {
+                        this.expectFee.productFeePer = Number(combovalue.options[combovalue.selectedIndex].value);
+                      } else {
+                        this.expectFee.productFeePer = Number(this.comboValue)
+                      }
                     }
                     console.log(this.expectFee);
                 } else if (this.currentCard === 'expectProduct') {
@@ -1571,13 +1659,26 @@ export default {
             }
         },
         joinCheck() {
-            this.clearCardList();
-            if (!this.$store.state.iccMode) {
-                this.profileCard['finishBlock'].on = true;
-            } else {
-                this.$store.state.welcome = true;
-                location.href = '/';
-            }
+            // this.clearCardList();
+
+            // if (!this.$store.state.iccMode) {
+            //     this.profileCard['finishBlock'].on = true;
+            // } else {
+            //     this.$store.state.welcome = true;
+            //     this.$router.push('/');
+            // }
+            // this.$axios('post','/join/info/save', {
+            //   authIdx: this.authIdx,
+            //   expectFee: this.expectFee,
+            //   groupPurchaseList: this.groupPurchaseList,
+            //   ageAndGender: this.ageAndGender,
+            //   job: this.job,
+            //   married: this.married,
+            //   children: this.children,
+            //   pet: this.pet,
+            //   skin: this.skin
+            // });
+            alert('end')
         }
     },
     watch: {

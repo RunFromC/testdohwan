@@ -9,6 +9,7 @@ import ClientJoin from '../views/client/Join.vue';
 import CertSuccess from '../views/CertSuccess.vue';
 import Policy from '../views/privacy/Policy.vue';
 import Instagram from '../views/auth/Instagram';
+import Naver from '../views/auth/Naver';
 
 Vue.use(Router);
 
@@ -70,6 +71,11 @@ const router = new Router({
             path: '/auth/instagram',
             name: 'authInstagram',
             component: Instagram
+        },
+        {
+            path: '/auth/naver',
+            name: 'authNaver',
+            component: Naver
         }
     ]
 });

@@ -278,7 +278,7 @@
                             <li><img src="../assets/img/coin.png" alt="동전탑 이미지"></li>
                             <li class="point-text">인플루언서 프로필 작성시 총 <strong>8000 포인트</strong> 적립</li>
                             <li class="button"><a href="#" @click="addJoin">추가정보 입력</a></li>
-                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요</router-link></li>
+                            <li class="skip-btn"><router-link to="/" :class="this.$store.state.welcome = true">괜찮아요. 이대로 가입할게요 &gt;</router-link></li>
                         </ul>
                         <ul class="content" v-else>
                             <li class="title">좀 더 소개해주실 수 있으세요?</li>
@@ -373,8 +373,8 @@
                         <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                     </div>
 
-                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="toggleMobileTab(2)" >
-                        <a href="#"  :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
+                    <div class="m-finished" id="welcome-finished" :class="joinPage ? 'none': ''" @click="standardJoin" >
+                        <a href="#" :class="id&&pw&&pwAgain&&name&&phoneNumber&&email&&getByFormData.termsOfUse == true ? 'on':''" ><span>가입완료</span></a>
                     </div>
                 </div>
                 <div class="tab" id="additionalInfo" v-else>
@@ -387,7 +387,7 @@
                             총 <span>8000 포인트</span> 적립
                         </div> -->
                         <button class="add_btn" id="addinfoPageBtn" @click.prevent="accodionOpen">추가정보 입력</button>
-                        <div class="skip"><a href="#">괜찮아요.이대로가입할게요 &gt;</a></div>
+                        <div class="skip"><router-link to="/client" :class="this.$store.state.welcome = true">괜찮아요.이대로가입할게요 &gt;</router-link></div>
                     </div>
                     <MobileDetailInfo v-if="isAccodionOn"/>
                 </div>
@@ -452,6 +452,7 @@ export default {
             emailCheckDisable: true,
 
             userIndex: 0, //가입완료시 받는 userIndex
+            userService: NaN, //회원가입 service
 
             isCardFlip: false,
             isMobileTermsOn: false,
@@ -545,11 +546,11 @@ export default {
             }
         },
         phoneCheck() { // 휴대폰 본인인증
-            var certWindow;
+            let certWindow;
             
             function openCertification() {
                 window.name = "Bigbird - i";
-                var UserAgent = navigator.userAgent;
+                let UserAgent = navigator.userAgent;
                 if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null) {
                     document.requestCert.target = '';
                 }
@@ -597,59 +598,59 @@ export default {
             this.joinPage = true;            
         },
         standardJoin() { // 가입완료
-            // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
-            //     if(this.idValidityText) {
-            //         alert("아이디는 영문,숫자,특수문자(_,.) 6~20자로 입력해주세요");
-            //         return;
-            //     }
-            //     if(this.idWrongText) {
-            //         alert("사용중인 아이디입니다 다시 입력해주세요");
-            //         return;
-            //     }
-            //     if(this.idCheckText) {
-            //         alert("아이디 중복확인해주세요");
-            //         return;
-            //     }
-            //     if(this.pwValidityText) {
-            //         alert("비밀번호는 영문,숫자,특수문자 포함 6~20자로 입력해주세요");
-            //         return;
-            //     }
-            //     if(this.pwWrongText) {
-            //         alert("비밀번호가 일치하지 않습니다");
-            //         return;
-            //     }
-            //     if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
-            //         alert("본인인증이 필요합니다");
-            //         return;
-            //     }
-            //     if(this.emailValidityText) {
-            //         alert("잘못된 이메일 형식입니다 다시 입력해주세요");
-            //         return;
-            //     }
-            //     if(this.emailWrongText) {
-            //         alert("사용중인 이메일입니다 다시 입력해주세요");
-            //         return;
-            //     }
-            //     if(this.emailCheckText) {
-            //         alert("이메일 중복확인해주세요");
-            //         return;
-            //     }
-            //     this.$axios('post','/join', {
-            //         id: this.id,
-            //         pw: this.pw,
-            //         certIdx: this.certIdx,
-            //         email: this.email,
-            //         termsAgreed: true
-            //     }).then((res) => {
-            //         this.userIndex = res.data.userIdx;
-            //     }).catch((err) => {
-            //         console.log(err);
-            //     })
-            //     this.addJoinPage = !this.addJoinPage;
-            // } else {
-            //     alert('정보를 모두 입력해주세요');
-            // }
-            this.addJoinPage = !this.addJoinPage;
+            if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
+                if(this.idValidityText) {
+                    alert("아이디는 영문,숫자,특수문자(_,.) 6~20자로 입력해주세요");
+                    return;
+                }
+                if(this.idWrongText) {
+                    alert("사용중인 아이디입니다 다시 입력해주세요");
+                    return;
+                }
+                if(this.idCheckText) {
+                    alert("아이디 중복확인해주세요");
+                    return;
+                }
+                if(this.pwValidityText) {
+                    alert("비밀번호는 영문,숫자,특수문자 포함 6~20자로 입력해주세요");
+                    return;
+                }
+                if(this.pwWrongText) {
+                    alert("비밀번호가 일치하지 않습니다");
+                    return;
+                }
+                if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
+                    alert("본인인증이 필요합니다");
+                    return;
+                }
+                if(this.emailValidityText) {
+                    alert("잘못된 이메일 형식입니다 다시 입력해주세요");
+                    return;
+                }
+                if(this.emailWrongText) {
+                    alert("사용중인 이메일입니다 다시 입력해주세요");
+                    return;
+                }
+                if(this.emailCheckText) {
+                    alert("이메일 중복확인해주세요");
+                    return;
+                }
+                this.$axios('post',`/join/${this.userService}`, {
+                    id: this.id,
+                    pw: this.pw,
+                    certIdx: this.certIdx,
+                    email: this.email,
+                    termsAgreed: true
+                }).then((res) => {
+                    this.userIndex = res.data.userIdx;
+                }).catch((err) => {
+                    console.log(err);
+                })
+                this.addJoinPage = !this.addJoinPage;
+                this.toggleMobileTab(2);
+            } else {
+                alert('정보를 모두 입력해주세요');
+            }
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;
@@ -713,8 +714,9 @@ export default {
             }
         }
         // cert init 
-        this.$axios('get','/cert/init', {
+        this.$axios('get',`/cert/init/${this.service}`, {
             }).then((res) => {
+                console.log(res);
                 this.trCert = res.data.trCert;
                 this.trUrl = res.data.trUrl;
                 this.trAdd = res.data.trAdd;
@@ -722,10 +724,19 @@ export default {
                 console.log(err)
             });
 
-        
+        // service 나누기
+        if(this.service === 'client') {
+            this.userService = 1;
+        } else if(this.service === 'influencer') {
+            this.userService = 2;
+        } else if(this.service === 'brands') {
+            this.userService = 3;
+        } else if(this.service === 'market') {
+            this.userService = 4;
+        }
         // cert result.
         window.cert_result = (data) => {
-            this.$axios('get',`/cert/decrypte?rec_cert=${data.rec_cert}&certNum=${data.certNum}`, 
+            this.$axios('get',`/cert/decrypte/${this.userService}?rec_cert=${data.rec_cert}&certNum=${data.certNum}`, 
             {}).then((res) => {
                 if(res.data.result === 'fail') {
                     alert('오류가 발생했습니다.');

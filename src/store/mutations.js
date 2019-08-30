@@ -37,6 +37,9 @@ const mutations = {
     },
     setCurrentIndex(state, data) {
         state.currentIndex = data;
+    },
+    setJsessionId(state, data) {
+        state.JSESSIONID = data;
     }
 };
 
