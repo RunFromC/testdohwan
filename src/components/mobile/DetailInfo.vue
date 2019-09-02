@@ -105,8 +105,8 @@
           <i></i>
         </div>
         <div class="checked" v-else @click.prevent="onClickRecommendCheck">
-          <i></i>
           <span>빅버드 추천을 받을게요</span>
+          <i></i>          
         </div>
       </div>
 
@@ -178,7 +178,7 @@
     <div
       class="accordion"
       id="accordion_item"
-      v-if="checkService('brands',true) || checkService('influencer',true)"
+      v-if="checkService('market',true) || checkService('influencer',true)"
       @click="onClickProfileCard('expectProduct', $event)"
     >
       <ul>
@@ -195,7 +195,7 @@
       id="accordion-product"
       class="accordion-contents"
       :class="onProfileCard('expectProduct')"
-      v-if="checkService('brands',true) || checkService('influencer',true)"
+      v-if="checkService('market',true) || checkService('influencer',true)"
     >
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
@@ -229,7 +229,7 @@
       </div>
     </div>
     <!-- 주 활동 지역  -->
-    <!-- <div
+    <div
       class="accordion"
       id="accordion-hot"
       @click="onClickProfileCard('area', $event)"
@@ -279,13 +279,13 @@
       <div class="button-wrap">
         <button class="hotsave-btn">저장</button>
       </div>
-    </div>-->
+    </div>
     <!-- 성별, 연령 -->
     <div
       id="accordion_gender"
       class="accordion"
       @click="onClickProfileCard('gender', $event)"
-      v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
+      
     >
       <ul>
         <li>
@@ -301,7 +301,7 @@
       class="accordion-contents"
       id="accordion-gender"
       :class="onProfileCard('gender')"
-      v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)"
+      
     >
       <div class="m-gender">
         <div
@@ -357,7 +357,7 @@
     <div
       class="accordion"
       id="accordion_job"
-      v-if="checkService('brands',true)"
+      
       @click="onClickProfileCard('job', $event)"
     >
       <ul>
@@ -373,7 +373,7 @@
     <div
       id="accordion-job"
       class="accordion-contents"
-      v-if="checkService('brands',true)"
+      
       :class="onProfileCard('job')"
     >
       <div class="m-job">
@@ -441,7 +441,7 @@
       </div>
     </div>
     <!-- 관심사 -->
-    <!-- <div
+    <div
       class="accordion"
       id="accordion_like"
       v-if="checkService('brands',true)"
@@ -463,47 +463,42 @@
       v-if="checkService('brands',true)"
       :class="onProfileCard('interests')"
     >
+     
       <div class="m-like">
         <div class="input-selectbox-wrap" id="m-interestsSelect">
-          <div class="select3 select-btn" id="likeselect-btn" @click.prevent="showSelectList">
-            <span>관심사 선택</span>
-            <i></i>
+          <div class="select select-btn" @click.prevent="showSelectList">
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
           </div>
-
-          <div class="listContents listWrap3 long">
+          <div class="listContents listWrap long item-top">
             <ul class="list">
-              <li data-sub="0">패션</li>
-              <li data-sub="1">뷰티</li>
-              <li data-sub="2">취미</li>
-              <li data-sub="3">레져</li>
-              <li data-sub="4">책 / 출판</li>
-              <li data-sub="5">출산 / 육아</li>
-              <li data-sub="6">지역</li>
-              <li data-sub="7">일상 / 데일리</li>
+              <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
             </ul>
           </div>
         </div>
 
-        <div class="input-text-wrap" id="m-interests">
-          <input type="text" placeholder="기타 관심사 입력" maxlength="6" />
+        <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
+
+        <div class="choice-list">
+          <ul v-for="list in 6" :key="list">
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
         </div>
 
-        <div class="alert-text none">공백 포함 8글자를 초과할 수 없습니다</div>
-
-        <div class="choice-list"></div>
-
-        <div class="alert-text none">관심사는 6개를 초과 선택할 수 없습니다</div>
+        <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
 
         <div class="button-wrap">
-          <button class="likesave-btn on" @click="saveBtn">저장</button>
+          <button class="itemsave-btn on" @click="saveBtn">저장</button>
         </div>
       </div>
-    </div>-->
+    </div>
     <!-- 결혼 유무 -->
     <div
       class="accordion"
       id="accordion_marry"
-      v-if="checkService('brands',true)"
       @click="onClickProfileCard('married', $event)"
     >
       <ul>
@@ -518,7 +513,6 @@
     </div>
     <div
       class="accordion-contents"
-      v-if="checkService('brands',true)"
       :class="onProfileCard('married')"
     >
       <div class="m-marry">
@@ -541,7 +535,6 @@
     <div
       class="accordion"
       id="accordion_baby"
-      v-if="checkService('brands',true)"
       @click="onClickProfileCard('children', $event)"
     >
       <ul>
@@ -557,7 +550,6 @@
     <div
       id="accordion-baby"
       class="accordion-contents"
-      v-if="checkService('brands',true)"
       :class="onProfileCard('children')"
     >
       <div class="m-baby" id="m-children">
@@ -633,7 +625,6 @@
     <div
       class="accordion"
       id="accordion_pet"
-      v-if="checkService('brands',true)"
       @click="onClickProfileCard('pet', $event)"
     >
       <ul>
@@ -649,7 +640,6 @@
     <div
       id="accordion-pet"
       class="accordion-contents"
-      v-if="checkService('brands',true)"
       :class="onProfileCard('pet')"
     >
       <div class="m-pet">
@@ -721,10 +711,10 @@
     </div>
 
     <!-- 바디 프로필 -->
-    <div
+    <!-- <div
       class="accordion"
       id="accordion_body"
-      v-if="checkService('market',true) || checkService('influencer', true)"
+      
       @click="onClickProfileCard('bodyProfile', $event)"
     >
       <ul>
@@ -739,7 +729,7 @@
     </div>
     <div
       class="accordion-contents"
-      v-if="checkService('market',true) || checkService('influencer', true)"
+      
       :class="onProfileCard('bodyProfile')"
     >
       <div class="m-body">
@@ -795,10 +785,10 @@
       <div class="button-wrap">
         <button class="bodysave-btn on" @click="saveBtn">저장</button>
       </div>
-    </div>
+    </div> -->
 
     <!-- 피부 -->
-    <div class="accordion" id="accordion_skin" @click="onClickProfileCard('skinType', $event)">
+    <div class="accordion" id="accordion_skin" v-if="checkService('market',true) || checkService('influencer',true)" @click="onClickProfileCard('skinType', $event)">
       <ul>
         <li>
           <img class="icon" src="~@/assets/img/skin.png" alt="피부아이콘" />
@@ -809,7 +799,7 @@
         </li>
       </ul>
     </div>
-    <div class="accordion-contents" :class="onProfileCard('skinType')">
+    <div class="accordion-contents" v-if="checkService('market',true) || checkService('influencer',true)" @click="onClickProfileCard('skinType', $event)" :class="onProfileCard('skinType')">
       <div class="m-skin">
         <div class="input-selectbox-wrap">
           <div class="select2 select-btn" @click.prevent="showSelectList">
@@ -895,33 +885,14 @@ export default {
                 pet: null
             },
             isCheck: undefined,
-            // brandsList: [
-            //     'sns',
-            //     'pay',
-            //     'area',
-            //     'gender',
-            //     'age',
-            //     'job',
-            //     'interests',
-            //     'married',
-            //     'children',
-            //     'pet'
-            // ],
-            // influencerList: [
-            //     'sns',
-            //     'pay',
-            //     'expectProduct',
-            //     'gender',
-            //     'age',
-            //     'bodyProfile',
-            //     'skinType'
-            // ],
+            
             influencerList: [
                 'sns',
                 'pay',
                 'expectProduct',
                 'gender',
                 'job',
+                'interests',
                 'married',
                 'children',
                 'pet',
@@ -929,16 +900,17 @@ export default {
             ],
             brandsList: [
                 'sns',
-                'pay',
-                'expectProduct',
+                'pay',                
+                'area',
                 'gender',
                 'job',
+                'interests',
                 'married',
                 'children',
                 'pet',
-                'skinType'
             ],
-            marketList: ['sns', 'gender', 'age', 'bodyProfile', 'skinType'],
+            marketList: ['sns', 'expectProduct', 'gender', 'job', 'married', 'children',
+                'pet', 'skinType'],
 
             isRecommendCheck: true,
             recommendType: null,

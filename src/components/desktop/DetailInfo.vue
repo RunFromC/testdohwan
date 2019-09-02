@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <!-- sns -->
+    <!-- SNS연동 -->
     <div class="article" id="sns" v-if="profileCard.sns.on">
       <div class="header margin-bottom-0">SNS 연동</div>
       <div class="inner-contents">
@@ -145,8 +145,9 @@
             <i></i>
           </div>
           <div class="checked" v-else @click.prevent="onClickRecommendCheck">
-            <i></i>
             <span>빅버드 추천을 받을게요</span>
+            <i></i>
+            
           </div>
         </div>
 
@@ -482,34 +483,31 @@
     </div>
 
     <!-- interests -->
-    <!-- <div class="article" id="interests" v-if="profileCard.interests.on">
-      <div class="header margin-bottom-0">관심사</div>
+    <div class="article" id="interests" v-if="profileCard.interests.on">
+      <div class="header margin-bottom-0">관심사</div>      
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="interestsSelect">
-          <div class="select select-btn" @click.prevent="showSelectList2">
-            <span>관심사 선택</span>
-            <i></i>
+          <div class="select select-btn" @click.prevent="showSelectList">
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
           </div>
-
-          <div class="listContents listWrap long">
+          <div class="listContents listWrap long like-top">
             <ul class="list">
-              <li>패션</li>
-              <li>뷰티</li>
-              <li>취미</li>
-              <li>레져</li>
-              <li>책 / 출판</li>
-              <li>출산 / 육아</li>
-              <li>지역</li>
-              <li>일상 / 데일리</li>
+              <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
             </ul>
           </div>
+          <!-- <v-select placeholder="선택해주세요" :options="item" @input="myAction"></v-select> -->
         </div>
-
-        <div class="input-text-wrap">
-          <input type="text" placeholder="기타 관심사 입력" maxlength="6" />
+        <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
+        <div class="choice-list">
+          <ul v-for="list in 6" :key="list">
+            <li>뷰티</li>
+            <li class="close">
+              <a href="#" class="closeImg"></a>
+            </li>
+            <li class="delete none">삭제</li>
+          </ul>
         </div>
-
-        <div class="choice-list"></div>
+        <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
       </div>
       <div class="button-wrap">
         <ul>
@@ -524,7 +522,7 @@
         </ul>
         <button class="join-finish-btn">프로필 입력완료</button>
       </div>
-    </div>-->
+    </div>
     <!-- marriage -->
     <div class="article" id="married" v-if="profileCard.married.on">
       <div class="header margin-bottom-0">결혼유무</div>

@@ -23,7 +23,7 @@
                         <div class="text" v-else>회원가입을 환영합니다</div>
                     </div>
                     <div class="loginBox" v-if="!this.$store.state.iccMode">
-                        <div class="tab1">
+                        <div class="tab1" :class="!this.$store.state.iccMode ? 'change': ''">
                             <div class="toggleBtnWrap">
                                 <a href="#" @click.prevent="changeLoginType">신청받은 플랫폼으로 로그인</a>
                             </div>
@@ -67,8 +67,8 @@
                             </form>
                         </div>
                     </div>
-                    <div class="loginBox" v-else>
-                        <div class="tab2 change">
+                    <div class="loginBox oneset" v-else>
+                        <div class="tab2" :class="!this.$store.state.iccMode ? 'change': ''">
                             <div class="toggleBtnWrap">
                                 <a href="#" @click.prevent="changeLoginType">로그인/회원가입</a>
                             </div>
@@ -98,12 +98,34 @@
                 </div>
                 <div class="bottom">
                     <a href="#" class="go_bigbird_btn" v-if="!this.$store.state.iccMode">
-                        <img
-                            src="../assets/img/login_bigbird-i_butt.png"
-                            alt="빅버드i 둘러보기"
-                            v-if="service === 'brands'"
-                        />
-                        <img src="../assets/img/market_under.png" alt="빅버드i 둘러보기" v-else />
+                        <div v-if="service !== 'market' && 'influencer'">
+                            <img
+                                src="../assets/img/login/join/bigbird-i_login_desktop.png"
+                                alt="빅버드i 둘러보기"
+                            />
+                            <!-- <img
+                                src="../assets/img/login/join/bigbird-i_login_tablet.png"
+                                alt="빅버드i 둘러보기"
+                            />
+                            <img
+                                src="../assets/img/login/join/bigbird-i_login_mobile.png"
+                                alt="빅버드i 둘러보기"
+                            />-->
+                        </div>
+                        <div v-else>
+                            <img
+                                src="../assets/img/login/join/market_login_desktop.png"
+                                alt="빅버드i 둘러보기"
+                            />
+                            <!-- <img
+                                src="../assets/img/login/join/market_login_tablet.png"
+                                alt="빅버드i 둘러보기"
+                            />
+                            <img
+                                src="../assets/img/login/join/market_login_mobile.png"
+                                alt="빅버드i 둘러보기"
+                            />-->
+                        </div>
                     </a>
                     <a href="#" class="go_bigbird_btn" v-else>
                         <span
@@ -154,10 +176,10 @@ export default {
     methods: {
         changeLoginType() {
             if (!this.$store.state.iccMode) {
-                console.log('빅버드야~');
+                // console.log('빅버드야~');
                 this.onLoginForm = !this.onLoginForm;
             } else {
-                console.log('icc야~');
+                // console.log('icc야~');
                 this.onLoginForm = false;
             }
             // this.onLoginForm = !this.onLoginForm;
@@ -173,5 +195,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/index_client.scss';
+@import '../assets/scss/index.scss';
 </style>

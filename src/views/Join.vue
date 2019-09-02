@@ -3,8 +3,15 @@
         <div id="header">
             <div class="container">
                 <h1 class="logo" v-if="!this.$store.state.iccMode">
-                    <img id="desktopLogo" src="~@/assets/img/logo_join.png" alt="빅버드회원가입">
-                    <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입">   
+                    <div class="logoImg" v-if="checkService('brands',true)">
+                        <img id="desktopLogo"  src="~@/assets/img/login/join/bigbird-i_main_desktop.png" alt="빅버드i회원가입">
+                        <img id="tabletLogo" src="~@/assets/img/login/join/bigbird-i_main_tablet.png" alt="빅버드i회원가입"> 
+                    </div>
+                    <div class="logoImg" v-if="checkService('market',true) || checkService('influencer',true)">
+                        <img id="desktopLogo"  src="~@/assets/img/login/join/matket_main_desktop.png" alt="빅버드마켓회원가입">
+                        <img id="tabletLogo" src="~@/assets/img/login/join/market_main_tablet.png" alt="빅버드마켓회원가입"> 
+                    </div>
+                                       
                 </h1>
                 <h1 class="logo" v-else>                    
                     <span id="desktopLogo" style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
@@ -87,7 +94,7 @@
                                     <div class="label" @click.prevent="termCardFlip(2)">통합회원가입하기(선택)</div>
                                     <i @click.prevent="changeTermCheck('termsOfIMS')" :class="termsChecked('termsOfIMS')"></i>
                                 </div>
-                                <div class="link_wrap" v-if="!this.$store.state.iccMode">
+                                <div class="link_wrap none" >
                                     <a href="#"><img src="~@/assets/img/market_logo.png" alt=""></a>
                                     <div class="split"></div>
                                     <a href="#"><img src="~@/assets/img/pick_logo.png" alt=""></a>
@@ -129,7 +136,7 @@
                                 <div class="box big" 
                                     @click="onClickProfileCard('pay')" 
                                     v-if="checkService('brands',true) || checkService('influencer',true)" 
-                                    :class="[onProfileCard('pay'), checkService('influencer','margin-bottom-31') , this.profileCard.pay.save ? 'save': '']">
+                                    :class="[onProfileCard('pay'), checkService('brands', 'margin-bottom-31') , this.profileCard.pay.save ? 'save': '']">
                                     <img src="~@/assets/img/pay.png" alt="pay">
                                     <div class="text">
                                         <span v-if="checkService('brands',true) && !this.$store.state.iccMode">희망 원고료</span>
@@ -143,8 +150,8 @@
 
                                 <div class="box big"
                                     @click="onClickProfileCard('expectProduct')" 
-                                    v-if="checkService('brands',true) || checkService('influencer',true)" 
-                                    :class="[onProfileCard('expectProduct'), checkService('brands','margin-bottom-31'), this.profileCard.expectProduct.save ? 'save': '']">
+                                    v-if="checkService('market',true) || checkService('influencer',true)" 
+                                    :class="[onProfileCard('expectProduct'), checkService('influencer','margin-bottom-31'), this.profileCard.expectProduct.save ? 'save': '']">
                                     <img src="~@/assets/img/box.png" alt="item">
                                     <div class="text">
                                         희망 공구 품목<br>
@@ -154,17 +161,16 @@
                                     <div class="point-text">+ 1000 P</div>
                                 </div>
                                 <div>
-                                    <!-- <div class="box small" @click="onClickProfileCard('area')" 
+                                    <div class="box small" @click="onClickProfileCard('area')" 
                                     v-if="checkService('brands',true)" 
                                     :class="onProfileCard('area')">
                                         <img src="~@/assets/img/location.png" alt="area">
                                         <div class="text">
                                             주 활동 지역
                                         </div>
-                                    </div> -->
+                                    </div>
 
-                                    <div class="box small" @click="onClickProfileCard('gender')" 
-                                    v-if="checkService('brands',true) || checkService('influencer',true) || checkService('market', true)" 
+                                    <div class="box small" @click="onClickProfileCard('gender')"                                     
                                     :class="[onProfileCard('gender'), this.profileCard.gender.save ? 'save': '']">
                                         <img src="~@/assets/img/age_.png" alt="gender">
                                         <div class="text">
@@ -184,7 +190,6 @@
                                     </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('job')" 
-                                    v-if="checkService('brands',true)" 
                                     :class="[onProfileCard('job'), this.profileCard.job.save ? 'save': '']">
                                         <img src="~@/assets/img/job.png" alt="job">
                                         <div class="text">
@@ -194,17 +199,17 @@
                                         <div class="point-text">+ 1000 P</div>
                                     </div>
 
-                                    <!-- <div class="box small" @click="onClickProfileCard('interests')" 
+                                    <div class="box small" @click="onClickProfileCard('interests')" 
                                     v-if="checkService('brands',true)" 
                                     :class="onProfileCard('interests')">
                                         <img src="~@/assets/img/like.png" alt="interests">
                                         <div class="text">
                                             관심사
                                         </div>
-                                    </div> -->
+                                    </div>
 
                                     <div class="box small" @click="onClickProfileCard('married')" 
-                                    v-if="checkService('brands',true)" 
+                                    
                                     :class="[onProfileCard('married'), this.profileCard.married.save ? 'save': '']">
                                         <img src="~@/assets/img/married.png" alt="married">
                                         <div class="text">
@@ -215,7 +220,6 @@
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('children')" 
-                                    v-if="checkService('brands',true)" 
                                     :class="[onProfileCard('children'), this.profileCard.children.save ? 'save': '']">
                                         <img src="~@/assets/img/baby.png" alt="children">
                                         <div class="text">
@@ -226,7 +230,6 @@
                                     </div>
 
                                     <div class="box small" @click="onClickProfileCard('pet')" 
-                                    v-if="checkService('brands',true)"  
                                     :class="[onProfileCard('pet'), this.profileCard.pet.save ? 'save': '']">
                                         <img src="~@/assets/img/pet.png" alt="pet">
                                         <div class="text">
@@ -235,7 +238,7 @@
                                         <div class="point"><span>1000포인트 적립</span></div>
                                         <div class="point-text">+ 1000 P</div>
                                     </div>
-                                    <div class="box small" @click="onClickProfileCard('bodyProfile')" 
+                                    <!-- <div class="box small" @click="onClickProfileCard('bodyProfile')" 
                                     v-if="checkService('market',true) || checkService('influencer', true)" 
                                     :class="onProfileCard('bodyProfile')" >
                                         <img src="~@/assets/img/body.png" alt="body">
@@ -244,10 +247,10 @@
                                         </div>
                                         <div class="point"><span>1000포인트 적립</span></div>
                                         <div class="point-text">+ 1000 P</div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="box small" @click="onClickProfileCard('skinType')" 
-                                    v-if="checkService('brands',true) || checkService('influencer', true)" 
+                                    v-if="checkService('market',true) || checkService('influencer', true)" 
                                     :class="[onProfileCard('skinType'), this.profileCard.skinType.save ? 'save': '']">
                                         <img src="~@/assets/img/skin.png" alt="skin">
                                         <div class="text">
@@ -598,59 +601,59 @@ export default {
             this.joinPage = true;            
         },
         standardJoin() { // 가입완료
-            if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
-                if(this.idValidityText) {
-                    alert("아이디는 영문,숫자,특수문자(_,.) 6~20자로 입력해주세요");
-                    return;
-                }
-                if(this.idWrongText) {
-                    alert("사용중인 아이디입니다 다시 입력해주세요");
-                    return;
-                }
-                if(this.idCheckText) {
-                    alert("아이디 중복확인해주세요");
-                    return;
-                }
-                if(this.pwValidityText) {
-                    alert("비밀번호는 영문,숫자,특수문자 포함 6~20자로 입력해주세요");
-                    return;
-                }
-                if(this.pwWrongText) {
-                    alert("비밀번호가 일치하지 않습니다");
-                    return;
-                }
-                if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
-                    alert("본인인증이 필요합니다");
-                    return;
-                }
-                if(this.emailValidityText) {
-                    alert("잘못된 이메일 형식입니다 다시 입력해주세요");
-                    return;
-                }
-                if(this.emailWrongText) {
-                    alert("사용중인 이메일입니다 다시 입력해주세요");
-                    return;
-                }
-                if(this.emailCheckText) {
-                    alert("이메일 중복확인해주세요");
-                    return;
-                }
-                this.$axios('post',`/join/${this.userService}`, {
-                    id: this.id,
-                    pw: this.pw,
-                    certIdx: this.certIdx,
-                    email: this.email,
-                    termsAgreed: true
-                }).then((res) => {
-                    this.userIndex = res.data.userIdx;
-                }).catch((err) => {
-                    console.log(err);
-                })
+            // if(this.id && this.pw && this.pwAgain && this.name && this.phoneNumber && this.email && this.getByFormData.termsOfUse == true) {
+            //     if(this.idValidityText) {
+            //         alert("아이디는 영문,숫자,특수문자(_,.) 6~20자로 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.idWrongText) {
+            //         alert("사용중인 아이디입니다 다시 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.idCheckText) {
+            //         alert("아이디 중복확인해주세요");
+            //         return;
+            //     }
+            //     if(this.pwValidityText) {
+            //         alert("비밀번호는 영문,숫자,특수문자 포함 6~20자로 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.pwWrongText) {
+            //         alert("비밀번호가 일치하지 않습니다");
+            //         return;
+            //     }
+            //     if(!this.name || !this.phoneNumber || (!this.name && !this.phoneNumber)) {
+            //         alert("본인인증이 필요합니다");
+            //         return;
+            //     }
+            //     if(this.emailValidityText) {
+            //         alert("잘못된 이메일 형식입니다 다시 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.emailWrongText) {
+            //         alert("사용중인 이메일입니다 다시 입력해주세요");
+            //         return;
+            //     }
+            //     if(this.emailCheckText) {
+            //         alert("이메일 중복확인해주세요");
+            //         return;
+            //     }
+            //     this.$axios('post',`/join/${this.userService}`, {
+            //         id: this.id,
+            //         pw: this.pw,
+            //         certIdx: this.certIdx,
+            //         email: this.email,
+            //         termsAgreed: true
+            //     }).then((res) => {
+            //         this.userIndex = res.data.userIdx;
+            //     }).catch((err) => {
+            //         console.log(err);
+            //     })
                 this.addJoinPage = !this.addJoinPage;
                 this.toggleMobileTab(2);
-            } else {
-                alert('정보를 모두 입력해주세요');
-            }
+            // } else {
+            //     alert('정보를 모두 입력해주세요');
+            // }
         },
         onCardFilp () {
             this.isCardFlip = !this.isCardFlip;

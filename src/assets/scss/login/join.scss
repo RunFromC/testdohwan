@@ -1854,53 +1854,52 @@ button:focus {
 
                     #interests.article {
                         .inner-contents {
-                            overflow: hidden;
                             position: relative;
-                            #interestsSelect {
-                                position: absolute;
-                                top: 40px;
-                                left: calc(50% - 102.5px);
-                                margin: 0;
+                            .input-selectbox-wrap {
+                                margin-top: 40px;
+                                .listWrap {
+                                    .list {
+                                        padding: 9px 0 9px 12.5px;
+                                        >li {
+                                            text-align: left;
+                                        }
+                                    }
+                                }
+                                .listWrap.item-top {
+                                    top: 35px;
+                                }
+                            }
+                            #itemSelect {
+                                max-width: 200px;
+                                margin: 40px auto 0;
                                 z-index: 1;
-                            }
-
-                            .input-text-wrap {
-                                position: absolute;
-                                top: 95px;
-                                left: calc(50% - 102.5px);
-                                width: 203px;
-                                height: 38px;
-                                border: 1px solid #bbbbbb;
-                                border-radius: 5px;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-
+                                border: 1px solid #bbb;
+                                
                                 input {
-                                    width: 120px;
+                                    font-size: 18px;
                                     height: 20px;
-                                    border: none;
-                                    font-size: 18px;
-                                    font-family: 'Nanum-Barun-Gothic-normal',
-                                        serif;
-                                    text-align: center;
-                                    color: #E2E1E1;
-                                }
+                                    line-height: 20px;   
+                                    max-width: 170px;
+                                    color: #000;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
 
+                                }
                                 input::placeholder {
-                                    color: #e2e1e1;
                                     font-size: 18px;
+                                    color: #707070;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+
+                                    
                                 }
                             }
-
                             .choice-list {
                                 width: 255px;
                                 height: auto;
-                                overflow: hidden;
+                                margin: 0 auto;   
+                                bottom: -438px;
                                 position: absolute;
-                                bottom: 0;
-                                left: calc(50% - 127.5px);
-                                margin-bottom: 10px;
+                                left: 50%;
+                                transform: translateX(-50%);
                                 > ul {
                                     position: relative;
                                     display: block;
@@ -1941,7 +1940,58 @@ button:focus {
                                         border: 2px solid #def8ec;
                                         color: red;
                                     }
+                                    li.close {
+                                        border: none;
+                                        position: absolute;
+                                        left: 50%;
+                                        top: 50%;
+                                        transform: translate(-50%, -50%);
+                                        .closeImg {
+                                            position: absolute;
+                                            width: 20px;
+                                            height: 20px;
+                                            right: -5px;
+                                            top: -5px;
+                                            background: #E2E1E1;
+                                            line-height: 20px;
+                                            z-index: 10;
+                                            display: block;  
+                                            border-radius: 50%;                                   
+                                        }
+                                        .closeImg::after {
+                                            content: '';
+                                            position: absolute;
+                                            height: 16px;
+                                            width: 2px;
+                                            background: #fff;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) rotate(-45deg);
+    
+                                        }
+                                        .closeImg::before {
+                                            content: '';
+                                            position: absolute;
+                                            height: 16px;
+                                            width: 2px;
+                                            background: #fff;
+                                            top: 50%;
+                                            left: 50%;
+                                            transform: translate(-50%, -50%) rotate(45deg);
+    
+                                        }
+                                    }
+                                    
+                                    
+                                    
                                 }
+                            }
+                            .alert-text {
+                                margin-top: 5px;
+                                color: #ff7364;
+                                font-size: 12px;
+                                font-family: Nanum-Barun-Gothic-normal, serif;
+                                text-align: center;
                             }
                         }
                     }
@@ -2933,10 +2983,14 @@ button:focus {
                         height: auto;
                         line-height: 24px;
                         font-size: 16px;
-                        margin:2px auto 61px;
+                        margin:2px auto 0;
                         color: #707070;
-                        margin-bottom: 113px;
                         
+                    }
+                    li {
+                        img {
+                            margin-top: 47px;
+                        }
                     }
                     .point-text {
                         font-family: 'NotoSansKr-Regular';
@@ -2965,6 +3019,7 @@ button:focus {
                             text-align: center;
                             line-height: 50px;
                             font-size: 20px;
+                            margin: 0 auto;
                         }
                     }
                     .skip-btn {
@@ -4180,32 +4235,83 @@ button:focus {
                         }
 
                         #interests.article {
-                            .input-selectbox-wrap,
-                            .input-text-wrap {
-                                left: calc(50% - 95px) !important;
-                            }
-
-                            .choice-list {
-                                width: 190px !important;
-                                left: calc(50% - 95px) !important;
-
-                                ul {
-                                    width: 90px !important;
-                                    height: 30px !important;
-                                    margin-left: 0 !important;
-                                    :nth-child(2n) {
-                                        margin-right: 0;
+                            .inner-contents {
+                                .input-selectbox-wrap {
+                                    line-height: 30px;
+                                    height: 30px;
+                                    .select {
+                                        line-height: 30px;
+                                        height: 30px;
                                     }
-
-                                    li {
-                                        line-height: 26px !important;
-                                        font-size: 13px !important;
-                                        width: 86px !important;
-                                        height: 26px !important;
+                                    .listWrap.item-top {
+                                        top: 27px;
+                                    } 
+                                }
+                                #itemSelect {
+                                    input {
+                                        font-size: 14px;
                                     }
-                                    li.delete {
+                                    input::placeholder {
+                                        font-size: 14px;
+                                        color: #C1C1C1;
+                                        
                                     }
                                 }
+                                .choice-list {
+                                    max-width: 190px;
+                                    bottom: -294px;
+                                    > ul {
+                                        margin-left: 2.5px;
+                                        margin-right: 2.5px;
+                                        width: 90px;
+                                        height: 30px;
+                                        li {
+                                            font-size: 13px;
+                                            border-radius: 10px;
+                                            width: 90px;
+                                            height: 30px;
+                                            line-height: 30px;
+                                            box-sizing: border-box;
+                                        }
+                                        
+                                        li.close {
+                                            border: none;
+                                            
+                                            .closeImg {       
+                                                width: 15px;                                         
+                                                height: 15px;
+                                                line-height: 15px;   
+                                                display: block;  
+                                                right: -2px;
+                                                top: -6px;                              
+                                            }
+                                            .closeImg::after {
+                                                content: '';
+                                                position: absolute;
+                                                height: 12px;
+                                                width: 2px;
+                                                background: #fff;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%) rotate(-45deg);
+        
+                                            }
+                                            .closeImg::before {
+                                                content: '';
+                                                position: absolute;
+                                                height: 12px;
+                                                width: 2px;
+                                                background: #fff;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%) rotate(45deg);
+        
+                                            }
+                                        }
+                                    }
+                                    
+                                }
+                                
                             }
                         }
 
@@ -4895,7 +5001,7 @@ button:focus {
                             height: auto;
                             line-height: 17px;
                             font-size: 11px;
-                            margin:9px auto 91px;
+                            margin:9px auto 0;
                             
                         }
                         .point-text {
@@ -5881,6 +5987,7 @@ button:focus {
                                 overflow: hidden;
                                 border-radius: 0 0 5px 5px;
                                 background: #fff;
+                                top: 36px;
 
                                 .list {
                                     border-top: 1px solid #e2e1e1;
@@ -5912,6 +6019,9 @@ button:focus {
                                 top: 35px;
                             }
                             .listWrap.item-top {
+                                top: 35px;
+                            }
+                            .listWrap.like-top {
                                 top: 35px;
                             }
                             .list::-webkit-scrollbar {
@@ -6703,174 +6813,211 @@ button:focus {
                             }
                         }
                         .m-like {
+                            text-align: center;
                             .input-selectbox-wrap {
                                 width: 205px - 2px;
                                 height: auto;
-                                border: 1px solid #bbbbbb;
+                                border: 1px solid #BBBBBB;
                                 border-radius: 5px;
-                                margin: 30px auto 15px;
+                                margin: 30px auto 60px;
                                 background: #fff;
-                                .select3 {
-                                    cursor: pointer;
-                                    width: 205px - 2px;
-                                    height: 40px - 2px;
-                                    text-align: center;
-                                    line-height: 40px;
-                                    font-size: 18px;
-                                    font-family: Nanum-Barun-Gothic-normal,
-                                        serif;
-                                    position: relative;
-
-                                    i {
-                                        display: block;
-                                        width: 14px;
-                                        height: 14px;
-                                        position: absolute;
-                                        right: 12px;
-                                        top: 50%;
-                                        transform: translateY(-50%);
-                                        @include background(
-                                            '~@/assets/img/arrow_butt.png'
-                                        );
-                                    }
-                                    i.rotate {
-                                        -webkit-transform:translateY(-50%) rotate(180deg);
-                                        -moz-transform:translateY(-50%) rotate(180deg);
-                                        -ms-transform:translateY(-50%) rotate(180deg);
-                                        -o-transform:translateY(-50%) rotate(180deg);
-                                    }
+                                .select {
+                                  cursor: pointer;
+                                  width: 205px - 2px;
+                                  height: 40px - 2px;
+                                  text-align: center;
+                                  line-height: 40px;
+                                  font-size: 18px;
+                                  font-family: Nanum-Barun-Gothic-normal, serif;
+                                  position: relative;
+                
+                                  i {
+                                    display: block;
+                                    width: 14px;
+                                    height: 14px;
+                                    position: absolute;
+                                    right: 12px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    @include background("~@/assets/img/arrow_butt.png")
+                                  }
+                                  i.rotate {
+                                    -webkit-transform:translateY(-50%) rotate(180deg);
+                                    -moz-transform:translateY(-50%) rotate(180deg);
+                                    -ms-transform:translateY(-50%) rotate(180deg);
+                                    -o-transform:translateY(-50%) rotate(180deg);
+                                    }                             
                                 }
-                            }
-                            .input-text-wrap {
+                              }
+                              .input-text-wrap {
                                 width: 203px;
                                 height: 38px;
-                                border: 1px solid #bbbbbb;
+                                border: 1px solid #BBBBBB;
                                 border-radius: 5px;
                                 display: block;
                                 align-items: center;
                                 justify-content: center;
                                 margin: 0 auto;
                                 background: #fff;
-
+                
                                 input {
-                                    width: 120px;
-                                    height: 38px;
-                                    border: none;
-                                    font-size: 18px;
-                                    font-family: 'Nanum-Barun-Gothic-normal',
-                                        serif;
-                                    display: block;
-                                    margin: 0 auto;
-                                    line-height: 20px;
-                                    text-align: center;
+                                  width: 135px;
+                                  height: 38px;
+                                  border: none;
+                                  font-size: 18px;
+                                  font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                  display: block;
+                                  margin: 0 auto;
+                                  line-height: 20px;
+                                  text-align: center;
+                                  color: #000;
+                                  
                                 }
-
+                
                                 input::placeholder {
-                                    color: #e2e1e1;
-                                    font-size: 18px;
-                                    font-family: Nanum-Barun-Gothic-normal,
-                                        sans-serif;
-                                    text-align: center;
+                                  color:#707070;
+                                  font-size: 18px;
+                                  font-family: Nanum-Barun-Gothic-normal, sans-serif;
+                                  text-align: center;
                                 }
-                            }
-                            .listWrap3 {
+                              }
+                              .listWrap3 {
                                 position: relative;
                                 z-index: 1;
                                 display: none;
                                 margin: 0 auto;
                                 width: 100%;
                                 max-height: 130px;
-                                border: 1px solid #bbbbbb;
+                                border: 1px solid #BBBBBB;
                                 border-top: none;
                                 overflow: hidden;
                                 border-radius: 0 0 5px 5px;
                                 background: #fff;
-
+                
                                 .list {
-                                    border-top: 1px solid #e2e1e1;
-                                    margin: 0 auto;
-                                    padding: 9px 0;
-                                    width: 175px;
-                                    max-height: 112px;
-
-                                    li {
-                                        height: 33px;
-                                        line-height: 33px;
-                                        text-align: center;
-                                        font-size: 14px;
-                                        cursor: pointer;
-                                        font-family: Nanum-Barun-Gothic-normal,
-                                            serif;
-                                    }
-                                    li.likething {
-                                        color: #4bd897;
-                                    }
-                                    overflow-y: auto;
-                                    overflow-x: hidden;
+                                  border-top: 1px solid #e2e1e1;
+                                  margin: 0 auto;
+                                  padding: 9px 0;
+                                  width: 175px;
+                                  max-height: 112px;
+                
+                                  li {
+                                    height: 33px;
+                                    line-height: 33px;
+                                    text-align: center;
+                                    font-size: 13px;
+                                    cursor: pointer;
+                                    font-family: Nanum-Barun-Gothic-normal, serif;
+                                  }
+                                  li.likething {
+                                    color: #4BD897;
+                                  }
+                                  overflow-y: auto;
+                                  overflow-x: hidden;
                                 }
-                            }
-                            .listWrap3.long {
+                              }
+                              .listWrap3.long {
                                 max-height: 500px;
                                 .list {
-                                    li {
-                                        cursor: pointer;
-                                    }
-                                    max-height: 500px;
+                                  li {
+                                    cursor: pointer;
+                                  }
+                                  max-height: 500px;
                                 }
-                            }
-                            .choice-list {
-                                width: 246px;
-                                overflow: hidden;
-                                display: block;
+                              }
+                              .choice-list {
+                                max-width: 270px;
+                                display: inline-block;
                                 margin: 15px auto 0;
                                 > ul {
-                                    position: relative;
+                                  position: relative;
+                                  width: 120px;
+                                  height: 40px;
+                                  float: left;
+                                  cursor: pointer;
+                                  margin-bottom: 10px;
+                                  margin-right: 25px;                              
+                                  li {
+                                    background: #fff;
+                                    border: 2px solid #4BD897;
+                                    color: #4BD897;
+                                    font-size: 16px;
                                     width: 120px;
+                                    box-sizing: border-box;
                                     height: 40px;
-                                    float: left;
-                                    cursor: pointer;
-                                    margin-bottom: 10px;
-                                    margin-left: 3px;
-                                    :nth-child(2n-1) {
-                                        margin-left: 0 !important;
-                                        margin-right: 0 !important;
-                                    }
-                                    li {
-                                        border: 2px solid #4bd897;
-                                        color: #4bd897;
-                                        font-size: 16px;
-                                        width: 116px;
-                                        height: 36px;
-                                        text-align: center;
-                                        line-height: 38px;
-                                        font-family: 'Nanum-Barun-Gothic-normal',
-                                            serif;
-                                        border-radius: 15px;
-                                    }
-                                    li.delete {
+                                    text-align: center;
+                                    line-height: 40px;
+                                    font-family: 'Nanum-Barun-Gothic-normal', serif;
+                                    border-radius: 15px;
+                                  }
+                                  li.delete {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    -webkit-transform: translate(-50%, -50%);
+                                    -moz-transform: translate(-50%, -50%);
+                                    -ms-transform: translate(-50%, -50%);
+                                    -o-transform: translate(-50%, -50%);
+                                    transform: translate(-50%, -50%);
+                                    border:2px solid #DEF8EC;
+                                    color: red;
+                                  }
+                                  li.close {
+                                    border: none;
+                                    background: none;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    .closeImg {
                                         position: absolute;
+                                        width: 20px;
+                                        height: 20px;
+                                        right: -5px;
+                                        top: -5px;
+                                        background: #E2E1E1;
+                                        line-height: 20px;
+                                        z-index: 0;
+                                        display: block;  
+                                        border-radius: 50%;                                   
+                                    }
+                                    .closeImg::after {
+                                        content: '';
+                                        position: absolute;
+                                        height: 16px;
+                                        width: 2px;
+                                        background: #fff;
                                         top: 50%;
                                         left: 50%;
-                                        -webkit-transform: translate(
-                                            -50%,
-                                            -50%
-                                        );
-                                        -moz-transform: translate(-50%, -50%);
-                                        -ms-transform: translate(-50%, -50%);
-                                        -o-transform: translate(-50%, -50%);
-                                        transform: translate(-50%, -50%);
-                                        border: 2px solid #def8ec;
-                                        color: red;
+                                        transform: translate(-50%, -50%) rotate(-45deg);
+    
                                     }
+                                    .closeImg::before {
+                                        content: '';
+                                        position: absolute;
+                                        height: 16px;
+                                        width: 2px;
+                                        background: #fff;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%) rotate(45deg);
+    
+                                    }                               
+                                  }                              
                                 }
-                            }
-                            .alert-text {
+                                > ul:nth-child(2n) {
+                                    margin-left: 0!important;
+                                    margin-right: 0!important;
+                                  }
+                
+                              }
+                              .alert-text {
                                 margin-top: 5px;
-                                color: #ff7364;
+                                color: #FF7364;
                                 font-size: 12px;
                                 font-family: Nanum-Barun-Gothic-normal, serif;
                                 text-align: center;
-                            }
+                
+                              }
                         }
                         .m-marry {
                             overflow: hidden;
@@ -8292,13 +8439,13 @@ button:focus {
                     }
 
                     #accordion-place.height {
-                        height: 600px;
+                        height: 740px;
                     }
                     #accordion-job.height {
                         height: 388px;
                     }
                     #accordion-interests.height {
-                        height: 420px;
+                        height: 460px;
                     }
                     #accordion-product.height {
                         height: 385px;
