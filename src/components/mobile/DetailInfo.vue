@@ -1227,7 +1227,6 @@ export default {
           window.authResultForNaver = async data => {
             console.log(data);
           }
-
           // popup open
           window.open(
               res.data,
