@@ -854,6 +854,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import MapSvg from '../MapSvg';
+import { async } from 'q';
 
 export default {
     name: 'mobileDetailInfo',
@@ -1200,19 +1201,33 @@ export default {
               this.authInstagram();
             } else if (this.isCertificationOnOff[3]) {
               this.authNaver();
+            } else if (this.isCertificationOnOff[2]) {
+              this.authGoogle();
             }
             
         },
-        async authNaver() {
-          const naverUrl = "/auth/naver";
-        
-          const res = await this.$axios('get', `/auth/naver` );
-          
-          console.log(res.headers["set-cookie"]);
+        async authGoogle() {
+          console.log('google');
+          const url = '/auth/google'
+          const res = await this.$axios('get', url );
 
-        window.authResultForInsta = async data => {
-          console.log(data);
-        }
+          window.authResultForGoogle = async data => {
+            console.log(data);
+          }
+
+          window.open(
+              res.data,
+              '_blank',
+              'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+          );
+        },
+        async authNaver() {
+          const res = await this.$axios('get', `/auth/naver` );
+
+          window.authResultForNaver = async data => {
+            console.log(data);
+          }
+
           // popup open
           window.open(
               res.data,
