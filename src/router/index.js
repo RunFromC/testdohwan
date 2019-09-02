@@ -10,6 +10,7 @@ import CertSuccess from '../views/CertSuccess.vue';
 import Policy from '../views/privacy/Policy.vue';
 import Instagram from '../views/auth/Instagram';
 import Naver from '../views/auth/Naver';
+import Google from '../views/auth/Google';
 
 Vue.use(Router);
 
@@ -76,6 +77,11 @@ const router = new Router({
             path: '/auth/naver',
             name: 'authNaver',
             component: Naver
+        },
+        {
+            path: '/auth/google',
+            name: 'authGoogle',
+            component: Google
         }
     ]
 });

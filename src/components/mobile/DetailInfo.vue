@@ -200,11 +200,11 @@
       <div class="m-item">
         <div class="input-selectbox-wrap" id="m-itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="groupPurchaseSearch" />
           </div>
           <div class="listContents listWrap long item-top">
             <ul class="list">
-              <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
+              <li v-for="(list,index) in purchaseGroupList" @click="isText($event,index)" :key="index">{{list.name}}</li>
             </ul>
           </div>
         </div>
@@ -213,7 +213,7 @@
 
         <div class="choice-list">
           <ul v-for="list in 6" :key="list">
-            <li>뷰티</li>
+            <li>{{groupPurchaseDefault}}</li>
             <li class="close">
               <a href="#" class="closeImg"></a>
             </li>
@@ -221,7 +221,7 @@
           </ul>
         </div>
 
-        <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseListText">공구품목은 6개를 초과 선택할 수 없습니다</div>
 
         <div class="button-wrap">
           <button class="itemsave-btn on" @click="saveBtn">저장</button>
@@ -844,6 +844,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import MapSvg from '../MapSvg';
+import { async } from 'q';
 
 export default {
     name: 'mobileDetailInfo',
@@ -879,6 +880,10 @@ export default {
             generationDefault: '초반',
             jobDefault: '현 직업',
             jobSearchDefault: '',
+            groupPurchaseDefault: '',
+            addJobBtn: true,
+            addChildBtn: true,
+            addPetBtn: true,
             onStatusCheck: {
                 job: null,
                 child: null,
@@ -956,9 +961,18 @@ export default {
               productFeePer: NaN //-10
             },
             // 희망공구품목
-            groupPurchaseList: [],
+            purchaseGroupList: [],
+            groupPurchaseChoice: [],
+            groupPurchaseList: [
+              {
+                groupPurchaseIdx: NaN
+              }
+            ],
+            purchaseGroupTag: false,
+            deletePurchase: false,
             purchaseList: '',
             purchaseInputText: false,
+            purchaseListText: false,
             // 성별,연령
             genderExists: null,
             ageList: [],
@@ -1043,7 +1057,7 @@ export default {
       this.$axios('get','/join/info/init', {
         }).then((res) => {
             console.log(res);      
-            this.groupPurchaseList = res.data.groupPurchaseList;
+            this.purchaseGroupList = res.data.groupPurchaseList;
             this.ageList = res.data.age;
             this.ageGroupList = res.data.ageGroup;
             this.jobList = res.data.job;
@@ -1054,23 +1068,28 @@ export default {
         }).catch((err) => {
             console.log(err)
         });
-      // this.$axios('get','/join/productList', {
-      //   }).then((res) => {
-      //       console.log(res);
-      //   }).catch((err) => {
-      //       console.log(err)
-      //   });
     },
     methods: {
+        deleteIcon() {
+          this.deletePurchase = true;
+          this.groupPurchaseDefault = '';
+        },
+        deletePurchaseList() {
+          this.purchaseGroupTag = false;
+          this.deletePurchase = false;
+        },
+        addChild() {
+          this.addChildBtn = false;
+        },
+        removeChild() {
+          let removeChildren = document.getElementById("addChildren");
+          removeChildren.parentNode.removeChild(removeChildren);
+        },
         jobSearch() {
           this.$axios('post','/join/search/job', {
             name: this.jobSearchDefault
           }).then((res) => {
             console.log(res);
-            for (let i = 0; i < res.data.length; i++) {
-              if(this.jobSearchDefault.includes(res.data[i].name)) {
-              }
-            }
           })
         },
         // 희망 수수료 maxLength 제한
@@ -1138,13 +1157,18 @@ export default {
             }
           } 
         },
-        //공구품목 검색 자리 제한
-        purchaseInput() {
-          if(this.purchaseList.length > 8) {
-            this.purchaseInputText = true;
-          } else {
-            this.purchaseInputText = false;
-          }
+        //공구품목 검색
+        groupPurchaseSearch() {
+          this.$axios('post','/join/search/grouppurchase', {
+            name: this.purchaseList
+          }).then((res) => {
+            console.log(res);
+            if(this.purchaseList.length > 8) {
+              this.purchaseInputText = true;
+            } else {
+              this.purchaseInputText = false;
+            }
+          })
         },
         //sns 연동 아이콘 온오프
         checkCertification(idx) {
@@ -1172,19 +1196,32 @@ export default {
               this.authInstagram();
             } else if (this.isCertificationOnOff[3]) {
               this.authNaver();
+            } else if (this.isCertificationOnOff[2]) {
+              this.authGoogle();
             }
             
         },
-        async authNaver() {
-          const naverUrl = "/auth/naver";
-        
-          const res = await this.$axios('get', `/auth/naver` );
-          
-          console.log(res.headers["set-cookie"]);
+        async authGoogle() {
+          console.log('google');
+          const url = '/auth/google'
+          const res = await this.$axios('get', url );
 
-        window.authResultForInsta = async data => {
-          console.log(data);
-        }
+          window.authResultForGoogle = async data => {
+            console.log(data);
+          }
+
+          window.open(
+              res.data,
+              '_blank',
+              'toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400'
+          );
+        },
+        async authNaver() {
+          const res = await this.$axios('get', `/auth/naver` );
+
+          window.authResultForNaver = async data => {
+            console.log(data);
+          }
           // popup open
           window.open(
               res.data,
@@ -1288,7 +1325,10 @@ export default {
             } else if(e.target.closest('#jobSearchSelect', '#m-jobSearchSelect')) {
                 this.jobSearchDefault = text;
                 this.jobSearchChoice = this.jobList[idx].idx;
-            } else {
+            } else if(e.target.closest('#itemSelect', '#m-itemSelect')) {
+                this.groupPurchaseDefault = text;
+                this.purchaseGroupTag = true;
+            } else  {
                 this.generationDefault = text;
                 this.ageGroupChoice = this.ageGroupList[idx].idx;
             }
@@ -1600,6 +1640,7 @@ export default {
                 } else if (this.currentCard === 'job') {
                     this.job.exists = this.jobExists;
                     this.job.jobList[0].isCurrentJob = this.jobTenseChoice;
+                    this.job.jobList[0].idx = this.jobSearchChoice;
                     console.log(this.job);
                 } else if (this.currentCard === 'married') {
                     this.married = this.marry;

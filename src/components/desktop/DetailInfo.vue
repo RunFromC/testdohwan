@@ -4,7 +4,7 @@
       <div class="top">
         <div class="title">문의</div>
         <img src="~@/assets/img/login_ask_kakao icon.png" alt="카카오 문의">
-        <input type="button" class="input-button" value="카카오톡 상담하기" @click="kakaoCounseling">
+        <input type="button" class="input-button" value="카카오톡 상담하기">
       </div>
       <div class="middle">
         <a href="#" class="tel">Tel. 1661 - 6213</a>
@@ -449,15 +449,15 @@
                 </li>
               </ul>
               <ul class="list-second listContents">
-                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)">{{list.name}}</li>
+                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)" :class="jobSearchDefault.indexOf(list.name) != -1 ? 'on':''">{{list.name}}</li>
               </ul>
             </li>
             <li class="status-btn clearfix">
               <ul>
-                <li class="status-add">
+                <li class="status-add" v-if="addJobBtn">
                   <a href="#">+</a>
                 </li>
-                <li class="status-remove none">
+                <li class="status-remove" v-else>
                   <a href="#">-</a>
                 </li>
               </ul>
@@ -601,7 +601,7 @@
           id="childSelect"
           :class="!haveChild ? 'none': ''"
         >
-          <ul class="status-selectbox">
+          <ul class="status-selectbox" id="addChildren">
             <li class="select-box clearfix" id="childAge">
               <ul class="select-first select-btn" @click.prevent="showSelectList2">
                 <li>
@@ -627,10 +627,10 @@
             </li>
             <li class="status-btn clearfix">
               <ul>
-                <li class="status-add">
+                <li class="status-add" v-if="addChildBtn" @click="addChild">
                   <a href="#">+</a>
                 </li>
-                <li class="status-remove none">
+                <li class="status-remove" v-else @click="removeChild">
                   <a href="#"></a>
                 </li>
               </ul>
@@ -714,10 +714,10 @@
             </li>
             <li class="status-btn clearfix">
               <ul>
-                <li class="status-add">
+                <li class="status-add" v-if="addPetBtn">
                   <a href="#">+</a>
                 </li>
-                <li class="status-remove none">
+                <li class="status-remove" v-else>
                   <a href="#">-</a>
                 </li>
               </ul>
@@ -748,26 +748,26 @@
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="groupPurchaseSearch" />
           </div>
           <div class="listContents listWrap long item-top">
             <ul class="list">
-              <li v-for="(list,index) in groupPurchaseList" :key="index">{{list.name}}</li>
+              <li v-for="(list,index) in purchaseGroupList" @click="isText($event,index)" :key="index" :class="purchaseList.indexOf(list.name) != -1 ? 'on':''">{{list.name}}</li>
             </ul>
           </div>
           <!-- <v-select placeholder="선택해주세요" :options="item" @input="myAction"></v-select> -->
         </div>
         <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
-        <div class="choice-list">
+        <div class="choice-list" v-if="purchaseGroupTag">
           <ul v-for="list in 6" :key="list">
-            <li>뷰티</li>
+            <li>{{groupPurchaseDefault}}</li>
             <li class="close">
-              <a href="#" class="closeImg"></a>
+              <a href="#" class="closeImg" @click="deleteIcon"></a>
             </li>
-            <li class="delete none">삭제</li>
+            <li class="delete" v-if="deletePurchase" @click="deletePurchaseList">삭제</li>
           </ul>
         </div>
-        <div class="alert-text none">공구품목은 6개를 초과 선택할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseListText">공구품목은 6개를 초과 선택할 수 없습니다</div>
       </div>
       <div class="button-wrap">
         <ul>

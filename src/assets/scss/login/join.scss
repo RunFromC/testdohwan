@@ -1827,6 +1827,9 @@ button:focus {
                                                 padding: 15px 0 0 15px;
                                                 
                                             }
+                                            li.on {
+                                                color: #4BD897;                                                
+                                            }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
                                             }
@@ -2251,8 +2254,10 @@ button:focus {
                                 width: 255px;
                                 height: auto;
                                 margin: 0 auto;   
-                                bottom: -438px;
-                                position: absolute;
+                                // bottom: -438px;
+                                // position: absolute;
+                                position: fixed;
+                                bottom: 135px;
                                 left: 50%;
                                 transform: translateX(-50%);
                                 > ul {
@@ -6763,6 +6768,9 @@ button:focus {
                                                 text-align: left;
                                                 font-family: 'Nanum-Barun-Gothic', 'serif';
                                             }
+                                            li.on {
+                                                color: #4BD897;
+                                            }
                                             li:first-child {
                                                 border-top: 1px solid #E2E1E1;
                                             }
@@ -8227,7 +8235,6 @@ button:focus {
             
                           }
                           .alert-text {
-                            margin-top: 5px;
                             color: #FF7364;
                             font-size: 12px;
                             font-family: Nanum-Barun-Gothic-normal, serif;
