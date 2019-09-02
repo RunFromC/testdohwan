@@ -298,13 +298,6 @@ input[type='checkbox'] {
             .top {
                 height: 518px !important;
             }
-
-            .bottom {
-                height: 72px !important;
-                img {
-                    width: 160px !important;
-                }
-            }
         }
 
         .contents.type2 {
@@ -358,6 +351,75 @@ input[type='checkbox'] {
                 .top {
                     img {
                         margin-top: 47px;
+                        margin-bottom: 11px;
+                        width: 54px;
+                    }
+                }
+
+                .middle {
+                    .text {
+                        margin-top: 71px;
+                        font-size: 12px;
+                        line-height: 20px;
+                    }
+                }
+
+                .bottom {
+                    .input-button {
+                        margin-top: 22px;
+                    }
+                }
+            }
+        }
+    }
+
+    .card_wrap .contents .icon-questions {
+        width: 20px;
+        height: 20px;
+        top: 30px;
+        right: 20px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .card_wrap {
+        .contents.type2 {
+            .box {
+                .top {
+                    height: auto;
+                    .title {
+                        margin-top: 64px;
+                    }
+                }
+            }
+            #questionTab.box {
+                .top {
+                    img {
+                        margin-top: 40px;
+                    }
+                    .input-button {
+                        margin-bottom: 27px;
+                    }
+                }
+
+                .middle {
+                    .tel {
+                        margin-top: 47px;
+                    }
+                }
+
+                .bottom {
+                    .email {
+                        margin-top: 22px;
+                        font-size: 13px;
+                    }
+                }
+            }
+
+            #naverTab.box {
+                .top {
+                    img {
+                        margin-top: 27px;
                         margin-bottom: 11px;
                         width: 54px;
                     }

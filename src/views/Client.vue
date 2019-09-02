@@ -20,7 +20,7 @@
                         >보다 정교한, 나만의 인플루언서 선택</div>
                         <div class="text" v-else>파트너가 되어 반갑습니다</div>
                     </div>
-                    <div class="loginBox">
+                    <div class="loginBox oneset">
                         <div class="tab2">
                             <div class="toggleBtnWrap">
                                 <a href="#" v-if="!this.$store.state.iccMode">빅버드 ID 로그인</a>
@@ -107,5 +107,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/index_client.scss';
+@import '../assets/scss/index.scss';
 </style>

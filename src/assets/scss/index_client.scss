@@ -1,488 +1,464 @@
-@import 'config';
-
-#loginPage.card_wrap {
-  $bottomSize: 83px;
-  #loginTab {
-    .titleWrap {
-      width: 100%;
-      text-align: center;
-      overflow: hidden;
-      float: left;
-
-      .imgWrap {
-        margin-top: 93px;
-        margin-bottom: 15px;
-        width: 100%;
-        height: 40px;
-        overflow: hidden;
-      }
-
-      .text {
-        display: inline-block;
-        width: 100%;
-        height:34px;
-        line-height: 34px;
-        font-size: 23px;
-        color: $mainColor;
-      }
-    }
-
-    .toggleBtnWrap {
-      width: 100%;
-      text-align: center;
-      font-size: 16px;
-
-      a {
-        color:#000 !important;
-      }
-    }
-    .top {
-
-    }
-    .bottom {
-      border-top: 4px solid #4bd897;
-      a {
-        display: block;
-      }
-    }
-
-    #loginForm {
-      .input-text::placeholder {
-        font-size: 14px;
-        color : #95989A;
-      }
-    }
-
-    .loginBox {
-      width: 100%;
-      overflow: hidden;
-
-      .tab1 {
-        width: 100%;
-        margin-top: 231px;
-
-
-
-        .platformList {
-          margin-top: 20px;
-          $size: 37px;
-          width: 100%;
-          height: $size;
-          text-align: center;
-
-          a {
-            margin: 0 7.5px;
-          }
-
-          a.facebook {
-            @include icon-platform("../assets/img/facebook_gray.png",$size);
-          }
-
-          a.instagram {
-            @include icon-platform("../assets/img/instagram_gray.png",$size);
-          }
-
-          a.youtube {
-            @include icon-platform("../assets/img/youtube_gray.png",$size);
-          }
-
-          a.naver {
-            @include icon-platform("../assets/img/naver_gray.png",$size);
-          }
-          a.twitter {
-            @include icon-platform("../assets/img/twitter_gray.png",$size);
-          }
-
-          a.facebook:hover {
-            @include icon-platform("../assets/img/facebook_color.png",$size);
-          }
-
-          a.instagram:hover {
-            @include icon-platform("../assets/img/instagram_color.png",$size);
-          }
-
-          a.youtube:hover {
-            @include icon-platform("../assets/img/youtube_color.png",$size);
-          }
-
-          a.naver:hover {
-            @include icon-platform("../assets/img/naver_color.png",$size);
-          }
-          a.twitter:hover {
-            @include icon-platform("../assets/img/twitter_color.png",$size);
-          }
-        }
-
-
-      }
-
-      .tab2 {
-        margin-top: 180px;
-        .toggleBtnWrap {
-          margin-top: 42px;
-        }
-
-      }
-      .partition {
-        $height : 20px;
-        width: calc(100% - 40px);
-        height: $height;
-        margin-top: 33px;
-        text-align: center;
-        line-height: $height;
-        padding: 0 20px;
-
-        div {
-          display: inline-block;
-          float: left;
-        }
-
-        .line {
-          width: 167px;
-          margin-top: ($height/2) - 1px;
-          border-bottom:1px solid #707070;
-        }
-
-        .text {
-          margin: 0 9px;
-          font-size: 14px;
-        }
-
-      }
-    }
-
-    #loginForm {
-      display: none;
-    }
-  }
-
-  #loginTab.open {
-    .tab1 {
-      margin-top: 86px;
-
-      .toggleBtnWrap a {
-        color: $defaultColor !important;
-      }
-
-      .platformList {
-        display: none;
-      }
-
-    }
-
-    .partition {
-      margin-top: 20px;
-    }
-
-    .tab2 {
-      margin-top: 180px;
-      .toggleBtnWrap {
-        margin-top: 30px;
-      }
-
-      #loginForm {
-        $width : 255px;
-        display: block !important;
-        margin: 31px auto 0;
-        width:$width;
-        overflow: hidden;
-
-
-        .input-text {
-          @include input($width, 40px, 1px, #DFDFDF, 12px, 19px);
-          margin-bottom: 11px;
-        }
-
-        .input-button {
-          margin-top: 6px;
-          @include input-button($width, 40px, $mainColor);
-          -webkit-border-radius: 10px!important;
-          -moz-border-radius: 10px!important;
-          border-radius: 10px!important;
-          color: #fff;
-          font-size: 16px;
-          cursor: pointer;
-          border: none!important;
-        }
-
-        .box {
-          margin-top: 8px;
-          width: $width;
-          overflow: hidden;
-
-          .checkBoxWrap {
-            float: left;
-
-            i {
-              display: inline-block;
-              width: 13px;
-              height: 13px;
-              float: left;
-              margin-right: 5px;
-              margin-top: 1px;
-              border:1px solid #707070;
-              @include  border-radius(3px);
-              cursor: pointer;
-            }
-
-            input:checked + i {
-              @include background("../assets/img/login_check_box.png");
-            }
-
-            span {
-              font-size: 12px;
-              float: left;
-              cursor: default;
-              color : $defaultColor;
-              cursor: pointer;
-            }
-          }
-
-          .idPwFindBtn {
-            float: right;
-            font-size: 13px;
-          }
-        }
-
-        .join_btn {
-          font-size: 14px;
-          display: inline-block;
-          width: 130px;
-          height: 20px;
-          margin-left: calc(50% - 65px);
-          margin-top: 45px;
-          text-align: center;
-
-        }
-      }
-    }
-  }
-
-}
-
-@media screen and (max-width: 767px) {
-  #loginPage {
-    #loginTab {
-      .top {
-
-        .titleWrap {
-          .imgWrap {
-            margin-top: 47px;
-            margin-bottom: 12px;
-          }
-
-          .text {
-            font-size: 18px;
-            height: 27px;
-            line-height: 27px;
-          }
-        }
-
-        .loginBox {
-          .tab1 {
-            margin-top: 206px;
-          }
-        }
-
-        .partition {
-          $height : 18px;
-          width: calc(100% - 39px) !important;
-          height: $height !important;
-          margin-top: 21px !important;
-          line-height: $height !important;
-          padding: 0 19.5px !important;
-
-          div.line {
-            width: 123px !important;
-          }
-
-          div.text {
-            margin: 0 7px;
-            font-size: 12px !important;
-          }
-        }
-
-        .tab1 {
-          .toggleBtnWrap {
-            font-size: 14px;
-          }
-          .platformList {
-            a {
-              width: 32px !important;
-              height: 32px !important;
-            }
-          }
-        }
-
-        .tab2 {
-          .toggleBtnWrap {
-            margin-top: 20px !important;
-            font-size: 14px !important;
-          }
-        }
-      }
-      .bottom {
-        a {
-          display: block;
-          img {
-            width: 120px!important;
-          }
-        }
-      }
-    }
-
-    #loginTab.open {
-
-
-      .partition {
-        margin-top: 13px !important;
-      }
-
-      .loginBox {
-        .tab1 {
-          margin-top: 60px;
-
-          .toggleBtnWrap {
-            font-size: 14px;
-          }
-          .platformList {
-            a {
-              width: 32px !important;
-              height: 32px !important;
-            }
-          }
-        }
-
-        .tab2 {
-          margin-top: 124px;
-          .toggleBtnWrap {
-            margin-top: 18px !important;
-          }
-
-          #loginForm {
-            $width: 230px;
-            width: $width;
-            margin-top: 28px;
-
-            .input-text {
-              @include input($width, 35px, 1px, #DFDFDF, 12px, 19px);
-              margin-bottom: 7px;
-              height: 33px!important;
-              padding: 0 19px!important;
-            }
-            .input-text::placeholder {
-              font-size: 13px;
-            }
-
-            .input-button {
-              @include input($width, 40px, 0px, $mainColor, 0px, 0px);
-              border-radius: 10px !important;
-              margin-top: 4px !important;
-
-            }
-
-            .box {
-              margin-top: 5px;
-              width: $width;
-            }
-
-            .join_btn {
-              margin-top: 30px;
-              font-size: 12px;
-              height: 18px;
-              line-height: 18px;
-            }
-          }
-        }
-      }
-
-    }
-  }
-
-}
-
-@media screen and (max-width: 375px) {
-  .card_wrap {
-    height: 540px !important;
-    margin-left: -1px * (315px/2px)!important;
-    margin-top: -1px * (540px/2px)!important;
-    .contents.type1.open {
-      .top {
-        height: 480px!important;
-        .loginBox {
-          height: 480px !important;
-          .tab1 {
-            margin-top: 30px !important;
-          }
-          .tab2 {
-            margin-top: 96px!important;
-            form#loginForm {
-              margin-top: 20px !important;
-              .join_btn {
-                display: block !important;
-                margin: 25px auto 18px !important;
-              }
-              .box {
-                .checkBoxWrap {
-                  i {
-                    width: 10px !important;
-                    height: 10px !important;
-                    margin-top: 3px !important;
-                  }
-                  span {
-                    font-size: 12px!important;
-                  }
-                }
-                a.idPwFindBtn {
-                  font-size: 12px!important;
-                }
-              }
-            }
-          }
-        }
-      }
-      .bottom {
-        line-height: 65px !important;
-        border-top: 2px solid #4bd897 !important;
-      }
-    }
-    .contents.type2 {
-      .box {
-        .top {
-          height: 269px !important;
-          .title {
-            margin-top: 68px !important;
-
-            font-size: 18px !important;
-          }
-        }
-      }
-      #naverTab.box {
-        .top {
-
-          img {
-            margin-top: 37px !important;
-          }
-        }
-        .bottom {
-          .input-button {
-            margin-top: 28px !important;
-          }
-        }
-      }
-      #questionTab.box {
-        .top {
-          height: 262px !important;
-          .title {
-            font-size: 20px !important;
-          }
-          img {
-            margin-top: 40px !important;
-          }
-        }
-      }
-    }
-  }
-}
-
-
+// @import 'config';
+
+// #loginPage.card_wrap {
+//     $bottomSize: 83px;
+//     #loginTab {
+//         .titleWrap {
+//             width: 100%;
+//             text-align: center;
+//             overflow: hidden;
+//             float: left;
+
+//             .imgWrap {
+//                 margin-top: 93px;
+//                 margin-bottom: 15px;
+//                 width: 100%;
+//                 height: 40px;
+//                 overflow: hidden;
+//             }
+
+//             .text {
+//                 display: inline-block;
+//                 width: 100%;
+//                 height: 34px;
+//                 line-height: 34px;
+//                 font-size: 23px;
+//                 color: $mainColor;
+//             }
+//         }
+
+//         .toggleBtnWrap {
+//             width: 100%;
+//             text-align: center;
+//             font-size: 16px;
+
+//             a {
+//                 color: #000 !important;
+//             }
+//         }
+//         .top {
+//         }
+//         .bottom {
+//             border-top: 4px solid #4bd897;
+//             a {
+//                 display: block;
+//             }
+//         }
+
+//         #loginForm {
+//             .input-text::placeholder {
+//                 font-size: 14px;
+//                 color: #95989a;
+//             }
+//         }
+
+//         .loginBox {
+//             width: 100%;
+//             overflow: hidden;
+
+//             .tab1 {
+//                 width: 100%;
+//                 margin-top: 231px;
+//             }
+//             .tab2.change {
+//                 margin-top: 180px;
+//             }
+//             .tab2 {
+//                 margin-top: 0;
+//                 .toggleBtnWrap {
+//                     margin-top: 42px;
+//                 }
+//             }
+
+//             .partition {
+//                 $height: 20px;
+//                 width: calc(100% - 40px);
+//                 height: $height;
+//                 margin-top: 33px;
+//                 text-align: center;
+//                 line-height: $height;
+//                 padding: 0 20px;
+
+//                 div {
+//                     display: inline-block;
+//                     float: left;
+//                 }
+
+//                 .line {
+//                     width: 167px;
+//                     margin-top: ($height/2) - 1px;
+//                     border-bottom: 1px solid #707070;
+//                 }
+
+//                 .text {
+//                     margin: 0 9px;
+//                     font-size: 14px;
+//                 }
+//             }
+//         }
+
+//         #loginForm {
+//             display: none;
+//         }
+//     }
+
+//     #loginTab.open {
+//         .tab1 {
+//             margin-top: 86px;
+
+//             .toggleBtnWrap a {
+//                 color: $defaultColor !important;
+//             }
+
+//             .platformList {
+//                 display: none;
+//             }
+//         }
+
+//         .partition {
+//             margin-top: 20px;
+//         }
+//         .tab2.change {
+//             margin-top: 180px;
+//             .toggleBtnWrap {
+//                 margin-top: 180px;
+//             }
+//         }
+//         .tab2 {
+//             margin-top: 0;
+
+//             #loginForm {
+//                 $width: 255px;
+//                 display: block !important;
+//                 margin: 31px auto 0;
+//                 width: $width;
+//                 overflow: hidden;
+
+//                 .input-text {
+//                     @include input($width, 40px, 1px, #dfdfdf, 12px, 19px);
+//                     margin-bottom: 11px;
+//                 }
+
+//                 .input-button {
+//                     margin-top: 6px;
+//                     @include input-button($width, 40px, $mainColor);
+//                     -webkit-border-radius: 10px !important;
+//                     -moz-border-radius: 10px !important;
+//                     border-radius: 10px !important;
+//                     color: #fff;
+//                     font-size: 16px;
+//                     cursor: pointer;
+//                     border: none !important;
+//                 }
+
+//                 .box {
+//                     margin-top: 8px;
+//                     width: $width;
+//                     overflow: hidden;
+
+//                     .checkBoxWrap {
+//                         float: left;
+
+//                         i {
+//                             display: inline-block;
+//                             width: 13px;
+//                             height: 13px;
+//                             float: left;
+//                             margin-right: 5px;
+//                             margin-top: 1px;
+//                             border: 1px solid #707070;
+//                             @include border-radius(3px);
+//                             cursor: pointer;
+//                         }
+
+//                         input:checked + i {
+//                             @include background(
+//                                 '../assets/img/login_check_box.png'
+//                             );
+//                         }
+
+//                         span {
+//                             font-size: 12px;
+//                             float: left;
+//                             cursor: default;
+//                             color: $defaultColor;
+//                             cursor: pointer;
+//                         }
+//                     }
+
+//                     .idPwFindBtn {
+//                         float: right;
+//                         font-size: 13px;
+//                     }
+//                 }
+
+//                 .join_btn {
+//                     font-size: 14px;
+//                     display: inline-block;
+//                     width: 130px;
+//                     height: 20px;
+//                     margin-left: calc(50% - 65px);
+//                     margin-top: 45px;
+//                     text-align: center;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (max-width: 767px) {
+//     #loginPage {
+//         #loginTab {
+//             .top {
+//                 .titleWrap {
+//                     .imgWrap {
+//                         margin-top: 47px;
+//                         margin-bottom: 12px;
+//                     }
+
+//                     .text {
+//                         font-size: 18px;
+//                         height: 27px;
+//                         line-height: 27px;
+//                     }
+//                 }
+
+//                 .loginBox {
+//                     .tab1 {
+//                         margin-top: 206px;
+//                     }
+//                 }
+
+//                 .partition {
+//                     $height: 18px;
+//                     width: calc(100% - 39px) !important;
+//                     height: $height !important;
+//                     margin-top: 21px !important;
+//                     line-height: $height !important;
+//                     padding: 0 19.5px !important;
+
+//                     div.line {
+//                         width: 123px !important;
+//                     }
+
+//                     div.text {
+//                         margin: 0 7px;
+//                         font-size: 12px !important;
+//                     }
+//                 }
+
+//                 .tab1 {
+//                     .toggleBtnWrap {
+//                         font-size: 14px;
+//                     }
+//                     .platformList {
+//                         a {
+//                             width: 32px !important;
+//                             height: 32px !important;
+//                         }
+//                     }
+//                 }
+
+//                 .tab2 {
+//                     .toggleBtnWrap {
+//                         margin-top: 20px !important;
+//                         font-size: 14px !important;
+//                     }
+//                 }
+//             }
+//             .bottom {
+//                 a {
+//                     display: block;
+//                     img {
+//                         width: 120px !important;
+//                     }
+//                 }
+//             }
+//         }
+
+//         #loginTab.open {
+//             .partition {
+//                 margin-top: 13px !important;
+//             }
+
+//             .loginBox {
+//                 .tab1 {
+//                     margin-top: 60px;
+
+//                     .toggleBtnWrap {
+//                         font-size: 14px;
+//                     }
+//                     .platformList {
+//                         a {
+//                             width: 32px !important;
+//                             height: 32px !important;
+//                         }
+//                     }
+//                 }
+//                 .tab2.change {
+//                     margin-top: 124px;
+//                     .toggleBtnWrap {
+//                         margin-top: 120px !important;
+//                     }
+//                 }
+//                 .tab2 {
+//                     #loginForm {
+//                         $width: 230px;
+//                         width: $width;
+//                         margin-top: 28px;
+
+//                         .input-text {
+//                             @include input(
+//                                 $width,
+//                                 35px,
+//                                 1px,
+//                                 #dfdfdf,
+//                                 12px,
+//                                 19px
+//                             );
+//                             margin-bottom: 7px;
+//                             height: 33px !important;
+//                             padding: 0 19px !important;
+//                         }
+//                         .input-text::placeholder {
+//                             font-size: 13px;
+//                         }
+
+//                         .input-button {
+//                             @include input(
+//                                 $width,
+//                                 40px,
+//                                 0px,
+//                                 $mainColor,
+//                                 0px,
+//                                 0px
+//                             );
+//                             border-radius: 10px !important;
+//                             margin-top: 4px !important;
+//                         }
+
+//                         .box {
+//                             margin-top: 5px;
+//                             width: $width;
+//                         }
+
+//                         .join_btn {
+//                             margin-top: 30px;
+//                             font-size: 12px;
+//                             height: 18px;
+//                             line-height: 18px;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (max-width: 375px) {
+//     #loginPage {
+//         #loginTab.open {
+//             .loginBox {
+//                 .tab2 {
+//                     .toggleBtnWrap {
+//                         margin-top: 20px !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .card_wrap {
+//         height: 540px !important;
+//         margin-left: -1px * (315px/2px) !important;
+//         margin-top: -1px * (540px/2px) !important;
+//         .contents.type1.open {
+//             .top {
+//                 .loginBox {
+//                     .tab1.change {
+//                         margin-top: 180px;
+//                     }
+//                     .tab1 {
+//                         margin-top: 30px !important;
+//                     }
+//                 }
+//             }
+//         }
+//         .contents.type1 {
+//             .top {
+//                 height: 480px !important;
+//                 .loginBox {
+//                     height: 480px !important;
+//                     .tab1 {
+//                         margin-top: 170px !important;
+//                     }
+//                     .tab2.change {
+//                         margin-top: 96px !important;
+//                     }
+//                     .tab2 {
+//                         form#loginForm {
+//                             margin-top: 20px !important;
+//                             .join_btn {
+//                                 display: block !important;
+//                                 margin: 25px auto 18px !important;
+//                             }
+//                             .box {
+//                                 .checkBoxWrap {
+//                                     i {
+//                                         width: 10px !important;
+//                                         height: 10px !important;
+//                                         margin-top: 3px !important;
+//                                     }
+//                                     span {
+//                                         font-size: 12px !important;
+//                                     }
+//                                 }
+//                                 a.idPwFindBtn {
+//                                     font-size: 12px !important;
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//             .bottom {
+//                 line-height: 65px !important;
+//                 border-top: 2px solid #4bd897 !important;
+//             }
+//         }
+//         .contents.type2 {
+//             .box {
+//                 .top {
+//                     height: 269px !important;
+//                     .title {
+//                         margin-top: 68px !important;
+
+//                         font-size: 18px !important;
+//                     }
+//                 }
+//             }
+//             #naverTab.box {
+//                 .top {
+//                     img {
+//                         margin-top: 37px !important;
+//                     }
+//                 }
+//                 .bottom {
+//                     .input-button {
+//                         margin-top: 28px !important;
+//                     }
+//                 }
+//             }
+//             #questionTab.box {
+//                 .top {
+//                     height: 262px !important;
+//                     .title {
+//                         font-size: 20px !important;
+//                     }
+//                     img {
+//                         margin-top: 40px !important;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

@@ -3,8 +3,8 @@
     <div id="header">
       <div class="container">
         <h1 class="logo" v-if="!this.$store.state.iccMode">
-          <img id="desktopLogo" src="~@/assets/img/logo_join.png" alt="빅버드회원가입" />
-          <img id="tabletLogo" src="~@/assets/img/logo_join_tablet.png" alt="빅버드회원가입" />
+          <img id="desktopLogo" src="~@/assets/img/login/join/pick_main_desktop.png" alt="빅버드회원가입" />
+          <img id="tabletLogo" src="~@/assets/img/login/join/pick_main_tablet.png" alt="빅버드회원가입" />
         </h1>
         <h1 class="logo" v-else>                    
             <span id="desktopLogo" style="font-size: 30px; text-transform: uppercase; color: #4bd897">icc <em style="color: #000;">회원가입</em></span>
