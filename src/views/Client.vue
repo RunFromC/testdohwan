@@ -100,8 +100,8 @@ export default {
         }
     },
     mounted() {
-        const path = this.$router.currentRoute.path;
-        this.setService({ path: path });
+        const path = this.$router.currentRoute.query;
+        this.setService({ path });
     }
 };
 </script>

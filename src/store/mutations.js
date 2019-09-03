@@ -1,15 +1,17 @@
+import router from '../router';
+
 const mutations = {
     setService(state, payload) {
-        const path = payload.path;
-        let service = 'brands';
+        // console.log(path);
+        let service = payload.service ? payload.service : 'client';
 
-        if (path.includes('influencer')) {
-            service = 'influencer';
-        } else if (path.includes('client')) {
-            service = 'client';
-        } else if (path.includes('market')) {
-            service = 'market';
-        }
+        // if (path.includes('influencer')) {
+        //     service = 'influencer';
+        // } else if (path.includes('client')) {
+        //     service = 'client';
+        // } else if (path.includes('market')) {
+        //     service = 'market';
+        // }
 
         state.service = service;
         localStorage.setItem('service', service);

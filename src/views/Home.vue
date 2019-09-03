@@ -19,7 +19,7 @@
                             <span v-else style="font-size: 30px; color: #4bd897">ICC</span>
                         </div>
 
-                        <div class="text" v-if="this.$store.state.welcome = false">{{title}}</div>
+                        <div class="text" v-if="!this.$store.state.welcome">{{title}}</div>
                         <div class="text" v-else>회원가입을 환영합니다</div>
                     </div>
                     <div class="loginBox" v-if="!this.$store.state.iccMode">
@@ -55,15 +55,38 @@
                                         <span>로그인 유지</span>
                                     </div>
 
-                                    <router-link to="/find" class="idPwFindBtn">아이디/비밀번호 찾기</router-link>
+                                    <router-link
+                                        to="/find?service=influencer"
+                                        class="idPwFindBtn"
+                                        v-if="checkUrl('/influencer')"
+                                    >아이디/비밀번호 찾기</router-link>
+                                    <router-link
+                                        to="/find?service=market"
+                                        class="idPwFindBtn"
+                                        v-else-if="checkUrl('/market')"
+                                    >아이디/비밀번호 찾기</router-link>
+                                    <router-link
+                                        to="/find?service=brands"
+                                        class="idPwFindBtn"
+                                        v-else
+                                    >아이디/비밀번호 찾기</router-link>
                                 </div>
 
                                 <router-link
-                                    to="/join"
+                                    to="/join?service=influencer"
                                     class="join_btn"
-                                    v-if="service !== 'market'"
+                                    v-if="checkUrl('/influencer')"
                                 >인플루언서 회원가입 ></router-link>
-                                <router-link to="/join" class="join_btn" v-else>구매자 회원가입 ></router-link>
+                                <router-link
+                                    to="/join?service=market"
+                                    class="join_btn"
+                                    v-else-if="checkUrl('market')"
+                                >구매자 회원가입 ></router-link>
+                                <router-link
+                                    to="/join?service=brands"
+                                    class="join_btn"
+                                    v-else
+                                >인플루언서 회원가입 ></router-link>
                             </form>
                         </div>
                     </div>
@@ -174,6 +197,9 @@ export default {
         questionTab
     },
     methods: {
+        checkUrl(path) {
+            return this.$route.path === path;
+        },
         changeLoginType() {
             if (!this.$store.state.iccMode) {
                 // console.log('빅버드야~');
