@@ -29,8 +29,14 @@ $errColor: #FF7364;
     cursor: pointer;
     box-sizing: border-box;
   }
-
-  .input-button:hover {
+  .input-button.on {
+    background-color: $mainColor;
+  }
+  //인증번호 요청 버튼 hover 효과
+  #phone.input-button:hover {
+    background-color: $mainColor;
+  }
+  #email.input-button:hover {
     background-color: $mainColor;
   }
 
@@ -61,6 +67,7 @@ $errColor: #FF7364;
           color: $defaultColor;
           border-bottom:5px solid $defaultColor;
           float: left;
+          font-size: 14px;
         }
 
         a.on {
@@ -153,11 +160,10 @@ $errColor: #FF7364;
               height:34px;
               border: 1px solid $defaultColor;
               display: block;
-              margin:31px auto 7px;
               border-radius: 5px;
               overflow: hidden;
               box-sizing: border-box;
-              margin: 16px auto 7px !important;
+              margin: 31px auto 7px !important;
 
               input#certNumberInput {
                 
@@ -196,10 +202,13 @@ $errColor: #FF7364;
                 text-align: center;
                 border:none;
               }
-
-              #certNumberBtn:hover {
+              #certNumberBtn.on {
                 background-color: $mainColor;
               }
+              // 인증 확인 버튼 hover 효과
+              // #certNumberBtn:hover {
+              //   background-color: $mainColor;
+              // }
 
               .reSendCertNum {
                 display: block;
@@ -268,7 +277,7 @@ $errColor: #FF7364;
             font-size: 16px;
             display: inline-block;
             @include input($width + 4px, $height + 4px, 2px, $mainColor,0, 0);
-            line-height: $height;
+            line-height: $height - 2px;
             position: absolute;
             bottom:24px;
             left: 50%;
@@ -290,12 +299,14 @@ $errColor: #FF7364;
             .wrongMsg {
               display: block;
               font-size:14px;
-              height: 22px;
               color: $errColor;
               margin-bottom: 11px;
               letter-spacing: -9999;
               i {
                 font-style: normal !important;
+              }
+              .success {
+                color: #000;
               }
             }
           }
@@ -320,6 +331,19 @@ $errColor: #FF7364;
 
             .input-button {
               margin-bottom: 0;
+            }
+            .wrongMsg {
+              display: block;
+              font-size:14px;
+              color: $errColor;
+              margin-bottom: 11px;
+              letter-spacing: -9999;
+              i {
+                font-style: normal !important;
+              }
+              .success {
+                color: #000;
+              }
             }
 
             .successMail {
@@ -474,6 +498,7 @@ $errColor: #FF7364;
           .resMessage {
             margin-top: 20px;
           }
+
 
           #certNumberWrap {
             width: 200px;

@@ -700,9 +700,12 @@ export default {
             this.isAccodionOn = !this.isAccodionOn;
         }
     },
-    mounted() {
-        this.$store.commit('setLocalService');
+    mounted() {        
+        this.$store.commit('setLocalService');        
         const agent = navigator.userAgent.toLowerCase();
+        
+        console.log('query',  this.$route.query);
+        
         
         if (
             (navigator.appName == 'Netscape' &&

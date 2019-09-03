@@ -1859,7 +1859,6 @@ button:focus {
                         .inner-contents {
                             position: relative;
                             .input-selectbox-wrap {
-                                margin-top: 40px;
                                 .listWrap {
                                     .list {
                                         padding: 9px 0 9px 12.5px;
@@ -1868,11 +1867,12 @@ button:focus {
                                         }
                                     }
                                 }
-                                .listWrap.item-top {
+                                .listWrap.like-top {
                                     top: 35px;
                                 }
+                                
                             }
-                            #itemSelect {
+                            #interestsSelect {
                                 max-width: 200px;
                                 margin: 40px auto 0;
                                 z-index: 1;
@@ -1899,8 +1899,10 @@ button:focus {
                                 width: 255px;
                                 height: auto;
                                 margin: 0 auto;   
-                                bottom: -438px;
-                                position: absolute;
+                                // bottom: -438px;
+                                // position: absolute;
+                                position: fixed;
+                                bottom: 135px;
                                 left: 50%;
                                 transform: translateX(-50%);
                                 > ul {
@@ -4248,11 +4250,11 @@ button:focus {
                                         line-height: 30px;
                                         height: 30px;
                                     }
-                                    .listWrap.item-top {
+                                    .listWrap.like-top {
                                         top: 27px;
                                     } 
                                 }
-                                #itemSelect {
+                                #interestsSelect {
                                     input {
                                         font-size: 14px;
                                     }
@@ -4318,6 +4320,7 @@ button:focus {
                                 }
                                 
                             }
+                            
                         }
 
                         #children.article {

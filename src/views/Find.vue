@@ -17,6 +17,7 @@
                                 href="#"
                                 @click.prevent="[toggleTab('pw'), onCertification('pw')]"
                                 :class="isTabToggle('pw')"
+                                ref="pwTab"
                             >비밀번호</a>
                         </div>
 
@@ -75,9 +76,20 @@
                                         class="input-text"
                                         :disabled="inputDisabled"
                                     />
-                                    <a href="#" class="input-button" @click="certInputOnOff">인증번호 요청</a>
+                                    <a
+                                        href="#"
+                                        class="input-button"
+                                        @click="certInputOnOff"
+                                        :disabled="inputDisabled"
+                                    >인증번호 요청</a>
                                     <span class="wrongMsg">
                                         <i class="none">잘못된 이메일 형식입니다</i>
+                                        <i class="success none">인증번호를 메일로 전송했습니다.</i>
+                                        <i class="success none">인증번호를 문자로 전송했습니다.</i>
+                                        <i class="success none">
+                                            메일로 비밀번호 재설정 링크를 전송했습니다.
+                                            <br />메일함을 확인해주세요.
+                                        </i>
                                     </span>
                                     <div
                                         id="certNumberWrap"
@@ -88,7 +100,7 @@
                                             id="certNumberInput"
                                             placeholder="인증번호 입력"
                                         />
-                                        <div id="countDown">05:00</div>
+                                        <div id="countDown">03:00</div>
                                         <a href="#" id="certNumberBtn">확인</a>
                                     </div>
 
@@ -117,6 +129,15 @@
                                         class="input-button"
                                         @click="certInputOnOff"
                                     />
+                                    <span class="wrongMsg">
+                                        <i class="none">잘못된 이메일 형식입니다</i>
+                                        <i class="success none">인증번호를 메일로 전송했습니다.</i>
+                                        <i class="success none">인증번호를 문자로 전송했습니다.</i>
+                                        <i class="success none">
+                                            메일로 비밀번호 재설정 링크를 전송했습니다.
+                                            <br />메일함을 확인해주세요.
+                                        </i>
+                                    </span>
                                     <div
                                         id="certNumberWrap"
                                         v-show="this.certification.isCertInputOn"
@@ -126,7 +147,7 @@
                                             id="certNumberInput"
                                             placeholder="인증번호 입력"
                                         />
-                                        <div id="countDown">05:00</div>
+                                        <div id="countDown">03:00</div>
                                         <a href="#" id="certNumberBtn">확인</a>
                                     </div>
 
@@ -135,6 +156,9 @@
                                         href="#"
                                         v-show="this.certification.isCertInputOn"
                                     >인증번호 재전송 요청 ></a>
+
+                                    <span class="resMessage none">입력시간 초과되었습니다.</span>
+                                    <span class="successMessage none">인증번호를 메일로 전송했습니다.(남은횟수 4회/5회)</span>
                                     <span class="resMessage none">인증번호가 일치하지 않습니다.</span>
                                     <span class="successMessage none">
                                         ***님의 아이디는
@@ -209,9 +233,19 @@ export default {
     },
     methods: {
         certInputOnOff() {
-            this.certification.isCertInputOn = true;
-            this.inputDisabled = true;
-            console.log('disabled :', this.inputDisabled);
+            if (
+                //비밀번호 탭에서 인증수단 이메일을 선택했을때
+                this.$refs.pwTab.className.includes('on')
+            ) {
+                if (this.certification.isCertPhoneOn) {
+                    this.certification.isCertInputOn = true;
+                } else {
+                    this.certification.isCertInputOn = false;
+                }
+            } else {
+                //둘다 아닐 때
+                this.certification.isCertInputOn = true;
+            }
         },
         toggleTab(value) {
             this.isTabToggleValue = value;
