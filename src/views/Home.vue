@@ -110,11 +110,20 @@
                                 </div>
 
                                 <router-link
-                                    to="/join"
+                                    to="/join?service=influencer"
                                     class="join_btn"
-                                    v-if="service !== 'market'"
+                                    v-if="checkUrl('/influencer')"
                                 >인플루언서 회원가입 ></router-link>
-                                <router-link to="/join" class="join_btn" v-else>구매자 회원가입 ></router-link>
+                                <router-link
+                                    to="/join?service=market"
+                                    class="join_btn"
+                                    v-else-if="checkUrl('market')"
+                                >구매자 회원가입 ></router-link>
+                                <router-link
+                                    to="/join?service=brands"
+                                    class="join_btn"
+                                    v-else
+                                >인플루언서 회원가입 ></router-link>
                             </form>
                         </div>
                     </div>
