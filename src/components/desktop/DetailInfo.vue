@@ -4,7 +4,7 @@
       <div class="top">
         <div class="title">문의</div>
         <img src="~@/assets/img/login_ask_kakao icon.png" alt="카카오 문의">
-        <input type="button" class="input-button" value="카카오톡 상담하기">
+        <a class="kakao-button">카카오톡 상담하기</a>
       </div>
       <div class="middle">
         <a href="#" class="tel">Tel. 1661 - 6213</a>
@@ -64,7 +64,7 @@
             v-else
             style="cursor: default;"
           ></a>
-          <a
+          <!-- <a
             href="#"
             id="youtube"
             @click="checkCertification(2)"
@@ -91,7 +91,7 @@
             :class="isCertificationOnOff[3] ? 'on' : ''"
             v-else
             style="cursor: default;"
-          ></a>
+          ></a> -->
         </div>
         <a
           href="#"
@@ -111,9 +111,9 @@
           v-if="snsCertSuccessBtn"
         >SNS인증완료</a>
         <div class="certification-text">
-          <span class="possible-text" v-if="instagramWaitText">인증 대기중 입니다</span>
-          <span class="possible-text" v-if="instagramPossibleText">인증완료 되었습니다</span>
-          <span class="wrong-text" v-if="instagramWrongText">인증실패 되었습니다</span>
+          <span class="possible-text" v-if="snsWaitText">인증 대기중 입니다</span>
+          <span class="possible-text" v-if="snsPossibleText">인증완료 되었습니다</span>
+          <span class="wrong-text" v-if="snsWrongText">인증실패 되었습니다</span>
         </div>
       </div>
       <div class="button-wrap">
@@ -448,8 +448,13 @@
                   <i></i>
                 </li>
               </ul>
-              <ul class="list-second listContents">
-                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)" :class="jobSearchDefault.indexOf(list.name) != -1 ? 'on':''">{{list.name}}</li>
+              <ul class="list-second listContents" v-if="jobKindList">
+                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)">{{list.name}}</li>
+              </ul>
+              <ul class="list-second listContents" v-else>
+                <li v-for="(list,index) in jobSearchList" :key="index" @click="isText($event,index)">
+                  <HighlightColorText :result="list.name" :keyword="jobSearchDefault" />
+                </li>
               </ul>
             </li>
             <li class="status-btn clearfix">
@@ -749,25 +754,28 @@
         <div class="input-selectbox-wrap" id="itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="groupPurchaseSearch" />
+            <i class="none"></i>
           </div>
           <div class="listContents listWrap long item-top">
-            <ul class="list">
-              <li v-for="(list,index) in purchaseGroupList" @click="isText($event,index)" :key="index" :class="purchaseList.indexOf(list.name) != -1 ? 'on':''">{{list.name}}</li>
+            <ul class="list" v-if="purchaseKindList">
+              <li v-for="(list,index) in purchaseGroupList" @click="isText($event,index)" :key="index">{{list.name}}</li>
+            </ul>
+            <ul class="list" v-else>
+              <li v-for="(list,index) in purchaseSearchList" @click="isText($event,index)" :key="index">
+                <HighlightColorText :result="list.name" :keyword="purchaseList" />
+              </li>
             </ul>
           </div>
-          <!-- <v-select placeholder="선택해주세요" :options="item" @input="myAction"></v-select> -->
         </div>
-        <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseInputText">공백포함 8글자를 초과할 수 없습니다</div>
         <div class="choice-list" v-if="purchaseGroupTag">
-          <ul v-for="list in 6" :key="list">
-            <li>{{groupPurchaseDefault}}</li>
-            <li class="close">
-              <a href="#" class="closeImg" @click="deleteIcon"></a>
-            </li>
-            <li class="delete" v-if="deletePurchase" @click="deletePurchaseList">삭제</li>
+          <ul v-for="(item,index) in groupPurchaseChoice" :key="index">
+            <li>{{item.name}}</li>
+            <a href="#" class="closeImg" @click="deleteIcon(index)"></a>
+            <li class="delete" v-if="onDeletePurchase(index)" :data-idx="item.idx" @click="deletePurchaseList">삭제</li>
           </ul>
         </div>
-        <div class="alert-text" v-if="purchaseListText">공구품목은 6개를 초과 선택할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseListText">공구품목은 14개까지 선택할 수 있습니다</div>
       </div>
       <div class="button-wrap">
         <ul>
@@ -777,7 +785,7 @@
           <li
             class="save-btn"
             @click="saveBtn"
-            :class="this.profileCard.expectProduct.onSaveButton ? 'on':''"
+            :class="this.profileCard.expectProduct.onSaveButton == true ? 'on':''"
           >저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
@@ -941,6 +949,7 @@
 <script>
 import MapSvg from '../../components/MapSvg.vue';
 import mobileDetailInfo from '../mobile/DetailInfo.vue';
+import HighlightColorText from '../HighlightColorText.vue';
 import { log } from 'util';
 import { async } from 'q';
 
@@ -971,6 +980,9 @@ export default {
     template: {
         MapSvg
     },
+    components: {
+        HighlightColorText,
+    },
     methods: {
         myAction(selectKey) {
             console.log(selectKey);
@@ -987,6 +999,9 @@ export default {
             this.clearCardList();
             this.profileCard['default'].on = true;
         },
+        // openKakao() {
+        //   window.open('http://pf.kakao.com/_FvvFj/chat', '_blank'); 
+        // }
     }
 };
 </script>

@@ -35,7 +35,7 @@
             v-else
             style="cursor: default;"
           ></a>
-          <a
+          <!-- <a
             href="#"
             id="m-youtube"
             @click="checkCertification(2)"
@@ -62,7 +62,7 @@
             :class="isCertificationOnOff[3] ? 'on' : ''"
             v-else
             style="cursor: default;"
-          ></a>
+          ></a> -->
       </div>
       <div class="SNS-btn-default" v-if="snsDefaultCertBtn">
         <a href="#">SNS인증하기</a>
@@ -74,9 +74,9 @@
         <a href="#">SNS인증완료</a>
       </div>
       <div class="certification-text">
-        <span class="possible-text" v-if="instagramWaitText">인증 대기중 입니다</span>
-        <span class="possible-text" v-if="instagramPossibleText">인증완료 되었습니다</span>
-        <span class="wrong-text" v-if="instagramWrongText">인증실패 되었습니다</span>
+        <span class="possible-text" v-if="snsWaitText">인증 대기중 입니다</span>
+        <span class="possible-text" v-if="snsPossibleText">인증완료 되었습니다</span>
+        <span class="wrong-text" v-if="snsWrongText">인증실패 되었습니다</span>
       </div>
       <button class="SNSsave-btn" :class="this.profileCard.sns.onSaveButton ? 'on':''" @click="saveBtn">저장</button>
     </div>
@@ -198,33 +198,37 @@
       v-if="checkService('market',true) || checkService('influencer',true)"
     >
       <div class="m-item">
-        <div class="input-selectbox-wrap" id="m-itemSelect">
+        <div class="input-selectbox-wrap" id="itemSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
             <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="groupPurchaseSearch" />
+            <i class="none"></i>
           </div>
           <div class="listContents listWrap long item-top">
-            <ul class="list">
+            <ul class="list" v-if="purchaseKindList">
               <li v-for="(list,index) in purchaseGroupList" @click="isText($event,index)" :key="index">{{list.name}}</li>
+            </ul>
+            <ul class="list" v-else>
+              <li v-for="(list,index) in purchaseSearchList" @click="isText($event,index)" :key="index">
+                <HighlightColorText :result="list.name" :keyword="purchaseList" />
+              </li>
             </ul>
           </div>
         </div>
 
-        <div class="alert-text" v-if="purchaseInputText">공백 포함 8글자를 초과할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseInputText">공백포함 8글자를 초과할 수 없습니다</div>
 
-        <div class="choice-list">
-          <ul v-for="list in 6" :key="list">
-            <li>{{groupPurchaseDefault}}</li>
-            <li class="close">
-              <a href="#" class="closeImg"></a>
-            </li>
-            <li class="delete none">삭제</li>
+        <div class="choice-list" v-if="purchaseGroupTag">
+          <ul v-for="(item,index) in groupPurchaseChoice" :key="index">
+            <li>{{item.name}}</li>
+            <a href="#" class="closeImg" @click="deleteIcon(index)"></a>
+            <li class="delete" v-if="onDeletePurchase(index)" :data-idx="item.idx" @click="deletePurchaseList">삭제</li>
           </ul>
         </div>
 
-        <div class="alert-text" v-if="purchaseListText">공구품목은 6개를 초과 선택할 수 없습니다</div>
+        <div class="alert-text" v-if="purchaseListText">공구품목은 14개까지 선택할 수 있습니다</div>
 
         <div class="button-wrap">
-          <button class="itemsave-btn on" @click="saveBtn">저장</button>
+          <button class="itemsave-btn" @click="saveBtn" :class="this.profileCard.expectProduct.onSaveButton == true ? 'on':''">저장</button>
         </div>
       </div>
     </div>
@@ -843,6 +847,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
+import HighlightColorText from '../HighlightColorText.vue';
 import MapSvg from '../MapSvg';
 import { async } from 'q';
 
@@ -939,13 +944,15 @@ export default {
             snsDefaultCertBtn: true,
             snsCertBtn: false,
             snsCertSuccessBtn: false,
-            instagramWaitText: false,
-            instagramPossibleText: false,
-            instagramWrongText: false,
+            snsWaitText: false,
+            snsPossibleText: false,
+            snsWrongText: false,
             // 추가 프로필
             // sns
-            instagramCertIdx: NaN,
-            authIdx: NaN,
+            instagramCertIdx: null,
+            youtubeCertIdx: null,
+            naverCertIdx: null,
+            auth: [],
             // 희망수수료
             defaultFeeInput: '',
             basicValue: '-10', //개런티 퍼센트
@@ -963,38 +970,38 @@ export default {
             // 희망공구품목
             purchaseGroupList: [],
             groupPurchaseChoice: [],
-            groupPurchaseList: [
-              {
-                groupPurchaseIdx: NaN
-              }
-            ],
+            groupPurchaseList: [],
             purchaseGroupTag: false,
-            deletePurchase: false,
+            deletePurchase: null,
             purchaseList: '',
+            purchaseSearchList: [],
+            purchaseKindList: true,
             purchaseInputText: false,
             purchaseListText: false,
             // 성별,연령
             genderExists: null,
             ageList: [],
             ageGroupList: [],
-            ageChoice: NaN,
-            ageGroupChoice: NaN,
+            ageChoice: null,
+            ageGroupChoice: null,
             ageAndGender: { 
               gender: null,
-              age: NaN,
-              ageGroup: NaN,
+              age: null,
+              ageGroup: null,
             },
             // 직업
             jobList: [],
             jobExists: null,
             jobTenseChoice: true,
-            jobSearchChoice: NaN,
+            jobSearchChoice: null,
+            jobSearchList:[],
+            jobKindList: true,
             job: { 
               exists: null,
               jobList: [
                 {
                   isCurrentJob: null,
-                  idx: NaN
+                  idx: null
                 }
               ]
             },
@@ -1004,13 +1011,13 @@ export default {
             // 자녀
             childrenAgeList: [],
             childrenExists: null,
-            childrenAgeChoice: NaN,
+            childrenAgeChoice: null,
             childrenGenderChoice: null,
             children: { 
               exists: null,
               childrenList: [
                 {
-                  age: NaN,
+                  age: null,
                   gender: null,
                 }
               ]
@@ -1018,34 +1025,33 @@ export default {
             // 반려동물
             petList: [],
             petExists: null,
-            petTypeChoice: NaN,
-            petNumChoice: NaN,
+            petTypeChoice: null,
+            petNumChoice: null,
             pet: {
               exists: null,
               petList: [
                 {
-                  typeIdx: NaN,
-                  number: NaN,
+                  typeIdx: null,
+                  number: null,
                 }
               ]
             },
             // 피부
             skinList: [],
             troubleList: [],
-            skinChoice: NaN,
+            skinChoice: null,
             troubleChoice: [],
             skin: { 
-              type: NaN,
-              trouble: {
-                troubleIdx: []
-              }
+              type: null,
+              trouble: []
             },
             joinDisableBtn: true,
             joinFinishBtn: false,
         };
     },
     components: {
-        MapSvg
+        MapSvg,
+        HighlightColorText
     },
     computed: {
         ...mapState(['service', 'profileCard', 'currentCard']),
@@ -1070,13 +1076,26 @@ export default {
         });
     },
     methods: {
-        deleteIcon() {
-          this.deletePurchase = true;
-          this.groupPurchaseDefault = '';
+        onDeletePurchase(index) {
+          return this.deletePurchase === index;
         },
-        deletePurchaseList() {
-          this.purchaseGroupTag = false;
-          this.deletePurchase = false;
+        deleteIcon(index) {
+          if(this.deletePurchase === index) {
+            this.deletePurchase = null;
+          } else {
+            this.deletePurchase = index;
+          }
+        },
+        deletePurchaseList(e) {
+          let idx = Number(e.target.getAttribute('data-idx'));
+          let result = this.groupPurchaseChoice.filter((value) => {
+            return value.idx !== idx;
+          });
+          this.groupPurchaseChoice = result;
+          if(this.groupPurchaseChoice.length == 0) {
+            this.profileCard.expectProduct.onSaveButton = false;
+          }
+          this.deletePurchase = null;
         },
         addChild() {
           this.addChildBtn = false;
@@ -1089,8 +1108,15 @@ export default {
           this.$axios('post','/join/search/job', {
             name: this.jobSearchDefault
           }).then((res) => {
-            console.log(res);
-          })
+            if(this.jobSearchDefault) {
+              this.jobSearchList = res.data;
+              this.jobKindList = false;
+            } else {
+              this.jobKindList = true;
+            }
+          }).catch((err) => {
+            console.log(err)
+          });
         },
         // 희망 수수료 maxLength 제한
         maxLengthCheckDefaultFee() {
@@ -1162,13 +1188,20 @@ export default {
           this.$axios('post','/join/search/grouppurchase', {
             name: this.purchaseList
           }).then((res) => {
-            console.log(res);
+            if(this.purchaseList) {
+              this.purchaseSearchList = res.data;
+              this.purchaseKindList = false;
+            } else {
+              this.purchaseKindList = true;
+            }
             if(this.purchaseList.length > 8) {
               this.purchaseInputText = true;
             } else {
               this.purchaseInputText = false;
             }
-          })
+          }).catch((err) => {
+            console.log(err)
+          });
         },
         //sns 연동 아이콘 온오프
         checkCertification(idx) {
@@ -1188,26 +1221,41 @@ export default {
             }
         },
         snsSaveBotton() {
-            if(this.instagramPossibleText) {
+            if(this.snsPossibleText) {
               return;
             }
-
             if(this.isCertificationOnOff[1]){
               this.authInstagram();
-            } else if (this.isCertificationOnOff[3]) {
-              this.authNaver();
             } else if (this.isCertificationOnOff[2]) {
               this.authGoogle();
+            } else if (this.isCertificationOnOff[3]) {
+              this.authNaver();
             }
-            
         },
         async authGoogle() {
-          console.log('google');
           const url = '/auth/google'
           const res = await this.$axios('get', url );
 
           window.authResultForGoogle = async data => {
-            console.log(data);
+            console.log(data.data);
+            try {
+              this.snsWaitText = true;
+              if(data.data.result === 'success') {
+                this.youtubeCertIdx = data.data.authIdx;
+                this.youtubeImg = false;
+                this.snsPossibleText = true;
+                this.snsWaitText = false;
+                this.snsCertSuccessBtn = true;
+                this.snsCertBtn = false;
+                this.profileCard.sns.onSaveButton = true;
+              }
+            } catch(error) {
+                console.log(error);
+                this.snsWrongText = true;
+                this.snsWaitText = false;
+                this.snsCertBtn = true;
+                this.snsCertSuccessBtn = false;
+            }
           }
 
           window.open(
@@ -1220,7 +1268,25 @@ export default {
           const res = await this.$axios('get', `/auth/naver` );
 
           window.authResultForNaver = async data => {
-            console.log(data);
+            console.log(data.data);
+            try {
+              this.snsWaitText = true;
+              if(data.data.result === 'success') {
+                this.naverCertIdx = data.data.authIdx;
+                this.naverImg = false;
+                this.snsPossibleText = true;
+                this.snsWaitText = false;
+                this.snsCertSuccessBtn = true;
+                this.snsCertBtn = false;
+                this.profileCard.sns.onSaveButton = true;
+              }
+            } catch(error) {
+                console.log(error);
+                this.snsWrongText = true;
+                this.snsWaitText = false;
+                this.snsCertBtn = true;
+                this.snsCertSuccessBtn = false;
+            }
           }
           // popup open
           window.open(
@@ -1236,7 +1302,7 @@ export default {
             // get result from child
             window.authResultForInsta = async data => {
                 try {
-                  this.instagramWaitText = true;
+                  this.snsWaitText = true;
                     const res = await this.$axios(
                         'get',
                         `/auth/instagram?code=${data.code}&errorReason=${data.errorReason}&error=${data.error}`,
@@ -1245,16 +1311,16 @@ export default {
                     if(res.data.result === 'success') {
                       this.instagramCertIdx = res.data.authIdx;
                       this.instagramImg = false; //아이콘
-                      this.instagramPossibleText = true; //인증문구
-                      this.instagramWaitText = false;
+                      this.snsPossibleText = true; //인증문구
+                      this.snsWaitText = false;
                       this.snsCertSuccessBtn = true; //인증버튼
                       this.snsCertBtn = false;
                       this.profileCard.sns.onSaveButton = true; //저장하기버튼
                     }
                 } catch (error) {
                     console.log(error);
-                    this.instagramWrongText = true;
-                    this.instagramWaitText = false;
+                    this.snsWrongText = true;
+                    this.snsWaitText = false;
                     this.snsCertBtn = true;
                     this.snsCertSuccessBtn = false;
                 }
@@ -1327,13 +1393,32 @@ export default {
                 this.jobSearchChoice = this.jobList[idx].idx;
             } else if(e.target.closest('#itemSelect', '#m-itemSelect')) {
                 this.groupPurchaseDefault = text;
-                this.purchaseGroupTag = true;
-            } else  {
+                if(this.purchaseKindList == true) {
+                  if(this.groupPurchaseChoice.length > 13) {
+                    this.purchaseListText = true;
+                  } else {
+                    this.purchaseListText = false;
+                    this.purchaseGroupTag = true;
+                    this.profileCard.expectProduct.onSaveButton = true;
+                    if(!this.groupPurchaseChoice.find((v) => this.purchaseGroupList[idx].idx === v.idx))
+                      this.groupPurchaseChoice.push(this.purchaseGroupList[idx]);
+                  }
+                } else {
+                  if(this.groupPurchaseChoice.length > 13) {
+                    this.purchaseListText = true;
+                  } else {
+                    this.purchaseListText = false;
+                    this.purchaseGroupTag = true;
+                    this.profileCard.expectProduct.onSaveButton = true;
+                    if(!this.groupPurchaseChoice.find((v) => this.purchaseSearchList[idx].idx === v.idx))
+                      this.groupPurchaseChoice.push(this.purchaseSearchList[idx]);
+                  }
+                }
+            } else {
                 this.generationDefault = text;
                 this.ageGroupChoice = this.ageGroupList[idx].idx;
             }
         },
-
         //피부고민 중복선택,온오프
         checkSelect(idx) {
             if (idx === 0) {
@@ -1577,8 +1662,8 @@ export default {
         saveBtn(event) {
             if (event.target.className.includes('on')) {
                 if (this.currentCard === 'sns') {
-                    this.authIdx = this.instagramCertIdx;
-                    console.log(this.authIdx);
+                    this.auth.push(this.instagramCertIdx);
+                    console.log(this.auth);
                 } else if (this.currentCard === 'pay') {
                     if(this.isRecommendCheck) {
                       this.expectFee.recommendFee = true;
@@ -1632,6 +1717,8 @@ export default {
                     }
                     console.log(this.expectFee);
                 } else if (this.currentCard === 'expectProduct') {
+                    this.groupPurchaseList = this.groupPurchaseChoice.map((v) => v.idx);
+                    console.log(this.groupPurchaseList);
                 } else if (this.currentCard === 'gender') {
                     this.ageAndGender.gender = this.genderExists;
                     this.ageAndGender.age = this.ageChoice;
@@ -1657,7 +1744,7 @@ export default {
                     console.log(this.pet);
                 } else if (this.currentCard === 'skinType') {
                     this.skin.type = this.skinChoice;
-                    this.skin.trouble.troubleIdx = this.troubleChoice;
+                    this.skin.trouble.push(this.troubleChoice);
                     console.log(this.skin);
                 }
                 this.joinDisableBtn = false;
@@ -1681,7 +1768,8 @@ export default {
             //     this.$router.push('/');
             // }
             // this.$axios('post','/join/info/save', {
-            //   authIdx: this.authIdx,
+            //   userIdx: this.userIndex,
+            //   auth: this.auth,
             //   expectFee: this.expectFee,
             //   groupPurchaseList: this.groupPurchaseList,
             //   ageAndGender: this.ageAndGender,

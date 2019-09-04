@@ -262,7 +262,7 @@ button:focus {
                                 }
                                 > div {
                                     position: absolute;
-                                    bottom: -23px;
+                                    bottom: -25px;
                                     left: 50%;
                                     -webkit-transform: translateX(-50%);
                                     -moz-transform: translateX(-50%);
@@ -283,6 +283,13 @@ button:focus {
                                 }
                                 .uploadtexttrue span:last-child {
                                     float: right;
+                                }
+                                .uploadtexttrue span:first-child.ellipsis {
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    display: inline-block;                                    
+                                    width: 140px;
+                                    white-space: nowrap;
                                 }
                             }
                             > div.item {
@@ -978,7 +985,7 @@ button:focus {
                                 display: block;
                                 margin: 50px auto 0;
                             }
-                            input.input-button {
+                            .kakao-button {
                                 display: block;
                                 margin: 11px auto 40px;
                                 border: none;
@@ -991,6 +998,8 @@ button:focus {
                                 color: #fff;
                                 font-size: 14px;
                                 cursor: pointer;
+                                text-align: center;
+                                line-height: 30px;
                             }
                         }
                         .middle {
@@ -1002,6 +1011,7 @@ button:focus {
                                 margin-top: 40px;
                                 margin-bottom: 13px;
                                 color: #4bd897;
+                                cursor: default;
                             }
                             .text {
                                 margin-bottom: 40px;
@@ -1449,7 +1459,7 @@ button:focus {
                                     }
                                     > div {
                                         position: absolute;
-                                        bottom: -21px;
+                                        bottom: -22px;
                                         left: 50%;
                                         -webkit-transform: translateX(-50%);
                                         -moz-transform: translateX(-50%);
@@ -1472,6 +1482,13 @@ button:focus {
                                     }
                                     .uploadtexttrue span:last-child {
                                         float: right;
+                                    }
+                                    .uploadtexttrue span:first-child.ellipsis {
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: inline-block;                                    
+                                        width: 98px;
+                                        white-space: nowrap;
                                     }
                                 }
 
@@ -2267,14 +2284,14 @@ button:focus {
                             }
                             > div {
                                 position: absolute;
-                                bottom: -22px;
+                                bottom: -25px;
                                 left: 50%;
                                 -webkit-transform: translateX(-50%);
                                 -moz-transform: translateX(-50%);
                                 -ms-transform: translateX(-50%);
                                 -o-transform: translateX(-50%);
                                 transform: translateX(-50%);
-                                width: 192px;
+                                width: 190px;
                             }
                             .uploadtextfaise {
                                 color: #ff8173;
@@ -2288,6 +2305,13 @@ button:focus {
                             }
                             .uploadtexttrue span:last-child {
                                 float: right;
+                            }
+                            .uploadtexttrue span:first-child.ellipsis {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: inline-block;                                    
+                                width: 140px;
+                                white-space: nowrap;
                             }
                         }
                     }
