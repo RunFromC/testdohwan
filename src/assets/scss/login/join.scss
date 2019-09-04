@@ -2204,8 +2204,6 @@ button:focus {
                                 width: 255px;
                                 height: auto;
                                 margin: 0 auto;   
-                                // bottom: -438px;
-                                // position: absolute;
                                 position: fixed;
                                 bottom: 135px;
                                 left: 50%;
@@ -2249,51 +2247,41 @@ button:focus {
                                         transform: translate(-50%, -50%);
                                         border: 2px solid #def8ec;
                                         color: red;
+                                        z-index: 1;
+                                        background: #fff;
                                     }
-                                    li.close {
-                                        border: none;
+                                    .closeImg {
                                         position: absolute;
-                                        left: 50%;
-                                        top: 50%;
-                                        transform: translate(-50%, -50%);
-                                        .closeImg {
-                                            position: absolute;
-                                            width: 20px;
-                                            height: 20px;
-                                            right: -5px;
-                                            top: -5px;
-                                            background: #E2E1E1;
-                                            line-height: 20px;
-                                            z-index: 10;
-                                            display: block;  
-                                            border-radius: 50%;                                   
-                                        }
-                                        .closeImg::after {
-                                            content: '';
-                                            position: absolute;
-                                            height: 16px;
-                                            width: 2px;
-                                            background: #fff;
-                                            top: 50%;
-                                            left: 50%;
-                                            transform: translate(-50%, -50%) rotate(-45deg);
-    
-                                        }
-                                        .closeImg::before {
-                                            content: '';
-                                            position: absolute;
-                                            height: 16px;
-                                            width: 2px;
-                                            background: #fff;
-                                            top: 50%;
-                                            left: 50%;
-                                            transform: translate(-50%, -50%) rotate(45deg);
-    
-                                        }
+                                        width: 20px;
+                                        height: 20px;
+                                        right: -5px;
+                                        top: -5px;
+                                        background: #E2E1E1;
+                                        line-height: 20px;
+                                        z-index: 2;
+                                        display: block;  
+                                        border-radius: 50%;                                   
                                     }
-                                    
-                                    
-                                    
+                                    .closeImg::after {
+                                        content: '';
+                                        position: absolute;
+                                        height: 16px;
+                                        width: 2px;
+                                        background: #fff;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%) rotate(-45deg);
+                                    }
+                                    .closeImg::before {
+                                        content: '';
+                                        position: absolute;
+                                        height: 16px;
+                                        width: 2px;
+                                        background: #fff;
+                                        top: 50%;
+                                        left: 50%;
+                                        transform: translate(-50%, -50%) rotate(45deg);
+                                    }
                                 }
                             }
                             .alert-text {
@@ -2778,7 +2766,7 @@ button:focus {
                                 display: block;
                                 margin: 50px auto 0;
                             }
-                            input.input-button {
+                            .kakao-button {
                                 display: block;
                                 margin: 11px auto 40px;
                                 border: none;
@@ -2791,6 +2779,8 @@ button:focus {
                                 color: #fff;
                                 font-size: 14px;
                                 cursor: pointer;
+                                text-align: center;
+                                line-height: 30px;
                             }
                         }
                         .middle {
@@ -2802,6 +2792,7 @@ button:focus {
                                 margin-top: 40px;
                                 margin-bottom: 13px;
                                 color: #4bd897;
+                                cursor: default;
                             }
                             .text {
                                 margin-bottom: 40px;
@@ -4786,7 +4777,6 @@ button:focus {
                                 }
                                 .choice-list {
                                     max-width: 190px;
-                                    bottom: -294px;
                                     > ul {
                                         margin-left: 2.5px;
                                         margin-right: 2.5px;
@@ -5877,7 +5867,7 @@ button:focus {
 
                             .listWrap {
                                 position: relative;
-                                z-index: 1;
+                                z-index: 5;
                                 display: none;
                                 margin: 0 auto;
                                 width: 100%;
@@ -8032,47 +8022,38 @@ button:focus {
                                 border:2px solid #DEF8EC;
                                 color: red;
                               }
-                              li.close {
-                                border: none;
-                                background: none;
+                            .closeImg {
                                 position: absolute;
-                                left: 0;
-                                top: 0;
-                                .closeImg {
-                                    position: absolute;
-                                    width: 20px;
-                                    height: 20px;
-                                    right: -5px;
-                                    top: -5px;
-                                    background: #E2E1E1;
-                                    line-height: 20px;
-                                    z-index: 0;
-                                    display: block;  
-                                    border-radius: 50%;                                   
-                                }
-                                .closeImg::after {
-                                    content: '';
-                                    position: absolute;
-                                    height: 16px;
-                                    width: 2px;
-                                    background: #fff;
-                                    top: 50%;
-                                    left: 50%;
-                                    transform: translate(-50%, -50%) rotate(-45deg);
-
-                                }
-                                .closeImg::before {
-                                    content: '';
-                                    position: absolute;
-                                    height: 16px;
-                                    width: 2px;
-                                    background: #fff;
-                                    top: 50%;
-                                    left: 50%;
-                                    transform: translate(-50%, -50%) rotate(45deg);
-
-                                }                               
-                              }                              
+                                width: 20px;
+                                height: 20px;
+                                right: -5px;
+                                top: -5px;
+                                background: #E2E1E1;
+                                line-height: 20px;
+                                z-index: 2;
+                                display: block;  
+                                border-radius: 50%;                                   
+                            }
+                            .closeImg::after {
+                                content: '';
+                                position: absolute;
+                                height: 16px;
+                                width: 2px;
+                                background: #fff;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%) rotate(-45deg);
+                            }
+                            .closeImg::before {
+                                content: '';
+                                position: absolute;
+                                height: 16px;
+                                width: 2px;
+                                background: #fff;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%) rotate(45deg);
+                            }                               
                             }
                             > ul:nth-child(2n) {
                                 margin-left: 0!important;

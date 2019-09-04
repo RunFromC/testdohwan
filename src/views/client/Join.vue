@@ -130,17 +130,17 @@
                             <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label">연락처</div>
-                                    <input type="number" class="input-phone" placeholder="-없이 입력" v-model="companyContact" @input="maxLengthCheckCompanyContact">                                    
+                                    <input type="number" class="input-phone" placeholder="-없이 입력" v-model="companyContact" @input="maxLengthCheckCompanyContact" @keyup="keyCode($event)">                                    
                                 </div>
                             </div>
 
                             <div class="input-wrapper pb21">
                                 <div class="ceo-btn">
                                     <label for="fileUpload" :class="companyRegistrationFileName == true && companyRegistrationFileSize == false ? 'on':''">사업자등록증 업로드</label>
-                                    <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept=".gif, .jpg, .png">
+                                    <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept="image/*">
                                     <div class="uploadtextfaise" v-if="companyRegistrationFileSize">최대 업로드 파일 크기 : 5MB</div>
                                     <div class="uploadtexttrue" v-if="companyRegistrationFileName">
-                                        <span>{{companyRegistrationfileUploadName}}</span>
+                                        <span :class="companyRegistrationFileData.name.length > 10 ? 'ellipsis':''">{{companyRegistrationfileUploadName}}</span>
                                         <span>{{companyRegistrationfileUploadSize}}</span>
                                     </div>
                                 </div>
@@ -149,17 +149,17 @@
                             <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label ceo">사업자<br>등록번호</div>
-                                    <input type="number" class="ceo-num" placeholder="-없이 입력" v-model="companyRegistrationNumber" @input="maxLengthCheckCompanyRegistration">
+                                    <input type="number" class="ceo-num" placeholder="-없이 입력" v-model="companyRegistrationNumber" @input="maxLengthCheckCompanyRegistration" @keyup="keyCode($event)">
                                     
                                 </div>
                             </div>
                             <div class="input-wrapper pb21">
                                 <div class="ceo-btn">
                                     <label for="fileUpload-second" :class="mailorderBusinessFileName == true && mailorderBusinessFileSize == false ? 'on':''">통신판매업증 업로드</label>
-                                    <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept=".gif, .jpg, .png">
+                                    <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept="image/*">
                                     <div class="uploadtextfaise" v-if="mailorderBusinessFileSize">최대 업로드 파일 크기 : 5MB</div>
                                     <div class="uploadtexttrue" v-if="mailorderBusinessFileName">
-                                        <span>{{mailorderBusinessfileUploadName}}</span>
+                                        <span :class="mailorderBusinessFileData.name.length > 10 ? 'ellipsis':''">{{mailorderBusinessfileUploadName}}</span>
                                         <span>{{mailorderBusinessfileUploadSize}}</span>
                                     </div>
                                 </div>
@@ -168,7 +168,7 @@
                             <div class="input-wrapper pb10">
                                 <div class="item col1">
                                     <div class="label ceo">통신판매업<br>번호</div>
-                                    <input type="number" class="ceo-num" placeholder="-없이 입력" v-model="mailorderBusinessNumber" @input="maxLengthCheckMailorderBusiness">                                    
+                                    <input type="number" class="ceo-num" placeholder="-없이 입력" v-model="mailorderBusinessNumber" @input="maxLengthCheckMailorderBusiness" @keyup="keyCode($event)">                                    
                                 </div>
                             </div>
 
@@ -213,7 +213,7 @@
                             <div class="top">
                                 <div class="title">문의</div>
                                 <img src="~@/assets/img/login_ask_kakao icon.png" alt="카카오 문의">
-                                <input type="button" class="input-button" value="카카오톡 상담하기">
+                                <a href="http://pf.kakao.com/_FvvFj/chat" target="_blank" class="kakao-button">카카오톡 상담하기</a>
                             </div>
                             <div class="middle">
                                 <a href="#" class="tel">Tel. 1661 - 6213</a>
@@ -368,7 +368,7 @@
                     <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label">연락처</div>
-                            <input type="text" class="input-phone" placeholder="-없이 입력" v-model="companyContact" @input="maxLengthCheckCompanyContact">
+                            <input type="text" class="input-phone" placeholder="-없이 입력" v-model="companyContact" @input="maxLengthCheckCompanyContact" @keyup="keyCode($event)">
                             
                         </div>
                     </div>
@@ -376,10 +376,10 @@
                     <div class="input-wrapper mb5">
                         <div class="ceo-btn clearfix">
                             <label for="fileUpload" :class="companyRegistrationFileName == true && companyRegistrationFileSize == false ? 'on':''">사업자등록증 업로드</label>
-                            <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept=".gif, .jpg, .png">
+                            <input type="file" id="fileUpload" @change="companyRegistrationFileChange($event)" accept="image/*">
                             <div class="uploadtextfaise" v-if="companyRegistrationFileSize">최대 업로드 파일 크기 : 5MB</div>
                             <div class="uploadtexttrue" v-if="companyRegistrationFileName">
-                                <span>{{companyRegistrationfileUploadName}}</span>
+                                <span :class="companyRegistrationFileData.name.length > 10 ? 'ellipsis':''">{{companyRegistrationfileUploadName}}</span>
                                 <span>{{companyRegistrationfileUploadSize}}</span>
                             </div>
                         </div>
@@ -388,16 +388,16 @@
                     <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label ceo">사업자<br>등록번호</div>
-                            <input type="text" class="ceo-num" placeholder="-없이 입력" v-model="companyRegistrationNumber" @input="maxLengthCheckCompanyRegistration">
+                            <input type="text" class="ceo-num" placeholder="-없이 입력" v-model="companyRegistrationNumber" @input="maxLengthCheckCompanyRegistration" @keyup="keyCode($event)">
                         </div>
                     </div>
                     <div class="input-wrapper mb5">
                         <div class="ceo-btn clearfix">
                             <label for="fileUpload-second" :class="mailorderBusinessFileName == true && mailorderBusinessFileSize == false ? 'on':''">통신판매업증 업로드</label>
-                            <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept=".gif, .jpg, .png">
+                            <input type="file" id="fileUpload-second" @change="mailorderBusinessFileChange($event)" accept="image/*">
                             <div class="uploadtextfaise" v-if="mailorderBusinessFileSize">최대 업로드 파일 크기 : 5MB</div>
                             <div class="uploadtexttrue" v-if="mailorderBusinessFileName">
-                                <span>{{mailorderBusinessfileUploadName}}</span>
+                                <span :class="mailorderBusinessFileData.name.length > 10 ? 'ellipsis':''">{{mailorderBusinessfileUploadName}}</span>
                                 <span>{{mailorderBusinessfileUploadSize}}</span>
                             </div>
                         </div>
@@ -406,7 +406,7 @@
                     <div class="input-wrapper">
                         <div class="item col1">
                             <div class="label ceo">통신판매업<br>번호</div>
-                            <input type="text" class="ceo-num" placeholder="-없이 입력" v-model="mailorderBusinessNumber" @input="maxLengthCheckMailorderBusiness">
+                            <input type="text" class="ceo-num" placeholder="-없이 입력" v-model="mailorderBusinessNumber" @input="maxLengthCheckMailorderBusiness" @keyup="keyCode($event)">
                             
                         </div>
                     </div>
@@ -467,15 +467,15 @@ export default {
     data () {
         return {
             // 정보입력-회사정보
-            companyName: '',
+            companyName: null,
             companyNameValidityText: false,
-            companyContact: '',
-            companyRegistrationNumber: '',
-            mailorderBusinessNumber: '',
+            companyContact: null,
+            companyRegistrationNumber: null,
+            mailorderBusinessNumber: null,
             companyClassifyList: [],
             companyClassifyDefault: '대분류',
             companyClassifyChoice: NaN,
-            companyURL: '',
+            companyURL: null,
             companyRegistrationFileSize: false,
             companyRegistrationFileName: false,
             mailorderBusinessFileSize: false,
@@ -509,12 +509,15 @@ export default {
             if(this.companyName || this.companyContact || this.companyRegistrationNumber || this.companyRegistrationFileName == true ||
                 this.mailorderBusinessFileName == true || this.mailorderBusinessNumber || this.companyClassifyChoice || this.companyURL) {
                 this.$axios('post','/join/info/save', {
+                    userIdx: this.userIndex,
                     companyName: this.companyName,
                     contact: this.companyContact,
                     companyRegistrationNumber: this.companyRegistrationNumber,
                     mailorderBusinessNumber: this.mailorderBusinessNumber,
                     classification: this.companyClassifyChoice,
                     companyUrl: this.companyURL
+                }).catch((err) => {
+                    console.log(err);
                 })
                 this.$store.state.welcome = true;
                 this.$router.push({path: '/client'})
@@ -582,13 +585,22 @@ export default {
         maxLengthCheckMailorderBusiness() {
             if(this.mailorderBusinessNumber > 10) this.mailorderBusinessNumber = this.mailorderBusinessNumber.slice(0, 10);
         },
+        keyCode(event) {
+            event = event || window.event;
+            var keyID = (event.which) ? event.which : event.keyCode;
+            if((keyID >=48 && keyID <= 57) || (keyID >=96 && keyID <= 105)) {
+            } else {
+                alert('숫자만 입력해 주세요');
+            }
+        },
         companyRegistrationFileChange(e) {
             this.companyRegistrationFileData = e.target.files[0]
             let formData = new FormData();
             formData.append('multipartFile', this.companyRegistrationFileData);
-            if(this.companyRegistrationFileData.name.length > 14) {
-                alert('파일명최대 10글자입니다.');
-            } else {
+            let pathpoint = e.target.value.lastIndexOf('.');
+            let filepoint = e.target.value.substring(pathpoint+1,e.target.lenght);
+            let filetype = filepoint.toLowerCase();
+            if(filetype=="jpg" || filetype=="gif" || filetype=="png" || filetype=="bmp") {
                 this.$axios('post','/file/upload/companyRegistration', formData).then((res) => {
                     if(res.status !== 200 && (res.data.size !== this.companyRegistrationFileData.size)) {
                         alert('파일업로드 오류가 발생하였습니다.');
@@ -619,15 +631,18 @@ export default {
                         }
                     }
                 })
+            } else {
+                alert('이미지 파일만 선택할 수 있습니다');
             }
         },
         mailorderBusinessFileChange(e) {
             this.mailorderBusinessFileData = e.target.files[0]
             let formData = new FormData();
             formData.append('multipartFile', this.mailorderBusinessFileData);
-            if(this.mailorderBusinessFileData.name.length > 14) {
-                alert('파일명최대 10글자입니다.');
-            } else {
+            let pathpoint = e.target.value.lastIndexOf('.');
+            let filepoint = e.target.value.substring(pathpoint+1,e.target.lenght);
+            let filetype = filepoint.toLowerCase();
+            if(filetype=="jpg" || filetype=="gif" || filetype=="png" || filetype=="bmp") {
                 this.$axios('post','/file/upload/mailorderBusiness', formData).then((res) => {
                     if(res.status !== 200 && (res.data.size !== this.mailorderBusinessFileData.size)) {
                         alert('파일업로드 오류가 발생하였습니다.');
@@ -658,6 +673,8 @@ export default {
                         }
                     }
                 })
+            } else {
+                alert('이미지 파일만 선택할 수 있습니다');
             }
         }
     }

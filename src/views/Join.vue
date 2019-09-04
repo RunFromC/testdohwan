@@ -451,7 +451,7 @@ export default {
             emailCheckText: false,
             emailCheckDisable: true,
 
-            userIndex: 0, //가입완료시 받는 userIndex
+            userIndex: null, //가입완료시 받는 userIndex
             userService: NaN, //회원가입 service
 
             isCardFlip: false,
@@ -727,9 +727,9 @@ export default {
         // service 나누기
         if(this.service === 'client') {
             this.userService = 1;
-        } else if(this.service === 'influencer') {
-            this.userService = 2;
         } else if(this.service === 'brands') {
+            this.userService = 2;
+        } else if(this.service === 'influencer') {
             this.userService = 3;
         } else if(this.service === 'market') {
             this.userService = 4;
