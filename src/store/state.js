@@ -99,7 +99,35 @@ const state = {
     currentCard: 'default',
     welcome: false,
     certification: null,
-    currentIndex: 0
+    currentIndex: 0,
+    userIndex: 0,
+    jobList: [],
+    tempSelectJobList: [
+        {
+            idx: null,
+            isCurrentJob: true,
+            name: ''
+        }
+    ],
+    childrenAgeList: [],
+    tempSelectChildrenList: [
+        {
+            age: null,
+            gender: null,
+            ageName: '',
+            genderName: ''
+
+        }
+    ],
+    petList: [],
+    tempSelectPetList: [
+        {
+            typeIdx: null,
+            number: null,
+            typeIdxName: '',
+            numberName: ''
+        }
+    ]
 };
 
 export default state;

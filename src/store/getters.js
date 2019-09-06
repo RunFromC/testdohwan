@@ -13,6 +13,27 @@ const getters = {
     },
     getCurrentIndex(store) {
         return store.currentIndex.currentIndex;
+    },
+    getJobList(store) {
+        return store.jobList;
+    },
+    getTempSelectJobList(store) {
+        return store.tempSelectJobList;
+    },
+    getChildrenAgeList(store) {
+        return store.childrenAgeList;
+    },
+    getTempSelectChildrenList(store) {
+        return store.tempSelectChildrenList;
+    },
+    getPetList(store) {
+        return store.petList;
+    },
+    getTempSelectPetList(store) {
+        return store.tempSelectPetList;
+    },
+    getUserIndex(store) {
+        return store.userIndex;
     }
 };
 

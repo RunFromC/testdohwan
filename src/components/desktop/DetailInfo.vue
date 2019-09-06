@@ -4,7 +4,7 @@
       <div class="top">
         <div class="title">문의</div>
         <img src="~@/assets/img/login_ask_kakao icon.png" alt="카카오 문의">
-        <a class="kakao-button">카카오톡 상담하기</a>
+        <a @click="openKakao" class="kakao-button">카카오톡 상담하기</a>
       </div>
       <div class="middle">
         <a href="#" class="tel">Tel. 1661 - 6213</a>
@@ -428,46 +428,16 @@
           </li>
         </ul>
         <div class="status-selectbox-wrap clearfix" id="jobSelect" :class="!haveJob ? 'none': ''">
-          <ul class="status-selectbox">
-            <li class="select-box clearfix" id="jobTense">
-              <ul class="select-first select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{jobDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first listContents">
-                <li @click="isText($event)" v-if="jobDefault == '전 직업'">현 직업</li>
-                <li @click="isText($event)" v-if="jobDefault == '현 직업'">전 직업</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix" id="jobSearchSelect">
-              <ul class="select-second select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <input type="text" placeholder="직업선택, 검색" v-model="jobSearchDefault" @keyup="jobSearch" />
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-second listContents" v-if="jobKindList">
-                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)">{{list.name}}</li>
-              </ul>
-              <ul class="list-second listContents" v-else>
-                <li v-for="(list,index) in jobSearchList" :key="index" @click="isText($event,index)">
-                  <HighlightColorText :result="list.name" :keyword="jobSearchDefault" />
-                </li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-add" v-if="addJobBtn">
-                  <a href="#">+</a>
-                </li>
-                <li class="status-remove" v-else>
-                  <a href="#">-</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <plus-contents-job 
+            v-for="(plusJob, num) in tempSelectJobList" 
+            :num="num"
+            :key="plusJob.idx" 
+            :idx="plusJob.idx" 
+            :name="plusJob.name" 
+            :isCurrentJob="plusJob.isCurrentJob" 
+            v-on:add="addJob" 
+            v-on:remove="removeJob">
+          </plus-contents-job>
         </div>
       </div>
       <div class="button-wrap">
@@ -476,7 +446,7 @@
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn" 
-          :class="checkStatus('n','job') || (checkStatus('y','job') && jobTenseChoice && jobSearchChoice) ? 'on':''">저장하기</li>
+          :class="checkStatus('n','job') || (checkStatus('y','job') && tempSelectJobList[0].idx !== null) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -493,7 +463,7 @@
       <div class="inner-contents">
         <div class="input-selectbox-wrap" id="interestsSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" />
           </div>
           <div class="listContents listWrap long like-top">
             <ul class="list">
@@ -606,41 +576,17 @@
           id="childSelect"
           :class="!haveChild ? 'none': ''"
         >
-          <ul class="status-selectbox" id="addChildren">
-            <li class="select-box clearfix" id="childAge">
-              <ul class="select-first select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{childAgeDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first listContents">
-                <li v-for="(item,index) in childrenAgeList" @click="isText($event,index)" :key="index">{{item.age}}</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix" id="childGender">
-              <ul class="select-second select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{childGenderDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-second listContents">
-                <li @click="isText($event)">남자</li>
-                <li @click="isText($event)">여자</li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-add" v-if="addChildBtn" @click="addChild">
-                  <a href="#">+</a>
-                </li>
-                <li class="status-remove" v-else @click="removeChild">
-                  <a href="#"></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <plus-contents-child
+            v-for="(plusChild, num) in tempSelectChildrenList" 
+            :num="num"
+            :key="plusChild.idx" 
+            :age="plusChild.age" 
+            :gender="plusChild.gender" 
+            :ageName="plusChild.ageName"
+            :genderName="plusChild.genderName"
+            v-on:add="addChild" 
+            v-on:remove="removeChild">
+          </plus-contents-child>
         </div>
 
         <!-- <div id="childrenInfoWrap" class="select-container"></div>
@@ -653,7 +599,7 @@
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn" 
-          :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice !== null) ? 'on':''">저장하기</li>
+          :class="checkStatus('n','child') || (checkStatus('y','child') && tempSelectChildrenList[0].age !== null && tempSelectChildrenList[0].gender !== null) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -691,43 +637,17 @@
           </li>
         </ul>
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
-          <ul class="status-selectbox">
-            <li class="select-box clearfix" id="petType">
-              <ul class="select-first select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{petTypeDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first listContents">
-                <li v-for="(item,index) in petList" @click="isText($event,index)" :key="index">{{item.typeName}}</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix" id="petDigit">
-              <ul class="select-second select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{petDigitDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-second listContents">
-                <li @click="isText($event)">1마리</li>
-                <li @click="isText($event)">2마리</li>
-                <li @click="isText($event)">3마리</li>
-                <li @click="isText($event)">4마리 이상</li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-add" v-if="addPetBtn">
-                  <a href="#">+</a>
-                </li>
-                <li class="status-remove" v-else>
-                  <a href="#">-</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <plus-contents-pet
+            v-for="(plusPet, num) in tempSelectPetList" 
+            :num="num"
+            :key="plusPet.idx" 
+            :typeIdx="plusPet.typeIdx" 
+            :number="plusPet.number" 
+            :typeIdxName="plusPet.typeIdxName"
+            :numberName="plusPet.numberName"
+            v-on:add="addPet" 
+            v-on:remove="removePet">
+          </plus-contents-pet>
         </div>
       </div>
       <div class="button-wrap">
@@ -736,7 +656,7 @@
             <i></i>뒤로가기
           </li>
           <li class="save-btn" @click="saveBtn" 
-          :class="checkStatus('n','pet') || (checkStatus('y','pet') && petTypeChoice && petNumChoice) ? 'on':''">저장하기</li>
+          :class="checkStatus('n','pet') || (checkStatus('y','pet') && tempSelectPetList[0].typeIdx !== null && tempSelectPetList[0].number !== null) ? 'on':''">저장하기</li>
           <li class="next-btn" @click="nextDetailInfo">
             건너뛰기
             <i></i>
@@ -947,9 +867,13 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import MapSvg from '../../components/MapSvg.vue';
 import mobileDetailInfo from '../mobile/DetailInfo.vue';
 import HighlightColorText from '../HighlightColorText.vue';
+import PlusContentsJob from '../PlusContentsJob.vue';
+import PlusContentsChild from '../PlusContentsChild.vue'
+import PlusContentsPet from '../PlusContentsPet.vue'
 import { log } from 'util';
 import { async } from 'q';
 
@@ -975,13 +899,21 @@ export default {
     computed: {
         getCurrentCard() {
             return this.$store.getters.getCurrentCard;
-        }
+        },
+         ...mapGetters({
+            tempSelectJobList: 'getTempSelectJobList',
+            tempSelectChildrenList: 'getTempSelectChildrenList',
+            tempSelectPetList: 'getTempSelectPetList'
+        })
     },
     template: {
         MapSvg
     },
     components: {
         HighlightColorText,
+        PlusContentsJob,
+        PlusContentsChild,
+        PlusContentsPet
     },
     methods: {
         myAction(selectKey) {
@@ -999,9 +931,9 @@ export default {
             this.clearCardList();
             this.profileCard['default'].on = true;
         },
-        // openKakao() {
-        //   window.open('http://pf.kakao.com/_FvvFj/chat', '_blank'); 
-        // }
+        openKakao() {
+          window.open('http://pf.kakao.com/_FvvFj/chat', '_blank'); 
+        }
     }
 };
 </script>

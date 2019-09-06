@@ -31,7 +31,7 @@
                                 <div class="input-wrapper">
                                     <div class="item">
                                         <div class="label">아이디 </div>
-                                        <input type="text" v-model="id" @keyup="idvalidationReset">
+                                        <input type="text" v-model="id" @keyup="idvalidationReset" id="idDisabled">
                                         <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
                                         <div class="wrong-text" v-if="id && idValidityText">영문,숫자,밑줄,점 6~20자</div>
                                         <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
@@ -43,14 +43,14 @@
                                 <div class="input-wrapper ">
                                     <div class="item password">
                                         <div class="label">비밀번호 </div>
-                                        <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
+                                        <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput" id="pwDisabled">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                         <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                                     </div>
 
                                     <div class="item password">
                                         <div class="label"> </div>
-                                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck">
+                                        <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck" id="pwAgainDisabled">
                                         <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                         <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                                     </div>
@@ -75,7 +75,7 @@
                                 <div class="input-wrapper">
                                     <div class="item">
                                         <div class="label">이메일</div>
-                                        <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset">
+                                        <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset" id="emailDisabled">
                                         <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
                                         <div class="wrong-text" v-if="email && emailValidityText">잘못된 이메일 형식입니다</div>
                                         <div class="possible-text" v-if="email && emailPossibleText">사용가능한 이메일입니다</div>
@@ -409,7 +409,7 @@
 <script>
 import Terms from '../components/Terms.vue'
 import TermsMobile from '../components/TermsMoblie.vue'
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import MobileDetailInfo from '../components/mobile/DetailInfo.vue';
 import DesktopDetailInfo from '../components/desktop/DetailInfo.vue';
 import '../assets/scss/login/join.scss'
@@ -454,8 +454,7 @@ export default {
             emailCheckText: false,
             emailCheckDisable: true,
 
-            userIndex: null, //가입완료시 받는 userIndex
-            userService: NaN, //회원가입 service
+            userService: null, //회원가입 service
 
             isCardFlip: false,
             isMobileTermsOn: false,
@@ -474,8 +473,11 @@ export default {
         }
     },
     computed: {
-        ...mapState(['service', 'profileCard']),
-        ...mapGetters(['getByFormData']),
+        ...mapState(['service', 'profileCard','userIndex']),
+        ...mapGetters({
+            getByFormData: 'getByFormData',
+            userIndex: 'getUserIndex'
+        }),
         cardFilp () {
             if (this.isCardFlip) {
                 return 'applyflip'
@@ -485,6 +487,7 @@ export default {
         },       
     },
     methods: {
+        ...mapMutations(['setUserIndex']),
         addInforShow(){ //가입완료 클릭시 추가정보 탭으로 이동
             this.isToggleMobileTab === 2;
         },
@@ -645,12 +648,18 @@ export default {
                     email: this.email,
                     termsAgreed: true
                 }).then((res) => {
-                    this.userIndex = res.data.userIdx;
+                    if(res.data.result === 'success') {
+                        this.setUserIndex(res.data.userIdx);
+                        this.addJoinPage = !this.addJoinPage;
+                        this.toggleMobileTab(2);
+                        document.getElementById('idDisabled').disabled = true;
+                        document.getElementById('pwDisabled').disabled = true;
+                        document.getElementById('pwAgainDisabled').disabled = true;
+                        document.getElementById('emailDisabled').disabled = true;
+                    }
                 }).catch((err) => {
                     console.log(err);
                 })
-                this.addJoinPage = !this.addJoinPage;
-                this.toggleMobileTab(2);
             } else {
                 alert('정보를 모두 입력해주세요');
             }
@@ -703,10 +712,6 @@ export default {
     mounted() {        
         this.$store.commit('setLocalService');        
         const agent = navigator.userAgent.toLowerCase();
-        
-        console.log('query',  this.$route.query);
-        
-        
         if (
             (navigator.appName == 'Netscape' &&
                 navigator.userAgent.search('Trident') != -1) ||
@@ -722,14 +727,12 @@ export default {
         // cert init 
         this.$axios('get',`/cert/init/${this.service}`, {
             }).then((res) => {
-                console.log(res);
                 this.trCert = res.data.trCert;
                 this.trUrl = res.data.trUrl;
                 this.trAdd = res.data.trAdd;
             }).catch((err) => {
                 console.log(err)
             });
-
         // service 나누기
         if(this.service === 'client') {
             this.userService = 1;

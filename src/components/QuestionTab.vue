@@ -5,7 +5,7 @@
       <div class="top">
         <div class="title">문의</div>
         <img src="../assets/img/login_ask_kakao icon.png" alt="카카오톡 문의" />
-        <input type="button" class="input-button" value="카카오톡 상담하기" />
+        <a href="http://pf.kakao.com/_FvvFj/chat" target="_blank" class="kakao-button">카카오톡 상담하기</a>
       </div>
       <div class="middle">
         <a href="#" class="tel">Tel. 1661 - 6213</a>
@@ -15,9 +15,9 @@
           <br />(공휴일 휴무)
         </div>
       </div>
-      <div class="bottom">
+      <!-- <div class="bottom">
         <a href="mailto:bigbird-pick@concepters.co.kr" class="email">bigbird-pick@concepters.co.kr</a>
-      </div>
+      </div> -->
     </div>
 
     <div class="box" id="naverTab" v-else>

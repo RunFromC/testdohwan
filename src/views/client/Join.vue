@@ -25,7 +25,7 @@
                             <div class="input-wrapper">
                                 <div class="item">
                                     <div class="label">아이디 </div>
-                                    <input type="text" v-model="id" @keyup="idvalidationReset">
+                                    <input type="text" v-model="id" @keyup="idvalidationReset" id="idDisabled">
                                     <button @click="idCheck" :class="id ? 'on':''" v-bind:disabled="idCheckDisable">중복확인</button>
                                     <div class="wrong-text" v-if="id && idValidityText">영문,숫자,밑줄,점 6~20자</div>
                                     <div class="possible-text" v-if="id && idPossibleText">사용가능한 아이디입니다</div>
@@ -37,14 +37,14 @@
                             <div class="input-wrapper ">
                                 <div class="item password">
                                     <div class="label">비밀번호 </div>
-                                    <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput">
+                                    <input type="password" placeholder="비밀번호" v-model="pw" @keyup="pwInput" id="pwDisabled">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                     <div class="wrong-text" v-if="pwValidityText">영문,숫자,특수문자 포함 6~20자</div>
                                 </div>
 
                                 <div class="item password">
                                     <div class="label"> </div>
-                                    <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck">
+                                    <input type="password" placeholder="비밀번호 확인" v-model="pwAgain" @keyup="pwCheck" id="pwAgainDisabled">
                                     <a href="#" class="icon-eye" @click.prevent="changePwType"></a>
                                     <div class="wrong-text" v-if="pwWrongText">비밀번호가 일치하지 않습니다</div>
                                 </div>
@@ -69,7 +69,7 @@
                             <div class="input-wrapper">
                                 <div class="item">
                                     <div class="label">이메일</div>
-                                    <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset">
+                                    <input type="text" placeholder="직접입력" v-model="email" @keyup="emailvalidationReset" id="emailDisabled">
                                     <button @click="eamilCheck" :class="email ? 'on':''" v-bind:disabled="emailCheckDisable">중복확인</button>
                                     <div class="wrong-text" v-if="email && emailValidityText">잘못된 이메일 형식입니다</div>
                                     <div class="possible-text" v-if="email && emailPossibleText">사용가능한 이메일입니다</div>
@@ -474,7 +474,7 @@ export default {
             mailorderBusinessNumber: null,
             companyClassifyList: [],
             companyClassifyDefault: '대분류',
-            companyClassifyChoice: NaN,
+            companyClassifyChoice: null,
             companyURL: null,
             companyRegistrationFileSize: false,
             companyRegistrationFileName: false,
@@ -501,6 +501,12 @@ export default {
             this.companyClassifyList = res.data;
         })
     },
+    computed: {
+        ...mapState(['userIndex']),
+        ...mapGetters({
+            userIndex: 'getUserIndex',
+        })
+    },
     methods: {   
         addJoin() {
             this.joinPage = true;
@@ -516,11 +522,15 @@ export default {
                     mailorderBusinessNumber: this.mailorderBusinessNumber,
                     classification: this.companyClassifyChoice,
                     companyUrl: this.companyURL
-                }).catch((err) => {
+                }).then((res)=> {
+                    if(res.data.result === 'success') {
+                        this.$store.state.welcome = true;
+                        this.$router.push({path: '/client'})
+                    }
+                })
+                .catch((err) => {
                     console.log(err);
                 })
-                this.$store.state.welcome = true;
-                this.$router.push({path: '/client'})
             } else {
                 alert('회사정보 중 한개라도 입력해야 합니다');
             }

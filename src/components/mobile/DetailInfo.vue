@@ -404,44 +404,20 @@
           </li>
         </ul>
         <div class="status-selectbox-wrap clearfix" id="m-jobSelect" :class="!haveJob ? 'none': ''">
-          <ul class="status-selectbox">
-            <li class="select-box clearfix" id="m-jobTense">
-              <ul class="select-first select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{jobDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first listContents">
-                <li @click="isText($event)" v-if="jobDefault == '전 직업'">현 직업</li>
-                <li @click="isText($event)" v-if="jobDefault == '현 직업'">전 직업</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix" id="jobSearchSelect">
-              <ul class="select-second select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <input type="text" placeholder="직업선택, 검색" v-model="jobSearchDefault" @keyup="jobSearch" />
-                </li>
-              </ul>
-              <ul class="list-second listContents">
-                <li v-for="(list,index) in jobList" :key="index" @click="isText($event,index)">{{list.name}}</li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-add">
-                  <a href="#">+</a>
-                </li>
-                <li class="status-remove none">
-                  <a href="#">-</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <plus-contents-job 
+            v-for="(plusJob, num) in tempSelectJobList" 
+            :num="num"
+            :key="plusJob.idx" 
+            :idx="plusJob.idx" 
+            :name="plusJob.name" 
+            :isCurrentJob="plusJob.isCurrentJob" 
+            v-on:add="addJob" 
+            v-on:remove="removeJob">
+          </plus-contents-job>
         </div>
       </div>
       <div class="button-wrap">
-        <button class="jobsave-btn" @click="saveBtn" :class="checkStatus('n','job') || (checkStatus('y','job') && jobTenseChoice && jobSearchChoice) ? 'on':''">저장</button>
+        <button class="jobsave-btn" @click="saveBtn" :class="checkStatus('n','job') || (checkStatus('y','job') && tempSelectJobList[0].idx !== null) ? 'on':''">저장</button>
       </div>
     </div>
     <!-- 관심사 -->
@@ -471,7 +447,7 @@
       <div class="m-like">
         <div class="input-selectbox-wrap" id="m-interestsSelect">
           <div class="select select-btn" @click.prevent="showSelectList">
-            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" @keyup="purchaseInput" />
+            <input type="text" placeholder="공구품목 선택, 검색" v-model="purchaseList" />
           </div>
           <div class="listContents listWrap long item-top">
             <ul class="list">
@@ -584,45 +560,21 @@
           id="childSelect"
           :class="!haveChild ? 'none': ''"
         >
-          <ul class="status-selectbox">
-            <li class="select-box clearfix" id="m-childAge">
-              <ul class="select-first select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{childAgeDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first listContents">
-                <li v-for="(item,index) in childrenAgeList" @click="isText($event,index)" :key="index">{{item.age}}</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix" id="m-childGender">
-              <ul class="select-second select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{childGenderDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-second listContents">
-                <li @click="isText($event)">남자</li>
-                <li @click="isText($event)">여자</li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-add">
-                  <a href="#">+</a>
-                </li>
-                <li class="status-remove none">
-                  <a href="#"></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <plus-contents-child
+            v-for="(plusChild, num) in tempSelectChildrenList" 
+            :num="num"
+            :key="plusChild.idx" 
+            :age="plusChild.age" 
+            :gender="plusChild.gender" 
+            :ageName="plusChild.ageName"
+            :genderName="plusChild.genderName"
+            v-on:add="addChild" 
+            v-on:remove="removeChild">
+          </plus-contents-child>
         </div>
       </div>
       <div class="button-wrap">
-        <button class="babysave-btn" @click="saveBtn" :class="checkStatus('n','child') || (checkStatus('y','child') && childrenAgeChoice && childrenGenderChoice !== null) ? 'on':''">저장</button>
+        <button class="babysave-btn" @click="saveBtn" :class="checkStatus('n','child') || (checkStatus('y','child') && tempSelectChildrenList[0].age !== null && tempSelectChildrenList[0].gender !== null) ? 'on':''">저장</button>
       </div>
     </div>
     <!-- 반려동물 -->
@@ -670,47 +622,21 @@
           </li>
         </ul>
         <div class="status-selectbox-wrap clearfix" id="petSelect" :class="!havePet ? 'none': ''">
-          <ul class="status-selectbox">
-            <li class="select-box clearfix" id="m-petType">
-              <ul class="select-first select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{petTypeDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-first listContents">
-                <li v-for="(item,index) in petList" @click="isText($event,index)" :key="index">{{item.typeName}}</li>
-              </ul>
-            </li>
-            <li class="select-box big clearfix" id="m-petDigit">
-              <ul class="select-second select-btn" @click.prevent="showSelectList2">
-                <li>
-                  <span>{{petDigitDefault}}</span>
-                  <i></i>
-                </li>
-              </ul>
-              <ul class="list-second listContents">
-                <li @click="isText($event)">1마리</li>
-                <li @click="isText($event)">2마리</li>
-                <li @click="isText($event)">3마리</li>
-                <li @click="isText($event)">4마리 이상</li>
-              </ul>
-            </li>
-            <li class="status-btn clearfix">
-              <ul>
-                <li class="status-add">
-                  <a href="#">+</a>
-                </li>
-                <li class="status-remove none">
-                  <a href="#">-</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <plus-contents-pet
+            v-for="(plusPet, num) in tempSelectPetList" 
+            :num="num"
+            :key="plusPet.idx" 
+            :typeIdx="plusPet.typeIdx" 
+            :number="plusPet.number" 
+            :typeIdxName="plusPet.typeIdxName"
+            :numberName="plusPet.numberName"
+            v-on:add="addPet" 
+            v-on:remove="removePet">
+          </plus-contents-pet>
         </div>
       </div>
       <div class="button-wrap">
-        <button class="petsave-btn" @click="saveBtn" :class="checkStatus('n','pet') || (checkStatus('y','pet') && petTypeChoice && petNumChoice) ? 'on':''">저장</button>
+        <button class="petsave-btn" @click="saveBtn" :class="checkStatus('n','pet') || (checkStatus('y','pet') && tempSelectPetList[0].typeIdx !== null && tempSelectPetList[0].number !== null) ? 'on':''">저장</button>
       </div>
     </div>
 
@@ -846,8 +772,11 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 import HighlightColorText from '../HighlightColorText.vue';
+import PlusContentsJob from '../PlusContentsJob.vue';
+import PlusContentsChild from '../PlusContentsChild.vue'
+import PlusContentsPet from '../PlusContentsPet.vue'
 import MapSvg from '../MapSvg';
 import { async } from 'q';
 
@@ -885,7 +814,6 @@ export default {
             generationDefault: '초반',
             jobDefault: '현 직업',
             jobSearchDefault: '',
-            groupPurchaseDefault: '',
             addJobBtn: true,
             addChildBtn: true,
             addPetBtn: true,
@@ -901,8 +829,7 @@ export default {
                 'pay',
                 'expectProduct',
                 'gender',
-                'job',
-                'interests',
+                'job',                
                 'married',
                 'children',
                 'pet',
@@ -952,7 +879,7 @@ export default {
             instagramCertIdx: null,
             youtubeCertIdx: null,
             naverCertIdx: null,
-            auth: [],
+            auth: null,
             // 희망수수료
             defaultFeeInput: '',
             basicValue: '-10', //개런티 퍼센트
@@ -961,16 +888,16 @@ export default {
             comboValue: '-10', //개런티 퍼센트
             expectFee: { 
               recommendFee: null,
-              defaultFee: NaN, //100000
-              defaultFeePer: NaN, //-10
-              productPrice: NaN, //1000000
-              productFee: NaN, //100000
-              productFeePer: NaN //-10
+              defaultFee: null, //100000
+              defaultFeePer: null, //-10
+              productPrice: null, //1000000
+              productFee: null, //100000
+              productFeePer: null //-10
             },
             // 희망공구품목
             purchaseGroupList: [],
             groupPurchaseChoice: [],
-            groupPurchaseList: [],
+            groupPurchaseList: null,
             purchaseGroupTag: false,
             deletePurchase: null,
             purchaseList: '',
@@ -984,11 +911,7 @@ export default {
             ageGroupList: [],
             ageChoice: null,
             ageGroupChoice: null,
-            ageAndGender: { 
-              gender: null,
-              age: null,
-              ageGroup: null,
-            },
+            ageAndGender: null,
             // 직업
             jobList: [],
             jobExists: null,
@@ -996,15 +919,7 @@ export default {
             jobSearchChoice: null,
             jobSearchList:[],
             jobKindList: true,
-            job: { 
-              exists: null,
-              jobList: [
-                {
-                  isCurrentJob: null,
-                  idx: null
-                }
-              ]
-            },
+            job: null,
             // 결혼
             marry: null,
             married: null, 
@@ -1013,62 +928,49 @@ export default {
             childrenExists: null,
             childrenAgeChoice: null,
             childrenGenderChoice: null,
-            children: { 
-              exists: null,
-              childrenList: [
-                {
-                  age: null,
-                  gender: null,
-                }
-              ]
-            },
+            children: null,
             // 반려동물
             petList: [],
             petExists: null,
             petTypeChoice: null,
             petNumChoice: null,
-            pet: {
-              exists: null,
-              petList: [
-                {
-                  typeIdx: null,
-                  number: null,
-                }
-              ]
-            },
+            pet: null,
             // 피부
             skinList: [],
             troubleList: [],
             skinChoice: null,
             troubleChoice: [],
-            skin: { 
-              type: null,
-              trouble: []
-            },
+            skin: null,
             joinDisableBtn: true,
             joinFinishBtn: false,
         };
     },
     components: {
         MapSvg,
-        HighlightColorText
+        HighlightColorText,
+        PlusContentsJob,
+        PlusContentsChild,
+        PlusContentsPet
     },
     computed: {
-        ...mapState(['service', 'profileCard', 'currentCard']),
+        ...mapState(['service', 'profileCard', 'currentCard','userIndex']),
         ...mapGetters({
-            currentIndex: 'getCurrentIndex'
+            currentIndex: 'getCurrentIndex',
+            userIndex: 'getUserIndex',
+            tempSelectJobList: 'getTempSelectJobList',
+            tempSelectChildrenList: 'getTempSelectChildrenList',
+            tempSelectPetList: 'getTempSelectPetList'
         })
     },
     mounted() {
       this.$axios('get','/join/info/init', {
-        }).then((res) => {
-            console.log(res);      
+        }).then((res) => {      
             this.purchaseGroupList = res.data.groupPurchaseList;
             this.ageList = res.data.age;
             this.ageGroupList = res.data.ageGroup;
-            this.jobList = res.data.job;
-            this.childrenAgeList = res.data.childrenAge;
-            this.petList = res.data.pet;
+            this.setJobList(res.data.job);
+            this.setChildrenAgeList(res.data.childrenAge);
+            this.setPetList(res.data.pet);
             this.skinList = res.data.skin.skinType;
             this.troubleList = res.data.skin.trouble;
         }).catch((err) => {
@@ -1076,6 +978,9 @@ export default {
         });
     },
     methods: {
+        ...mapMutations(['setJobList','setAddTempSelectJobList', 'removeTempSelectJobList',
+        'setChildrenAgeList','setAddTempSelectChildrenList', 'removeTempSelectChildrenList',
+        'setPetList','setAddTempSelectPetList', 'removeTempSelectPetList']),
         onDeletePurchase(index) {
           return this.deletePurchase === index;
         },
@@ -1097,12 +1002,23 @@ export default {
           }
           this.deletePurchase = null;
         },
-        addChild() {
-          this.addChildBtn = false;
+        addJob() {
+          this.setAddTempSelectJobList();
         },
-        removeChild() {
-          let removeChildren = document.getElementById("addChildren");
-          removeChildren.parentNode.removeChild(removeChildren);
+        removeJob(data) {
+          this.removeTempSelectJobList(data.index);
+        },
+        addChild() {
+          this.setAddTempSelectChildrenList();
+        },
+        removeChild(data) {
+          this.removeTempSelectChildrenList(data.index);
+        },
+        addPet() {
+          this.setAddTempSelectPetList();
+        },
+        removePet(data) {
+          this.removeTempSelectPetList(data.index);
         },
         jobSearch() {
           this.$axios('post','/join/search/job', {
@@ -1237,7 +1153,6 @@ export default {
           const res = await this.$axios('get', url );
 
           window.authResultForGoogle = async data => {
-            console.log(data.data);
             try {
               this.snsWaitText = true;
               if(data.data.result === 'success') {
@@ -1268,7 +1183,6 @@ export default {
           const res = await this.$axios('get', `/auth/naver` );
 
           window.authResultForNaver = async data => {
-            console.log(data.data);
             try {
               this.snsWaitText = true;
               if(data.data.result === 'success') {
@@ -1392,7 +1306,7 @@ export default {
                 this.jobSearchDefault = text;
                 this.jobSearchChoice = this.jobList[idx].idx;
             } else if(e.target.closest('#itemSelect', '#m-itemSelect')) {
-                this.groupPurchaseDefault = text;
+                this.purchaseList = text;
                 if(this.purchaseKindList == true) {
                   if(this.groupPurchaseChoice.length > 13) {
                     this.purchaseListText = true;
@@ -1662,7 +1576,12 @@ export default {
         saveBtn(event) {
             if (event.target.className.includes('on')) {
                 if (this.currentCard === 'sns') {
-                    this.auth.push(this.instagramCertIdx);
+                    if(this.auth) {
+                      this.auth.push(this.instagramCertIdx);                      
+                    } else {
+                      this.auth = new Array();
+                      this.auth.push(this.instagramCertIdx);                      
+                    }
                     console.log(this.auth);
                 } else if (this.currentCard === 'pay') {
                     if(this.isRecommendCheck) {
@@ -1717,34 +1636,41 @@ export default {
                     }
                     console.log(this.expectFee);
                 } else if (this.currentCard === 'expectProduct') {
-                    this.groupPurchaseList = this.groupPurchaseChoice.map((v) => v.idx);
+                    this.groupPurchaseList = this.groupPurchaseChoice.map((v) => v.idx)
                     console.log(this.groupPurchaseList);
                 } else if (this.currentCard === 'gender') {
-                    this.ageAndGender.gender = this.genderExists;
-                    this.ageAndGender.age = this.ageChoice;
-                    this.ageAndGender.ageGroup = this.ageGroupChoice;
+                    this.ageAndGender = {
+                      gender: this.genderExists,
+                      age: this.ageChoice,
+                      ageGroup: this.ageGroupChoice
+                    }
                     console.log(this.ageAndGender);
                 } else if (this.currentCard === 'job') {
-                    this.job.exists = this.jobExists;
-                    this.job.jobList[0].isCurrentJob = this.jobTenseChoice;
-                    this.job.jobList[0].idx = this.jobSearchChoice;
+                    this.job = {
+                      exists: this.jobExists,
+                      jobList: this.tempSelectJobList
+                    }
                     console.log(this.job);
                 } else if (this.currentCard === 'married') {
                     this.married = this.marry;
                     console.log(this.married);
                 } else if (this.currentCard === 'children') {
-                    this.children.exists = this.childrenExists;
-                    this.children.childrenList[0].age = this.childrenAgeChoice;
-                    this.children.childrenList[0].gender = this.childrenGenderChoice;
+                    this.children = {
+                      exists: this.childrenExists,
+                      childrenList: this.tempSelectChildrenList
+                    }
                     console.log(this.children);
                 } else if (this.currentCard === 'pet') {
-                    this.pet.exists = this.petExists;
-                    this.pet.petList[0].typeIdx = this.petTypeChoice;
-                    this.pet.petList[0].number = this.petNumChoice;
+                    this.pet = {
+                      exists: this.petExists,
+                      petList: this.tempSelectPetList
+                    }
                     console.log(this.pet);
                 } else if (this.currentCard === 'skinType') {
-                    this.skin.type = this.skinChoice;
-                    this.skin.trouble.push(this.troubleChoice);
+                    this.skin = {
+                      type: this.skinChoice,
+                      trouble: this.troubleChoice
+                    };
                     console.log(this.skin);
                 }
                 this.joinDisableBtn = false;
@@ -1760,26 +1686,41 @@ export default {
         },
         joinCheck() {
             // this.clearCardList();
-
             // if (!this.$store.state.iccMode) {
             //     this.profileCard['finishBlock'].on = true;
             // } else {
             //     this.$store.state.welcome = true;
             //     this.$router.push('/');
             // }
-            // this.$axios('post','/join/info/save', {
-            //   userIdx: this.userIndex,
-            //   auth: this.auth,
-            //   expectFee: this.expectFee,
-            //   groupPurchaseList: this.groupPurchaseList,
-            //   ageAndGender: this.ageAndGender,
-            //   job: this.job,
-            //   married: this.married,
-            //   children: this.children,
-            //   pet: this.pet,
-            //   skin: this.skin
-            // });
-            alert('end')
+            if(this.expectFee.recommendFee === null && this.expectFee.defaultFee === null && this.expectFee.defaultFeePer === null
+             && this.expectFee.productPrice === null && this.expectFee.productFee === null && this.expectFee.productFeePer === null) {
+               this.expectFee = null;
+            }
+            this.$axios('post','/join/info/save', {
+              userIdx: this.userIndex,
+              auth: this.auth,
+              expectFee: this.expectFee,
+              groupPurchaseList: this.groupPurchaseList,
+              ageAndGender: this.ageAndGender,
+              job: this.job,
+              married: this.married,
+              children: this.children,
+              pet: this.pet,
+              skin: this.skin
+            }).then((res) => {
+              if(res.data.result === 'success') {
+                this.$store.state.welcome = true;
+                if(this.service === 'influencer') {
+                  this.$router.push({path: '/influencer'});
+                } else if(this.service === 'brands') {
+                  this.$router.push({path: '/'});
+                } else if(this.service === 'market') {
+                  this.$router.push({path: '/market'});
+                }
+              }
+            }).catch((err) => {
+                console.log(err);
+            })
         }
     },
     watch: {

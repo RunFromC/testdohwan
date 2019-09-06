@@ -16,10 +16,6 @@ export default {
             'setIccMode',
             'true' === process.env.VUE_APP_ICC_MODE
         );
-
-        console.log(this.$route.path);
-        console.log(this.$route.query.service);
-
         if (this.$route.path === '/join' && !this.$route.query.service) {
             this.$router.push('/join?service=brands');
             this.setService({ service: 'brands' });
