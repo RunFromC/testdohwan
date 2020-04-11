@@ -1,5 +1,9 @@
 <template>
-    <div>{{msg}}</div>
+    <div>
+        <span>
+            <router-link to="/test">test</router-link>
+        </span>
+    </div>
 </template>
 
 <script>
